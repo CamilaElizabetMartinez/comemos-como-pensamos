@@ -97,3 +97,104 @@
 .navbar-btn-primary:hover {
   background-color: rgba(255,255,255,0.9);
 }
+
+.navbar-favorites {
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.navbar-favorites:hover {
+  transform: scale(1.2);
+}
+
+.user-menu-container {
+  position: relative;
+}
+
+.user-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.user-menu-trigger:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #eee;
+  margin: 0.25rem 0;
+}
+
+.dropdown-logout {
+  color: #f44336;
+}
+
+.dropdown-logout:hover {
+  background: #ffebee;
+}

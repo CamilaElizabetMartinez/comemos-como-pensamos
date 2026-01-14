@@ -87,6 +87,54 @@
     "view": "Ansehen",
     "search": "Suchen",
     "filter": "Filtern",
-    "sort": "Sortieren"
+    "sort": "Sortieren",
+    "previous": "Zurück",
+    "next": "Weiter"
+  },
+  "orders": {
+    "title": "Meine Bestellungen",
+    "allOrders": "Alle Bestellungen",
+    "noOrders": "Sie haben noch keine Bestellungen",
+    "startShopping": "Einkaufen starten",
+    "moreItems": "weitere Artikel",
+    "total": "Gesamt",
+    "viewDetails": "Details anzeigen",
+    "errorLoading": "Fehler beim Laden der Bestellungen",
+    "statusPending": "Ausstehend",
+    "statusConfirmed": "Bestätigt",
+    "statusPreparing": "In Vorbereitung",
+    "statusShipped": "Versendet",
+    "statusDelivered": "Geliefert",
+    "statusCancelled": "Storniert"
+  },
+  "profile": {
+    "title": "Mein Profil",
+    "personalInfo": "Persönliche Informationen",
+    "addressInfo": "Adresse",
+    "preferences": "Einstellungen",
+    "phone": "Telefon",
+    "street": "Adresse",
+    "streetPlaceholder": "Straße, Nummer, Stock...",
+    "city": "Stadt",
+    "postalCode": "Postleitzahl",
+    "country": "Land",
+    "language": "Bevorzugte Sprache",
+    "updateSuccess": "Profil erfolgreich aktualisiert",
+    "updateError": "Fehler beim Aktualisieren des Profils",
+    "role": {
+      "customer": "Kunde",
+      "producer": "Produzent",
+      "admin": "Administrator"
+    }
+  },
+  "favorites": {
+    "title": "Meine Favoriten",
+    "empty": "Sie haben keine Favoriten",
+    "emptyDescription": "Speichern Sie Produkte, die Ihnen gefallen, um sie leicht zu finden.",
+    "exploreProducts": "Produkte erkunden",
+    "remove": "Aus Favoriten entfernen",
+    "removed": "Produkt aus Favoriten entfernt",
+    "errorLoading": "Fehler beim Laden der Favoriten",
+    "errorRemoving": "Fehler beim Entfernen aus Favoriten"
   }
 }

@@ -87,6 +87,54 @@
     "view": "View",
     "search": "Search",
     "filter": "Filter",
-    "sort": "Sort"
+    "sort": "Sort",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "orders": {
+    "title": "My Orders",
+    "allOrders": "All orders",
+    "noOrders": "You don't have any orders yet",
+    "startShopping": "Start shopping",
+    "moreItems": "more items",
+    "total": "Total",
+    "viewDetails": "View details",
+    "errorLoading": "Error loading orders",
+    "statusPending": "Pending",
+    "statusConfirmed": "Confirmed",
+    "statusPreparing": "Preparing",
+    "statusShipped": "Shipped",
+    "statusDelivered": "Delivered",
+    "statusCancelled": "Cancelled"
+  },
+  "profile": {
+    "title": "My Profile",
+    "personalInfo": "Personal Information",
+    "addressInfo": "Address",
+    "preferences": "Preferences",
+    "phone": "Phone",
+    "street": "Address",
+    "streetPlaceholder": "Street, number, floor...",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "country": "Country",
+    "language": "Preferred language",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Error updating profile",
+    "role": {
+      "customer": "Customer",
+      "producer": "Producer",
+      "admin": "Administrator"
+    }
+  },
+  "favorites": {
+    "title": "My Favorites",
+    "empty": "You have no favorites",
+    "emptyDescription": "Save products you like to find them easily.",
+    "exploreProducts": "Explore products",
+    "remove": "Remove from favorites",
+    "removed": "Product removed from favorites",
+    "errorLoading": "Error loading favorites",
+    "errorRemoving": "Error removing from favorites"
   }
 }
