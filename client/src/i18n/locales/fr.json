@@ -205,6 +205,22 @@
     "reviewAdded": "Avis ajouté avec succès",
     "reviewError": "Erreur lors de l'ajout de l'avis"
   },
+  "imageUploader": {
+    "dropHere": "Déposez les images ici",
+    "orClick": "ou cliquez pour sélectionner",
+    "maxSize": "Max. 5 Mo par image",
+    "images": "images",
+    "uploading": "Téléchargement...",
+    "uploadSuccess": "Image téléchargée avec succès",
+    "uploadError": "Erreur lors du téléchargement",
+    "removeSuccess": "Image supprimée",
+    "remove": "Supprimer l'image",
+    "mainImage": "Principale",
+    "maxImagesReached": "Maximum {{max}} images autorisées",
+    "invalidType": "Seules les images sont autorisées",
+    "fileTooLarge": "Le fichier est trop volumineux (max. 5 Mo)",
+    "dragReorder": "Glissez les images pour les réorganiser. La première sera l'image principale."
+  },
   "producer": {
     "dashboard": {
       "title": "Tableau de bord Producteur",

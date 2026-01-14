@@ -205,6 +205,22 @@
     "reviewAdded": "Review added successfully",
     "reviewError": "Error adding review"
   },
+  "imageUploader": {
+    "dropHere": "Drop images here",
+    "orClick": "or click to select",
+    "maxSize": "Max. 5MB per image",
+    "images": "images",
+    "uploading": "Uploading...",
+    "uploadSuccess": "Image uploaded successfully",
+    "uploadError": "Error uploading image",
+    "removeSuccess": "Image removed",
+    "remove": "Remove image",
+    "mainImage": "Main",
+    "maxImagesReached": "Maximum {{max}} images allowed",
+    "invalidType": "Only images are allowed",
+    "fileTooLarge": "File is too large (max. 5MB)",
+    "dragReorder": "Drag images to reorder. The first one will be the main image."
+  },
   "producer": {
     "dashboard": {
       "title": "Producer Dashboard",

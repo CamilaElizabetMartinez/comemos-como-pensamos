@@ -205,6 +205,22 @@
     "reviewAdded": "Opinión añadida correctamente",
     "reviewError": "Error al añadir opinión"
   },
+  "imageUploader": {
+    "dropHere": "Arrastra imágenes aquí",
+    "orClick": "o haz clic para seleccionar",
+    "maxSize": "Máx. 5MB por imagen",
+    "images": "imágenes",
+    "uploading": "Subiendo...",
+    "uploadSuccess": "Imagen subida correctamente",
+    "uploadError": "Error al subir imagen",
+    "removeSuccess": "Imagen eliminada",
+    "remove": "Eliminar imagen",
+    "mainImage": "Principal",
+    "maxImagesReached": "Máximo {{max}} imágenes permitidas",
+    "invalidType": "Solo se permiten imágenes",
+    "fileTooLarge": "El archivo es demasiado grande (máx. 5MB)",
+    "dragReorder": "Arrastra las imágenes para reordenarlas. La primera será la imagen principal."
+  },
   "producer": {
     "dashboard": {
       "title": "Panel de Productor",
