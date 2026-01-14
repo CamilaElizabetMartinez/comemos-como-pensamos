@@ -24,6 +24,9 @@ import CheckoutPage from './pages/CheckoutPage';
 import OrdersPage from './pages/OrdersPage';
 import ProfilePage from './pages/ProfilePage';
 import FavoritesPage from './pages/FavoritesPage';
+import OrderDetailPage from './pages/OrderDetailPage';
+import ProducersPage from './pages/ProducersPage';
+import ProducerDetailPage from './pages/ProducerDetailPage';
 
 function App() {
   return (
@@ -45,8 +48,11 @@ function App() {
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
                   <Route path="/orders" element={<OrdersPage />} />
+                  <Route path="/orders/:id" element={<OrderDetailPage />} />
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/favorites" element={<FavoritesPage />} />
+                  <Route path="/producers" element={<ProducersPage />} />
+                  <Route path="/producers/:id" element={<ProducerDetailPage />} />
                 </Routes>
               </main>
               <Footer />

@@ -136,5 +136,39 @@
     "removed": "Produkt aus Favoriten entfernt",
     "errorLoading": "Fehler beim Laden der Favoriten",
     "errorRemoving": "Fehler beim Entfernen aus Favoriten"
+  },
+  "orderDetail": {
+    "title": "Bestellung",
+    "backToOrders": "Zurück zu meinen Bestellungen",
+    "items": "Artikel",
+    "quantity": "Menge",
+    "summary": "Zusammenfassung",
+    "shippingAddress": "Lieferadresse",
+    "tracking": "Sendungsnummer",
+    "notes": "Notizen",
+    "paid": "Bezahlt",
+    "paymentPending": "Zahlung ausstehend",
+    "orderCancelled": "Diese Bestellung wurde storniert",
+    "notFound": "Bestellung nicht gefunden",
+    "errorLoading": "Fehler beim Laden der Bestellung"
+  },
+  "producers": {
+    "title": "Unsere Produzenten",
+    "subtitle": "Lernen Sie die lokalen Produzenten kennen, die unsere Gemeinschaft möglich machen",
+    "searchPlaceholder": "Produzenten suchen...",
+    "cityPlaceholder": "Nach Stadt filtern",
+    "noProducers": "Keine Produzenten gefunden",
+    "noProducersDescription": "Versuchen Sie andere Suchbegriffe",
+    "errorLoading": "Fehler beim Laden der Produzenten"
+  },
+  "producerDetail": {
+    "backToProducers": "Zurück zu Produzenten",
+    "about": "Über uns",
+    "products": "Produkte",
+    "noProducts": "Dieser Produzent hat noch keine Produkte verfügbar",
+    "contact": "Kontakt",
+    "contactPerson": "Ansprechpartner",
+    "notFound": "Produzent nicht gefunden",
+    "errorLoading": "Fehler beim Laden der Produzenteninformationen"
   }
 }

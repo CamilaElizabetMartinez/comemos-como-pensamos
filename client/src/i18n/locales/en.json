@@ -136,5 +136,39 @@
     "removed": "Product removed from favorites",
     "errorLoading": "Error loading favorites",
     "errorRemoving": "Error removing from favorites"
+  },
+  "orderDetail": {
+    "title": "Order",
+    "backToOrders": "Back to my orders",
+    "items": "Items",
+    "quantity": "Quantity",
+    "summary": "Summary",
+    "shippingAddress": "Shipping Address",
+    "tracking": "Tracking Number",
+    "notes": "Notes",
+    "paid": "Paid",
+    "paymentPending": "Payment pending",
+    "orderCancelled": "This order has been cancelled",
+    "notFound": "Order not found",
+    "errorLoading": "Error loading order"
+  },
+  "producers": {
+    "title": "Our Producers",
+    "subtitle": "Meet the local producers that make our community possible",
+    "searchPlaceholder": "Search producers...",
+    "cityPlaceholder": "Filter by city",
+    "noProducers": "No producers found",
+    "noProducersDescription": "Try different search terms",
+    "errorLoading": "Error loading producers"
+  },
+  "producerDetail": {
+    "backToProducers": "Back to producers",
+    "about": "About Us",
+    "products": "Products",
+    "noProducts": "This producer has no products available yet",
+    "contact": "Contact",
+    "contactPerson": "Contact person",
+    "notFound": "Producer not found",
+    "errorLoading": "Error loading producer information"
   }
 }
