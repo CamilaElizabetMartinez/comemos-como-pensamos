@@ -45,7 +45,17 @@
     "passwordResetSuccess": "Passwort erfolgreich geändert",
     "passwordResetError": "Fehler beim Ändern des Passworts. Der Link ist möglicherweise abgelaufen.",
     "passwordChanged": "Passwort geändert!",
-    "passwordChangedDescription": "Ihr Passwort wurde aktualisiert. Sie können sich jetzt anmelden."
+    "passwordChangedDescription": "Ihr Passwort wurde aktualisiert. Sie können sich jetzt anmelden.",
+    "emailVerification": "E-Mail-Verifizierung",
+    "verifyingEmail": "Ihre E-Mail wird verifiziert",
+    "pleaseWait": "Bitte warten...",
+    "verificationSuccess": "E-Mail verifiziert!",
+    "emailVerified": "Ihre E-Mail wurde erfolgreich verifiziert.",
+    "redirectingToLogin": "Sie werden zur Anmeldung weitergeleitet...",
+    "goToLogin": "Zur Anmeldung",
+    "verificationError": "Verifizierungsfehler",
+    "verificationFailed": "E-Mail konnte nicht verifiziert werden. Der Link ist möglicherweise abgelaufen.",
+    "resendVerification": "Verifizierung erneut senden"
   },
   "products": {
     "title": "Produkte",
@@ -54,10 +64,17 @@
     "price": "Preis",
     "rating": "Bewertung",
     "addToCart": "In den Warenkorb",
+    "addedToCart": "Produkt zum Warenkorb hinzugefügt",
     "outOfStock": "Nicht vorrätig",
     "producer": "Produzent",
     "unit": "Einheit",
-    "reviews": "Bewertungen"
+    "reviews": "Bewertungen",
+    "stock": "Verfügbarkeit",
+    "units": "Einheiten",
+    "notFound": "Produkt nicht gefunden",
+    "backToProducts": "Zurück zu Produkten",
+    "viewProducer": "Produzent ansehen",
+    "errorLoading": "Fehler beim Laden des Produkts"
   },
   "cart": {
     "title": "Warenkorb",
@@ -132,8 +149,12 @@
     "empty": "Sie haben keine Favoriten",
     "emptyDescription": "Speichern Sie Produkte, die Ihnen gefallen, um sie leicht zu finden.",
     "exploreProducts": "Produkte erkunden",
+    "add": "Zu Favoriten hinzufügen",
+    "added": "Zu Favoriten hinzugefügt",
     "remove": "Aus Favoriten entfernen",
     "removed": "Produkt aus Favoriten entfernt",
+    "loginRequired": "Anmelden um zu Favoriten hinzuzufügen",
+    "error": "Fehler beim Aktualisieren der Favoriten",
     "errorLoading": "Fehler beim Laden der Favoriten",
     "errorRemoving": "Fehler beim Entfernen aus Favoriten"
   },
@@ -170,5 +191,18 @@
     "contactPerson": "Ansprechpartner",
     "notFound": "Produzent nicht gefunden",
     "errorLoading": "Fehler beim Laden der Produzenteninformationen"
+  },
+  "reviews": {
+    "title": "Kundenbewertungen",
+    "reviewsCount": "Bewertungen",
+    "noReviews": "Dieses Produkt hat noch keine Bewertungen",
+    "beFirstToReview": "Seien Sie der Erste, der nach dem Kauf bewertet!",
+    "writeReview": "Bewertung schreiben",
+    "yourRating": "Ihre Bewertung",
+    "yourComment": "Ihr Kommentar",
+    "commentPlaceholder": "Was denken Sie über dieses Produkt?",
+    "submitReview": "Bewertung abschicken",
+    "reviewAdded": "Bewertung erfolgreich hinzugefügt",
+    "reviewError": "Fehler beim Hinzufügen der Bewertung"
   }
 }
