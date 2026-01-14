@@ -87,6 +87,54 @@
     "view": "Voir",
     "search": "Rechercher",
     "filter": "Filtrer",
-    "sort": "Trier"
+    "sort": "Trier",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "orders": {
+    "title": "Mes Commandes",
+    "allOrders": "Toutes les commandes",
+    "noOrders": "Vous n'avez pas encore de commandes",
+    "startShopping": "Commencer vos achats",
+    "moreItems": "articles de plus",
+    "total": "Total",
+    "viewDetails": "Voir les détails",
+    "errorLoading": "Erreur lors du chargement des commandes",
+    "statusPending": "En attente",
+    "statusConfirmed": "Confirmée",
+    "statusPreparing": "En préparation",
+    "statusShipped": "Expédiée",
+    "statusDelivered": "Livrée",
+    "statusCancelled": "Annulée"
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "personalInfo": "Informations Personnelles",
+    "addressInfo": "Adresse",
+    "preferences": "Préférences",
+    "phone": "Téléphone",
+    "street": "Adresse",
+    "streetPlaceholder": "Rue, numéro, étage...",
+    "city": "Ville",
+    "postalCode": "Code Postal",
+    "country": "Pays",
+    "language": "Langue préférée",
+    "updateSuccess": "Profil mis à jour avec succès",
+    "updateError": "Erreur lors de la mise à jour du profil",
+    "role": {
+      "customer": "Client",
+      "producer": "Producteur",
+      "admin": "Administrateur"
+    }
+  },
+  "favorites": {
+    "title": "Mes Favoris",
+    "empty": "Vous n'avez pas de favoris",
+    "emptyDescription": "Enregistrez les produits que vous aimez pour les retrouver facilement.",
+    "exploreProducts": "Explorer les produits",
+    "remove": "Retirer des favoris",
+    "removed": "Produit retiré des favoris",
+    "errorLoading": "Erreur lors du chargement des favoris",
+    "errorRemoving": "Erreur lors de la suppression des favoris"
   }
 }
