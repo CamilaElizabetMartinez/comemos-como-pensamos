@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import ImageUploader from '../../components/common/ImageUploader';
 import './ProducerProductForm.css';
 
 const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'other'];
@@ -24,7 +25,6 @@ const ProducerProductForm = () => {
     images: [],
     isAvailable: true
   });
-  const [newImageUrl, setNewImageUrl] = useState('');
   const { user } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -43,6 +43,12 @@ const ProducerProductForm = () => {
     try {
       const res = await api.get(`/products/${id}`);
       const product = res.data.data.product;
+      
+      // Convertir imágenes a formato con url/publicId si son strings
+      const normalizedImages = (product.images || []).map(img => 
+        typeof img === 'string' ? { url: img, publicId: null } : img
+      );
+      
       setFormData({
         name: product.name || { es: '', en: '', fr: '', de: '' },
         description: product.description || { es: '', en: '', fr: '', de: '' },
@@ -50,7 +56,7 @@ const ProducerProductForm = () => {
         price: product.price?.toString() || '',
         unit: product.unit || 'kg',
         stock: product.stock?.toString() || '',
-        images: product.images || [],
+        images: normalizedImages,
         isAvailable: product.isAvailable ?? true
       });
     } catch (error) {
@@ -79,20 +85,10 @@ const ProducerProductForm = () => {
     }));
   };
 
-  const handleAddImage = () => {
-    if (newImageUrl.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        images: [...prev.images, newImageUrl.trim()]
-      }));
-      setNewImageUrl('');
-    }
-  };
-
-  const handleRemoveImage = (index) => {
+  const handleImagesChange = (newImages) => {
     setFormData(prev => ({
       ...prev,
-      images: prev.images.filter((_, i) => i !== index)
+      images: newImages
     }));
   };
 
@@ -114,8 +110,14 @@ const ProducerProductForm = () => {
 
     setSaving(true);
     try {
+      // Extraer solo las URLs de las imágenes para guardar
+      const imageUrls = formData.images.map(img => 
+        typeof img === 'string' ? img : img.url
+      );
+
       const payload = {
         ...formData,
+        images: imageUrls,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock)
       };
@@ -278,38 +280,14 @@ const ProducerProductForm = () => {
 
           <section className="form-section">
             <h2>{t('producer.productForm.images')}</h2>
+            <p className="section-hint">{t('imageUploader.dragReorder')}</p>
             
-            <div className="images-grid">
-              {formData.images.map((img, index) => (
-                <div key={index} className="image-preview">
-                  <img src={img} alt={`Product ${index + 1}`} />
-                  <button
-                    type="button"
-                    className="remove-image"
-                    onClick={() => handleRemoveImage(index)}
-                  >
-                    ✕
-                  </button>
-                </div>
-              ))}
-            </div>
-
-            <div className="add-image-row">
-              <input
-                type="url"
-                value={newImageUrl}
-                onChange={(e) => setNewImageUrl(e.target.value)}
-                placeholder={t('producer.productForm.imageUrlPlaceholder')}
-              />
-              <button
-                type="button"
-                onClick={handleAddImage}
-                className="btn btn-secondary"
-              >
-                {t('producer.productForm.addImage')}
-              </button>
-            </div>
-            <p className="hint">{t('producer.productForm.imageHint')}</p>
+            <ImageUploader
+              images={formData.images}
+              onImagesChange={handleImagesChange}
+              maxImages={5}
+              folder="products"
+            />
           </section>
 
           <div className="form-actions">
@@ -331,4 +309,3 @@ const ProducerProductForm = () => {
 };
 
 export default ProducerProductForm;
-

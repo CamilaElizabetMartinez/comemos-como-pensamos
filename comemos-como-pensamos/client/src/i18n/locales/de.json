@@ -205,6 +205,22 @@
     "reviewAdded": "Bewertung erfolgreich hinzugefügt",
     "reviewError": "Fehler beim Hinzufügen der Bewertung"
   },
+  "imageUploader": {
+    "dropHere": "Bilder hierher ziehen",
+    "orClick": "oder klicken zum Auswählen",
+    "maxSize": "Max. 5 MB pro Bild",
+    "images": "Bilder",
+    "uploading": "Hochladen...",
+    "uploadSuccess": "Bild erfolgreich hochgeladen",
+    "uploadError": "Fehler beim Hochladen",
+    "removeSuccess": "Bild entfernt",
+    "remove": "Bild entfernen",
+    "mainImage": "Haupt",
+    "maxImagesReached": "Maximal {{max}} Bilder erlaubt",
+    "invalidType": "Nur Bilder sind erlaubt",
+    "fileTooLarge": "Die Datei ist zu groß (max. 5 MB)",
+    "dragReorder": "Bilder ziehen um neu zu ordnen. Das erste wird das Hauptbild."
+  },
   "producer": {
     "dashboard": {
       "title": "Produzenten-Dashboard",
