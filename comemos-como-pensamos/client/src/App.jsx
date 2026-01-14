@@ -29,6 +29,12 @@ import OrderDetailPage from './pages/OrderDetailPage';
 import ProducersPage from './pages/ProducersPage';
 import ProducerDetailPage from './pages/ProducerDetailPage';
 
+// Producer Pages
+import ProducerDashboard from './pages/producer/ProducerDashboard';
+import ProducerProducts from './pages/producer/ProducerProducts';
+import ProducerProductForm from './pages/producer/ProducerProductForm';
+import ProducerOrders from './pages/producer/ProducerOrders';
+
 function App() {
   return (
     <Router>
@@ -55,6 +61,13 @@ function App() {
                   <Route path="/favorites" element={<FavoritesPage />} />
                   <Route path="/producers" element={<ProducersPage />} />
                   <Route path="/producers/:id" element={<ProducerDetailPage />} />
+                  
+                  {/* Producer Panel */}
+                  <Route path="/producer" element={<ProducerDashboard />} />
+                  <Route path="/producer/products" element={<ProducerProducts />} />
+                  <Route path="/producer/products/new" element={<ProducerProductForm />} />
+                  <Route path="/producer/products/edit/:id" element={<ProducerProductForm />} />
+                  <Route path="/producer/orders" element={<ProducerOrders />} />
                 </Routes>
               </main>
               <Footer />

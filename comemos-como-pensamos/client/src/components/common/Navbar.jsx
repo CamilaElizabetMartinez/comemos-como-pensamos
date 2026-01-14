@@ -104,6 +104,15 @@ const Navbar = () => {
                   >
                     ❤️ {t('nav.favorites')}
                   </Link>
+                  {user?.role === 'producer' && (
+                    <Link 
+                      to="/producer" 
+                      className="dropdown-item dropdown-producer"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      🏪 {t('nav.dashboard')}
+                    </Link>
+                  )}
                   <div className="dropdown-divider"></div>
                   <button onClick={handleLogout} className="dropdown-item dropdown-logout">
                     🚪 {t('nav.logout')}
