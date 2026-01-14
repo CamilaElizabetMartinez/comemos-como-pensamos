@@ -1,0 +1,239 @@
+.admin-dashboard {
+  padding: 2rem;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.admin-dashboard .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.dashboard-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+}
+
+.dashboard-header .subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-card.highlight {
+  background: linear-gradient(135deg, #00c853, #00e676);
+  border: none;
+}
+
+.stat-card.alert {
+  background: linear-gradient(135deg, #ff6d00, #ff9100);
+  border: none;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.action-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+}
+
+.action-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-color: #00c853;
+}
+
+.action-icon {
+  font-size: 2rem;
+}
+
+.action-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.action-desc {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.action-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ff6d00;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.orders-overview {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orders-overview h2 {
+  color: white;
+  margin: 0 0 1.25rem 0;
+  font-size: 1.25rem;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.status-card {
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.status-count {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.status-name {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.status-card.status-pending {
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.3), rgba(255, 193, 7, 0.3));
+}
+
+.status-card.status-confirmed {
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.3), rgba(3, 169, 244, 0.3));
+}
+
+.status-card.status-preparing {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(171, 71, 188, 0.3));
+}
+
+.status-card.status-shipped {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(129, 199, 132, 0.3));
+}
+
+.status-card.status-delivered {
+  background: linear-gradient(135deg, rgba(0, 200, 83, 0.3), rgba(105, 240, 174, 0.3));
+}
+
+.status-card.status-cancelled {
+  background: linear-gradient(135deg, rgba(244, 67, 54, 0.3), rgba(229, 115, 115, 0.3));
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-icon {
+    font-size: 1.75rem;
+    width: 48px;
+    height: 48px;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .dashboard-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
