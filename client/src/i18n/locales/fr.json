@@ -45,7 +45,17 @@
     "passwordResetSuccess": "Mot de passe changé avec succès",
     "passwordResetError": "Erreur lors du changement de mot de passe. Le lien a peut-être expiré.",
     "passwordChanged": "Mot de passe changé!",
-    "passwordChangedDescription": "Votre mot de passe a été mis à jour. Vous pouvez maintenant vous connecter."
+    "passwordChangedDescription": "Votre mot de passe a été mis à jour. Vous pouvez maintenant vous connecter.",
+    "emailVerification": "Vérification de l'email",
+    "verifyingEmail": "Vérification de votre email",
+    "pleaseWait": "Veuillez patienter...",
+    "verificationSuccess": "Email vérifié!",
+    "emailVerified": "Votre email a été vérifié avec succès.",
+    "redirectingToLogin": "Vous serez redirigé vers la connexion...",
+    "goToLogin": "Aller à la connexion",
+    "verificationError": "Erreur de vérification",
+    "verificationFailed": "Impossible de vérifier votre email. Le lien a peut-être expiré.",
+    "resendVerification": "Renvoyer la vérification"
   },
   "products": {
     "title": "Produits",
@@ -54,10 +64,17 @@
     "price": "Prix",
     "rating": "Note",
     "addToCart": "Ajouter au panier",
+    "addedToCart": "Produit ajouté au panier",
     "outOfStock": "Rupture de stock",
     "producer": "Producteur",
     "unit": "Unité",
-    "reviews": "Avis"
+    "reviews": "Avis",
+    "stock": "Disponibilité",
+    "units": "unités",
+    "notFound": "Produit non trouvé",
+    "backToProducts": "Retour aux produits",
+    "viewProducer": "Voir le producteur",
+    "errorLoading": "Erreur lors du chargement du produit"
   },
   "cart": {
     "title": "Panier",
@@ -132,8 +149,12 @@
     "empty": "Vous n'avez pas de favoris",
     "emptyDescription": "Enregistrez les produits que vous aimez pour les retrouver facilement.",
     "exploreProducts": "Explorer les produits",
+    "add": "Ajouter aux favoris",
+    "added": "Ajouté aux favoris",
     "remove": "Retirer des favoris",
     "removed": "Produit retiré des favoris",
+    "loginRequired": "Connectez-vous pour ajouter aux favoris",
+    "error": "Erreur lors de la mise à jour des favoris",
     "errorLoading": "Erreur lors du chargement des favoris",
     "errorRemoving": "Erreur lors de la suppression des favoris"
   },
@@ -170,5 +191,18 @@
     "contactPerson": "Personne de contact",
     "notFound": "Producteur non trouvé",
     "errorLoading": "Erreur lors du chargement des informations du producteur"
+  },
+  "reviews": {
+    "title": "Avis des clients",
+    "reviewsCount": "avis",
+    "noReviews": "Ce produit n'a pas encore d'avis",
+    "beFirstToReview": "Soyez le premier à donner votre avis après votre achat!",
+    "writeReview": "Écrire un avis",
+    "yourRating": "Votre note",
+    "yourComment": "Votre commentaire",
+    "commentPlaceholder": "Que pensez-vous de ce produit?",
+    "submitReview": "Soumettre l'avis",
+    "reviewAdded": "Avis ajouté avec succès",
+    "reviewError": "Erreur lors de l'ajout de l'avis"
   }
 }

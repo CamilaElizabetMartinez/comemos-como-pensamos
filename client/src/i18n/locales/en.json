@@ -45,7 +45,17 @@
     "passwordResetSuccess": "Password changed successfully",
     "passwordResetError": "Error changing password. The link may have expired.",
     "passwordChanged": "Password Changed!",
-    "passwordChangedDescription": "Your password has been updated. You can now login."
+    "passwordChangedDescription": "Your password has been updated. You can now login.",
+    "emailVerification": "Email Verification",
+    "verifyingEmail": "Verifying your email",
+    "pleaseWait": "Please wait...",
+    "verificationSuccess": "Email Verified!",
+    "emailVerified": "Your email has been verified successfully.",
+    "redirectingToLogin": "You will be redirected to login...",
+    "goToLogin": "Go to Login",
+    "verificationError": "Verification Error",
+    "verificationFailed": "Could not verify your email. The link may have expired.",
+    "resendVerification": "Resend verification"
   },
   "products": {
     "title": "Products",
@@ -54,10 +64,17 @@
     "price": "Price",
     "rating": "Rating",
     "addToCart": "Add to Cart",
+    "addedToCart": "Product added to cart",
     "outOfStock": "Out of Stock",
     "producer": "Producer",
     "unit": "Unit",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "stock": "Availability",
+    "units": "units",
+    "notFound": "Product not found",
+    "backToProducts": "Back to products",
+    "viewProducer": "View producer",
+    "errorLoading": "Error loading product"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -132,8 +149,12 @@
     "empty": "You have no favorites",
     "emptyDescription": "Save products you like to find them easily.",
     "exploreProducts": "Explore products",
+    "add": "Add to favorites",
+    "added": "Added to favorites",
     "remove": "Remove from favorites",
     "removed": "Product removed from favorites",
+    "loginRequired": "Login to add to favorites",
+    "error": "Error updating favorites",
     "errorLoading": "Error loading favorites",
     "errorRemoving": "Error removing from favorites"
   },
@@ -170,5 +191,18 @@
     "contactPerson": "Contact person",
     "notFound": "Producer not found",
     "errorLoading": "Error loading producer information"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "reviewsCount": "reviews",
+    "noReviews": "This product has no reviews yet",
+    "beFirstToReview": "Be the first to review after your purchase!",
+    "writeReview": "Write a review",
+    "yourRating": "Your rating",
+    "yourComment": "Your comment",
+    "commentPlaceholder": "What did you think of this product?",
+    "submitReview": "Submit review",
+    "reviewAdded": "Review added successfully",
+    "reviewError": "Error adding review"
   }
 }
