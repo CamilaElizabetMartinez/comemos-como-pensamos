@@ -136,5 +136,39 @@
     "removed": "Producto eliminado de favoritos",
     "errorLoading": "Error al cargar favoritos",
     "errorRemoving": "Error al eliminar de favoritos"
+  },
+  "orderDetail": {
+    "title": "Pedido",
+    "backToOrders": "Volver a mis pedidos",
+    "items": "Productos",
+    "quantity": "Cantidad",
+    "summary": "Resumen",
+    "shippingAddress": "Dirección de envío",
+    "tracking": "Número de seguimiento",
+    "notes": "Notas",
+    "paid": "Pagado",
+    "paymentPending": "Pago pendiente",
+    "orderCancelled": "Este pedido ha sido cancelado",
+    "notFound": "Pedido no encontrado",
+    "errorLoading": "Error al cargar el pedido"
+  },
+  "producers": {
+    "title": "Nuestros Productores",
+    "subtitle": "Conoce a los productores locales que hacen posible nuestra comunidad",
+    "searchPlaceholder": "Buscar productores...",
+    "cityPlaceholder": "Filtrar por ciudad",
+    "noProducers": "No se encontraron productores",
+    "noProducersDescription": "Intenta con otros términos de búsqueda",
+    "errorLoading": "Error al cargar productores"
+  },
+  "producerDetail": {
+    "backToProducers": "Volver a productores",
+    "about": "Sobre nosotros",
+    "products": "Productos",
+    "noProducts": "Este productor aún no tiene productos disponibles",
+    "contact": "Contacto",
+    "contactPerson": "Persona de contacto",
+    "notFound": "Productor no encontrado",
+    "errorLoading": "Error al cargar información del productor"
   }
 }
