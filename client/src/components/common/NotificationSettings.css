@@ -1,0 +1,200 @@
+.notification-settings {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.notification-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.notification-icon {
+  font-size: 2rem;
+}
+
+.notification-header h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.notification-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.notification-unsupported {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.notification-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.inactive {
+  background: #f5f5f5;
+  color: #888;
+}
+
+.permission-warning {
+  font-size: 0.8rem;
+  color: #f57c00;
+}
+
+.notification-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-notification {
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-enable {
+  background: linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%);
+  color: white;
+}
+
+.btn-enable:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(45, 90, 39, 0.3);
+}
+
+.btn-disable {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-disable:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+.btn-test {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background: white;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.btn-test:hover:not(:disabled) {
+  border-color: #2d5a27;
+  color: #2d5a27;
+}
+
+.btn-notification:disabled,
+.btn-test:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.notification-info {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.notification-info p {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.notification-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.notification-info ul li {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  .notification-status {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .notification-actions {
+    width: 100%;
+  }
+
+  .btn-notification,
+  .btn-test {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .notification-info ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+

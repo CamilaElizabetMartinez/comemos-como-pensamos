@@ -76,6 +76,7 @@ import adminRoutes from './routes/admin.js';
 import stripeRoutes from './routes/stripe.js';
 import contactRoutes from './routes/contact.js';
 import reportRoutes from './routes/reports.js';
+import pushRoutes from './routes/push.js';
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
@@ -93,6 +94,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/stripe', stripeRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/push', pushRoutes);
 
 // Manejador de errores 404
 app.use((req, res, next) => {
