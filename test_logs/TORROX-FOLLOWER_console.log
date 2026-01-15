@@ -1,0 +1,1583 @@
+
+2024-10-07 00:00:10,770 - INFO - Previo a Llenar Data
+2024-10-07 00:00:12,664 - INFO - Data empty condition: Start: 2024-09-28 00:05:00, End: 2024-10-03 00:00:00
+2024-10-07 00:00:13,930 - INFO - Data empty condition: Start: 2024-09-23 00:05:00, End: 2024-09-28 00:00:00
+2024-10-07 00:00:15,268 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:00:00
+2024-10-07 00:00:16,567 - INFO - The DataFrame is empty
+2024-10-07 00:00:16,579 - INFO - Data Llenado
+2024-10-07 00:00:16,886 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:00:16,891 - INFO - handle opened orders with close open positions True
+2024-10-07 00:00:16,891 - INFO - pausa hasta 2024-10-07 00:05:00.891629 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:05:10,893 - INFO - Previo a Llenar Data
+2024-10-07 00:05:12,337 - INFO - Data empty condition: Start: 2024-09-28 00:10:00, End: 2024-10-03 00:05:00
+2024-10-07 00:05:13,574 - INFO - Data empty condition: Start: 2024-09-23 00:10:00, End: 2024-09-28 00:05:00
+2024-10-07 00:05:15,185 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:05:00
+2024-10-07 00:05:16,451 - INFO - The DataFrame is empty
+2024-10-07 00:05:16,453 - INFO - Data Llenado
+2024-10-07 00:05:16,696 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:05:16,697 - INFO - handle opened orders with close open positions True
+2024-10-07 00:05:16,697 - INFO - pausa hasta 2024-10-07 00:10:00.697868 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:10:10,699 - INFO - Previo a Llenar Data
+2024-10-07 00:10:13,196 - INFO - Data empty condition: Start: 2024-09-28 00:15:00, End: 2024-10-03 00:10:00
+2024-10-07 00:10:14,441 - INFO - Data empty condition: Start: 2024-09-23 00:15:00, End: 2024-09-28 00:10:00
+2024-10-07 00:10:15,718 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:10:00
+2024-10-07 00:10:16,946 - INFO - The DataFrame is empty
+2024-10-07 00:10:16,947 - INFO - Data Llenado
+2024-10-07 00:10:17,194 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:10:17,195 - INFO - handle opened orders with close open positions True
+2024-10-07 00:10:17,195 - INFO - pausa hasta 2024-10-07 00:15:00.195094 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:15:10,197 - INFO - Previo a Llenar Data
+2024-10-07 00:15:11,721 - INFO - Data empty condition: Start: 2024-09-28 00:20:00, End: 2024-10-03 00:15:00
+2024-10-07 00:15:12,953 - INFO - Data empty condition: Start: 2024-09-23 00:20:00, End: 2024-09-28 00:15:00
+2024-10-07 00:15:14,216 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:15:00
+2024-10-07 00:15:15,430 - INFO - The DataFrame is empty
+2024-10-07 00:15:15,432 - INFO - Data Llenado
+2024-10-07 00:15:15,701 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:15:15,702 - INFO - handle opened orders with close open positions True
+2024-10-07 00:15:15,702 - INFO - pausa hasta 2024-10-07 00:20:00.702263 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:20:10,704 - INFO - Previo a Llenar Data
+2024-10-07 00:20:12,206 - INFO - Data empty condition: Start: 2024-09-28 00:25:00, End: 2024-10-03 00:20:00
+2024-10-07 00:20:13,450 - INFO - Data empty condition: Start: 2024-09-23 00:25:00, End: 2024-09-28 00:20:00
+2024-10-07 00:20:15,046 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:20:00
+2024-10-07 00:20:16,253 - INFO - The DataFrame is empty
+2024-10-07 00:20:16,259 - INFO - Data Llenado
+2024-10-07 00:20:16,525 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:20:16,529 - INFO - handle opened orders with close open positions True
+2024-10-07 00:20:16,530 - INFO - pausa hasta 2024-10-07 00:25:00.529987 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:25:10,532 - INFO - Previo a Llenar Data
+2024-10-07 00:25:12,015 - INFO - Data empty condition: Start: 2024-09-28 00:30:00, End: 2024-10-03 00:25:00
+2024-10-07 00:25:13,259 - INFO - Data empty condition: Start: 2024-09-23 00:30:00, End: 2024-09-28 00:25:00
+2024-10-07 00:25:14,495 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:25:00
+2024-10-07 00:25:15,692 - INFO - The DataFrame is empty
+2024-10-07 00:25:15,693 - INFO - Data Llenado
+2024-10-07 00:25:15,964 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:25:15,965 - INFO - handle opened orders with close open positions True
+2024-10-07 00:25:15,965 - INFO - pausa hasta 2024-10-07 00:30:00.965123 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:30:10,967 - INFO - Previo a Llenar Data
+2024-10-07 00:30:12,629 - INFO - Data empty condition: Start: 2024-09-28 00:35:00, End: 2024-10-03 00:30:00
+2024-10-07 00:30:13,875 - INFO - Data empty condition: Start: 2024-09-23 00:35:00, End: 2024-09-28 00:30:00
+2024-10-07 00:30:15,100 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:30:00
+2024-10-07 00:30:16,352 - INFO - The DataFrame is empty
+2024-10-07 00:30:16,353 - INFO - Data Llenado
+2024-10-07 00:30:16,586 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:30:16,586 - INFO - handle opened orders with close open positions True
+2024-10-07 00:30:16,587 - INFO - pausa hasta 2024-10-07 00:35:00.587057 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:35:10,588 - INFO - Previo a Llenar Data
+2024-10-07 00:35:12,090 - INFO - Data empty condition: Start: 2024-09-28 00:40:00, End: 2024-10-03 00:35:00
+2024-10-07 00:35:13,317 - INFO - Data empty condition: Start: 2024-09-23 00:40:00, End: 2024-09-28 00:35:00
+2024-10-07 00:35:14,537 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:35:00
+2024-10-07 00:35:15,765 - INFO - The DataFrame is empty
+2024-10-07 00:35:15,766 - INFO - Data Llenado
+2024-10-07 00:35:16,054 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:35:16,055 - INFO - handle opened orders with close open positions True
+2024-10-07 00:35:16,055 - INFO - pausa hasta 2024-10-07 00:40:00.055326 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:40:10,057 - INFO - Previo a Llenar Data
+2024-10-07 00:40:11,512 - INFO - Data empty condition: Start: 2024-09-28 00:45:00, End: 2024-10-03 00:40:00
+2024-10-07 00:40:12,766 - INFO - Data empty condition: Start: 2024-09-23 00:45:00, End: 2024-09-28 00:40:00
+2024-10-07 00:40:13,967 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:40:00
+2024-10-07 00:40:15,188 - INFO - The DataFrame is empty
+2024-10-07 00:40:15,190 - INFO - Data Llenado
+2024-10-07 00:40:15,438 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:40:15,438 - INFO - handle opened orders with close open positions True
+2024-10-07 00:40:15,438 - INFO - pausa hasta 2024-10-07 00:45:00.438608 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:45:10,441 - INFO - Previo a Llenar Data
+2024-10-07 00:45:11,884 - INFO - Data empty condition: Start: 2024-09-28 00:50:00, End: 2024-10-03 00:45:00
+2024-10-07 00:45:13,130 - INFO - Data empty condition: Start: 2024-09-23 00:50:00, End: 2024-09-28 00:45:00
+2024-10-07 00:45:14,392 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:45:00
+2024-10-07 00:45:15,631 - INFO - The DataFrame is empty
+2024-10-07 00:45:15,633 - INFO - Data Llenado
+2024-10-07 00:45:15,904 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:45:15,905 - INFO - handle opened orders with close open positions True
+2024-10-07 00:45:15,905 - INFO - pausa hasta 2024-10-07 00:50:00.905184 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:50:10,907 - INFO - Previo a Llenar Data
+2024-10-07 00:50:12,355 - INFO - Data empty condition: Start: 2024-09-28 00:55:00, End: 2024-10-03 00:50:00
+2024-10-07 00:50:13,598 - INFO - Data empty condition: Start: 2024-09-23 00:55:00, End: 2024-09-28 00:50:00
+2024-10-07 00:50:14,803 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:50:00
+2024-10-07 00:50:16,037 - INFO - The DataFrame is empty
+2024-10-07 00:50:16,039 - INFO - Data Llenado
+2024-10-07 00:50:16,290 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:50:16,290 - INFO - handle opened orders with close open positions True
+2024-10-07 00:50:16,290 - INFO - pausa hasta 2024-10-07 00:55:00.290618 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 00:55:10,292 - INFO - Previo a Llenar Data
+2024-10-07 00:55:11,715 - INFO - Data empty condition: Start: 2024-09-28 01:00:00, End: 2024-10-03 00:55:00
+2024-10-07 00:55:12,951 - INFO - Data empty condition: Start: 2024-09-23 01:00:00, End: 2024-09-28 00:55:00
+2024-10-07 00:55:14,180 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 00:55:00
+2024-10-07 00:55:15,377 - INFO - The DataFrame is empty
+2024-10-07 00:55:15,378 - INFO - Data Llenado
+2024-10-07 00:55:15,631 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 00:55:15,632 - INFO - handle opened orders with close open positions True
+2024-10-07 00:55:15,632 - INFO - pausa hasta 2024-10-07 01:00:00.632711 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:00:10,634 - INFO - Previo a Llenar Data
+2024-10-07 01:00:12,114 - INFO - Data empty condition: Start: 2024-09-28 01:05:00, End: 2024-10-03 01:00:00
+2024-10-07 01:00:13,367 - INFO - Data empty condition: Start: 2024-09-23 01:05:00, End: 2024-09-28 01:00:00
+2024-10-07 01:00:14,698 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:00:00
+2024-10-07 01:00:15,893 - INFO - The DataFrame is empty
+2024-10-07 01:00:15,894 - INFO - Data Llenado
+2024-10-07 01:00:16,158 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:00:16,159 - INFO - handle opened orders with close open positions True
+2024-10-07 01:00:16,159 - INFO - pausa hasta 2024-10-07 01:05:00.159314 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:05:10,161 - INFO - Previo a Llenar Data
+2024-10-07 01:05:11,675 - INFO - Data empty condition: Start: 2024-09-28 01:10:00, End: 2024-10-03 01:05:00
+2024-10-07 01:05:12,899 - INFO - Data empty condition: Start: 2024-09-23 01:10:00, End: 2024-09-28 01:05:00
+2024-10-07 01:05:14,416 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:05:00
+2024-10-07 01:05:15,607 - INFO - The DataFrame is empty
+2024-10-07 01:05:15,609 - INFO - Data Llenado
+2024-10-07 01:05:15,887 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:05:15,887 - INFO - handle opened orders with close open positions True
+2024-10-07 01:05:15,887 - INFO - pausa hasta 2024-10-07 01:10:00.887612 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:10:10,889 - INFO - Previo a Llenar Data
+2024-10-07 01:10:12,325 - INFO - Data empty condition: Start: 2024-09-28 01:15:00, End: 2024-10-03 01:10:00
+2024-10-07 01:10:13,563 - INFO - Data empty condition: Start: 2024-09-23 01:15:00, End: 2024-09-28 01:10:00
+2024-10-07 01:10:15,039 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:10:00
+2024-10-07 01:10:16,228 - INFO - The DataFrame is empty
+2024-10-07 01:10:16,229 - INFO - Data Llenado
+2024-10-07 01:10:16,523 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:10:16,523 - INFO - handle opened orders with close open positions True
+2024-10-07 01:10:16,524 - INFO - pausa hasta 2024-10-07 01:15:00.524322 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:15:10,526 - INFO - Previo a Llenar Data
+2024-10-07 01:15:12,362 - INFO - Data empty condition: Start: 2024-09-28 01:20:00, End: 2024-10-03 01:15:00
+2024-10-07 01:15:13,599 - INFO - Data empty condition: Start: 2024-09-23 01:20:00, End: 2024-09-28 01:15:00
+2024-10-07 01:15:14,933 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:15:00
+2024-10-07 01:15:16,130 - INFO - The DataFrame is empty
+2024-10-07 01:15:16,131 - INFO - Data Llenado
+2024-10-07 01:15:16,385 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:15:16,386 - INFO - handle opened orders with close open positions True
+2024-10-07 01:15:16,386 - INFO - pausa hasta 2024-10-07 01:20:00.386855 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:20:10,388 - INFO - Previo a Llenar Data
+2024-10-07 01:20:11,903 - INFO - Data empty condition: Start: 2024-09-28 01:25:00, End: 2024-10-03 01:20:00
+2024-10-07 01:20:13,140 - INFO - Data empty condition: Start: 2024-09-23 01:25:00, End: 2024-09-28 01:20:00
+2024-10-07 01:20:15,474 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:20:00
+2024-10-07 01:20:16,703 - INFO - The DataFrame is empty
+2024-10-07 01:20:16,704 - INFO - Data Llenado
+2024-10-07 01:20:16,987 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:20:16,987 - INFO - handle opened orders with close open positions True
+2024-10-07 01:20:16,987 - INFO - pausa hasta 2024-10-07 01:25:00.987861 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:25:10,989 - INFO - Previo a Llenar Data
+2024-10-07 01:25:12,467 - INFO - Data empty condition: Start: 2024-09-28 01:30:00, End: 2024-10-03 01:25:00
+2024-10-07 01:25:13,808 - INFO - Data empty condition: Start: 2024-09-23 01:30:00, End: 2024-09-28 01:25:00
+2024-10-07 01:25:15,058 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:25:00
+2024-10-07 01:25:16,256 - INFO - The DataFrame is empty
+2024-10-07 01:25:16,259 - INFO - Data Llenado
+2024-10-07 01:25:16,552 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:25:16,552 - INFO - handle opened orders with close open positions True
+2024-10-07 01:25:16,553 - INFO - pausa hasta 2024-10-07 01:30:00.553024 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:30:10,554 - INFO - Previo a Llenar Data
+2024-10-07 01:30:12,262 - INFO - Data empty condition: Start: 2024-09-28 01:35:00, End: 2024-10-03 01:30:00
+2024-10-07 01:30:13,495 - INFO - Data empty condition: Start: 2024-09-23 01:35:00, End: 2024-09-28 01:30:00
+2024-10-07 01:30:14,884 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:30:00
+2024-10-07 01:30:16,194 - INFO - The DataFrame is empty
+2024-10-07 01:30:16,197 - INFO - Data Llenado
+2024-10-07 01:30:16,465 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:30:16,466 - INFO - handle opened orders with close open positions True
+2024-10-07 01:30:16,466 - INFO - pausa hasta 2024-10-07 01:35:00.466260 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:35:10,467 - INFO - Previo a Llenar Data
+2024-10-07 01:35:12,000 - INFO - Data empty condition: Start: 2024-09-28 01:40:00, End: 2024-10-03 01:35:00
+2024-10-07 01:35:13,538 - INFO - Data empty condition: Start: 2024-09-23 01:40:00, End: 2024-09-28 01:35:00
+2024-10-07 01:35:14,981 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:35:00
+2024-10-07 01:35:16,205 - INFO - The DataFrame is empty
+2024-10-07 01:35:16,206 - INFO - Data Llenado
+2024-10-07 01:35:16,467 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:35:16,467 - INFO - handle opened orders with close open positions True
+2024-10-07 01:35:16,467 - INFO - pausa hasta 2024-10-07 01:40:00.467516 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:40:10,469 - INFO - Previo a Llenar Data
+2024-10-07 01:40:11,906 - INFO - Data empty condition: Start: 2024-09-28 01:45:00, End: 2024-10-03 01:40:00
+2024-10-07 01:40:14,168 - INFO - Data empty condition: Start: 2024-09-23 01:45:00, End: 2024-09-28 01:40:00
+2024-10-07 01:40:15,402 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:40:00
+2024-10-07 01:40:16,620 - INFO - The DataFrame is empty
+2024-10-07 01:40:16,622 - INFO - Data Llenado
+2024-10-07 01:40:16,902 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:40:16,903 - INFO - handle opened orders with close open positions True
+2024-10-07 01:40:16,903 - INFO - pausa hasta 2024-10-07 01:45:00.903589 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:45:10,905 - INFO - Previo a Llenar Data
+2024-10-07 01:45:12,619 - INFO - Data empty condition: Start: 2024-09-28 01:50:00, End: 2024-10-03 01:45:00
+2024-10-07 01:45:13,839 - INFO - Data empty condition: Start: 2024-09-23 01:50:00, End: 2024-09-28 01:45:00
+2024-10-07 01:45:15,078 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:45:00
+2024-10-07 01:45:16,393 - INFO - The DataFrame is empty
+2024-10-07 01:45:16,395 - INFO - Data Llenado
+2024-10-07 01:45:16,669 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:45:16,670 - INFO - handle opened orders with close open positions True
+2024-10-07 01:45:16,670 - INFO - pausa hasta 2024-10-07 01:50:00.670387 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:50:10,672 - INFO - Previo a Llenar Data
+2024-10-07 01:50:12,293 - INFO - Data empty condition: Start: 2024-09-28 01:55:00, End: 2024-10-03 01:50:00
+2024-10-07 01:50:14,130 - INFO - Data empty condition: Start: 2024-09-23 01:55:00, End: 2024-09-28 01:50:00
+2024-10-07 01:50:15,524 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:50:00
+2024-10-07 01:50:16,758 - INFO - The DataFrame is empty
+2024-10-07 01:50:16,759 - INFO - Data Llenado
+2024-10-07 01:50:17,034 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:50:17,034 - INFO - handle opened orders with close open positions True
+2024-10-07 01:50:17,034 - INFO - pausa hasta 2024-10-07 01:55:00.034600 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 01:55:10,036 - INFO - Previo a Llenar Data
+2024-10-07 01:55:11,524 - INFO - Data empty condition: Start: 2024-09-28 02:00:00, End: 2024-10-03 01:55:00
+2024-10-07 01:55:12,769 - INFO - Data empty condition: Start: 2024-09-23 02:00:00, End: 2024-09-28 01:55:00
+2024-10-07 01:55:13,982 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 01:55:00
+2024-10-07 01:55:15,175 - INFO - The DataFrame is empty
+2024-10-07 01:55:15,176 - INFO - Data Llenado
+2024-10-07 01:55:15,456 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 01:55:15,456 - INFO - handle opened orders with close open positions True
+2024-10-07 01:55:15,457 - INFO - pausa hasta 2024-10-07 02:00:00.456990 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:00:10,459 - INFO - Previo a Llenar Data
+2024-10-07 02:00:12,960 - INFO - Data empty condition: Start: 2024-09-28 02:05:00, End: 2024-10-03 02:00:00
+2024-10-07 02:00:14,215 - INFO - Data empty condition: Start: 2024-09-23 02:05:00, End: 2024-09-28 02:00:00
+2024-10-07 02:00:15,462 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:00:00
+2024-10-07 02:00:16,695 - INFO - The DataFrame is empty
+2024-10-07 02:00:16,696 - INFO - Data Llenado
+2024-10-07 02:00:16,962 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:00:16,963 - INFO - handle opened orders with close open positions True
+2024-10-07 02:00:16,963 - INFO - pausa hasta 2024-10-07 02:05:00.963358 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:05:10,964 - INFO - Previo a Llenar Data
+2024-10-07 02:05:12,444 - INFO - Data empty condition: Start: 2024-09-28 02:10:00, End: 2024-10-03 02:05:00
+2024-10-07 02:05:14,001 - INFO - Data empty condition: Start: 2024-09-23 02:10:00, End: 2024-09-28 02:05:00
+2024-10-07 02:05:15,401 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:05:00
+2024-10-07 02:05:16,614 - INFO - The DataFrame is empty
+2024-10-07 02:05:16,616 - INFO - Data Llenado
+2024-10-07 02:05:16,900 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:05:16,901 - INFO - handle opened orders with close open positions True
+2024-10-07 02:05:16,901 - INFO - pausa hasta 2024-10-07 02:10:00.901648 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:10:10,903 - INFO - Previo a Llenar Data
+2024-10-07 02:10:12,387 - INFO - Data empty condition: Start: 2024-09-28 02:15:00, End: 2024-10-03 02:10:00
+2024-10-07 02:10:13,619 - INFO - Data empty condition: Start: 2024-09-23 02:15:00, End: 2024-09-28 02:10:00
+2024-10-07 02:10:15,164 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:10:00
+2024-10-07 02:10:16,379 - INFO - The DataFrame is empty
+2024-10-07 02:10:16,380 - INFO - Data Llenado
+2024-10-07 02:10:16,640 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:10:16,640 - INFO - handle opened orders with close open positions True
+2024-10-07 02:10:16,640 - INFO - pausa hasta 2024-10-07 02:15:00.640892 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:15:10,642 - INFO - Previo a Llenar Data
+2024-10-07 02:15:12,281 - INFO - Data empty condition: Start: 2024-09-28 02:20:00, End: 2024-10-03 02:15:00
+2024-10-07 02:15:13,503 - INFO - Data empty condition: Start: 2024-09-23 02:20:00, End: 2024-09-28 02:15:00
+2024-10-07 02:15:14,963 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:15:00
+2024-10-07 02:15:16,197 - INFO - The DataFrame is empty
+2024-10-07 02:15:16,199 - INFO - Data Llenado
+2024-10-07 02:15:16,457 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:15:16,457 - INFO - handle opened orders with close open positions True
+2024-10-07 02:15:16,458 - INFO - pausa hasta 2024-10-07 02:20:00.458073 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:20:10,459 - INFO - Previo a Llenar Data
+2024-10-07 02:20:11,925 - INFO - Data empty condition: Start: 2024-09-28 02:25:00, End: 2024-10-03 02:20:00
+2024-10-07 02:20:13,185 - INFO - Data empty condition: Start: 2024-09-23 02:25:00, End: 2024-09-28 02:20:00
+2024-10-07 02:20:14,777 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:20:00
+2024-10-07 02:20:15,998 - INFO - The DataFrame is empty
+2024-10-07 02:20:15,999 - INFO - Data Llenado
+2024-10-07 02:20:16,269 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:20:16,270 - INFO - handle opened orders with close open positions True
+2024-10-07 02:20:16,270 - INFO - pausa hasta 2024-10-07 02:25:00.270463 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:25:10,272 - INFO - Previo a Llenar Data
+2024-10-07 02:25:11,754 - INFO - Data empty condition: Start: 2024-09-28 02:30:00, End: 2024-10-03 02:25:00
+2024-10-07 02:25:13,042 - INFO - Data empty condition: Start: 2024-09-23 02:30:00, End: 2024-09-28 02:25:00
+2024-10-07 02:25:14,253 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:25:00
+2024-10-07 02:25:15,480 - INFO - The DataFrame is empty
+2024-10-07 02:25:15,482 - INFO - Data Llenado
+2024-10-07 02:25:15,789 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:25:15,789 - INFO - handle opened orders with close open positions True
+2024-10-07 02:25:15,789 - INFO - pausa hasta 2024-10-07 02:30:00.789914 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:30:10,791 - INFO - Previo a Llenar Data
+2024-10-07 02:30:12,460 - INFO - Data empty condition: Start: 2024-09-28 02:35:00, End: 2024-10-03 02:30:00
+2024-10-07 02:30:13,708 - INFO - Data empty condition: Start: 2024-09-23 02:35:00, End: 2024-09-28 02:30:00
+2024-10-07 02:30:15,217 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:30:00
+2024-10-07 02:30:16,490 - INFO - The DataFrame is empty
+2024-10-07 02:30:16,491 - INFO - Data Llenado
+2024-10-07 02:30:16,766 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:30:16,767 - INFO - handle opened orders with close open positions True
+2024-10-07 02:30:16,767 - INFO - pausa hasta 2024-10-07 02:35:00.767532 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:35:10,769 - INFO - Previo a Llenar Data
+2024-10-07 02:35:12,291 - INFO - Data empty condition: Start: 2024-09-28 02:40:00, End: 2024-10-03 02:35:00
+2024-10-07 02:35:14,630 - INFO - Data empty condition: Start: 2024-09-23 02:40:00, End: 2024-09-28 02:35:00
+2024-10-07 02:35:16,077 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:35:00
+2024-10-07 02:35:17,307 - INFO - The DataFrame is empty
+2024-10-07 02:35:17,308 - INFO - Data Llenado
+2024-10-07 02:35:17,560 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:35:17,560 - INFO - handle opened orders with close open positions True
+2024-10-07 02:35:17,560 - INFO - pausa hasta 2024-10-07 02:40:00.560465 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:40:10,562 - INFO - Previo a Llenar Data
+2024-10-07 02:40:12,632 - INFO - Data empty condition: Start: 2024-09-28 02:45:00, End: 2024-10-03 02:40:00
+2024-10-07 02:40:13,890 - INFO - Data empty condition: Start: 2024-09-23 02:45:00, End: 2024-09-28 02:40:00
+2024-10-07 02:40:15,152 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:40:00
+2024-10-07 02:40:16,446 - INFO - The DataFrame is empty
+2024-10-07 02:40:16,447 - INFO - Data Llenado
+2024-10-07 02:40:16,736 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:40:16,736 - INFO - handle opened orders with close open positions True
+2024-10-07 02:40:16,737 - INFO - pausa hasta 2024-10-07 02:45:00.736961 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:45:10,738 - INFO - Previo a Llenar Data
+2024-10-07 02:45:12,354 - INFO - Data empty condition: Start: 2024-09-28 02:50:00, End: 2024-10-03 02:45:00
+2024-10-07 02:45:13,574 - INFO - Data empty condition: Start: 2024-09-23 02:50:00, End: 2024-09-28 02:45:00
+2024-10-07 02:45:14,899 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:45:00
+2024-10-07 02:45:16,133 - INFO - The DataFrame is empty
+2024-10-07 02:45:16,135 - INFO - Data Llenado
+2024-10-07 02:45:16,393 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:45:16,394 - INFO - handle opened orders with close open positions True
+2024-10-07 02:45:16,394 - INFO - pausa hasta 2024-10-07 02:50:00.394617 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:50:10,396 - INFO - Previo a Llenar Data
+2024-10-07 02:50:11,869 - INFO - Data empty condition: Start: 2024-09-28 02:55:00, End: 2024-10-03 02:50:00
+2024-10-07 02:50:13,651 - INFO - Data empty condition: Start: 2024-09-23 02:55:00, End: 2024-09-28 02:50:00
+2024-10-07 02:50:15,274 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:50:00
+2024-10-07 02:50:16,482 - INFO - The DataFrame is empty
+2024-10-07 02:50:16,482 - INFO - Data Llenado
+2024-10-07 02:50:16,831 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:50:16,831 - INFO - handle opened orders with close open positions True
+2024-10-07 02:50:16,832 - INFO - pausa hasta 2024-10-07 02:55:00.832030 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 02:55:10,834 - INFO - Previo a Llenar Data
+2024-10-07 02:55:12,347 - INFO - Data empty condition: Start: 2024-09-28 03:00:00, End: 2024-10-03 02:55:00
+2024-10-07 02:55:13,588 - INFO - Data empty condition: Start: 2024-09-23 03:00:00, End: 2024-09-28 02:55:00
+2024-10-07 02:55:14,806 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 02:55:00
+2024-10-07 02:55:16,014 - INFO - The DataFrame is empty
+2024-10-07 02:55:16,017 - INFO - Data Llenado
+2024-10-07 02:55:16,304 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 02:55:16,305 - INFO - handle opened orders with close open positions True
+2024-10-07 02:55:16,305 - INFO - pausa hasta 2024-10-07 03:00:00.305479 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:00:10,307 - INFO - Previo a Llenar Data
+2024-10-07 03:00:12,086 - INFO - Data empty condition: Start: 2024-09-28 03:05:00, End: 2024-10-03 03:00:00
+2024-10-07 03:00:13,373 - INFO - Data empty condition: Start: 2024-09-23 03:05:00, End: 2024-09-28 03:00:00
+2024-10-07 03:00:14,894 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:00:00
+2024-10-07 03:00:16,123 - INFO - The DataFrame is empty
+2024-10-07 03:00:16,124 - INFO - Data Llenado
+2024-10-07 03:00:16,388 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:00:16,389 - INFO - handle opened orders with close open positions True
+2024-10-07 03:00:16,389 - INFO - pausa hasta 2024-10-07 03:05:00.389924 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:05:10,391 - INFO - Previo a Llenar Data
+2024-10-07 03:05:12,238 - INFO - Data empty condition: Start: 2024-09-28 03:10:00, End: 2024-10-03 03:05:00
+2024-10-07 03:05:13,501 - INFO - Data empty condition: Start: 2024-09-23 03:10:00, End: 2024-09-28 03:05:00
+2024-10-07 03:05:14,845 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:05:00
+2024-10-07 03:05:16,040 - INFO - The DataFrame is empty
+2024-10-07 03:05:16,042 - INFO - Data Llenado
+2024-10-07 03:05:16,336 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:05:16,336 - INFO - handle opened orders with close open positions True
+2024-10-07 03:05:16,336 - INFO - pausa hasta 2024-10-07 03:10:00.336403 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:10:10,338 - INFO - Previo a Llenar Data
+2024-10-07 03:10:11,841 - INFO - Data empty condition: Start: 2024-09-28 03:15:00, End: 2024-10-03 03:10:00
+2024-10-07 03:10:13,066 - INFO - Data empty condition: Start: 2024-09-23 03:15:00, End: 2024-09-28 03:10:00
+2024-10-07 03:10:14,270 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:10:00
+2024-10-07 03:10:15,510 - INFO - The DataFrame is empty
+2024-10-07 03:10:15,511 - INFO - Data Llenado
+2024-10-07 03:10:15,791 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:10:15,791 - INFO - handle opened orders with close open positions True
+2024-10-07 03:10:15,792 - INFO - pausa hasta 2024-10-07 03:15:00.791992 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:15:10,794 - INFO - Previo a Llenar Data
+2024-10-07 03:15:12,333 - INFO - Data empty condition: Start: 2024-09-28 03:20:00, End: 2024-10-03 03:15:00
+2024-10-07 03:15:13,639 - INFO - Data empty condition: Start: 2024-09-23 03:20:00, End: 2024-09-28 03:15:00
+2024-10-07 03:15:15,028 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:15:00
+2024-10-07 03:15:16,242 - INFO - The DataFrame is empty
+2024-10-07 03:15:16,244 - INFO - Data Llenado
+2024-10-07 03:15:16,498 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:15:16,499 - INFO - handle opened orders with close open positions True
+2024-10-07 03:15:16,499 - INFO - pausa hasta 2024-10-07 03:20:00.499549 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:20:10,501 - INFO - Previo a Llenar Data
+2024-10-07 03:20:12,337 - INFO - Data empty condition: Start: 2024-09-28 03:25:00, End: 2024-10-03 03:20:00
+2024-10-07 03:20:13,569 - INFO - Data empty condition: Start: 2024-09-23 03:25:00, End: 2024-09-28 03:20:00
+2024-10-07 03:20:15,092 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:20:00
+2024-10-07 03:20:16,358 - INFO - The DataFrame is empty
+2024-10-07 03:20:16,359 - INFO - Data Llenado
+2024-10-07 03:20:16,636 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:20:16,637 - INFO - handle opened orders with close open positions True
+2024-10-07 03:20:16,637 - INFO - pausa hasta 2024-10-07 03:25:00.637376 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:25:10,639 - INFO - Previo a Llenar Data
+2024-10-07 03:25:12,280 - INFO - Data empty condition: Start: 2024-09-28 03:30:00, End: 2024-10-03 03:25:00
+2024-10-07 03:25:13,567 - INFO - Data empty condition: Start: 2024-09-23 03:30:00, End: 2024-09-28 03:25:00
+2024-10-07 03:25:15,171 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:25:00
+2024-10-07 03:25:16,396 - INFO - The DataFrame is empty
+2024-10-07 03:25:16,397 - INFO - Data Llenado
+2024-10-07 03:25:16,694 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:25:16,694 - INFO - handle opened orders with close open positions True
+2024-10-07 03:25:16,694 - INFO - pausa hasta 2024-10-07 03:30:00.694498 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:30:10,696 - INFO - Previo a Llenar Data
+2024-10-07 03:30:13,218 - INFO - Data empty condition: Start: 2024-09-28 03:35:00, End: 2024-10-03 03:30:00
+2024-10-07 03:30:14,445 - INFO - Data empty condition: Start: 2024-09-23 03:35:00, End: 2024-09-28 03:30:00
+2024-10-07 03:30:15,776 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:30:00
+2024-10-07 03:30:17,017 - INFO - The DataFrame is empty
+2024-10-07 03:30:17,019 - INFO - Data Llenado
+2024-10-07 03:30:17,277 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:30:17,278 - INFO - handle opened orders with close open positions True
+2024-10-07 03:30:17,278 - INFO - pausa hasta 2024-10-07 03:35:00.278525 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:35:10,282 - INFO - Previo a Llenar Data
+2024-10-07 03:35:13,362 - INFO - Data empty condition: Start: 2024-09-28 03:40:00, End: 2024-10-03 03:35:00
+2024-10-07 03:35:15,636 - INFO - Data empty condition: Start: 2024-09-23 03:40:00, End: 2024-09-28 03:35:00
+2024-10-07 03:35:16,840 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:35:00
+2024-10-07 03:35:18,047 - INFO - The DataFrame is empty
+2024-10-07 03:35:18,049 - INFO - Data Llenado
+2024-10-07 03:35:18,324 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:35:18,324 - INFO - handle opened orders with close open positions True
+2024-10-07 03:35:18,325 - INFO - pausa hasta 2024-10-07 03:40:00.324968 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:40:10,327 - INFO - Previo a Llenar Data
+2024-10-07 03:40:12,268 - INFO - Data empty condition: Start: 2024-09-28 03:45:00, End: 2024-10-03 03:40:00
+2024-10-07 03:40:13,775 - INFO - Data empty condition: Start: 2024-09-23 03:45:00, End: 2024-09-28 03:40:00
+2024-10-07 03:40:15,339 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:40:00
+2024-10-07 03:40:16,560 - INFO - The DataFrame is empty
+2024-10-07 03:40:16,562 - INFO - Data Llenado
+2024-10-07 03:40:16,889 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:40:16,889 - INFO - handle opened orders with close open positions True
+2024-10-07 03:40:16,889 - INFO - pausa hasta 2024-10-07 03:45:00.889696 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:45:10,891 - INFO - Previo a Llenar Data
+2024-10-07 03:45:12,424 - INFO - Data empty condition: Start: 2024-09-28 03:50:00, End: 2024-10-03 03:45:00
+2024-10-07 03:45:13,644 - INFO - Data empty condition: Start: 2024-09-23 03:50:00, End: 2024-09-28 03:45:00
+2024-10-07 03:45:14,885 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:45:00
+2024-10-07 03:45:16,124 - INFO - The DataFrame is empty
+2024-10-07 03:45:16,125 - INFO - Data Llenado
+2024-10-07 03:45:16,378 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:45:16,379 - INFO - handle opened orders with close open positions True
+2024-10-07 03:45:16,379 - INFO - pausa hasta 2024-10-07 03:50:00.379362 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:50:10,381 - INFO - Previo a Llenar Data
+2024-10-07 03:50:11,908 - INFO - Data empty condition: Start: 2024-09-28 03:55:00, End: 2024-10-03 03:50:00
+2024-10-07 03:50:13,148 - INFO - Data empty condition: Start: 2024-09-23 03:55:00, End: 2024-09-28 03:50:00
+2024-10-07 03:50:15,386 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:50:00
+2024-10-07 03:50:16,619 - INFO - The DataFrame is empty
+2024-10-07 03:50:16,620 - INFO - Data Llenado
+2024-10-07 03:50:16,912 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:50:16,913 - INFO - handle opened orders with close open positions True
+2024-10-07 03:50:16,913 - INFO - pausa hasta 2024-10-07 03:55:00.913137 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 03:55:10,915 - INFO - Previo a Llenar Data
+2024-10-07 03:55:12,355 - INFO - Data empty condition: Start: 2024-09-28 04:00:00, End: 2024-10-03 03:55:00
+2024-10-07 03:55:14,679 - INFO - Data empty condition: Start: 2024-09-23 04:00:00, End: 2024-09-28 03:55:00
+2024-10-07 03:55:16,160 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 03:55:00
+2024-10-07 03:55:17,367 - INFO - The DataFrame is empty
+2024-10-07 03:55:17,368 - INFO - Data Llenado
+2024-10-07 03:55:17,647 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 03:55:17,647 - INFO - handle opened orders with close open positions True
+2024-10-07 03:55:17,647 - INFO - pausa hasta 2024-10-07 04:00:00.647362 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 04:00:10,648 - INFO - Previo a Llenar Data
+2024-10-07 04:00:12,117 - INFO - Data empty condition: Start: 2024-09-28 04:05:00, End: 2024-10-03 04:00:00
+2024-10-07 04:00:13,378 - INFO - Data empty condition: Start: 2024-09-23 04:05:00, End: 2024-09-28 04:00:00
+2024-10-07 04:00:14,583 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:00:00
+2024-10-07 04:00:15,824 - INFO - The DataFrame is empty
+2024-10-07 04:00:15,826 - INFO - Data Llenado
+2024-10-07 04:00:16,120 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 04:00:16,121 - INFO - handle opened orders with close open positions True
+2024-10-07 04:00:16,121 - INFO - pausa hasta 2024-10-07 04:05:00.121416 -- El bot esta activo, entra en posiciones sell y esta en mercado
+2024-10-07 04:05:00,501 - INFO - Todas las ordenes abiertas van a ser cerradas
+2024-10-07 04:05:00,502 - INFO - El Resultado del trade no puede ser calculado por falta de valor del precio de la entrada, seguramente por un reinicio del bot
+2024-10-07 04:05:00,508 - INFO - El bot cerro todas las posiciones por un force out of market
+2024-10-07 04:05:10,601 - INFO - Previo a Llenar Data
+2024-10-07 04:05:12,074 - INFO - Data empty condition: Start: 2024-09-28 04:10:00, End: 2024-10-03 04:05:00
+2024-10-07 04:05:13,856 - INFO - Data empty condition: Start: 2024-09-23 04:10:00, End: 2024-09-28 04:05:00
+2024-10-07 04:05:15,280 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:05:00
+2024-10-07 04:05:16,497 - INFO - The DataFrame is empty
+2024-10-07 04:05:16,498 - INFO - Data Llenado
+2024-10-07 04:05:16,502 - INFO - cambio el chandelier o arranco el bot se saltea una operacion
+2024-10-07 04:05:16,503 - INFO - pausa hasta 2024-10-07 04:10:00.503171 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:10:10,505 - INFO - Previo a Llenar Data
+2024-10-07 04:10:11,927 - INFO - Data empty condition: Start: 2024-09-28 04:15:00, End: 2024-10-03 04:10:00
+2024-10-07 04:10:13,179 - INFO - Data empty condition: Start: 2024-09-23 04:15:00, End: 2024-09-28 04:10:00
+2024-10-07 04:10:14,427 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:10:00
+2024-10-07 04:10:16,532 - INFO - The DataFrame is empty
+2024-10-07 04:10:16,533 - INFO - Data Llenado
+2024-10-07 04:10:16,537 - INFO - pausa hasta 2024-10-07 04:15:00.537462 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:15:10,539 - INFO - Previo a Llenar Data
+2024-10-07 04:15:12,023 - INFO - Data empty condition: Start: 2024-09-28 04:20:00, End: 2024-10-03 04:15:00
+2024-10-07 04:15:13,816 - INFO - Data empty condition: Start: 2024-09-23 04:20:00, End: 2024-09-28 04:15:00
+2024-10-07 04:15:15,342 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:15:00
+2024-10-07 04:15:16,570 - INFO - The DataFrame is empty
+2024-10-07 04:15:16,572 - INFO - Data Llenado
+2024-10-07 04:15:16,576 - INFO - pausa hasta 2024-10-07 04:20:00.576623 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:20:10,578 - INFO - Previo a Llenar Data
+2024-10-07 04:20:13,172 - INFO - Data empty condition: Start: 2024-09-28 04:25:00, End: 2024-10-03 04:20:00
+2024-10-07 04:20:14,435 - INFO - Data empty condition: Start: 2024-09-23 04:25:00, End: 2024-09-28 04:20:00
+2024-10-07 04:20:15,828 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:20:00
+2024-10-07 04:20:17,045 - INFO - The DataFrame is empty
+2024-10-07 04:20:17,046 - INFO - Data Llenado
+2024-10-07 04:20:17,051 - INFO - pausa hasta 2024-10-07 04:25:00.051672 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:25:10,053 - INFO - Previo a Llenar Data
+2024-10-07 04:25:11,712 - INFO - Data empty condition: Start: 2024-09-28 04:30:00, End: 2024-10-03 04:25:00
+2024-10-07 04:25:14,130 - INFO - Data empty condition: Start: 2024-09-23 04:30:00, End: 2024-09-28 04:25:00
+2024-10-07 04:25:15,476 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:25:00
+2024-10-07 04:25:16,683 - INFO - The DataFrame is empty
+2024-10-07 04:25:16,685 - INFO - Data Llenado
+2024-10-07 04:25:16,688 - INFO - pausa hasta 2024-10-07 04:30:00.688592 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:30:10,690 - INFO - Previo a Llenar Data
+2024-10-07 04:30:12,173 - INFO - Data empty condition: Start: 2024-09-28 04:35:00, End: 2024-10-03 04:30:00
+2024-10-07 04:30:13,419 - INFO - Data empty condition: Start: 2024-09-23 04:35:00, End: 2024-09-28 04:30:00
+2024-10-07 04:30:14,837 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:30:00
+2024-10-07 04:30:16,061 - INFO - The DataFrame is empty
+2024-10-07 04:30:16,063 - INFO - Data Llenado
+2024-10-07 04:30:16,067 - INFO - pausa hasta 2024-10-07 04:35:00.067680 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:35:10,069 - INFO - Previo a Llenar Data
+2024-10-07 04:35:11,536 - INFO - Data empty condition: Start: 2024-09-28 04:40:00, End: 2024-10-03 04:35:00
+2024-10-07 04:35:13,028 - INFO - Data empty condition: Start: 2024-09-23 04:40:00, End: 2024-09-28 04:35:00
+2024-10-07 04:35:14,513 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:35:00
+2024-10-07 04:35:15,710 - INFO - The DataFrame is empty
+2024-10-07 04:35:15,711 - INFO - Data Llenado
+2024-10-07 04:35:15,715 - INFO - pausa hasta 2024-10-07 04:40:00.715250 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:40:10,718 - INFO - Previo a Llenar Data
+2024-10-07 04:40:12,201 - INFO - Data empty condition: Start: 2024-09-28 04:45:00, End: 2024-10-03 04:40:00
+2024-10-07 04:40:13,480 - INFO - Data empty condition: Start: 2024-09-23 04:45:00, End: 2024-09-28 04:40:00
+2024-10-07 04:40:14,784 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:40:00
+2024-10-07 04:40:16,787 - INFO - The DataFrame is empty
+2024-10-07 04:40:16,788 - INFO - Data Llenado
+2024-10-07 04:40:16,792 - INFO - pausa hasta 2024-10-07 04:45:00.792713 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:45:10,794 - INFO - Previo a Llenar Data
+2024-10-07 04:45:13,305 - INFO - Data empty condition: Start: 2024-09-28 04:50:00, End: 2024-10-03 04:45:00
+2024-10-07 04:45:14,680 - INFO - Data empty condition: Start: 2024-09-23 04:50:00, End: 2024-09-28 04:45:00
+2024-10-07 04:45:16,057 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:45:00
+2024-10-07 04:45:17,264 - INFO - The DataFrame is empty
+2024-10-07 04:45:17,266 - INFO - Data Llenado
+2024-10-07 04:45:17,269 - INFO - pausa hasta 2024-10-07 04:50:00.269628 -- El bot esta activo, entra en posiciones buy y esta fuera de mercado
+2024-10-07 04:50:10,271 - INFO - Previo a Llenar Data
+2024-10-07 04:50:13,077 - INFO - Data empty condition: Start: 2024-09-28 04:55:00, End: 2024-10-03 04:50:00
+2024-10-07 04:50:14,302 - INFO - Data empty condition: Start: 2024-09-23 04:55:00, End: 2024-09-28 04:50:00
+2024-10-07 04:50:15,631 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:50:00
+2024-10-07 04:50:17,601 - INFO - The DataFrame is empty
+2024-10-07 04:50:17,602 - INFO - Data Llenado
+2024-10-07 04:50:17,846 - INFO - current {'code': 0, 'msg': '', 'data': {'balance': {'userId': '1242747842646532104', 'asset': 'USDT', 'balance': '17786.5629', 'equity': '17786.5629', 'unrealizedProfit': '0.0000', 'realisedProfit': '0', 'availableMargin': '17786.5629', 'usedMargin': '0.0000', 'freezedMargin': '0.0000', 'shortUid': '16341026'}}}
+2024-10-07 04:50:17,847 - INFO - getaccount resto reserva result: 11992.332100000001 reserva: 5794.230799999999
+2024-10-07 04:50:17,848 - INFO - Valor de TP: 6.0
+2024-10-07 04:50:17,848 - INFO - Valor de SL: 3.0
+2024-10-07 04:50:18,053 - INFO - current {'code': 0, 'msg': '', 'data': {'balance': {'userId': '1242747842646532104', 'asset': 'USDT', 'balance': '17786.5629', 'equity': '17786.5629', 'unrealizedProfit': '0.0000', 'realisedProfit': '0', 'availableMargin': '17786.5629', 'usedMargin': '0.0000', 'freezedMargin': '0.0000', 'shortUid': '16341026'}}}
+2024-10-07 04:50:18,054 - INFO - getaccount resto reserva result: 11992.332100000001 reserva: 5794.230799999999
+2024-10-07 04:50:18,484 - INFO - Orden creada 1843151843393486848
+2024-10-07 04:50:29,178 - INFO - Orden SL creada: {"code": 0, "msg": "", "data": {"order": {"orderId": 1843151888930406400, "orderID": "1843151888930406400", "symbol": "BTC-USDT", "positionSide": "LONG", "side": "BUY", "type": "STOP_MARKET", "price": 0, "quantity": 0.8493, "stopPrice": 61633.9, "workingType": "MARK_PRICE", "clientOrderID": "", "clientOrderId": "", "timeInForce": "GTC", "priceRate": 0, "stopLoss": "", "takeProfit": "", "reduceOnly": false, "activationPrice": 0, "closePosition": "", "stopGuaranteed": ""}}}
+2024-10-07 04:50:29,515 - INFO - Orden TP creada: {"code": 0, "msg": "", "data": {"order": {"orderId": 1843151890322915328, "orderID": "1843151890322915328", "symbol": "BTC-USDT", "positionSide": "LONG", "side": "BUY", "type": "TAKE_PROFIT_MARKET", "price": 0, "quantity": 0.8493, "stopPrice": 67352.5, "workingType": "MARK_PRICE", "clientOrderID": "", "clientOrderId": "", "timeInForce": "GTC", "priceRate": 0, "stopLoss": "", "takeProfit": "", "reduceOnly": false, "activationPrice": 0, "closePosition": "", "stopGuaranteed": ""}}}
+2024-10-07 04:50:29,719 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 04:50:29,719 - INFO - Validation Info True
+2024-10-07 04:50:29,917 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 04:50:29,918 - INFO - Order Creada: Order ID 1843151843393486848 Tipo BUY PRICE 63540.1, TP 67352.5, SL 61633.9
+2024-10-07 04:50:30,009 - INFO - pausa hasta 2024-10-07 04:55:00.009005 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 04:55:10,010 - INFO - Previo a Llenar Data
+2024-10-07 04:55:11,772 - INFO - Data empty condition: Start: 2024-09-28 05:00:00, End: 2024-10-03 04:55:00
+2024-10-07 04:55:13,053 - INFO - Data empty condition: Start: 2024-09-23 05:00:00, End: 2024-09-28 04:55:00
+2024-10-07 04:55:14,543 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 04:55:00
+2024-10-07 04:55:16,583 - INFO - The DataFrame is empty
+2024-10-07 04:55:16,584 - INFO - Data Llenado
+2024-10-07 04:55:16,911 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 04:55:16,912 - INFO - handle opened orders with close open positions True
+2024-10-07 04:55:16,912 - INFO - pausa hasta 2024-10-07 05:00:00.912389 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:00:10,914 - INFO - Previo a Llenar Data
+2024-10-07 05:00:14,658 - INFO - Data empty condition: Start: 2024-09-28 05:05:00, End: 2024-10-03 05:00:00
+2024-10-07 05:00:15,914 - INFO - Data empty condition: Start: 2024-09-23 05:05:00, End: 2024-09-28 05:00:00
+2024-10-07 05:00:17,243 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:00:00
+2024-10-07 05:00:18,461 - INFO - The DataFrame is empty
+2024-10-07 05:00:18,462 - INFO - Data Llenado
+2024-10-07 05:00:18,744 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:00:18,744 - INFO - handle opened orders with close open positions True
+2024-10-07 05:00:18,744 - INFO - pausa hasta 2024-10-07 05:05:00.744448 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:05:10,746 - INFO - Previo a Llenar Data
+2024-10-07 05:05:12,453 - INFO - Data empty condition: Start: 2024-09-28 05:10:00, End: 2024-10-03 05:05:00
+2024-10-07 05:05:14,811 - INFO - Data empty condition: Start: 2024-09-23 05:10:00, End: 2024-09-28 05:05:00
+2024-10-07 05:05:16,024 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:05:00
+2024-10-07 05:05:17,314 - INFO - The DataFrame is empty
+2024-10-07 05:05:17,315 - INFO - Data Llenado
+2024-10-07 05:05:17,565 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:05:17,565 - INFO - handle opened orders with close open positions True
+2024-10-07 05:05:17,565 - INFO - pausa hasta 2024-10-07 05:10:00.565872 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:10:10,567 - INFO - Previo a Llenar Data
+2024-10-07 05:10:12,153 - INFO - Data empty condition: Start: 2024-09-28 05:15:00, End: 2024-10-03 05:10:00
+2024-10-07 05:10:13,393 - INFO - Data empty condition: Start: 2024-09-23 05:15:00, End: 2024-09-28 05:10:00
+2024-10-07 05:10:14,618 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:10:00
+2024-10-07 05:10:16,880 - INFO - The DataFrame is empty
+2024-10-07 05:10:16,881 - INFO - Data Llenado
+2024-10-07 05:10:17,262 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:10:17,262 - INFO - handle opened orders with close open positions True
+2024-10-07 05:10:17,262 - INFO - pausa hasta 2024-10-07 05:15:00.262836 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:15:10,264 - INFO - Previo a Llenar Data
+2024-10-07 05:15:11,982 - INFO - Data empty condition: Start: 2024-09-28 05:20:00, End: 2024-10-03 05:15:00
+2024-10-07 05:15:13,208 - INFO - Data empty condition: Start: 2024-09-23 05:20:00, End: 2024-09-28 05:15:00
+2024-10-07 05:15:14,599 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:15:00
+2024-10-07 05:15:15,820 - INFO - The DataFrame is empty
+2024-10-07 05:15:15,821 - INFO - Data Llenado
+2024-10-07 05:15:16,132 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:15:16,132 - INFO - handle opened orders with close open positions True
+2024-10-07 05:15:16,132 - INFO - pausa hasta 2024-10-07 05:20:00.132608 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:20:10,134 - INFO - Previo a Llenar Data
+2024-10-07 05:20:11,909 - INFO - Data empty condition: Start: 2024-09-28 05:25:00, End: 2024-10-03 05:20:00
+2024-10-07 05:20:13,178 - INFO - Data empty condition: Start: 2024-09-23 05:25:00, End: 2024-09-28 05:20:00
+2024-10-07 05:20:14,426 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:20:00
+2024-10-07 05:20:15,706 - INFO - The DataFrame is empty
+2024-10-07 05:20:15,707 - INFO - Data Llenado
+2024-10-07 05:20:15,967 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:20:15,968 - INFO - handle opened orders with close open positions True
+2024-10-07 05:20:15,968 - INFO - pausa hasta 2024-10-07 05:25:00.968665 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:25:10,970 - INFO - Previo a Llenar Data
+2024-10-07 05:25:12,991 - INFO - Data empty condition: Start: 2024-09-28 05:30:00, End: 2024-10-03 05:25:00
+2024-10-07 05:25:14,231 - INFO - Data empty condition: Start: 2024-09-23 05:30:00, End: 2024-09-28 05:25:00
+2024-10-07 05:25:15,451 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:25:00
+2024-10-07 05:25:16,703 - INFO - The DataFrame is empty
+2024-10-07 05:25:16,704 - INFO - Data Llenado
+2024-10-07 05:25:16,944 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:25:16,944 - INFO - handle opened orders with close open positions True
+2024-10-07 05:25:16,944 - INFO - pausa hasta 2024-10-07 05:30:00.944878 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:30:10,946 - INFO - Previo a Llenar Data
+2024-10-07 05:30:12,469 - INFO - Data empty condition: Start: 2024-09-28 05:35:00, End: 2024-10-03 05:30:00
+2024-10-07 05:30:13,697 - INFO - Data empty condition: Start: 2024-09-23 05:35:00, End: 2024-09-28 05:30:00
+2024-10-07 05:30:14,954 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:30:00
+2024-10-07 05:30:16,141 - INFO - The DataFrame is empty
+2024-10-07 05:30:16,143 - INFO - Data Llenado
+2024-10-07 05:30:16,475 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:30:16,476 - INFO - handle opened orders with close open positions True
+2024-10-07 05:30:16,476 - INFO - pausa hasta 2024-10-07 05:35:00.476226 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:35:10,478 - INFO - Previo a Llenar Data
+2024-10-07 05:35:12,221 - INFO - Data empty condition: Start: 2024-09-28 05:40:00, End: 2024-10-03 05:35:00
+2024-10-07 05:35:13,505 - INFO - Data empty condition: Start: 2024-09-23 05:40:00, End: 2024-09-28 05:35:00
+2024-10-07 05:35:14,842 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:35:00
+2024-10-07 05:35:16,927 - INFO - The DataFrame is empty
+2024-10-07 05:35:16,928 - INFO - Data Llenado
+2024-10-07 05:35:17,187 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:35:17,188 - INFO - handle opened orders with close open positions True
+2024-10-07 05:35:17,188 - INFO - pausa hasta 2024-10-07 05:40:00.188450 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:40:10,190 - INFO - Previo a Llenar Data
+2024-10-07 05:40:11,844 - INFO - Data empty condition: Start: 2024-09-28 05:45:00, End: 2024-10-03 05:40:00
+2024-10-07 05:40:13,112 - INFO - Data empty condition: Start: 2024-09-23 05:45:00, End: 2024-09-28 05:40:00
+2024-10-07 05:40:14,424 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:40:00
+2024-10-07 05:40:15,648 - INFO - The DataFrame is empty
+2024-10-07 05:40:15,651 - INFO - Data Llenado
+2024-10-07 05:40:15,907 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:40:15,907 - INFO - handle opened orders with close open positions True
+2024-10-07 05:40:15,907 - INFO - pausa hasta 2024-10-07 05:45:00.907728 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:45:10,909 - INFO - Previo a Llenar Data
+2024-10-07 05:45:12,595 - INFO - Data empty condition: Start: 2024-09-28 05:50:00, End: 2024-10-03 05:45:00
+2024-10-07 05:45:13,869 - INFO - Data empty condition: Start: 2024-09-23 05:50:00, End: 2024-09-28 05:45:00
+2024-10-07 05:45:16,211 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:45:00
+2024-10-07 05:45:17,436 - INFO - The DataFrame is empty
+2024-10-07 05:45:17,438 - INFO - Data Llenado
+2024-10-07 05:45:17,676 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:45:17,676 - INFO - handle opened orders with close open positions True
+2024-10-07 05:45:17,676 - INFO - pausa hasta 2024-10-07 05:50:00.676522 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:50:10,678 - INFO - Previo a Llenar Data
+2024-10-07 05:50:12,132 - INFO - Data empty condition: Start: 2024-09-28 05:55:00, End: 2024-10-03 05:50:00
+2024-10-07 05:50:13,371 - INFO - Data empty condition: Start: 2024-09-23 05:55:00, End: 2024-09-28 05:50:00
+2024-10-07 05:50:14,803 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:50:00
+2024-10-07 05:50:16,011 - INFO - The DataFrame is empty
+2024-10-07 05:50:16,013 - INFO - Data Llenado
+2024-10-07 05:50:16,284 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:50:16,285 - INFO - handle opened orders with close open positions True
+2024-10-07 05:50:16,285 - INFO - pausa hasta 2024-10-07 05:55:00.285505 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 05:55:10,287 - INFO - Previo a Llenar Data
+2024-10-07 05:55:11,982 - INFO - Data empty condition: Start: 2024-09-28 06:00:00, End: 2024-10-03 05:55:00
+2024-10-07 05:55:13,383 - INFO - Data empty condition: Start: 2024-09-23 06:00:00, End: 2024-09-28 05:55:00
+2024-10-07 05:55:15,699 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 05:55:00
+2024-10-07 05:55:16,946 - INFO - The DataFrame is empty
+2024-10-07 05:55:16,948 - INFO - Data Llenado
+2024-10-07 05:55:17,233 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 05:55:17,234 - INFO - handle opened orders with close open positions True
+2024-10-07 05:55:17,234 - INFO - pausa hasta 2024-10-07 06:00:00.234259 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:00:10,235 - INFO - Previo a Llenar Data
+2024-10-07 06:00:13,161 - INFO - Data empty condition: Start: 2024-09-28 06:05:00, End: 2024-10-03 06:00:00
+2024-10-07 06:00:14,375 - INFO - Data empty condition: Start: 2024-09-23 06:05:00, End: 2024-09-28 06:00:00
+2024-10-07 06:00:15,608 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:00:00
+2024-10-07 06:00:16,822 - INFO - The DataFrame is empty
+2024-10-07 06:00:16,823 - INFO - Data Llenado
+2024-10-07 06:00:17,068 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:00:17,069 - INFO - handle opened orders with close open positions True
+2024-10-07 06:00:17,069 - INFO - pausa hasta 2024-10-07 06:05:00.069439 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:05:10,071 - INFO - Previo a Llenar Data
+2024-10-07 06:05:12,792 - INFO - Data empty condition: Start: 2024-09-28 06:10:00, End: 2024-10-03 06:05:00
+2024-10-07 06:05:14,022 - INFO - Data empty condition: Start: 2024-09-23 06:10:00, End: 2024-09-28 06:05:00
+2024-10-07 06:05:15,351 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:05:00
+2024-10-07 06:05:16,546 - INFO - The DataFrame is empty
+2024-10-07 06:05:16,547 - INFO - Data Llenado
+2024-10-07 06:05:16,821 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:05:16,822 - INFO - handle opened orders with close open positions True
+2024-10-07 06:05:16,822 - INFO - pausa hasta 2024-10-07 06:10:00.822089 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:10:10,823 - INFO - Previo a Llenar Data
+2024-10-07 06:10:12,403 - INFO - Data empty condition: Start: 2024-09-28 06:15:00, End: 2024-10-03 06:10:00
+2024-10-07 06:10:13,659 - INFO - Data empty condition: Start: 2024-09-23 06:15:00, End: 2024-09-28 06:10:00
+2024-10-07 06:10:15,187 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:10:00
+2024-10-07 06:10:16,440 - INFO - The DataFrame is empty
+2024-10-07 06:10:16,442 - INFO - Data Llenado
+2024-10-07 06:10:16,715 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:10:16,716 - INFO - handle opened orders with close open positions True
+2024-10-07 06:10:16,716 - INFO - pausa hasta 2024-10-07 06:15:00.716661 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:15:10,718 - INFO - Previo a Llenar Data
+2024-10-07 06:15:12,227 - INFO - Data empty condition: Start: 2024-09-28 06:20:00, End: 2024-10-03 06:15:00
+2024-10-07 06:15:13,439 - INFO - Data empty condition: Start: 2024-09-23 06:20:00, End: 2024-09-28 06:15:00
+2024-10-07 06:15:14,688 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:15:00
+2024-10-07 06:15:16,716 - INFO - The DataFrame is empty
+2024-10-07 06:15:16,718 - INFO - Data Llenado
+2024-10-07 06:15:16,987 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:15:16,987 - INFO - handle opened orders with close open positions True
+2024-10-07 06:15:16,987 - INFO - pausa hasta 2024-10-07 06:20:00.987618 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:20:10,989 - INFO - Previo a Llenar Data
+2024-10-07 06:20:12,528 - INFO - Data empty condition: Start: 2024-09-28 06:25:00, End: 2024-10-03 06:20:00
+2024-10-07 06:20:13,838 - INFO - Data empty condition: Start: 2024-09-23 06:25:00, End: 2024-09-28 06:20:00
+2024-10-07 06:20:15,137 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:20:00
+2024-10-07 06:20:16,340 - INFO - The DataFrame is empty
+2024-10-07 06:20:16,343 - INFO - Data Llenado
+2024-10-07 06:20:16,624 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:20:16,625 - INFO - handle opened orders with close open positions True
+2024-10-07 06:20:16,625 - INFO - pausa hasta 2024-10-07 06:25:00.625215 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:25:10,627 - INFO - Previo a Llenar Data
+2024-10-07 06:25:12,093 - INFO - Data empty condition: Start: 2024-09-28 06:30:00, End: 2024-10-03 06:25:00
+2024-10-07 06:25:13,344 - INFO - Data empty condition: Start: 2024-09-23 06:30:00, End: 2024-09-28 06:25:00
+2024-10-07 06:25:14,575 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:25:00
+2024-10-07 06:25:15,809 - INFO - The DataFrame is empty
+2024-10-07 06:25:15,810 - INFO - Data Llenado
+2024-10-07 06:25:16,061 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:25:16,061 - INFO - handle opened orders with close open positions True
+2024-10-07 06:25:16,061 - INFO - pausa hasta 2024-10-07 06:30:00.061698 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:30:10,063 - INFO - Previo a Llenar Data
+2024-10-07 06:30:11,518 - INFO - Data empty condition: Start: 2024-09-28 06:35:00, End: 2024-10-03 06:30:00
+2024-10-07 06:30:13,896 - INFO - Data empty condition: Start: 2024-09-23 06:35:00, End: 2024-09-28 06:30:00
+2024-10-07 06:30:16,232 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:30:00
+2024-10-07 06:30:17,585 - INFO - The DataFrame is empty
+2024-10-07 06:30:17,586 - INFO - Data Llenado
+2024-10-07 06:30:17,816 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:30:17,817 - INFO - handle opened orders with close open positions True
+2024-10-07 06:30:17,817 - INFO - pausa hasta 2024-10-07 06:35:00.817522 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:35:10,819 - INFO - Previo a Llenar Data
+2024-10-07 06:35:13,366 - INFO - Data empty condition: Start: 2024-09-28 06:40:00, End: 2024-10-03 06:35:00
+2024-10-07 06:35:14,607 - INFO - Data empty condition: Start: 2024-09-23 06:40:00, End: 2024-09-28 06:35:00
+2024-10-07 06:35:17,067 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:35:00
+2024-10-07 06:35:18,311 - INFO - The DataFrame is empty
+2024-10-07 06:35:18,313 - INFO - Data Llenado
+2024-10-07 06:35:18,583 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:35:18,583 - INFO - handle opened orders with close open positions True
+2024-10-07 06:35:18,584 - INFO - pausa hasta 2024-10-07 06:40:00.584101 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:40:10,585 - INFO - Previo a Llenar Data
+2024-10-07 06:40:12,041 - INFO - Data empty condition: Start: 2024-09-28 06:45:00, End: 2024-10-03 06:40:00
+2024-10-07 06:40:13,313 - INFO - Data empty condition: Start: 2024-09-23 06:45:00, End: 2024-09-28 06:40:00
+2024-10-07 06:40:14,766 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:40:00
+2024-10-07 06:40:16,026 - INFO - The DataFrame is empty
+2024-10-07 06:40:16,029 - INFO - Data Llenado
+2024-10-07 06:40:16,311 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:40:16,311 - INFO - handle opened orders with close open positions True
+2024-10-07 06:40:16,312 - INFO - pausa hasta 2024-10-07 06:45:00.312054 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:45:10,313 - INFO - Previo a Llenar Data
+2024-10-07 06:45:11,820 - INFO - Data empty condition: Start: 2024-09-28 06:50:00, End: 2024-10-03 06:45:00
+2024-10-07 06:45:13,109 - INFO - Data empty condition: Start: 2024-09-23 06:50:00, End: 2024-09-28 06:45:00
+2024-10-07 06:45:14,368 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:45:00
+2024-10-07 06:45:15,575 - INFO - The DataFrame is empty
+2024-10-07 06:45:15,576 - INFO - Data Llenado
+2024-10-07 06:45:15,865 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:45:15,866 - INFO - handle opened orders with close open positions True
+2024-10-07 06:45:15,866 - INFO - pausa hasta 2024-10-07 06:50:00.866470 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:50:10,868 - INFO - Previo a Llenar Data
+2024-10-07 06:50:12,524 - INFO - Data empty condition: Start: 2024-09-28 06:55:00, End: 2024-10-03 06:50:00
+2024-10-07 06:50:13,746 - INFO - Data empty condition: Start: 2024-09-23 06:55:00, End: 2024-09-28 06:50:00
+2024-10-07 06:50:15,308 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:50:00
+2024-10-07 06:50:16,515 - INFO - The DataFrame is empty
+2024-10-07 06:50:16,515 - INFO - Data Llenado
+2024-10-07 06:50:16,750 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:50:16,750 - INFO - handle opened orders with close open positions True
+2024-10-07 06:50:16,750 - INFO - pausa hasta 2024-10-07 06:55:00.750948 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 06:55:10,752 - INFO - Previo a Llenar Data
+2024-10-07 06:55:12,295 - INFO - Data empty condition: Start: 2024-09-28 07:00:00, End: 2024-10-03 06:55:00
+2024-10-07 06:55:13,790 - INFO - Data empty condition: Start: 2024-09-23 07:00:00, End: 2024-09-28 06:55:00
+2024-10-07 06:55:15,097 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 06:55:00
+2024-10-07 06:55:16,331 - INFO - The DataFrame is empty
+2024-10-07 06:55:16,333 - INFO - Data Llenado
+2024-10-07 06:55:16,598 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 06:55:16,598 - INFO - handle opened orders with close open positions True
+2024-10-07 06:55:16,599 - INFO - pausa hasta 2024-10-07 07:00:00.599054 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:00:10,600 - INFO - Previo a Llenar Data
+2024-10-07 07:00:12,271 - INFO - Data empty condition: Start: 2024-09-28 07:05:00, End: 2024-10-03 07:00:00
+2024-10-07 07:00:13,550 - INFO - Data empty condition: Start: 2024-09-23 07:05:00, End: 2024-09-28 07:00:00
+2024-10-07 07:00:14,970 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:00:00
+2024-10-07 07:00:16,175 - INFO - The DataFrame is empty
+2024-10-07 07:00:16,177 - INFO - Data Llenado
+2024-10-07 07:00:16,428 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:00:16,429 - INFO - handle opened orders with close open positions True
+2024-10-07 07:00:16,429 - INFO - pausa hasta 2024-10-07 07:05:00.429663 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:05:10,431 - INFO - Previo a Llenar Data
+2024-10-07 07:05:12,225 - INFO - Data empty condition: Start: 2024-09-28 07:10:00, End: 2024-10-03 07:05:00
+2024-10-07 07:05:13,520 - INFO - Data empty condition: Start: 2024-09-23 07:10:00, End: 2024-09-28 07:05:00
+2024-10-07 07:05:14,813 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:05:00
+2024-10-07 07:05:16,029 - INFO - The DataFrame is empty
+2024-10-07 07:05:16,032 - INFO - Data Llenado
+2024-10-07 07:05:16,306 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:05:16,307 - INFO - handle opened orders with close open positions True
+2024-10-07 07:05:16,307 - INFO - pausa hasta 2024-10-07 07:10:00.307523 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:10:10,309 - INFO - Previo a Llenar Data
+2024-10-07 07:10:12,231 - INFO - Data empty condition: Start: 2024-09-28 07:15:00, End: 2024-10-03 07:10:00
+2024-10-07 07:10:13,448 - INFO - Data empty condition: Start: 2024-09-23 07:15:00, End: 2024-09-28 07:10:00
+2024-10-07 07:10:14,837 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:10:00
+2024-10-07 07:10:16,081 - INFO - The DataFrame is empty
+2024-10-07 07:10:16,084 - INFO - Data Llenado
+2024-10-07 07:10:16,424 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:10:16,425 - INFO - handle opened orders with close open positions True
+2024-10-07 07:10:16,425 - INFO - pausa hasta 2024-10-07 07:15:00.425171 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:15:10,427 - INFO - Previo a Llenar Data
+2024-10-07 07:15:12,147 - INFO - Data empty condition: Start: 2024-09-28 07:20:00, End: 2024-10-03 07:15:00
+2024-10-07 07:15:14,494 - INFO - Data empty condition: Start: 2024-09-23 07:20:00, End: 2024-09-28 07:15:00
+2024-10-07 07:15:16,000 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:15:00
+2024-10-07 07:15:17,250 - INFO - The DataFrame is empty
+2024-10-07 07:15:17,252 - INFO - Data Llenado
+2024-10-07 07:15:17,492 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:15:17,493 - INFO - handle opened orders with close open positions True
+2024-10-07 07:15:17,493 - INFO - pausa hasta 2024-10-07 07:20:00.493451 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:20:10,495 - INFO - Previo a Llenar Data
+2024-10-07 07:20:12,245 - INFO - Data empty condition: Start: 2024-09-28 07:25:00, End: 2024-10-03 07:20:00
+2024-10-07 07:20:13,467 - INFO - Data empty condition: Start: 2024-09-23 07:25:00, End: 2024-09-28 07:20:00
+2024-10-07 07:20:15,772 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:20:00
+2024-10-07 07:20:17,002 - INFO - The DataFrame is empty
+2024-10-07 07:20:17,003 - INFO - Data Llenado
+2024-10-07 07:20:17,328 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:20:17,329 - INFO - handle opened orders with close open positions True
+2024-10-07 07:20:17,329 - INFO - pausa hasta 2024-10-07 07:25:00.329314 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:25:10,331 - INFO - Previo a Llenar Data
+2024-10-07 07:25:11,842 - INFO - Data empty condition: Start: 2024-09-28 07:30:00, End: 2024-10-03 07:25:00
+2024-10-07 07:25:13,083 - INFO - Data empty condition: Start: 2024-09-23 07:30:00, End: 2024-09-28 07:25:00
+2024-10-07 07:25:14,363 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:25:00
+2024-10-07 07:25:15,610 - INFO - The DataFrame is empty
+2024-10-07 07:25:15,611 - INFO - Data Llenado
+2024-10-07 07:25:15,899 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:25:15,900 - INFO - handle opened orders with close open positions True
+2024-10-07 07:25:15,901 - INFO - pausa hasta 2024-10-07 07:30:00.901043 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:30:10,902 - INFO - Previo a Llenar Data
+2024-10-07 07:30:12,395 - INFO - Data empty condition: Start: 2024-09-28 07:35:00, End: 2024-10-03 07:30:00
+2024-10-07 07:30:13,654 - INFO - Data empty condition: Start: 2024-09-23 07:35:00, End: 2024-09-28 07:30:00
+2024-10-07 07:30:16,059 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:30:00
+2024-10-07 07:30:17,343 - INFO - The DataFrame is empty
+2024-10-07 07:30:17,344 - INFO - Data Llenado
+2024-10-07 07:30:17,576 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:30:17,577 - INFO - handle opened orders with close open positions True
+2024-10-07 07:30:17,577 - INFO - pausa hasta 2024-10-07 07:35:00.577469 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:35:10,579 - INFO - Previo a Llenar Data
+2024-10-07 07:35:12,025 - INFO - Data empty condition: Start: 2024-09-28 07:40:00, End: 2024-10-03 07:35:00
+2024-10-07 07:35:13,366 - INFO - Data empty condition: Start: 2024-09-23 07:40:00, End: 2024-09-28 07:35:00
+2024-10-07 07:35:14,835 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:35:00
+2024-10-07 07:35:16,048 - INFO - The DataFrame is empty
+2024-10-07 07:35:16,049 - INFO - Data Llenado
+2024-10-07 07:35:16,313 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:35:16,313 - INFO - handle opened orders with close open positions True
+2024-10-07 07:35:16,313 - INFO - pausa hasta 2024-10-07 07:40:00.313592 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:40:10,315 - INFO - Previo a Llenar Data
+2024-10-07 07:40:11,845 - INFO - Data empty condition: Start: 2024-09-28 07:45:00, End: 2024-10-03 07:40:00
+2024-10-07 07:40:13,075 - INFO - Data empty condition: Start: 2024-09-23 07:45:00, End: 2024-09-28 07:40:00
+2024-10-07 07:40:14,402 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:40:00
+2024-10-07 07:40:15,681 - INFO - The DataFrame is empty
+2024-10-07 07:40:15,682 - INFO - Data Llenado
+2024-10-07 07:40:15,923 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:40:15,924 - INFO - handle opened orders with close open positions True
+2024-10-07 07:40:15,924 - INFO - pausa hasta 2024-10-07 07:45:00.924944 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:45:10,927 - INFO - Previo a Llenar Data
+2024-10-07 07:45:13,400 - INFO - Data empty condition: Start: 2024-09-28 07:50:00, End: 2024-10-03 07:45:00
+2024-10-07 07:45:14,698 - INFO - Data empty condition: Start: 2024-09-23 07:50:00, End: 2024-09-28 07:45:00
+2024-10-07 07:45:15,990 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:45:00
+2024-10-07 07:45:18,067 - INFO - The DataFrame is empty
+2024-10-07 07:45:18,068 - INFO - Data Llenado
+2024-10-07 07:45:18,328 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:45:18,328 - INFO - handle opened orders with close open positions True
+2024-10-07 07:45:18,328 - INFO - pausa hasta 2024-10-07 07:50:00.328913 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:50:10,331 - INFO - Previo a Llenar Data
+2024-10-07 07:50:12,042 - INFO - Data empty condition: Start: 2024-09-28 07:55:00, End: 2024-10-03 07:50:00
+2024-10-07 07:50:13,296 - INFO - Data empty condition: Start: 2024-09-23 07:55:00, End: 2024-09-28 07:50:00
+2024-10-07 07:50:14,581 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:50:00
+2024-10-07 07:50:15,817 - INFO - The DataFrame is empty
+2024-10-07 07:50:15,818 - INFO - Data Llenado
+2024-10-07 07:50:16,162 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:50:16,163 - INFO - handle opened orders with close open positions True
+2024-10-07 07:50:16,163 - INFO - pausa hasta 2024-10-07 07:55:00.163536 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 07:55:10,165 - INFO - Previo a Llenar Data
+2024-10-07 07:55:11,699 - INFO - Data empty condition: Start: 2024-09-28 08:00:00, End: 2024-10-03 07:55:00
+2024-10-07 07:55:12,992 - INFO - Data empty condition: Start: 2024-09-23 08:00:00, End: 2024-09-28 07:55:00
+2024-10-07 07:55:14,221 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 07:55:00
+2024-10-07 07:55:15,429 - INFO - The DataFrame is empty
+2024-10-07 07:55:15,431 - INFO - Data Llenado
+2024-10-07 07:55:15,668 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 07:55:15,669 - INFO - handle opened orders with close open positions True
+2024-10-07 07:55:15,669 - INFO - pausa hasta 2024-10-07 08:00:00.669317 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:00:10,671 - INFO - Previo a Llenar Data
+2024-10-07 08:00:12,152 - INFO - Data empty condition: Start: 2024-09-28 08:05:00, End: 2024-10-03 08:00:00
+2024-10-07 08:00:13,443 - INFO - Data empty condition: Start: 2024-09-23 08:05:00, End: 2024-09-28 08:00:00
+2024-10-07 08:00:15,024 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:00:00
+2024-10-07 08:00:16,311 - INFO - The DataFrame is empty
+2024-10-07 08:00:16,313 - INFO - Data Llenado
+2024-10-07 08:00:16,587 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:00:16,588 - INFO - handle opened orders with close open positions True
+2024-10-07 08:00:16,588 - INFO - pausa hasta 2024-10-07 08:05:00.588493 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:05:10,590 - INFO - Previo a Llenar Data
+2024-10-07 08:05:12,406 - INFO - Data empty condition: Start: 2024-09-28 08:10:00, End: 2024-10-03 08:05:00
+2024-10-07 08:05:13,640 - INFO - Data empty condition: Start: 2024-09-23 08:10:00, End: 2024-09-28 08:05:00
+2024-10-07 08:05:14,979 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:05:00
+2024-10-07 08:05:16,178 - INFO - The DataFrame is empty
+2024-10-07 08:05:16,179 - INFO - Data Llenado
+2024-10-07 08:05:16,699 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:05:16,700 - INFO - handle opened orders with close open positions True
+2024-10-07 08:05:16,700 - INFO - pausa hasta 2024-10-07 08:10:00.700274 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:10:10,702 - INFO - Previo a Llenar Data
+2024-10-07 08:10:12,191 - INFO - Data empty condition: Start: 2024-09-28 08:15:00, End: 2024-10-03 08:10:00
+2024-10-07 08:10:13,483 - INFO - Data empty condition: Start: 2024-09-23 08:15:00, End: 2024-09-28 08:10:00
+2024-10-07 08:10:14,765 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:10:00
+2024-10-07 08:10:15,981 - INFO - The DataFrame is empty
+2024-10-07 08:10:15,983 - INFO - Data Llenado
+2024-10-07 08:10:16,268 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:10:16,269 - INFO - handle opened orders with close open positions True
+2024-10-07 08:10:16,269 - INFO - pausa hasta 2024-10-07 08:15:00.269235 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:15:10,270 - INFO - Previo a Llenar Data
+2024-10-07 08:15:12,866 - INFO - Data empty condition: Start: 2024-09-28 08:20:00, End: 2024-10-03 08:15:00
+2024-10-07 08:15:14,687 - INFO - Data empty condition: Start: 2024-09-23 08:20:00, End: 2024-09-28 08:15:00
+2024-10-07 08:15:16,147 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:15:00
+2024-10-07 08:15:17,453 - INFO - The DataFrame is empty
+2024-10-07 08:15:17,454 - INFO - Data Llenado
+2024-10-07 08:15:17,703 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:15:17,703 - INFO - handle opened orders with close open positions True
+2024-10-07 08:15:17,704 - INFO - pausa hasta 2024-10-07 08:20:00.703984 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:20:10,705 - INFO - Previo a Llenar Data
+2024-10-07 08:20:12,363 - INFO - Data empty condition: Start: 2024-09-28 08:25:00, End: 2024-10-03 08:20:00
+2024-10-07 08:20:14,103 - INFO - Data empty condition: Start: 2024-09-23 08:25:00, End: 2024-09-28 08:20:00
+2024-10-07 08:20:15,439 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:20:00
+2024-10-07 08:20:16,655 - INFO - The DataFrame is empty
+2024-10-07 08:20:16,657 - INFO - Data Llenado
+2024-10-07 08:20:16,948 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:20:16,949 - INFO - handle opened orders with close open positions True
+2024-10-07 08:20:16,949 - INFO - pausa hasta 2024-10-07 08:25:00.949108 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:25:10,950 - INFO - Previo a Llenar Data
+2024-10-07 08:25:12,517 - INFO - Data empty condition: Start: 2024-09-28 08:30:00, End: 2024-10-03 08:25:00
+2024-10-07 08:25:13,752 - INFO - Data empty condition: Start: 2024-09-23 08:30:00, End: 2024-09-28 08:25:00
+2024-10-07 08:25:15,166 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:25:00
+2024-10-07 08:25:16,392 - INFO - The DataFrame is empty
+2024-10-07 08:25:16,395 - INFO - Data Llenado
+2024-10-07 08:25:16,671 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:25:16,671 - INFO - handle opened orders with close open positions True
+2024-10-07 08:25:16,671 - INFO - pausa hasta 2024-10-07 08:30:00.671870 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:30:10,673 - INFO - Previo a Llenar Data
+2024-10-07 08:30:13,302 - INFO - Data empty condition: Start: 2024-09-28 08:35:00, End: 2024-10-03 08:30:00
+2024-10-07 08:30:14,540 - INFO - Data empty condition: Start: 2024-09-23 08:35:00, End: 2024-09-28 08:30:00
+2024-10-07 08:30:15,845 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:30:00
+2024-10-07 08:30:17,299 - INFO - The DataFrame is empty
+2024-10-07 08:30:17,300 - INFO - Data Llenado
+2024-10-07 08:30:17,548 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:30:17,548 - INFO - handle opened orders with close open positions True
+2024-10-07 08:30:17,549 - INFO - pausa hasta 2024-10-07 08:35:00.548957 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:35:10,551 - INFO - Previo a Llenar Data
+2024-10-07 08:35:13,603 - INFO - Data empty condition: Start: 2024-09-28 08:40:00, End: 2024-10-03 08:35:00
+2024-10-07 08:35:16,052 - INFO - Data empty condition: Start: 2024-09-23 08:40:00, End: 2024-09-28 08:35:00
+2024-10-07 08:35:17,320 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:35:00
+2024-10-07 08:35:18,572 - INFO - The DataFrame is empty
+2024-10-07 08:35:18,573 - INFO - Data Llenado
+2024-10-07 08:35:18,848 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:35:18,849 - INFO - handle opened orders with close open positions True
+2024-10-07 08:35:18,849 - INFO - pausa hasta 2024-10-07 08:40:00.849652 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:40:10,851 - INFO - Previo a Llenar Data
+2024-10-07 08:40:12,398 - INFO - Data empty condition: Start: 2024-09-28 08:45:00, End: 2024-10-03 08:40:00
+2024-10-07 08:40:14,820 - INFO - Data empty condition: Start: 2024-09-23 08:45:00, End: 2024-09-28 08:40:00
+2024-10-07 08:40:17,470 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:40:00
+2024-10-07 08:40:18,697 - INFO - The DataFrame is empty
+2024-10-07 08:40:18,699 - INFO - Data Llenado
+2024-10-07 08:40:19,164 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:40:19,165 - INFO - handle opened orders with close open positions True
+2024-10-07 08:40:19,165 - INFO - pausa hasta 2024-10-07 08:45:00.165503 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:45:10,167 - INFO - Previo a Llenar Data
+2024-10-07 08:45:11,732 - INFO - Data empty condition: Start: 2024-09-28 08:50:00, End: 2024-10-03 08:45:00
+2024-10-07 08:45:12,989 - INFO - Data empty condition: Start: 2024-09-23 08:50:00, End: 2024-09-28 08:45:00
+2024-10-07 08:45:14,205 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:45:00
+2024-10-07 08:45:15,438 - INFO - The DataFrame is empty
+2024-10-07 08:45:15,439 - INFO - Data Llenado
+2024-10-07 08:45:15,718 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:45:15,719 - INFO - handle opened orders with close open positions True
+2024-10-07 08:45:15,719 - INFO - pausa hasta 2024-10-07 08:50:00.719693 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:50:10,721 - INFO - Previo a Llenar Data
+2024-10-07 08:50:12,220 - INFO - Data empty condition: Start: 2024-09-28 08:55:00, End: 2024-10-03 08:50:00
+2024-10-07 08:50:13,475 - INFO - Data empty condition: Start: 2024-09-23 08:55:00, End: 2024-09-28 08:50:00
+2024-10-07 08:50:14,808 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:50:00
+2024-10-07 08:50:16,813 - INFO - The DataFrame is empty
+2024-10-07 08:50:16,814 - INFO - Data Llenado
+2024-10-07 08:50:17,100 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:50:17,101 - INFO - handle opened orders with close open positions True
+2024-10-07 08:50:17,101 - INFO - pausa hasta 2024-10-07 08:55:00.101157 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 08:55:10,103 - INFO - Previo a Llenar Data
+2024-10-07 08:55:11,635 - INFO - Data empty condition: Start: 2024-09-28 09:00:00, End: 2024-10-03 08:55:00
+2024-10-07 08:55:12,871 - INFO - Data empty condition: Start: 2024-09-23 09:00:00, End: 2024-09-28 08:55:00
+2024-10-07 08:55:14,240 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 08:55:00
+2024-10-07 08:55:15,466 - INFO - The DataFrame is empty
+2024-10-07 08:55:15,468 - INFO - Data Llenado
+2024-10-07 08:55:15,726 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 08:55:15,726 - INFO - handle opened orders with close open positions True
+2024-10-07 08:55:15,727 - INFO - pausa hasta 2024-10-07 09:00:00.727011 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:00:10,729 - INFO - Previo a Llenar Data
+2024-10-07 09:00:12,249 - INFO - Data empty condition: Start: 2024-09-28 09:05:00, End: 2024-10-03 09:00:00
+2024-10-07 09:00:14,500 - INFO - Data empty condition: Start: 2024-09-23 09:05:00, End: 2024-09-28 09:00:00
+2024-10-07 09:00:15,948 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:00:00
+2024-10-07 09:00:17,161 - INFO - The DataFrame is empty
+2024-10-07 09:00:17,162 - INFO - Data Llenado
+2024-10-07 09:00:18,364 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:00:18,364 - INFO - handle opened orders with close open positions True
+2024-10-07 09:00:18,364 - INFO - pausa hasta 2024-10-07 09:05:00.364744 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:05:10,368 - INFO - Previo a Llenar Data
+2024-10-07 09:05:12,942 - INFO - Data empty condition: Start: 2024-09-28 09:10:00, End: 2024-10-03 09:05:00
+2024-10-07 09:05:14,203 - INFO - Data empty condition: Start: 2024-09-23 09:10:00, End: 2024-09-28 09:05:00
+2024-10-07 09:05:15,673 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:05:00
+2024-10-07 09:05:16,905 - INFO - The DataFrame is empty
+2024-10-07 09:05:16,907 - INFO - Data Llenado
+2024-10-07 09:05:17,140 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:05:17,141 - INFO - handle opened orders with close open positions True
+2024-10-07 09:05:17,141 - INFO - pausa hasta 2024-10-07 09:10:00.141643 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:10:10,143 - INFO - Previo a Llenar Data
+2024-10-07 09:10:11,672 - INFO - Data empty condition: Start: 2024-09-28 09:15:00, End: 2024-10-03 09:10:00
+2024-10-07 09:10:13,203 - INFO - Data empty condition: Start: 2024-09-23 09:15:00, End: 2024-09-28 09:10:00
+2024-10-07 09:10:14,714 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:10:00
+2024-10-07 09:10:15,906 - INFO - The DataFrame is empty
+2024-10-07 09:10:15,908 - INFO - Data Llenado
+2024-10-07 09:10:16,181 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:10:16,182 - INFO - handle opened orders with close open positions True
+2024-10-07 09:10:16,182 - INFO - pausa hasta 2024-10-07 09:15:00.182276 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:15:10,184 - INFO - Previo a Llenar Data
+2024-10-07 09:15:12,008 - INFO - Data empty condition: Start: 2024-09-28 09:20:00, End: 2024-10-03 09:15:00
+2024-10-07 09:15:13,246 - INFO - Data empty condition: Start: 2024-09-23 09:20:00, End: 2024-09-28 09:15:00
+2024-10-07 09:15:14,681 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:15:00
+2024-10-07 09:15:15,904 - INFO - The DataFrame is empty
+2024-10-07 09:15:15,905 - INFO - Data Llenado
+2024-10-07 09:15:16,957 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:15:16,957 - INFO - handle opened orders with close open positions True
+2024-10-07 09:15:16,958 - INFO - pausa hasta 2024-10-07 09:20:00.957980 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:20:10,960 - INFO - Previo a Llenar Data
+2024-10-07 09:20:12,500 - INFO - Data empty condition: Start: 2024-09-28 09:25:00, End: 2024-10-03 09:20:00
+2024-10-07 09:20:13,745 - INFO - Data empty condition: Start: 2024-09-23 09:25:00, End: 2024-09-28 09:20:00
+2024-10-07 09:20:15,130 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:20:00
+2024-10-07 09:20:16,361 - INFO - The DataFrame is empty
+2024-10-07 09:20:16,362 - INFO - Data Llenado
+2024-10-07 09:20:16,604 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:20:16,605 - INFO - handle opened orders with close open positions True
+2024-10-07 09:20:16,605 - INFO - pausa hasta 2024-10-07 09:25:00.605469 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:25:10,607 - INFO - Previo a Llenar Data
+2024-10-07 09:25:12,213 - INFO - Data empty condition: Start: 2024-09-28 09:30:00, End: 2024-10-03 09:25:00
+2024-10-07 09:25:13,448 - INFO - Data empty condition: Start: 2024-09-23 09:30:00, End: 2024-09-28 09:25:00
+2024-10-07 09:25:14,772 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:25:00
+2024-10-07 09:25:15,986 - INFO - The DataFrame is empty
+2024-10-07 09:25:15,987 - INFO - Data Llenado
+2024-10-07 09:25:16,258 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:25:16,258 - INFO - handle opened orders with close open positions True
+2024-10-07 09:25:16,258 - INFO - pausa hasta 2024-10-07 09:30:00.258493 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:30:10,260 - INFO - Previo a Llenar Data
+2024-10-07 09:30:11,776 - INFO - Data empty condition: Start: 2024-09-28 09:35:00, End: 2024-10-03 09:30:00
+2024-10-07 09:30:13,320 - INFO - Data empty condition: Start: 2024-09-23 09:35:00, End: 2024-09-28 09:30:00
+2024-10-07 09:30:14,828 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:30:00
+2024-10-07 09:30:16,111 - INFO - The DataFrame is empty
+2024-10-07 09:30:16,112 - INFO - Data Llenado
+2024-10-07 09:30:16,379 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:30:16,380 - INFO - handle opened orders with close open positions True
+2024-10-07 09:30:16,380 - INFO - pausa hasta 2024-10-07 09:35:00.380724 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:35:10,382 - INFO - Previo a Llenar Data
+2024-10-07 09:35:12,087 - INFO - Data empty condition: Start: 2024-09-28 09:40:00, End: 2024-10-03 09:35:00
+2024-10-07 09:35:13,515 - INFO - Data empty condition: Start: 2024-09-23 09:40:00, End: 2024-09-28 09:35:00
+2024-10-07 09:35:14,986 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:35:00
+2024-10-07 09:35:16,191 - INFO - The DataFrame is empty
+2024-10-07 09:35:16,193 - INFO - Data Llenado
+2024-10-07 09:35:16,506 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:35:16,506 - INFO - handle opened orders with close open positions True
+2024-10-07 09:35:16,506 - INFO - pausa hasta 2024-10-07 09:40:00.506630 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:40:10,509 - INFO - Previo a Llenar Data
+2024-10-07 09:40:12,018 - INFO - Data empty condition: Start: 2024-09-28 09:45:00, End: 2024-10-03 09:40:00
+2024-10-07 09:40:13,295 - INFO - Data empty condition: Start: 2024-09-23 09:45:00, End: 2024-09-28 09:40:00
+2024-10-07 09:40:14,545 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:40:00
+2024-10-07 09:40:15,752 - INFO - The DataFrame is empty
+2024-10-07 09:40:15,753 - INFO - Data Llenado
+2024-10-07 09:40:16,030 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:40:16,031 - INFO - handle opened orders with close open positions True
+2024-10-07 09:40:16,031 - INFO - pausa hasta 2024-10-07 09:45:00.031327 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:45:10,033 - INFO - Previo a Llenar Data
+2024-10-07 09:45:11,553 - INFO - Data empty condition: Start: 2024-09-28 09:50:00, End: 2024-10-03 09:45:00
+2024-10-07 09:45:12,860 - INFO - Data empty condition: Start: 2024-09-23 09:50:00, End: 2024-09-28 09:45:00
+2024-10-07 09:45:14,226 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:45:00
+2024-10-07 09:45:15,482 - INFO - The DataFrame is empty
+2024-10-07 09:45:15,483 - INFO - Data Llenado
+2024-10-07 09:45:15,733 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:45:15,733 - INFO - handle opened orders with close open positions True
+2024-10-07 09:45:15,733 - INFO - pausa hasta 2024-10-07 09:50:00.733965 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:50:10,735 - INFO - Previo a Llenar Data
+2024-10-07 09:50:12,225 - INFO - Data empty condition: Start: 2024-09-28 09:55:00, End: 2024-10-03 09:50:00
+2024-10-07 09:50:13,489 - INFO - Data empty condition: Start: 2024-09-23 09:55:00, End: 2024-09-28 09:50:00
+2024-10-07 09:50:15,157 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:50:00
+2024-10-07 09:50:16,354 - INFO - The DataFrame is empty
+2024-10-07 09:50:16,355 - INFO - Data Llenado
+2024-10-07 09:50:16,630 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:50:16,631 - INFO - handle opened orders with close open positions True
+2024-10-07 09:50:16,631 - INFO - pausa hasta 2024-10-07 09:55:00.631578 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 09:55:10,633 - INFO - Previo a Llenar Data
+2024-10-07 09:55:12,141 - INFO - Data empty condition: Start: 2024-09-28 10:00:00, End: 2024-10-03 09:55:00
+2024-10-07 09:55:13,421 - INFO - Data empty condition: Start: 2024-09-23 10:00:00, End: 2024-09-28 09:55:00
+2024-10-07 09:55:14,796 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 09:55:00
+2024-10-07 09:55:16,864 - INFO - The DataFrame is empty
+2024-10-07 09:55:16,865 - INFO - Data Llenado
+2024-10-07 09:55:17,143 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 09:55:17,144 - INFO - handle opened orders with close open positions True
+2024-10-07 09:55:17,144 - INFO - pausa hasta 2024-10-07 10:00:00.144480 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:00:10,146 - INFO - Previo a Llenar Data
+2024-10-07 10:00:11,647 - INFO - Data empty condition: Start: 2024-09-28 10:05:00, End: 2024-10-03 10:00:00
+2024-10-07 10:00:12,906 - INFO - Data empty condition: Start: 2024-09-23 10:05:00, End: 2024-09-28 10:00:00
+2024-10-07 10:00:14,294 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:00:00
+2024-10-07 10:00:15,621 - INFO - The DataFrame is empty
+2024-10-07 10:00:15,621 - INFO - Data Llenado
+2024-10-07 10:00:15,911 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:00:15,911 - INFO - handle opened orders with close open positions True
+2024-10-07 10:00:15,912 - INFO - pausa hasta 2024-10-07 10:05:00.912003 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:05:10,913 - INFO - Previo a Llenar Data
+2024-10-07 10:05:12,385 - INFO - Data empty condition: Start: 2024-09-28 10:10:00, End: 2024-10-03 10:05:00
+2024-10-07 10:05:13,613 - INFO - Data empty condition: Start: 2024-09-23 10:10:00, End: 2024-09-28 10:05:00
+2024-10-07 10:05:15,181 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:05:00
+2024-10-07 10:05:16,469 - INFO - The DataFrame is empty
+2024-10-07 10:05:16,470 - INFO - Data Llenado
+2024-10-07 10:05:16,726 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:05:16,726 - INFO - handle opened orders with close open positions True
+2024-10-07 10:05:16,727 - INFO - pausa hasta 2024-10-07 10:10:00.727016 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:10:10,728 - INFO - Previo a Llenar Data
+2024-10-07 10:10:12,279 - INFO - Data empty condition: Start: 2024-09-28 10:15:00, End: 2024-10-03 10:10:00
+2024-10-07 10:10:13,499 - INFO - Data empty condition: Start: 2024-09-23 10:15:00, End: 2024-09-28 10:10:00
+2024-10-07 10:10:15,020 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:10:00
+2024-10-07 10:10:16,237 - INFO - The DataFrame is empty
+2024-10-07 10:10:16,239 - INFO - Data Llenado
+2024-10-07 10:10:16,476 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:10:16,477 - INFO - handle opened orders with close open positions True
+2024-10-07 10:10:16,477 - INFO - pausa hasta 2024-10-07 10:15:00.477832 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:15:10,479 - INFO - Previo a Llenar Data
+2024-10-07 10:15:12,032 - INFO - Data empty condition: Start: 2024-09-28 10:20:00, End: 2024-10-03 10:15:00
+2024-10-07 10:15:13,286 - INFO - Data empty condition: Start: 2024-09-23 10:20:00, End: 2024-09-28 10:15:00
+2024-10-07 10:15:14,622 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:15:00
+2024-10-07 10:15:15,825 - INFO - The DataFrame is empty
+2024-10-07 10:15:15,826 - INFO - Data Llenado
+2024-10-07 10:15:16,123 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:15:16,124 - INFO - handle opened orders with close open positions True
+2024-10-07 10:15:16,124 - INFO - pausa hasta 2024-10-07 10:20:00.124726 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:20:10,126 - INFO - Previo a Llenar Data
+2024-10-07 10:20:12,660 - INFO - Data empty condition: Start: 2024-09-28 10:25:00, End: 2024-10-03 10:20:00
+2024-10-07 10:20:13,915 - INFO - Data empty condition: Start: 2024-09-23 10:25:00, End: 2024-09-28 10:20:00
+2024-10-07 10:20:15,232 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:20:00
+2024-10-07 10:20:16,609 - INFO - The DataFrame is empty
+2024-10-07 10:20:16,610 - INFO - Data Llenado
+2024-10-07 10:20:16,919 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:20:16,919 - INFO - handle opened orders with close open positions True
+2024-10-07 10:20:16,920 - INFO - pausa hasta 2024-10-07 10:25:00.920064 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:25:10,922 - INFO - Previo a Llenar Data
+2024-10-07 10:25:12,458 - INFO - Data empty condition: Start: 2024-09-28 10:30:00, End: 2024-10-03 10:25:00
+2024-10-07 10:25:13,695 - INFO - Data empty condition: Start: 2024-09-23 10:30:00, End: 2024-09-28 10:25:00
+2024-10-07 10:25:14,929 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:25:00
+2024-10-07 10:25:16,121 - INFO - The DataFrame is empty
+2024-10-07 10:25:16,122 - INFO - Data Llenado
+2024-10-07 10:25:17,213 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:25:17,213 - INFO - handle opened orders with close open positions True
+2024-10-07 10:25:17,213 - INFO - pausa hasta 2024-10-07 10:30:00.213567 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:30:10,215 - INFO - Previo a Llenar Data
+2024-10-07 10:30:11,748 - INFO - Data empty condition: Start: 2024-09-28 10:35:00, End: 2024-10-03 10:30:00
+2024-10-07 10:30:13,003 - INFO - Data empty condition: Start: 2024-09-23 10:35:00, End: 2024-09-28 10:30:00
+2024-10-07 10:30:14,226 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:30:00
+2024-10-07 10:30:15,423 - INFO - The DataFrame is empty
+2024-10-07 10:30:15,424 - INFO - Data Llenado
+2024-10-07 10:30:15,678 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:30:15,678 - INFO - handle opened orders with close open positions True
+2024-10-07 10:30:15,679 - INFO - pausa hasta 2024-10-07 10:35:00.679051 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:35:10,681 - INFO - Previo a Llenar Data
+2024-10-07 10:35:13,278 - INFO - Data empty condition: Start: 2024-09-28 10:40:00, End: 2024-10-03 10:35:00
+2024-10-07 10:35:14,695 - INFO - Data empty condition: Start: 2024-09-23 10:40:00, End: 2024-09-28 10:35:00
+2024-10-07 10:35:16,121 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:35:00
+2024-10-07 10:35:17,316 - INFO - The DataFrame is empty
+2024-10-07 10:35:17,319 - INFO - Data Llenado
+2024-10-07 10:35:17,576 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:35:17,577 - INFO - handle opened orders with close open positions True
+2024-10-07 10:35:17,577 - INFO - pausa hasta 2024-10-07 10:40:00.577621 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:40:10,579 - INFO - Previo a Llenar Data
+2024-10-07 10:40:12,221 - INFO - Data empty condition: Start: 2024-09-28 10:45:00, End: 2024-10-03 10:40:00
+2024-10-07 10:40:13,478 - INFO - Data empty condition: Start: 2024-09-23 10:45:00, End: 2024-09-28 10:40:00
+2024-10-07 10:40:14,852 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:40:00
+2024-10-07 10:40:16,090 - INFO - The DataFrame is empty
+2024-10-07 10:40:16,091 - INFO - Data Llenado
+2024-10-07 10:40:16,356 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:40:16,357 - INFO - handle opened orders with close open positions True
+2024-10-07 10:40:16,357 - INFO - pausa hasta 2024-10-07 10:45:00.357652 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:45:10,359 - INFO - Previo a Llenar Data
+2024-10-07 10:45:12,196 - INFO - Data empty condition: Start: 2024-09-28 10:50:00, End: 2024-10-03 10:45:00
+2024-10-07 10:45:13,490 - INFO - Data empty condition: Start: 2024-09-23 10:50:00, End: 2024-09-28 10:45:00
+2024-10-07 10:45:15,959 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:45:00
+2024-10-07 10:45:17,180 - INFO - The DataFrame is empty
+2024-10-07 10:45:17,181 - INFO - Data Llenado
+2024-10-07 10:45:17,472 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:45:17,473 - INFO - handle opened orders with close open positions True
+2024-10-07 10:45:17,473 - INFO - pausa hasta 2024-10-07 10:50:00.473358 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:50:10,474 - INFO - Previo a Llenar Data
+2024-10-07 10:50:11,991 - INFO - Data empty condition: Start: 2024-09-28 10:55:00, End: 2024-10-03 10:50:00
+2024-10-07 10:50:13,382 - INFO - Data empty condition: Start: 2024-09-23 10:55:00, End: 2024-09-28 10:50:00
+2024-10-07 10:50:14,719 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:50:00
+2024-10-07 10:50:15,959 - INFO - The DataFrame is empty
+2024-10-07 10:50:15,960 - INFO - Data Llenado
+2024-10-07 10:50:16,228 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:50:16,229 - INFO - handle opened orders with close open positions True
+2024-10-07 10:50:16,229 - INFO - pausa hasta 2024-10-07 10:55:00.229572 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 10:55:10,231 - INFO - Previo a Llenar Data
+2024-10-07 10:55:12,778 - INFO - Data empty condition: Start: 2024-09-28 11:00:00, End: 2024-10-03 10:55:00
+2024-10-07 10:55:14,030 - INFO - Data empty condition: Start: 2024-09-23 11:00:00, End: 2024-09-28 10:55:00
+2024-10-07 10:55:15,242 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 10:55:00
+2024-10-07 10:55:16,462 - INFO - The DataFrame is empty
+2024-10-07 10:55:16,465 - INFO - Data Llenado
+2024-10-07 10:55:16,744 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 10:55:16,745 - INFO - handle opened orders with close open positions True
+2024-10-07 10:55:16,746 - INFO - pausa hasta 2024-10-07 11:00:00.745997 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:00:10,750 - INFO - Previo a Llenar Data
+2024-10-07 11:00:12,234 - INFO - Data empty condition: Start: 2024-09-28 11:05:00, End: 2024-10-03 11:00:00
+2024-10-07 11:00:13,506 - INFO - Data empty condition: Start: 2024-09-23 11:05:00, End: 2024-09-28 11:00:00
+2024-10-07 11:00:14,934 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:00:00
+2024-10-07 11:00:16,158 - INFO - The DataFrame is empty
+2024-10-07 11:00:16,159 - INFO - Data Llenado
+2024-10-07 11:00:16,458 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:00:16,459 - INFO - handle opened orders with close open positions True
+2024-10-07 11:00:16,459 - INFO - pausa hasta 2024-10-07 11:05:00.459078 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:05:10,460 - INFO - Previo a Llenar Data
+2024-10-07 11:05:13,409 - INFO - Data empty condition: Start: 2024-09-28 11:10:00, End: 2024-10-03 11:05:00
+2024-10-07 11:05:14,644 - INFO - Data empty condition: Start: 2024-09-23 11:10:00, End: 2024-09-28 11:05:00
+2024-10-07 11:05:15,877 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:05:00
+2024-10-07 11:05:17,107 - INFO - The DataFrame is empty
+2024-10-07 11:05:17,108 - INFO - Data Llenado
+2024-10-07 11:05:17,347 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:05:17,348 - INFO - handle opened orders with close open positions True
+2024-10-07 11:05:17,348 - INFO - pausa hasta 2024-10-07 11:10:00.348627 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:10:10,350 - INFO - Previo a Llenar Data
+2024-10-07 11:10:11,896 - INFO - Data empty condition: Start: 2024-09-28 11:15:00, End: 2024-10-03 11:10:00
+2024-10-07 11:10:13,167 - INFO - Data empty condition: Start: 2024-09-23 11:15:00, End: 2024-09-28 11:10:00
+2024-10-07 11:10:14,431 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:10:00
+2024-10-07 11:10:17,125 - INFO - The DataFrame is empty
+2024-10-07 11:10:17,127 - INFO - Data Llenado
+2024-10-07 11:10:17,395 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:10:17,396 - INFO - handle opened orders with close open positions True
+2024-10-07 11:10:17,396 - INFO - pausa hasta 2024-10-07 11:15:00.396199 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:15:10,397 - INFO - Previo a Llenar Data
+2024-10-07 11:15:11,960 - INFO - Data empty condition: Start: 2024-09-28 11:20:00, End: 2024-10-03 11:15:00
+2024-10-07 11:15:13,217 - INFO - Data empty condition: Start: 2024-09-23 11:20:00, End: 2024-09-28 11:15:00
+2024-10-07 11:15:14,526 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:15:00
+2024-10-07 11:15:15,828 - INFO - The DataFrame is empty
+2024-10-07 11:15:15,829 - INFO - Data Llenado
+2024-10-07 11:15:16,111 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:15:16,112 - INFO - handle opened orders with close open positions True
+2024-10-07 11:15:16,112 - INFO - pausa hasta 2024-10-07 11:20:00.112811 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:20:10,117 - INFO - Previo a Llenar Data
+2024-10-07 11:20:11,637 - INFO - Data empty condition: Start: 2024-09-28 11:25:00, End: 2024-10-03 11:20:00
+2024-10-07 11:20:13,180 - INFO - Data empty condition: Start: 2024-09-23 11:25:00, End: 2024-09-28 11:20:00
+2024-10-07 11:20:14,440 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:20:00
+2024-10-07 11:20:15,667 - INFO - The DataFrame is empty
+2024-10-07 11:20:15,669 - INFO - Data Llenado
+2024-10-07 11:20:15,988 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:20:15,989 - INFO - handle opened orders with close open positions True
+2024-10-07 11:20:15,989 - INFO - pausa hasta 2024-10-07 11:25:00.989452 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:25:10,991 - INFO - Previo a Llenar Data
+2024-10-07 11:25:12,516 - INFO - Data empty condition: Start: 2024-09-28 11:30:00, End: 2024-10-03 11:25:00
+2024-10-07 11:25:13,896 - INFO - Data empty condition: Start: 2024-09-23 11:30:00, End: 2024-09-28 11:25:00
+2024-10-07 11:25:15,331 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:25:00
+2024-10-07 11:25:16,545 - INFO - The DataFrame is empty
+2024-10-07 11:25:16,546 - INFO - Data Llenado
+2024-10-07 11:25:16,790 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:25:16,791 - INFO - handle opened orders with close open positions True
+2024-10-07 11:25:16,791 - INFO - pausa hasta 2024-10-07 11:30:00.791500 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:30:10,793 - INFO - Previo a Llenar Data
+2024-10-07 11:30:13,485 - INFO - Data empty condition: Start: 2024-09-28 11:35:00, End: 2024-10-03 11:30:00
+2024-10-07 11:30:14,754 - INFO - Data empty condition: Start: 2024-09-23 11:35:00, End: 2024-09-28 11:30:00
+2024-10-07 11:30:16,008 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:30:00
+2024-10-07 11:30:17,280 - INFO - The DataFrame is empty
+2024-10-07 11:30:17,281 - INFO - Data Llenado
+2024-10-07 11:30:17,572 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:30:17,574 - INFO - handle opened orders with close open positions True
+2024-10-07 11:30:17,577 - INFO - pausa hasta 2024-10-07 11:35:00.574821 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:35:10,576 - INFO - Previo a Llenar Data
+2024-10-07 11:35:12,083 - INFO - Data empty condition: Start: 2024-09-28 11:40:00, End: 2024-10-03 11:35:00
+2024-10-07 11:35:13,322 - INFO - Data empty condition: Start: 2024-09-23 11:40:00, End: 2024-09-28 11:35:00
+2024-10-07 11:35:14,837 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:35:00
+2024-10-07 11:35:16,053 - INFO - The DataFrame is empty
+2024-10-07 11:35:16,054 - INFO - Data Llenado
+2024-10-07 11:35:16,311 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:35:16,311 - INFO - handle opened orders with close open positions True
+2024-10-07 11:35:16,312 - INFO - pausa hasta 2024-10-07 11:40:00.312034 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:40:10,313 - INFO - Previo a Llenar Data
+2024-10-07 11:40:11,837 - INFO - Data empty condition: Start: 2024-09-28 11:45:00, End: 2024-10-03 11:40:00
+2024-10-07 11:40:13,093 - INFO - Data empty condition: Start: 2024-09-23 11:45:00, End: 2024-09-28 11:40:00
+2024-10-07 11:40:14,352 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:40:00
+2024-10-07 11:40:15,556 - INFO - The DataFrame is empty
+2024-10-07 11:40:15,558 - INFO - Data Llenado
+2024-10-07 11:40:15,830 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:40:15,830 - INFO - handle opened orders with close open positions True
+2024-10-07 11:40:15,830 - INFO - pausa hasta 2024-10-07 11:45:00.830928 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:45:10,834 - INFO - Previo a Llenar Data
+2024-10-07 11:45:12,620 - INFO - Data empty condition: Start: 2024-09-28 11:50:00, End: 2024-10-03 11:45:00
+2024-10-07 11:45:13,847 - INFO - Data empty condition: Start: 2024-09-23 11:50:00, End: 2024-09-28 11:45:00
+2024-10-07 11:45:15,191 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:45:00
+2024-10-07 11:45:17,212 - INFO - The DataFrame is empty
+2024-10-07 11:45:17,213 - INFO - Data Llenado
+2024-10-07 11:45:18,364 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:45:18,364 - INFO - handle opened orders with close open positions True
+2024-10-07 11:45:18,364 - INFO - pausa hasta 2024-10-07 11:50:00.364742 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:50:10,366 - INFO - Previo a Llenar Data
+2024-10-07 11:50:12,988 - INFO - Data empty condition: Start: 2024-09-28 11:55:00, End: 2024-10-03 11:50:00
+2024-10-07 11:50:14,286 - INFO - Data empty condition: Start: 2024-09-23 11:55:00, End: 2024-09-28 11:50:00
+2024-10-07 11:50:15,532 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:50:00
+2024-10-07 11:50:16,762 - INFO - The DataFrame is empty
+2024-10-07 11:50:16,763 - INFO - Data Llenado
+2024-10-07 11:50:17,836 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:50:17,836 - INFO - handle opened orders with close open positions True
+2024-10-07 11:50:17,836 - INFO - pausa hasta 2024-10-07 11:55:00.836749 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 11:55:10,838 - INFO - Previo a Llenar Data
+2024-10-07 11:55:14,556 - INFO - Data empty condition: Start: 2024-09-28 12:00:00, End: 2024-10-03 11:55:00
+2024-10-07 11:55:15,821 - INFO - Data empty condition: Start: 2024-09-23 12:00:00, End: 2024-09-28 11:55:00
+2024-10-07 11:55:17,050 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 11:55:00
+2024-10-07 11:55:18,244 - INFO - The DataFrame is empty
+2024-10-07 11:55:18,245 - INFO - Data Llenado
+2024-10-07 11:55:18,518 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 11:55:18,518 - INFO - handle opened orders with close open positions True
+2024-10-07 11:55:18,519 - INFO - pausa hasta 2024-10-07 12:00:00.519173 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:00:10,523 - INFO - Previo a Llenar Data
+2024-10-07 12:00:12,300 - INFO - Data empty condition: Start: 2024-09-28 12:05:00, End: 2024-10-03 12:00:00
+2024-10-07 12:00:13,598 - INFO - Data empty condition: Start: 2024-09-23 12:05:00, End: 2024-09-28 12:00:00
+2024-10-07 12:00:14,871 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:00:00
+2024-10-07 12:00:16,069 - INFO - The DataFrame is empty
+2024-10-07 12:00:16,070 - INFO - Data Llenado
+2024-10-07 12:00:16,400 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:00:16,401 - INFO - handle opened orders with close open positions True
+2024-10-07 12:00:16,401 - INFO - pausa hasta 2024-10-07 12:05:00.401289 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:05:10,403 - INFO - Previo a Llenar Data
+2024-10-07 12:05:11,924 - INFO - Data empty condition: Start: 2024-09-28 12:10:00, End: 2024-10-03 12:05:00
+2024-10-07 12:05:13,148 - INFO - Data empty condition: Start: 2024-09-23 12:10:00, End: 2024-09-28 12:05:00
+2024-10-07 12:05:14,516 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:05:00
+2024-10-07 12:05:15,737 - INFO - The DataFrame is empty
+2024-10-07 12:05:15,739 - INFO - Data Llenado
+2024-10-07 12:05:15,983 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:05:15,983 - INFO - handle opened orders with close open positions True
+2024-10-07 12:05:15,983 - INFO - pausa hasta 2024-10-07 12:10:00.983585 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:10:10,986 - INFO - Previo a Llenar Data
+2024-10-07 12:10:12,451 - INFO - Data empty condition: Start: 2024-09-28 12:15:00, End: 2024-10-03 12:10:00
+2024-10-07 12:10:13,695 - INFO - Data empty condition: Start: 2024-09-23 12:15:00, End: 2024-09-28 12:10:00
+2024-10-07 12:10:15,340 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:10:00
+2024-10-07 12:10:16,575 - INFO - The DataFrame is empty
+2024-10-07 12:10:16,577 - INFO - Data Llenado
+2024-10-07 12:10:16,821 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:10:16,821 - INFO - handle opened orders with close open positions True
+2024-10-07 12:10:16,821 - INFO - pausa hasta 2024-10-07 12:15:00.821632 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:15:10,823 - INFO - Previo a Llenar Data
+2024-10-07 12:15:12,282 - INFO - Data empty condition: Start: 2024-09-28 12:20:00, End: 2024-10-03 12:15:00
+2024-10-07 12:15:13,546 - INFO - Data empty condition: Start: 2024-09-23 12:20:00, End: 2024-09-28 12:15:00
+2024-10-07 12:15:14,973 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:15:00
+2024-10-07 12:15:16,193 - INFO - The DataFrame is empty
+2024-10-07 12:15:16,195 - INFO - Data Llenado
+2024-10-07 12:15:16,462 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:15:16,463 - INFO - handle opened orders with close open positions True
+2024-10-07 12:15:16,463 - INFO - pausa hasta 2024-10-07 12:20:00.463548 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:20:10,465 - INFO - Previo a Llenar Data
+2024-10-07 12:20:11,978 - INFO - Data empty condition: Start: 2024-09-28 12:25:00, End: 2024-10-03 12:20:00
+2024-10-07 12:20:13,214 - INFO - Data empty condition: Start: 2024-09-23 12:25:00, End: 2024-09-28 12:20:00
+2024-10-07 12:20:14,551 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:20:00
+2024-10-07 12:20:15,768 - INFO - The DataFrame is empty
+2024-10-07 12:20:15,769 - INFO - Data Llenado
+2024-10-07 12:20:16,016 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:20:16,016 - INFO - handle opened orders with close open positions True
+2024-10-07 12:20:16,017 - INFO - pausa hasta 2024-10-07 12:25:00.017159 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:25:10,019 - INFO - Previo a Llenar Data
+2024-10-07 12:25:12,557 - INFO - Data empty condition: Start: 2024-09-28 12:30:00, End: 2024-10-03 12:25:00
+2024-10-07 12:25:13,788 - INFO - Data empty condition: Start: 2024-09-23 12:30:00, End: 2024-09-28 12:25:00
+2024-10-07 12:25:15,031 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:25:00
+2024-10-07 12:25:16,265 - INFO - The DataFrame is empty
+2024-10-07 12:25:16,268 - INFO - Data Llenado
+2024-10-07 12:25:16,519 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:25:16,519 - INFO - handle opened orders with close open positions True
+2024-10-07 12:25:16,520 - INFO - pausa hasta 2024-10-07 12:30:00.520058 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:30:10,522 - INFO - Previo a Llenar Data
+2024-10-07 12:30:11,996 - INFO - Data empty condition: Start: 2024-09-28 12:35:00, End: 2024-10-03 12:30:00
+2024-10-07 12:30:14,235 - INFO - Data empty condition: Start: 2024-09-23 12:35:00, End: 2024-09-28 12:30:00
+2024-10-07 12:30:15,603 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:30:00
+2024-10-07 12:30:16,858 - INFO - The DataFrame is empty
+2024-10-07 12:30:16,858 - INFO - Data Llenado
+2024-10-07 12:30:18,051 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:30:18,052 - INFO - handle opened orders with close open positions True
+2024-10-07 12:30:18,052 - INFO - pausa hasta 2024-10-07 12:35:00.052452 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:35:10,054 - INFO - Previo a Llenar Data
+2024-10-07 12:35:11,551 - INFO - Data empty condition: Start: 2024-09-28 12:40:00, End: 2024-10-03 12:35:00
+2024-10-07 12:35:12,808 - INFO - Data empty condition: Start: 2024-09-23 12:40:00, End: 2024-09-28 12:35:00
+2024-10-07 12:35:14,034 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:35:00
+2024-10-07 12:35:15,267 - INFO - The DataFrame is empty
+2024-10-07 12:35:15,268 - INFO - Data Llenado
+2024-10-07 12:35:15,562 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:35:15,562 - INFO - handle opened orders with close open positions True
+2024-10-07 12:35:15,562 - INFO - pausa hasta 2024-10-07 12:40:00.562661 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:40:10,564 - INFO - Previo a Llenar Data
+2024-10-07 12:40:12,069 - INFO - Data empty condition: Start: 2024-09-28 12:45:00, End: 2024-10-03 12:40:00
+2024-10-07 12:40:13,786 - INFO - Data empty condition: Start: 2024-09-23 12:45:00, End: 2024-09-28 12:40:00
+2024-10-07 12:40:15,693 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:40:00
+2024-10-07 12:40:16,949 - INFO - The DataFrame is empty
+2024-10-07 12:40:16,950 - INFO - Data Llenado
+2024-10-07 12:40:17,247 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:40:17,247 - INFO - handle opened orders with close open positions True
+2024-10-07 12:40:17,248 - INFO - pausa hasta 2024-10-07 12:45:00.247996 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:45:10,250 - INFO - Previo a Llenar Data
+2024-10-07 12:45:11,689 - INFO - Data empty condition: Start: 2024-09-28 12:50:00, End: 2024-10-03 12:45:00
+2024-10-07 12:45:12,932 - INFO - Data empty condition: Start: 2024-09-23 12:50:00, End: 2024-09-28 12:45:00
+2024-10-07 12:45:14,151 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:45:00
+2024-10-07 12:45:15,372 - INFO - The DataFrame is empty
+2024-10-07 12:45:15,373 - INFO - Data Llenado
+2024-10-07 12:45:16,570 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:45:16,570 - INFO - handle opened orders with close open positions True
+2024-10-07 12:45:16,570 - INFO - pausa hasta 2024-10-07 12:50:00.570592 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:50:10,572 - INFO - Previo a Llenar Data
+2024-10-07 12:50:12,046 - INFO - Data empty condition: Start: 2024-09-28 12:55:00, End: 2024-10-03 12:50:00
+2024-10-07 12:50:13,345 - INFO - Data empty condition: Start: 2024-09-23 12:55:00, End: 2024-09-28 12:50:00
+2024-10-07 12:50:14,596 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:50:00
+2024-10-07 12:50:15,810 - INFO - The DataFrame is empty
+2024-10-07 12:50:15,812 - INFO - Data Llenado
+2024-10-07 12:50:16,099 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:50:16,099 - INFO - handle opened orders with close open positions True
+2024-10-07 12:50:16,100 - INFO - pausa hasta 2024-10-07 12:55:00.100064 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 12:55:10,102 - INFO - Previo a Llenar Data
+2024-10-07 12:55:12,748 - INFO - Data empty condition: Start: 2024-09-28 13:00:00, End: 2024-10-03 12:55:00
+2024-10-07 12:55:15,145 - INFO - Data empty condition: Start: 2024-09-23 13:00:00, End: 2024-09-28 12:55:00
+2024-10-07 12:55:16,381 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 12:55:00
+2024-10-07 12:55:17,582 - INFO - The DataFrame is empty
+2024-10-07 12:55:17,585 - INFO - Data Llenado
+2024-10-07 12:55:17,865 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 12:55:17,866 - INFO - handle opened orders with close open positions True
+2024-10-07 12:55:17,866 - INFO - pausa hasta 2024-10-07 13:00:00.866156 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:00:10,868 - INFO - Previo a Llenar Data
+2024-10-07 13:00:12,476 - INFO - Data empty condition: Start: 2024-09-28 13:05:00, End: 2024-10-03 13:00:00
+2024-10-07 13:00:13,732 - INFO - Data empty condition: Start: 2024-09-23 13:05:00, End: 2024-09-28 13:00:00
+2024-10-07 13:00:15,039 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:00:00
+2024-10-07 13:00:16,273 - INFO - The DataFrame is empty
+2024-10-07 13:00:16,274 - INFO - Data Llenado
+2024-10-07 13:00:16,512 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:00:16,512 - INFO - handle opened orders with close open positions True
+2024-10-07 13:00:16,513 - INFO - pausa hasta 2024-10-07 13:05:00.513039 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:05:10,515 - INFO - Previo a Llenar Data
+2024-10-07 13:05:12,503 - INFO - Data empty condition: Start: 2024-09-28 13:10:00, End: 2024-10-03 13:05:00
+2024-10-07 13:05:13,966 - INFO - Data empty condition: Start: 2024-09-23 13:10:00, End: 2024-09-28 13:05:00
+2024-10-07 13:05:15,411 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:05:00
+2024-10-07 13:05:16,644 - INFO - The DataFrame is empty
+2024-10-07 13:05:16,645 - INFO - Data Llenado
+2024-10-07 13:05:16,907 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:05:16,907 - INFO - handle opened orders with close open positions True
+2024-10-07 13:05:16,907 - INFO - pausa hasta 2024-10-07 13:10:00.907326 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:10:10,909 - INFO - Previo a Llenar Data
+2024-10-07 13:10:12,418 - INFO - Data empty condition: Start: 2024-09-28 13:15:00, End: 2024-10-03 13:10:00
+2024-10-07 13:10:13,640 - INFO - Data empty condition: Start: 2024-09-23 13:15:00, End: 2024-09-28 13:10:00
+2024-10-07 13:10:14,864 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:10:00
+2024-10-07 13:10:16,094 - INFO - The DataFrame is empty
+2024-10-07 13:10:16,097 - INFO - Data Llenado
+2024-10-07 13:10:16,352 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:10:16,353 - INFO - handle opened orders with close open positions True
+2024-10-07 13:10:16,353 - INFO - pausa hasta 2024-10-07 13:15:00.353719 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:15:10,355 - INFO - Previo a Llenar Data
+2024-10-07 13:15:12,989 - INFO - Data empty condition: Start: 2024-09-28 13:20:00, End: 2024-10-03 13:15:00
+2024-10-07 13:15:14,255 - INFO - Data empty condition: Start: 2024-09-23 13:20:00, End: 2024-09-28 13:15:00
+2024-10-07 13:15:15,679 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:15:00
+2024-10-07 13:15:16,906 - INFO - The DataFrame is empty
+2024-10-07 13:15:16,907 - INFO - Data Llenado
+2024-10-07 13:15:17,155 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:15:17,156 - INFO - handle opened orders with close open positions True
+2024-10-07 13:15:17,156 - INFO - pausa hasta 2024-10-07 13:20:00.156739 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:20:10,158 - INFO - Previo a Llenar Data
+2024-10-07 13:20:12,667 - INFO - Data empty condition: Start: 2024-09-28 13:25:00, End: 2024-10-03 13:20:00
+2024-10-07 13:20:13,949 - INFO - Data empty condition: Start: 2024-09-23 13:25:00, End: 2024-09-28 13:20:00
+2024-10-07 13:20:15,207 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:20:00
+2024-10-07 13:20:16,431 - INFO - The DataFrame is empty
+2024-10-07 13:20:16,433 - INFO - Data Llenado
+2024-10-07 13:20:16,685 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:20:16,685 - INFO - handle opened orders with close open positions True
+2024-10-07 13:20:16,685 - INFO - pausa hasta 2024-10-07 13:25:00.685617 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:25:10,688 - INFO - Previo a Llenar Data
+2024-10-07 13:25:12,187 - INFO - Data empty condition: Start: 2024-09-28 13:30:00, End: 2024-10-03 13:25:00
+2024-10-07 13:25:13,453 - INFO - Data empty condition: Start: 2024-09-23 13:30:00, End: 2024-09-28 13:25:00
+2024-10-07 13:25:14,676 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:25:00
+2024-10-07 13:25:15,885 - INFO - The DataFrame is empty
+2024-10-07 13:25:15,887 - INFO - Data Llenado
+2024-10-07 13:25:16,185 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:25:16,185 - INFO - handle opened orders with close open positions True
+2024-10-07 13:25:16,185 - INFO - pausa hasta 2024-10-07 13:30:00.185491 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:30:10,187 - INFO - Previo a Llenar Data
+2024-10-07 13:30:11,775 - INFO - Data empty condition: Start: 2024-09-28 13:35:00, End: 2024-10-03 13:30:00
+2024-10-07 13:30:13,006 - INFO - Data empty condition: Start: 2024-09-23 13:35:00, End: 2024-09-28 13:30:00
+2024-10-07 13:30:14,620 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:30:00
+2024-10-07 13:30:15,847 - INFO - The DataFrame is empty
+2024-10-07 13:30:15,848 - INFO - Data Llenado
+2024-10-07 13:30:16,112 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:30:16,113 - INFO - handle opened orders with close open positions True
+2024-10-07 13:30:16,113 - INFO - pausa hasta 2024-10-07 13:35:00.113499 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:35:10,115 - INFO - Previo a Llenar Data
+2024-10-07 13:35:11,649 - INFO - Data empty condition: Start: 2024-09-28 13:40:00, End: 2024-10-03 13:35:00
+2024-10-07 13:35:13,257 - INFO - Data empty condition: Start: 2024-09-23 13:40:00, End: 2024-09-28 13:35:00
+2024-10-07 13:35:14,526 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:35:00
+2024-10-07 13:35:15,804 - INFO - The DataFrame is empty
+2024-10-07 13:35:15,806 - INFO - Data Llenado
+2024-10-07 13:35:17,143 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:35:17,143 - INFO - handle opened orders with close open positions True
+2024-10-07 13:35:17,143 - INFO - pausa hasta 2024-10-07 13:40:00.143250 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:40:10,144 - INFO - Previo a Llenar Data
+2024-10-07 13:40:11,626 - INFO - Data empty condition: Start: 2024-09-28 13:45:00, End: 2024-10-03 13:40:00
+2024-10-07 13:40:12,845 - INFO - Data empty condition: Start: 2024-09-23 13:45:00, End: 2024-09-28 13:40:00
+2024-10-07 13:40:15,184 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:40:00
+2024-10-07 13:40:16,449 - INFO - The DataFrame is empty
+2024-10-07 13:40:16,451 - INFO - Data Llenado
+2024-10-07 13:40:16,736 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:40:16,736 - INFO - handle opened orders with close open positions True
+2024-10-07 13:40:16,737 - INFO - pausa hasta 2024-10-07 13:45:00.736973 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:45:10,738 - INFO - Previo a Llenar Data
+2024-10-07 13:45:12,229 - INFO - Data empty condition: Start: 2024-09-28 13:50:00, End: 2024-10-03 13:45:00
+2024-10-07 13:45:13,492 - INFO - Data empty condition: Start: 2024-09-23 13:50:00, End: 2024-09-28 13:45:00
+2024-10-07 13:45:15,729 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:45:00
+2024-10-07 13:45:16,932 - INFO - The DataFrame is empty
+2024-10-07 13:45:16,934 - INFO - Data Llenado
+2024-10-07 13:45:17,195 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:45:17,195 - INFO - handle opened orders with close open positions True
+2024-10-07 13:45:17,196 - INFO - pausa hasta 2024-10-07 13:50:00.196121 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:50:10,198 - INFO - Previo a Llenar Data
+2024-10-07 13:50:11,679 - INFO - Data empty condition: Start: 2024-09-28 13:55:00, End: 2024-10-03 13:50:00
+2024-10-07 13:50:12,954 - INFO - Data empty condition: Start: 2024-09-23 13:55:00, End: 2024-09-28 13:50:00
+2024-10-07 13:50:14,209 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:50:00
+2024-10-07 13:50:15,473 - INFO - The DataFrame is empty
+2024-10-07 13:50:15,475 - INFO - Data Llenado
+2024-10-07 13:50:15,724 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:50:15,725 - INFO - handle opened orders with close open positions True
+2024-10-07 13:50:15,725 - INFO - pausa hasta 2024-10-07 13:55:00.725237 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 13:55:10,727 - INFO - Previo a Llenar Data
+2024-10-07 13:55:12,184 - INFO - Data empty condition: Start: 2024-09-28 14:00:00, End: 2024-10-03 13:55:00
+2024-10-07 13:55:13,413 - INFO - Data empty condition: Start: 2024-09-23 14:00:00, End: 2024-09-28 13:55:00
+2024-10-07 13:55:14,909 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 13:55:00
+2024-10-07 13:55:16,114 - INFO - The DataFrame is empty
+2024-10-07 13:55:16,117 - INFO - Data Llenado
+2024-10-07 13:55:16,426 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 13:55:16,426 - INFO - handle opened orders with close open positions True
+2024-10-07 13:55:16,426 - INFO - pausa hasta 2024-10-07 14:00:00.426695 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:00:10,429 - INFO - Previo a Llenar Data
+2024-10-07 14:00:11,940 - INFO - Data empty condition: Start: 2024-09-28 14:05:00, End: 2024-10-03 14:00:00
+2024-10-07 14:00:13,199 - INFO - Data empty condition: Start: 2024-09-23 14:05:00, End: 2024-09-28 14:00:00
+2024-10-07 14:00:14,442 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:00:00
+2024-10-07 14:00:15,647 - INFO - The DataFrame is empty
+2024-10-07 14:00:15,649 - INFO - Data Llenado
+2024-10-07 14:00:15,927 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:00:15,927 - INFO - handle opened orders with close open positions True
+2024-10-07 14:00:15,927 - INFO - pausa hasta 2024-10-07 14:05:00.927796 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:05:10,929 - INFO - Previo a Llenar Data
+2024-10-07 14:05:12,477 - INFO - Data empty condition: Start: 2024-09-28 14:10:00, End: 2024-10-03 14:05:00
+2024-10-07 14:05:13,840 - INFO - Data empty condition: Start: 2024-09-23 14:10:00, End: 2024-09-28 14:05:00
+2024-10-07 14:05:15,136 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:05:00
+2024-10-07 14:05:16,367 - INFO - The DataFrame is empty
+2024-10-07 14:05:16,368 - INFO - Data Llenado
+2024-10-07 14:05:16,671 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:05:16,672 - INFO - handle opened orders with close open positions True
+2024-10-07 14:05:16,673 - INFO - pausa hasta 2024-10-07 14:10:00.673543 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:10:10,675 - INFO - Previo a Llenar Data
+2024-10-07 14:10:12,217 - INFO - Data empty condition: Start: 2024-09-28 14:15:00, End: 2024-10-03 14:10:00
+2024-10-07 14:10:13,450 - INFO - Data empty condition: Start: 2024-09-23 14:15:00, End: 2024-09-28 14:10:00
+2024-10-07 14:10:14,707 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:10:00
+2024-10-07 14:10:15,920 - INFO - The DataFrame is empty
+2024-10-07 14:10:15,923 - INFO - Data Llenado
+2024-10-07 14:10:16,343 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:10:16,343 - INFO - handle opened orders with close open positions True
+2024-10-07 14:10:16,343 - INFO - pausa hasta 2024-10-07 14:15:00.343681 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:15:10,345 - INFO - Previo a Llenar Data
+2024-10-07 14:15:11,818 - INFO - Data empty condition: Start: 2024-09-28 14:20:00, End: 2024-10-03 14:15:00
+2024-10-07 14:15:14,130 - INFO - Data empty condition: Start: 2024-09-23 14:20:00, End: 2024-09-28 14:15:00
+2024-10-07 14:15:15,359 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:15:00
+2024-10-07 14:15:16,563 - INFO - The DataFrame is empty
+2024-10-07 14:15:16,564 - INFO - Data Llenado
+2024-10-07 14:15:16,864 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:15:16,864 - INFO - handle opened orders with close open positions True
+2024-10-07 14:15:16,864 - INFO - pausa hasta 2024-10-07 14:20:00.864761 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:20:10,866 - INFO - Previo a Llenar Data
+2024-10-07 14:20:12,389 - INFO - Data empty condition: Start: 2024-09-28 14:25:00, End: 2024-10-03 14:20:00
+2024-10-07 14:20:13,683 - INFO - Data empty condition: Start: 2024-09-23 14:25:00, End: 2024-09-28 14:20:00
+2024-10-07 14:20:14,999 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:20:00
+2024-10-07 14:20:16,245 - INFO - The DataFrame is empty
+2024-10-07 14:20:16,248 - INFO - Data Llenado
+2024-10-07 14:20:16,522 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:20:16,523 - INFO - handle opened orders with close open positions True
+2024-10-07 14:20:16,523 - INFO - pausa hasta 2024-10-07 14:25:00.523247 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:25:10,525 - INFO - Previo a Llenar Data
+2024-10-07 14:25:12,150 - INFO - Data empty condition: Start: 2024-09-28 14:30:00, End: 2024-10-03 14:25:00
+2024-10-07 14:25:13,395 - INFO - Data empty condition: Start: 2024-09-23 14:30:00, End: 2024-09-28 14:25:00
+2024-10-07 14:25:14,701 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:25:00
+2024-10-07 14:25:15,903 - INFO - The DataFrame is empty
+2024-10-07 14:25:15,904 - INFO - Data Llenado
+2024-10-07 14:25:16,155 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:25:16,156 - INFO - handle opened orders with close open positions True
+2024-10-07 14:25:16,156 - INFO - pausa hasta 2024-10-07 14:30:00.156464 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:30:10,158 - INFO - Previo a Llenar Data
+2024-10-07 14:30:11,707 - INFO - Data empty condition: Start: 2024-09-28 14:35:00, End: 2024-10-03 14:30:00
+2024-10-07 14:30:12,962 - INFO - Data empty condition: Start: 2024-09-23 14:35:00, End: 2024-09-28 14:30:00
+2024-10-07 14:30:14,366 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:30:00
+2024-10-07 14:30:15,615 - INFO - The DataFrame is empty
+2024-10-07 14:30:15,617 - INFO - Data Llenado
+2024-10-07 14:30:15,949 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:30:15,949 - INFO - handle opened orders with close open positions True
+2024-10-07 14:30:15,949 - INFO - pausa hasta 2024-10-07 14:35:00.949696 -- El bot esta activo, entra en posiciones buy y esta en mercado
+2024-10-07 14:35:10,951 - INFO - Previo a Llenar Data
+2024-10-07 14:35:12,469 - INFO - Data empty condition: Start: 2024-09-28 14:40:00, End: 2024-10-03 14:35:00
+2024-10-07 14:35:13,752 - INFO - Data empty condition: Start: 2024-09-23 14:40:00, End: 2024-09-28 14:35:00
+2024-10-07 14:35:15,227 - INFO - Data empty condition: Start: 2024-09-20 09:45:00, End: 2024-09-23 14:35:00
+2024-10-07 14:35:16,441 - INFO - The DataFrame is empty
+2024-10-07 14:35:16,443 - INFO - Data Llenado
+2024-10-07 14:35:17,620 - INFO - Inside validation created order, numberOfPendingOrders 2
+2024-10-07 14:35:17,621 - INFO - handle opened orders with close open positions True
+2024-10-07 14:35:17,621 - INFO - pausa hasta 2024-10-07 14:40:00.621110 -- El bot esta activo, entra en posiciones buy y esta en mercado
+
