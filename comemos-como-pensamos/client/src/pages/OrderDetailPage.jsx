@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import api from '../services/api';
 import './OrderDetailPage.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const STATUS_COLORS = {
   pending: '#ff9800',
   confirmed: '#2196f3',
@@ -33,6 +35,35 @@ const OrderDetailPage = () => {
       setLoading(false);
     }
   }, [id, t]);
+
+  const handleDownloadInvoice = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/orders/${id}/invoice`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('Error downloading invoice');
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `factura-${order?.orderNumber || id}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      
+      toast.success(t('orderDetail.invoiceDownloaded'));
+    } catch (error) {
+      toast.error(t('orderDetail.invoiceError'));
+    }
+  }, [id, order?.orderNumber, t]);
 
   useEffect(() => {
     fetchOrder();
@@ -185,6 +216,12 @@ const OrderDetailPage = () => {
                   }
                 </span>
               </div>
+              <button 
+                className="btn-download-invoice"
+                onClick={handleDownloadInvoice}
+              >
+                📄 {t('orderDetail.downloadInvoice')}
+              </button>
             </div>
 
             <div className="shipping-card">
@@ -204,10 +241,62 @@ const OrderDetailPage = () => {
               </div>
             </div>
 
-            {order.trackingNumber && (
+            {(order.trackingNumber || order.status === 'shipped' || order.status === 'delivered') && (
               <div className="tracking-card">
                 <h2>{t('orderDetail.tracking')}</h2>
-                <p className="tracking-number">{order.trackingNumber}</p>
+                
+                {order.trackingNumber && (
+                  <div className="tracking-info">
+                    <span className="tracking-label">{t('orderDetail.trackingNumber')}</span>
+                    <span className="tracking-value">{order.trackingNumber}</span>
+                  </div>
+                )}
+                
+                {order.trackingCarrier && (
+                  <div className="tracking-info">
+                    <span className="tracking-label">{t('orderDetail.carrier')}</span>
+                    <span className="tracking-value carrier-badge">{order.trackingCarrier.toUpperCase()}</span>
+                  </div>
+                )}
+                
+                {order.estimatedDelivery && (
+                  <div className="tracking-info">
+                    <span className="tracking-label">{t('orderDetail.estimatedDelivery')}</span>
+                    <span className="tracking-value">
+                      {new Date(order.estimatedDelivery).toLocaleDateString('es-ES', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </span>
+                  </div>
+                )}
+                
+                {order.shippedAt && (
+                  <div className="tracking-info">
+                    <span className="tracking-label">{t('orderDetail.shippedAt')}</span>
+                    <span className="tracking-value">{formatDate(order.shippedAt)}</span>
+                  </div>
+                )}
+                
+                {order.deliveredAt && (
+                  <div className="tracking-info delivered">
+                    <span className="tracking-label">{t('orderDetail.deliveredAt')}</span>
+                    <span className="tracking-value">{formatDate(order.deliveredAt)}</span>
+                  </div>
+                )}
+                
+                {order.trackingUrl && (
+                  <a 
+                    href={order.trackingUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="btn-track-package"
+                  >
+                    📍 {t('orderDetail.trackPackage')}
+                  </a>
+                )}
               </div>
             )}
 

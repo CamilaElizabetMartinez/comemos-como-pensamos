@@ -5,7 +5,8 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-  getProductsByProducer
+  getProductsByProducer,
+  checkStock
 } from '../controllers/productController.js';
 import { protect, authorize } from '../middleware/auth.js';
 
@@ -13,6 +14,7 @@ const router = express.Router();
 
 // Rutas públicas
 router.get('/', getProducts);
+router.post('/check-stock', checkStock);
 router.get('/producer/:producerId', getProductsByProducer);
 router.get('/:id', getProductById);
 

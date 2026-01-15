@@ -4,7 +4,8 @@ import {
   getMyOrders,
   getOrderById,
   updateOrderStatus,
-  getProducerOrders
+  getProducerOrders,
+  downloadInvoice
 } from '../controllers/orderController.js';
 import { protect, authorize } from '../middleware/auth.js';
 
@@ -22,6 +23,7 @@ router.get('/producer/orders', authorize('producer', 'admin'), getProducerOrders
 
 // Rutas con parámetros (DEBEN ir AL FINAL)
 router.get('/:id', getOrderById);
+router.get('/:id/invoice', downloadInvoice);
 router.put('/:id/status', authorize('producer', 'admin'), updateOrderStatus);
 
 export default router;

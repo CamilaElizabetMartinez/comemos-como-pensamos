@@ -1,21 +1,17 @@
-import resend from '../config/email.js';
+import transporter from '../config/email.js';
 
 const sendEmail = async (to, subject, html) => {
   try {
-    const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'Comemos Como Pensamos <onboarding@resend.dev>',
-      to: [to],
+    const mailOptions = {
+      from: `Comemos Como Pensamos <${process.env.GMAIL_USER}>`,
+      to,
       subject,
       html
-    });
+    };
 
-    if (error) {
-      console.error('Error al enviar email:', error);
-      throw new Error(error.message);
-    }
-
-    console.log('Email enviado:', data.id);
-    return data;
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email enviado:', info.messageId);
+    return info;
   } catch (error) {
     console.error('Error al enviar email:', error);
     throw error;
@@ -233,6 +229,46 @@ export const sendNewOrderToProducerEmail = async (order, producer, producerUser)
   `;
 
   await sendEmail(producerUser.email, `Nueva orden #${order.orderNumber} - ${producer.businessName}`, html);
+};
+
+export const sendContactNotificationEmail = async (contact) => {
+  const subjectLabels = {
+    general: 'Consulta General',
+    order: 'Sobre un Pedido',
+    product: 'Sobre un Producto',
+    producer: 'Ser Productor',
+    technical: 'Soporte Técnico',
+    other: 'Otro'
+  };
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2e7d32;">Nuevo mensaje de contacto</h2>
+      
+      <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <p style="margin: 8px 0;"><strong>Nombre:</strong> ${contact.name}</p>
+        <p style="margin: 8px 0;"><strong>Email:</strong> ${contact.email}</p>
+        <p style="margin: 8px 0;"><strong>Asunto:</strong> ${subjectLabels[contact.subject] || contact.subject}</p>
+        <p style="margin: 8px 0;"><strong>Fecha:</strong> ${new Date(contact.createdAt).toLocaleString('es-ES')}</p>
+      </div>
+
+      <h3>Mensaje:</h3>
+      <div style="background-color: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 8px; white-space: pre-wrap;">
+${contact.message}
+      </div>
+
+      <div style="margin-top: 30px; padding: 15px; background-color: #e8f5e9; border-radius: 8px;">
+        <p style="margin: 0; color: #2e7d32;"><strong>Responder directamente:</strong> 
+          <a href="mailto:${contact.email}?subject=Re: ${subjectLabels[contact.subject]}" style="color: #2e7d32;">${contact.email}</a>
+        </p>
+      </div>
+
+      <hr style="border: 1px solid #eee; margin: 30px 0;">
+      <p style="color: #999; font-size: 12px;">Este mensaje fue enviado desde el formulario de contacto de Comemos Como Pensamos.</p>
+    </div>
+  `;
+
+  await sendEmail(process.env.GMAIL_USER, `[Contacto] ${subjectLabels[contact.subject]} - ${contact.name}`, html);
 };
 
 export default sendEmail;

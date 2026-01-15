@@ -13,8 +13,11 @@ const ProductReviews = ({ productId }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [averageRating, setAverageRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [newReview, setNewReview] = useState({ rating: 0, comment: '' });
+  const [submitting, setSubmitting] = useState(false);
   const { t } = useTranslation();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const fetchReviews = useCallback(async () => {
     try {
@@ -78,6 +81,38 @@ const ProductReviews = ({ productId }) => {
     return (getRatingCount(rating) / totalReviews) * 100;
   };
 
+  const handleSubmitReview = async (event) => {
+    event.preventDefault();
+    
+    if (newReview.rating === 0) {
+      toast.error(t('reviews.selectRating'));
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await api.post('/reviews', {
+        productId,
+        rating: newReview.rating,
+        comment: newReview.comment
+      });
+      
+      toast.success(t('reviews.reviewAdded'));
+      setNewReview({ rating: 0, comment: '' });
+      setShowReviewForm(false);
+      setCurrentPage(1);
+      fetchReviews();
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      const errorMessage = error.response?.data?.message || t('reviews.reviewError');
+      toast.error(errorMessage);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const hasUserReviewed = reviews.some(review => review.userId?._id === user?._id);
+
   if (loading) {
     return <div className="reviews-loading">{t('common.loading')}</div>;
   }
@@ -110,6 +145,63 @@ const ProductReviews = ({ productId }) => {
           ))}
         </div>
       </div>
+
+      {isAuthenticated && !hasUserReviewed && (
+        <div className="write-review-section">
+          {!showReviewForm ? (
+            <button 
+              className="btn btn-write-review"
+              onClick={() => setShowReviewForm(true)}
+            >
+              ✍️ {t('reviews.writeReview')}
+            </button>
+          ) : (
+            <form onSubmit={handleSubmitReview} className="review-form">
+              <h3>{t('reviews.writeReview')}</h3>
+              
+              <div className="form-group">
+                <label>{t('reviews.yourRating')} *</label>
+                <div className="rating-selector">
+                  {renderStars(newReview.rating, true, (rating) => 
+                    setNewReview(prev => ({ ...prev, rating }))
+                  )}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="review-comment">{t('reviews.yourComment')}</label>
+                <textarea
+                  id="review-comment"
+                  value={newReview.comment}
+                  onChange={(event) => setNewReview(prev => ({ ...prev, comment: event.target.value }))}
+                  placeholder={t('reviews.commentPlaceholder')}
+                  rows={4}
+                />
+              </div>
+
+              <div className="form-actions">
+                <button 
+                  type="button" 
+                  className="btn btn-cancel"
+                  onClick={() => {
+                    setShowReviewForm(false);
+                    setNewReview({ rating: 0, comment: '' });
+                  }}
+                >
+                  {t('common.cancel')}
+                </button>
+                <button 
+                  type="submit" 
+                  className="btn btn-submit"
+                  disabled={submitting || newReview.rating === 0}
+                >
+                  {submitting ? t('common.loading') : t('reviews.submitReview')}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      )}
 
       {reviews.length === 0 ? (
         <div className="no-reviews">

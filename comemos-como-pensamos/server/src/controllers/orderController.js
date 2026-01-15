@@ -1,18 +1,28 @@
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import Producer from '../models/Producer.js';
+import User from '../models/User.js';
+import { generateInvoicePDF } from '../services/invoiceService.js';
+import { sendOrderStatusUpdateEmail, sendOrderConfirmationEmail, sendNewOrderToProducerEmail } from '../utils/emailSender.js';
 
 // @desc    Crear nueva orden
 // @route   POST /api/orders
 // @access  Private
 export const createOrder = async (req, res) => {
   try {
-    const { items, shippingAddress, shippingCost, notes } = req.body;
+    const { items, shippingAddress, shippingCost, notes, paymentMethod } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({
         success: false,
         message: 'La orden debe contener al menos un producto'
+      });
+    }
+
+    if (!paymentMethod || !['card', 'bank_transfer', 'cash_on_delivery'].includes(paymentMethod)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Método de pago inválido'
       });
     }
 
@@ -51,6 +61,15 @@ export const createOrder = async (req, res) => {
 
     const total = subtotal + (shippingCost || 0);
 
+    // Determinar estado inicial según método de pago
+    let initialStatus = 'pending';
+    let initialPaymentStatus = 'pending';
+
+    // Para contra entrega, la orden se confirma directamente
+    if (paymentMethod === 'cash_on_delivery') {
+      initialStatus = 'confirmed';
+    }
+
     // Crear orden
     const order = await Order.create({
       customerId: req.user._id,
@@ -60,17 +79,58 @@ export const createOrder = async (req, res) => {
       total,
       shippingAddress,
       notes,
-      status: 'pending',
-      paymentStatus: 'pending'
+      paymentMethod,
+      status: initialStatus,
+      paymentStatus: initialPaymentStatus
     });
 
-    // Reducir stock de productos (se confirmará cuando el pago sea exitoso)
-    // Por ahora lo dejamos pending hasta confirmar el pago
+    // Para contra entrega, reducir stock inmediatamente
+    if (paymentMethod === 'cash_on_delivery') {
+      for (const item of order.items) {
+        const product = await Product.findById(item.productId);
+        if (product) {
+          await product.reduceStock(item.quantity);
+        }
+      }
+    }
+
+    // Datos adicionales según método de pago
+    let responseData = { order };
+
+    if (paymentMethod === 'bank_transfer') {
+      responseData.bankDetails = {
+        bankName: process.env.BANK_NAME || 'Banco Ejemplo',
+        accountHolder: process.env.BANK_ACCOUNT_HOLDER || 'Comemos Como Pensamos S.L.',
+        iban: process.env.BANK_IBAN || 'ES00 0000 0000 0000 0000 0000',
+        bic: process.env.BANK_BIC || 'XXXXESXX',
+        reference: order.orderNumber
+      };
+    }
+
+    try {
+      const user = await User.findById(req.user._id);
+      if (user) {
+        await sendOrderConfirmationEmail(order, user);
+      }
+
+      const producerIds = [...new Set(order.items.map(item => item.producerId.toString()))];
+      for (const producerId of producerIds) {
+        const producer = await Producer.findById(producerId);
+        if (producer) {
+          const producerUser = await User.findById(producer.userId);
+          if (producerUser) {
+            await sendNewOrderToProducerEmail(order, producer, producerUser);
+          }
+        }
+      }
+    } catch (emailError) {
+      console.error('Error al enviar emails de orden:', emailError);
+    }
 
     res.status(201).json({
       success: true,
       message: 'Orden creada exitosamente',
-      data: { order }
+      data: responseData
     });
   } catch (error) {
     console.error('Error al crear orden:', error);
@@ -172,7 +232,7 @@ export const getOrderById = async (req, res) => {
 // @access  Private (Producer or Admin)
 export const updateOrderStatus = async (req, res) => {
   try {
-    const { status, trackingNumber } = req.body;
+    const { status, trackingNumber, trackingCarrier, trackingUrl, estimatedDelivery } = req.body;
 
     const order = await Order.findById(req.params.id);
 
@@ -206,12 +266,36 @@ export const updateOrderStatus = async (req, res) => {
       });
     }
 
-    if (status) order.status = status;
+    const previousStatus = order.status;
+    
+    if (status) {
+      order.status = status;
+      
+      if (status === 'shipped' && !order.shippedAt) {
+        order.shippedAt = new Date();
+      }
+      if (status === 'delivered' && !order.deliveredAt) {
+        order.deliveredAt = new Date();
+      }
+    }
+    
     if (trackingNumber) order.trackingNumber = trackingNumber;
+    if (trackingCarrier) order.trackingCarrier = trackingCarrier;
+    if (trackingUrl) order.trackingUrl = trackingUrl;
+    if (estimatedDelivery) order.estimatedDelivery = new Date(estimatedDelivery);
 
     await order.save();
 
-    // TODO: Enviar email de notificación al cliente
+    if (status && status !== previousStatus) {
+      try {
+        const customer = await User.findById(order.customerId);
+        if (customer) {
+          await sendOrderStatusUpdateEmail(order, customer, status);
+        }
+      } catch (emailError) {
+        console.error('Error al enviar email de actualización:', emailError);
+      }
+    }
 
     res.status(200).json({
       success: true,
@@ -311,3 +395,47 @@ export const confirmOrderPayment = async (orderId, paymentIntentId) => {
 };
 
 export { confirmOrderPayment as confirmPayment };
+
+// @desc    Descargar factura PDF de orden
+// @route   GET /api/orders/:id/invoice
+// @access  Private
+export const downloadInvoice = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id)
+      .populate('customerId', 'firstName lastName email')
+      .populate('items.productId', 'name')
+      .populate('items.producerId', 'businessName');
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: 'Orden no encontrada'
+      });
+    }
+
+    const isCustomer = order.customerId._id.toString() === req.user._id.toString();
+    const isAdmin = req.user.role === 'admin';
+
+    if (!isCustomer && !isAdmin) {
+      return res.status(403).json({
+        success: false,
+        message: 'No tienes permiso para descargar esta factura'
+      });
+    }
+
+    const pdfBuffer = await generateInvoicePDF(order, order.customerId);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=factura-${order.orderNumber}.pdf`);
+    res.setHeader('Content-Length', pdfBuffer.length);
+
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error('Error al generar factura:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al generar factura',
+      error: error.message
+    });
+  }
+};

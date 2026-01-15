@@ -1,8 +1,9 @@
 import api from './api';
 
 export const productService = {
-  getProducts: async (params = {}) => {
-    const response = await api.get('/products', { params });
+  getProducts: async (queryString = '') => {
+    const url = queryString ? `/products?${queryString}` : '/products';
+    const response = await api.get(url);
     return response.data;
   },
 

@@ -29,7 +29,6 @@ const orderItemSchema = new mongoose.Schema({
 const orderSchema = new mongoose.Schema({
   orderNumber: {
     type: String,
-    required: true,
     unique: true
   },
   customerId: {
@@ -70,9 +69,13 @@ const orderSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    default: 'stripe'
+    enum: ['card', 'bank_transfer', 'cash_on_delivery'],
+    required: true
   },
   stripePaymentIntentId: {
+    type: String
+  },
+  stripeSessionId: {
     type: String
   },
   paymentStatus: {
@@ -80,8 +83,27 @@ const orderSchema = new mongoose.Schema({
     enum: ['pending', 'paid', 'failed', 'refunded'],
     default: 'pending'
   },
+  bankTransferReference: {
+    type: String
+  },
   trackingNumber: {
     type: String
+  },
+  trackingCarrier: {
+    type: String,
+    enum: ['correos', 'seur', 'mrw', 'dhl', 'ups', 'gls', 'fedex', 'other']
+  },
+  trackingUrl: {
+    type: String
+  },
+  estimatedDelivery: {
+    type: Date
+  },
+  shippedAt: {
+    type: Date
+  },
+  deliveredAt: {
+    type: Date
   },
   notes: {
     type: String
@@ -90,8 +112,7 @@ const orderSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Índices
-orderSchema.index({ orderNumber: 1 });
+// Índices (orderNumber ya tiene unique:true que crea índice automáticamente)
 orderSchema.index({ customerId: 1 });
 orderSchema.index({ 'items.producerId': 1 });
 orderSchema.index({ status: 1 });
@@ -99,13 +120,12 @@ orderSchema.index({ paymentStatus: 1 });
 orderSchema.index({ createdAt: -1 });
 
 // Pre-save middleware para generar número de orden
-orderSchema.pre('save', async function(next) {
+orderSchema.pre('save', async function() {
   if (this.isNew && !this.orderNumber) {
     const timestamp = Date.now().toString(36);
     const random = Math.random().toString(36).substring(2, 7);
     this.orderNumber = `ORD-${timestamp}-${random}`.toUpperCase();
   }
-  next();
 });
 
 // Método para obtener productores únicos de la orden
