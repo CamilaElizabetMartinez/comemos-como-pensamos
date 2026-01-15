@@ -10,6 +10,7 @@ import './i18n/config';
 // Components
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
+import CookieBanner from './components/common/CookieBanner';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -97,6 +98,7 @@ function App() {
                 </Routes>
               </main>
               <Footer />
+              <CookieBanner />
               <ToastContainer position="bottom-right" autoClose={3000} />
             </div>
           </LanguageProvider>
