@@ -21,6 +21,11 @@ const ProducerDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
     if (user?.role !== 'producer') {
       navigate('/');
       return;
