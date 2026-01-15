@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import NotificationSettings from '../components/common/NotificationSettings';
 import './ProfilePage.css';
 
 const ProfilePage = () => {
@@ -83,7 +84,8 @@ const ProfilePage = () => {
   const tabs = [
     { id: 'personal', label: t('profile.personalInfo') },
     { id: 'address', label: t('profile.addressInfo') },
-    { id: 'preferences', label: t('profile.preferences') }
+    { id: 'preferences', label: t('profile.preferences') },
+    { id: 'notifications', label: t('profile.notifications') }
   ];
 
   return (
@@ -213,6 +215,12 @@ const ProfilePage = () => {
                   <option value="de">Deutsch</option>
                 </select>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'notifications' && (
+            <div className="form-section">
+              <NotificationSettings />
             </div>
           )}
 
