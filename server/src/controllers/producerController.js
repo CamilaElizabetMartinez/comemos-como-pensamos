@@ -2,6 +2,7 @@ import Producer from '../models/Producer.js';
 import User from '../models/User.js';
 import Product from '../models/Product.js';
 import Order from '../models/Order.js';
+import { notifyAdminNewProducer } from '../services/notificationService.js';
 
 // @desc    Obtener todos los productores
 // @route   GET /api/producers
@@ -136,6 +137,13 @@ export const createProducer = async (req, res) => {
       certifications: certifications || [],
       isApproved: false // Requiere aprobación del admin
     });
+
+    // Notificar a administradores
+    try {
+      await notifyAdminNewProducer(producer);
+    } catch (pushError) {
+      console.error('Error al enviar notificación push a admins:', pushError);
+    }
 
     res.status(201).json({
       success: true,

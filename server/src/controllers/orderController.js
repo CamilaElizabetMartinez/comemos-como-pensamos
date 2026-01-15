@@ -4,6 +4,7 @@ import Producer from '../models/Producer.js';
 import User from '../models/User.js';
 import { generateInvoicePDF } from '../services/invoiceService.js';
 import { sendOrderStatusUpdateEmail, sendOrderConfirmationEmail, sendNewOrderToProducerEmail } from '../utils/emailSender.js';
+import { notifyOrderConfirmation, notifyProducerNewOrder, notifyOrderStatusChange } from '../services/notificationService.js';
 
 // @desc    Crear nueva orden
 // @route   POST /api/orders
@@ -125,6 +126,18 @@ export const createOrder = async (req, res) => {
       }
     } catch (emailError) {
       console.error('Error al enviar emails de orden:', emailError);
+    }
+
+    // Push notifications
+    try {
+      await notifyOrderConfirmation(order);
+      
+      const producerIds = [...new Set(order.items.map(item => item.producerId.toString()))];
+      for (const producerId of producerIds) {
+        await notifyProducerNewOrder(order, producerId);
+      }
+    } catch (pushError) {
+      console.error('Error al enviar notificaciones push:', pushError);
     }
 
     res.status(201).json({
@@ -294,6 +307,13 @@ export const updateOrderStatus = async (req, res) => {
         }
       } catch (emailError) {
         console.error('Error al enviar email de actualización:', emailError);
+      }
+
+      // Push notification for status change
+      try {
+        await notifyOrderStatusChange(order, status);
+      } catch (pushError) {
+        console.error('Error al enviar notificación push de actualización:', pushError);
       }
     }
 

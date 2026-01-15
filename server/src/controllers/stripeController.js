@@ -3,6 +3,7 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import { sendOrderConfirmationEmail } from '../utils/emailSender.js';
 import User from '../models/User.js';
+import { notifyPaymentReceived, notifyProducerNewOrder } from '../services/notificationService.js';
 
 // @desc    Crear sesión de checkout de Stripe
 // @route   POST /api/stripe/create-checkout-session
@@ -164,6 +165,18 @@ const handleSuccessfulPayment = async (session) => {
     const user = await User.findById(order.customerId);
     if (user) {
       await sendOrderConfirmationEmail(order, user);
+    }
+
+    // Notificaciones push
+    try {
+      await notifyPaymentReceived(order);
+      
+      const producerIds = [...new Set(order.items.map(item => item.producerId.toString()))];
+      for (const producerId of producerIds) {
+        await notifyProducerNewOrder(order, producerId);
+      }
+    } catch (pushError) {
+      console.error('Error al enviar notificaciones push:', pushError);
     }
 
     console.log(`Pago exitoso para orden ${order.orderNumber}`);
