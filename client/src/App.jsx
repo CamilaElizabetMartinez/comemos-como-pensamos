@@ -22,14 +22,19 @@ import ProductsPage from './pages/ProductsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
 import OrdersPage from './pages/OrdersPage';
 import ProfilePage from './pages/ProfilePage';
 import FavoritesPage from './pages/FavoritesPage';
 import OrderDetailPage from './pages/OrderDetailPage';
 import ProducersPage from './pages/ProducersPage';
 import ProducerDetailPage from './pages/ProducerDetailPage';
+import ContactPage from './pages/ContactPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 // Producer Pages
+import ProducerSetup from './pages/producer/ProducerSetup';
 import ProducerDashboard from './pages/producer/ProducerDashboard';
 import ProducerProducts from './pages/producer/ProducerProducts';
 import ProducerProductForm from './pages/producer/ProducerProductForm';
@@ -61,14 +66,19 @@ function App() {
                   <Route path="/products/:id" element={<ProductDetailPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
                   <Route path="/orders" element={<OrdersPage />} />
                   <Route path="/orders/:id" element={<OrderDetailPage />} />
                   <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/favorites" element={<FavoritesPage />} />
                   <Route path="/producers" element={<ProducersPage />} />
                   <Route path="/producers/:id" element={<ProducerDetailPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/terms" element={<TermsPage />} />
+                  <Route path="/privacy" element={<PrivacyPage />} />
                   
                   {/* Producer Panel */}
+                  <Route path="/producer/setup" element={<ProducerSetup />} />
                   <Route path="/producer" element={<ProducerDashboard />} />
                   <Route path="/producer/products" element={<ProducerProducts />} />
                   <Route path="/producer/products/new" element={<ProducerProductForm />} />

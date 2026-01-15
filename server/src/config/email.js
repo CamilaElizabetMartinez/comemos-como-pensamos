@@ -1,15 +1,24 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Configuración de Gmail SMTP
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD
+  }
+});
 
-// Verificar configuración
-if (process.env.RESEND_API_KEY) {
-  console.log('✅ Email service (Resend) configurado');
-} else {
-  console.error('❌ RESEND_API_KEY no configurada');
-}
+// Verificar conexión
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('❌ Error configurando email:', error.message);
+  } else {
+    console.log('✅ Gmail SMTP configurado correctamente');
+  }
+});
 
-export default resend;
+export default transporter;

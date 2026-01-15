@@ -26,6 +26,9 @@ app.use(cors({
   credentials: true
 }));
 
+// Stripe webhook necesita el body raw (antes del parser JSON)
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
+
 // Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,11 +38,11 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Rate limiting
+// Rate limiting (más permisivo en desarrollo)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // límite de 100 requests por ventana
-  message: 'Demasiadas peticiones desde esta IP, por favor intenta de nuevo más tarde'
+  max: process.env.NODE_ENV === 'production' ? 100 : 1000, // 1000 en desarrollo, 100 en producción
+  message: { success: false, message: 'Demasiadas peticiones, intenta de nuevo más tarde' }
 });
 
 app.use('/api/', limiter);
@@ -70,6 +73,8 @@ import emailRoutes from './routes/email.js';
 import searchRoutes from './routes/search.js';
 import favoritesRoutes from './routes/favorites.js';
 import adminRoutes from './routes/admin.js';
+import stripeRoutes from './routes/stripe.js';
+import contactRoutes from './routes/contact.js';
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
@@ -84,6 +89,8 @@ app.use('/api/email', emailRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/favorites', favoritesRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/stripe', stripeRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Manejador de errores 404
 app.use((req, res, next) => {

@@ -67,6 +67,7 @@
     "addToCart": "Agregar al Carrito",
     "addedToCart": "Producto agregado al carrito",
     "outOfStock": "Sin Stock",
+    "lowStock": "Últimas unidades",
     "producer": "Productor",
     "unit": "Unidad",
     "reviews": "Reseñas",
@@ -75,7 +76,30 @@
     "notFound": "Producto no encontrado",
     "backToProducts": "Volver a productos",
     "viewProducer": "Ver productor",
-    "errorLoading": "Error al cargar el producto"
+    "errorLoading": "Error al cargar el producto",
+    "productsFound": "productos encontrados",
+    "allCategories": "Todas las categorías",
+    "allProducers": "Todos los productores",
+    "priceRange": "Rango de precio",
+    "min": "Mín",
+    "max": "Máx",
+    "clearFilters": "Limpiar filtros",
+    "noProducts": "No se encontraron productos",
+    "noProductsDesc": "Intenta con otros filtros o términos de búsqueda",
+    "page": "Página",
+    "of": "de",
+    "sort_newest": "Más recientes",
+    "sort_price_asc": "Precio: menor a mayor",
+    "sort_price_desc": "Precio: mayor a menor",
+    "sort_rating": "Mejor valorados",
+    "sort_name": "Nombre A-Z"
+  },
+  "units": {
+    "kg": "kg",
+    "unit": "ud",
+    "liter": "L",
+    "gram": "g",
+    "dozen": "docena"
   },
   "cart": {
     "title": "Carrito de Compras",
@@ -85,6 +109,49 @@
     "total": "Total",
     "checkout": "Proceder al Pago",
     "continueShopping": "Continuar Comprando"
+  },
+  "checkout": {
+    "title": "Finalizar Compra",
+    "shippingAddress": "Dirección de Envío",
+    "paymentMethod": "Método de Pago",
+    "orderSummary": "Resumen del Pedido",
+    "placeOrder": "Realizar Pedido",
+    "emptyCart": "Tu carrito está vacío",
+    "error": "Error al procesar el pedido",
+    "payment_card": "Tarjeta de Crédito/Débito",
+    "payment_card_desc": "Paga de forma segura con tu tarjeta",
+    "payment_bank_transfer": "Transferencia Bancaria",
+    "payment_bank_transfer_desc": "Transfiere el importe a nuestra cuenta",
+    "payment_cash_on_delivery": "Pago Contra Entrega",
+    "payment_cash_on_delivery_desc": "Paga en efectivo al recibir tu pedido",
+    "comingSoon": "Próximamente",
+    "validatingStock": "Verificando disponibilidad...",
+    "stockProblems": "Hay problemas de stock con algunos productos",
+    "stockIssues": "Revisa los productos con problemas de stock antes de continuar",
+    "stockChanged": "El stock de algunos productos ha cambiado. Por favor revisa tu carrito.",
+    "fixStockIssues": "Resolver problemas de stock",
+    "verifyingPayment": "Verificando pago...",
+    "redirectingToStripe": "Redirigiendo a Stripe...",
+    "stripeError": "Error al conectar con Stripe. Intenta de nuevo."
+  },
+  "orderConfirmation": {
+    "title": "¡Pedido Realizado!",
+    "orderNumber": "Número de pedido",
+    "noOrder": "No hay información del pedido",
+    "bankTransferTitle": "Instrucciones de Transferencia",
+    "bankTransferInstructions": "Para completar tu pedido, realiza una transferencia bancaria con los siguientes datos:",
+    "bankName": "Banco",
+    "accountHolder": "Titular",
+    "reference": "Concepto",
+    "amount": "Importe",
+    "includeReference": "Importante: Incluye el número de pedido como concepto para que podamos identificar tu pago.",
+    "cashOnDeliveryTitle": "Pago Contra Entrega",
+    "cashOnDeliveryInstructions": "Tu pedido está confirmado. Pagarás en efectivo cuando recibas tu pedido.",
+    "amountToPay": "Importe a pagar",
+    "prepareExactAmount": "Por favor, prepara el importe exacto para facilitar la entrega.",
+    "cardPaymentTitle": "Pago con Tarjeta",
+    "cardPaymentSuccess": "Tu pago ha sido procesado correctamente.",
+    "viewOrder": "Ver Pedido"
   },
   "categories": {
     "fruits": "Frutas",
@@ -166,13 +233,22 @@
     "quantity": "Cantidad",
     "summary": "Resumen",
     "shippingAddress": "Dirección de envío",
-    "tracking": "Número de seguimiento",
+    "tracking": "Seguimiento del envío",
+    "trackingNumber": "Número de seguimiento",
+    "carrier": "Transportista",
+    "estimatedDelivery": "Entrega estimada",
+    "shippedAt": "Enviado el",
+    "deliveredAt": "Entregado el",
+    "trackPackage": "Seguir envío",
     "notes": "Notas",
     "paid": "Pagado",
     "paymentPending": "Pago pendiente",
     "orderCancelled": "Este pedido ha sido cancelado",
     "notFound": "Pedido no encontrado",
-    "errorLoading": "Error al cargar el pedido"
+    "errorLoading": "Error al cargar el pedido",
+    "downloadInvoice": "Descargar Factura",
+    "invoiceDownloaded": "Factura descargada",
+    "invoiceError": "Error al descargar factura"
   },
   "producers": {
     "title": "Nuestros Productores",
@@ -204,7 +280,8 @@
     "commentPlaceholder": "¿Qué te pareció este producto?",
     "submitReview": "Enviar opinión",
     "reviewAdded": "Opinión añadida correctamente",
-    "reviewError": "Error al añadir opinión"
+    "reviewError": "Error al añadir opinión",
+    "selectRating": "Por favor selecciona una puntuación"
   },
   "imageUploader": {
     "dropHere": "Arrastra imágenes aquí",
@@ -223,6 +300,40 @@
     "dragReorder": "Arrastra las imágenes para reordenarlas. La primera será la imagen principal."
   },
   "producer": {
+    "setup": {
+      "title": "Configura tu Perfil de Productor",
+      "subtitle": "Completa la información de tu negocio para empezar a vender",
+      "businessInfo": "Información del Negocio",
+      "businessName": "Nombre del Negocio",
+      "businessNamePlaceholder": "Ej: Huerta El Olivar",
+      "businessNameRequired": "El nombre del negocio es obligatorio",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Cuéntanos sobre tu negocio, qué productos ofreces, tu historia...",
+      "descriptionRequired": "La descripción es obligatoria",
+      "logo": "Logo (opcional)",
+      "location": "Ubicación",
+      "address": "Dirección",
+      "addressPlaceholder": "Calle, número...",
+      "city": "Ciudad",
+      "cityPlaceholder": "Tu ciudad",
+      "cityRequired": "La ciudad es obligatoria",
+      "region": "Región/Provincia",
+      "regionPlaceholder": "Tu región",
+      "postalCode": "Código Postal",
+      "postalCodePlaceholder": "12345",
+      "certifications": "Certificaciones",
+      "certificationsHint": "Selecciona las certificaciones que aplican a tus productos",
+      "cert_organic": "Orgánico",
+      "cert_local": "Producto Local",
+      "cert_sustainable": "Sostenible",
+      "cert_fair-trade": "Comercio Justo",
+      "cert_vegan": "Vegano",
+      "cert_gluten-free": "Sin Gluten",
+      "approvalNotice": "Tu perfil será revisado por un administrador antes de que puedas empezar a vender. Te notificaremos cuando sea aprobado.",
+      "submit": "Crear Perfil de Productor",
+      "success": "Perfil creado exitosamente. Pendiente de aprobación.",
+      "error": "Error al crear el perfil"
+    },
     "dashboard": {
       "title": "Panel de Productor",
       "welcome": "Bienvenido",
@@ -391,6 +502,144 @@
       "statusUpdated": "Estado actualizado",
       "statusError": "Error al actualizar estado",
       "errorLoading": "Error al cargar pedidos"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes alguna pregunta? Estamos aquí para ayudarte",
+    "address": "Dirección",
+    "email": "Email",
+    "phone": "Teléfono",
+    "hours": "Horario",
+    "hoursDetail": "Lunes a Viernes: 9:00 - 18:00",
+    "formTitle": "Envíanos un mensaje",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailField": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "subject": "Asunto",
+    "selectSubject": "Selecciona un asunto",
+    "subjects": {
+      "general": "Consulta general",
+      "order": "Sobre mi pedido",
+      "product": "Sobre un producto",
+      "producer": "Quiero ser productor",
+      "technical": "Soporte técnico",
+      "other": "Otro"
+    },
+    "message": "Mensaje",
+    "messagePlaceholder": "Escribe tu mensaje aquí...",
+    "send": "Enviar mensaje",
+    "successMessage": "Mensaje enviado correctamente",
+    "errorMessage": "Error al enviar el mensaje",
+    "thankYou": "¡Gracias por contactarnos!",
+    "responseTime": "Te responderemos lo antes posible",
+    "sendAnother": "Enviar otro mensaje"
+  },
+  "footer": {
+    "tagline": "Conectando productores locales con consumidores conscientes en toda Europa",
+    "explore": "Explorar",
+    "help": "Ayuda",
+    "contact": "Contacto",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad",
+    "rights": "Todos los derechos reservados"
+  },
+  "legal": {
+    "lastUpdated": "Última actualización",
+    "terms": {
+      "title": "Términos y Condiciones",
+      "acceptance": {
+        "title": "Aceptación de los Términos",
+        "content": "Al acceder y utilizar Comemos Como Pensamos, aceptas cumplir con estos términos y condiciones. Si no estás de acuerdo con alguna parte, no debes usar nuestros servicios."
+      },
+      "description": {
+        "title": "Descripción del Servicio",
+        "content": "Comemos Como Pensamos es una plataforma de comercio electrónico que conecta a productores locales de alimentos con consumidores en toda Europa. Facilitamos la compra y venta de productos alimenticios de calidad."
+      },
+      "registration": {
+        "title": "Registro y Cuentas",
+        "content": "Para realizar compras debes crear una cuenta proporcionando información veraz y actualizada. Eres responsable de mantener la confidencialidad de tu cuenta y contraseña."
+      },
+      "orders": {
+        "title": "Pedidos y Compras",
+        "content": "Al realizar un pedido, estás haciendo una oferta de compra que se formaliza cuando el productor confirma la disponibilidad y procesamiento del pedido. Los precios incluyen IVA y están sujetos a disponibilidad."
+      },
+      "payments": {
+        "title": "Pagos",
+        "content": "Aceptamos pagos mediante tarjeta de crédito/débito a través de Stripe, transferencia bancaria y pago contra reembolso. Todos los pagos se procesan de forma segura."
+      },
+      "shipping": {
+        "title": "Envíos",
+        "content": "Los plazos y costes de envío varían según el productor y la ubicación. Cada producto indica su tiempo estimado de entrega. No nos hacemos responsables de retrasos por causas ajenas a nuestro control."
+      },
+      "returns": {
+        "title": "Devoluciones",
+        "content": "Tienes derecho a devolver productos no perecederos en los 14 días siguientes a la recepción. Los productos perecederos solo pueden devolverse si llegan en mal estado. Contacta con soporte para gestionar tu devolución."
+      },
+      "producers": {
+        "title": "Productores",
+        "content": "Los productores son responsables de la calidad y seguridad alimentaria de sus productos. Deben cumplir con todas las normativas aplicables y mantener actualizada su información."
+      },
+      "liability": {
+        "title": "Limitación de Responsabilidad",
+        "content": "Actuamos como intermediarios entre productores y consumidores. No somos responsables de la calidad de los productos ni de daños indirectos derivados del uso de la plataforma."
+      },
+      "changes": {
+        "title": "Modificaciones",
+        "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones serán efectivas desde su publicación en la plataforma."
+      },
+      "contact": {
+        "title": "Contacto",
+        "content": "Para cualquier consulta sobre estos términos, puedes contactarnos en info@comemoscomopensamos.es o través de nuestra página de contacto."
+      }
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "intro": {
+        "title": "Introducción",
+        "content": "En Comemos Como Pensamos nos comprometemos a proteger tu privacidad. Esta política explica cómo recopilamos, usamos y protegemos tu información personal."
+      },
+      "dataCollected": {
+        "title": "Datos que Recopilamos",
+        "content": "Recopilamos los siguientes tipos de información:",
+        "item1": "Datos de identificación: nombre, email, teléfono",
+        "item2": "Datos de envío: dirección postal completa",
+        "item3": "Datos de pago: procesados de forma segura por Stripe",
+        "item4": "Datos de navegación: cookies, páginas visitadas, preferencias"
+      },
+      "usage": {
+        "title": "Uso de los Datos",
+        "content": "Utilizamos tu información para:",
+        "item1": "Procesar y entregar tus pedidos",
+        "item2": "Comunicarte sobre el estado de tus pedidos",
+        "item3": "Mejorar nuestros servicios y experiencia de usuario",
+        "item4": "Enviarte información sobre productos (si lo autorizas)"
+      },
+      "sharing": {
+        "title": "Compartir Información",
+        "content": "No vendemos ni alquilamos tu información personal. Compartimos datos únicamente con: productores para procesar pedidos, empresas de logística para envíos, y procesadores de pago para transacciones seguras."
+      },
+      "security": {
+        "title": "Seguridad",
+        "content": "Implementamos medidas de seguridad técnicas y organizativas para proteger tus datos contra acceso no autorizado, alteración o destrucción. Usamos encriptación SSL/TLS para todas las comunicaciones."
+      },
+      "rights": {
+        "title": "Tus Derechos",
+        "content": "De acuerdo con el RGPD, tienes derecho a:",
+        "item1": "Acceder a tus datos personales",
+        "item2": "Rectificar datos inexactos",
+        "item3": "Solicitar la eliminación de tus datos",
+        "item4": "Oponerte al tratamiento de tus datos"
+      },
+      "retention": {
+        "title": "Conservación de Datos",
+        "content": "Conservamos tus datos mientras tengas una cuenta activa y durante el período legal requerido para obligaciones fiscales y de garantía."
+      },
+      "contact": {
+        "title": "Contacto",
+        "content": "Para ejercer tus derechos o resolver dudas sobre privacidad, contacta con nuestro Delegado de Protección de Datos en privacidad@comemoscomopensamos.es"
+      }
     }
   }
 }

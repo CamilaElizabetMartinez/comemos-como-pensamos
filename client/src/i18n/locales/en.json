@@ -67,6 +67,7 @@
     "addToCart": "Add to Cart",
     "addedToCart": "Product added to cart",
     "outOfStock": "Out of Stock",
+    "lowStock": "Low stock",
     "producer": "Producer",
     "unit": "Unit",
     "reviews": "Reviews",
@@ -75,7 +76,30 @@
     "notFound": "Product not found",
     "backToProducts": "Back to products",
     "viewProducer": "View producer",
-    "errorLoading": "Error loading product"
+    "errorLoading": "Error loading product",
+    "productsFound": "products found",
+    "allCategories": "All categories",
+    "allProducers": "All producers",
+    "priceRange": "Price range",
+    "min": "Min",
+    "max": "Max",
+    "clearFilters": "Clear filters",
+    "noProducts": "No products found",
+    "noProductsDesc": "Try different filters or search terms",
+    "page": "Page",
+    "of": "of",
+    "sort_newest": "Newest",
+    "sort_price_asc": "Price: low to high",
+    "sort_price_desc": "Price: high to low",
+    "sort_rating": "Top rated",
+    "sort_name": "Name A-Z"
+  },
+  "units": {
+    "kg": "kg",
+    "unit": "unit",
+    "liter": "L",
+    "gram": "g",
+    "dozen": "dozen"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -85,6 +109,49 @@
     "total": "Total",
     "checkout": "Proceed to Checkout",
     "continueShopping": "Continue Shopping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shippingAddress": "Shipping Address",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "emptyCart": "Your cart is empty",
+    "error": "Error processing order",
+    "payment_card": "Credit/Debit Card",
+    "payment_card_desc": "Pay securely with your card",
+    "payment_bank_transfer": "Bank Transfer",
+    "payment_bank_transfer_desc": "Transfer the amount to our account",
+    "payment_cash_on_delivery": "Cash on Delivery",
+    "payment_cash_on_delivery_desc": "Pay cash when you receive your order",
+    "comingSoon": "Coming Soon",
+    "validatingStock": "Checking availability...",
+    "stockProblems": "There are stock issues with some products",
+    "stockIssues": "Please fix the stock issues before continuing",
+    "stockChanged": "Stock for some products has changed. Please check your cart.",
+    "fixStockIssues": "Fix stock issues",
+    "verifyingPayment": "Verifying payment...",
+    "redirectingToStripe": "Redirecting to Stripe...",
+    "stripeError": "Error connecting to Stripe. Please try again."
+  },
+  "orderConfirmation": {
+    "title": "Order Placed!",
+    "orderNumber": "Order number",
+    "noOrder": "No order information available",
+    "bankTransferTitle": "Transfer Instructions",
+    "bankTransferInstructions": "To complete your order, make a bank transfer with the following details:",
+    "bankName": "Bank",
+    "accountHolder": "Account Holder",
+    "reference": "Reference",
+    "amount": "Amount",
+    "includeReference": "Important: Include the order number as reference so we can identify your payment.",
+    "cashOnDeliveryTitle": "Cash on Delivery",
+    "cashOnDeliveryInstructions": "Your order is confirmed. You will pay in cash when you receive your order.",
+    "amountToPay": "Amount to pay",
+    "prepareExactAmount": "Please prepare the exact amount to facilitate delivery.",
+    "cardPaymentTitle": "Card Payment",
+    "cardPaymentSuccess": "Your payment has been processed successfully.",
+    "viewOrder": "View Order"
   },
   "categories": {
     "fruits": "Fruits",
@@ -166,13 +233,22 @@
     "quantity": "Quantity",
     "summary": "Summary",
     "shippingAddress": "Shipping Address",
-    "tracking": "Tracking Number",
+    "tracking": "Shipment Tracking",
+    "trackingNumber": "Tracking number",
+    "carrier": "Carrier",
+    "estimatedDelivery": "Estimated delivery",
+    "shippedAt": "Shipped on",
+    "deliveredAt": "Delivered on",
+    "trackPackage": "Track package",
     "notes": "Notes",
     "paid": "Paid",
     "paymentPending": "Payment pending",
     "orderCancelled": "This order has been cancelled",
     "notFound": "Order not found",
-    "errorLoading": "Error loading order"
+    "errorLoading": "Error loading order",
+    "downloadInvoice": "Download Invoice",
+    "invoiceDownloaded": "Invoice downloaded",
+    "invoiceError": "Error downloading invoice"
   },
   "producers": {
     "title": "Our Producers",
@@ -204,7 +280,8 @@
     "commentPlaceholder": "What did you think of this product?",
     "submitReview": "Submit review",
     "reviewAdded": "Review added successfully",
-    "reviewError": "Error adding review"
+    "reviewError": "Error adding review",
+    "selectRating": "Please select a rating"
   },
   "imageUploader": {
     "dropHere": "Drop images here",
@@ -223,6 +300,40 @@
     "dragReorder": "Drag images to reorder. The first one will be the main image."
   },
   "producer": {
+    "setup": {
+      "title": "Set Up Your Producer Profile",
+      "subtitle": "Complete your business information to start selling",
+      "businessInfo": "Business Information",
+      "businessName": "Business Name",
+      "businessNamePlaceholder": "E.g.: Green Valley Farm",
+      "businessNameRequired": "Business name is required",
+      "description": "Description",
+      "descriptionPlaceholder": "Tell us about your business, what products you offer, your story...",
+      "descriptionRequired": "Description is required",
+      "logo": "Logo (optional)",
+      "location": "Location",
+      "address": "Address",
+      "addressPlaceholder": "Street, number...",
+      "city": "City",
+      "cityPlaceholder": "Your city",
+      "cityRequired": "City is required",
+      "region": "Region/State",
+      "regionPlaceholder": "Your region",
+      "postalCode": "Postal Code",
+      "postalCodePlaceholder": "12345",
+      "certifications": "Certifications",
+      "certificationsHint": "Select the certifications that apply to your products",
+      "cert_organic": "Organic",
+      "cert_local": "Local Product",
+      "cert_sustainable": "Sustainable",
+      "cert_fair-trade": "Fair Trade",
+      "cert_vegan": "Vegan",
+      "cert_gluten-free": "Gluten Free",
+      "approvalNotice": "Your profile will be reviewed by an administrator before you can start selling. We'll notify you when it's approved.",
+      "submit": "Create Producer Profile",
+      "success": "Profile created successfully. Pending approval.",
+      "error": "Error creating profile"
+    },
     "dashboard": {
       "title": "Producer Dashboard",
       "welcome": "Welcome",
@@ -391,6 +502,144 @@
       "statusUpdated": "Status updated",
       "statusError": "Error updating status",
       "errorLoading": "Error loading orders"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a question? We're here to help",
+    "address": "Address",
+    "email": "Email",
+    "phone": "Phone",
+    "hours": "Hours",
+    "hoursDetail": "Monday to Friday: 9:00 - 18:00",
+    "formTitle": "Send us a message",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailField": "Email",
+    "emailPlaceholder": "you@email.com",
+    "subject": "Subject",
+    "selectSubject": "Select a subject",
+    "subjects": {
+      "general": "General inquiry",
+      "order": "About my order",
+      "product": "About a product",
+      "producer": "I want to be a producer",
+      "technical": "Technical support",
+      "other": "Other"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "send": "Send message",
+    "successMessage": "Message sent successfully",
+    "errorMessage": "Error sending message",
+    "thankYou": "Thank you for contacting us!",
+    "responseTime": "We'll get back to you as soon as possible",
+    "sendAnother": "Send another message"
+  },
+  "footer": {
+    "tagline": "Connecting local producers with conscious consumers across Europe",
+    "explore": "Explore",
+    "help": "Help",
+    "contact": "Contact",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved"
+  },
+  "legal": {
+    "lastUpdated": "Last updated",
+    "terms": {
+      "title": "Terms and Conditions",
+      "acceptance": {
+        "title": "Acceptance of Terms",
+        "content": "By accessing and using Comemos Como Pensamos, you agree to comply with these terms and conditions. If you disagree with any part, you should not use our services."
+      },
+      "description": {
+        "title": "Service Description",
+        "content": "Comemos Como Pensamos is an e-commerce platform that connects local food producers with consumers across Europe. We facilitate the buying and selling of quality food products."
+      },
+      "registration": {
+        "title": "Registration and Accounts",
+        "content": "To make purchases you must create an account by providing truthful and up-to-date information. You are responsible for maintaining the confidentiality of your account and password."
+      },
+      "orders": {
+        "title": "Orders and Purchases",
+        "content": "When placing an order, you are making a purchase offer that is formalized when the producer confirms availability and order processing. Prices include VAT and are subject to availability."
+      },
+      "payments": {
+        "title": "Payments",
+        "content": "We accept payments via credit/debit card through Stripe, bank transfer, and cash on delivery. All payments are processed securely."
+      },
+      "shipping": {
+        "title": "Shipping",
+        "content": "Shipping times and costs vary by producer and location. Each product indicates its estimated delivery time. We are not responsible for delays due to circumstances beyond our control."
+      },
+      "returns": {
+        "title": "Returns",
+        "content": "You have the right to return non-perishable products within 14 days of receipt. Perishable products can only be returned if they arrive in poor condition. Contact support to manage your return."
+      },
+      "producers": {
+        "title": "Producers",
+        "content": "Producers are responsible for the quality and food safety of their products. They must comply with all applicable regulations and keep their information up to date."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "content": "We act as intermediaries between producers and consumers. We are not responsible for product quality or indirect damages arising from the use of the platform."
+      },
+      "changes": {
+        "title": "Changes",
+        "content": "We reserve the right to modify these terms at any time. Changes will be effective upon publication on the platform."
+      },
+      "contact": {
+        "title": "Contact",
+        "content": "For any questions about these terms, you can contact us at info@comemoscomopensamos.es or through our contact page."
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": {
+        "title": "Introduction",
+        "content": "At Comemos Como Pensamos we are committed to protecting your privacy. This policy explains how we collect, use and protect your personal information."
+      },
+      "dataCollected": {
+        "title": "Data We Collect",
+        "content": "We collect the following types of information:",
+        "item1": "Identification data: name, email, phone",
+        "item2": "Shipping data: complete postal address",
+        "item3": "Payment data: securely processed by Stripe",
+        "item4": "Browsing data: cookies, visited pages, preferences"
+      },
+      "usage": {
+        "title": "Use of Data",
+        "content": "We use your information to:",
+        "item1": "Process and deliver your orders",
+        "item2": "Communicate about your order status",
+        "item3": "Improve our services and user experience",
+        "item4": "Send you product information (if authorized)"
+      },
+      "sharing": {
+        "title": "Sharing Information",
+        "content": "We do not sell or rent your personal information. We share data only with: producers to process orders, logistics companies for shipping, and payment processors for secure transactions."
+      },
+      "security": {
+        "title": "Security",
+        "content": "We implement technical and organizational security measures to protect your data against unauthorized access, alteration or destruction. We use SSL/TLS encryption for all communications."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "content": "In accordance with GDPR, you have the right to:",
+        "item1": "Access your personal data",
+        "item2": "Rectify inaccurate data",
+        "item3": "Request deletion of your data",
+        "item4": "Object to the processing of your data"
+      },
+      "retention": {
+        "title": "Data Retention",
+        "content": "We retain your data while you have an active account and for the legally required period for tax and warranty obligations."
+      },
+      "contact": {
+        "title": "Contact",
+        "content": "To exercise your rights or resolve privacy questions, contact our Data Protection Officer at privacy@comemoscomopensamos.es"
+      }
     }
   }
 }

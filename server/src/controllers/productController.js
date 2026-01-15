@@ -296,3 +296,83 @@ export const getProductsByProducer = async (req, res) => {
     });
   }
 };
+
+// @desc    Verificar disponibilidad de stock para múltiples productos
+// @route   POST /api/products/check-stock
+// @access  Public
+export const checkStock = async (req, res) => {
+  try {
+    const { items } = req.body;
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Se requiere una lista de productos'
+      });
+    }
+
+    const stockIssues = [];
+    const validItems = [];
+
+    for (const item of items) {
+      const product = await Product.findById(item.productId);
+
+      if (!product) {
+        stockIssues.push({
+          productId: item.productId,
+          issue: 'not_found',
+          message: 'Producto no encontrado'
+        });
+        continue;
+      }
+
+      if (!product.isAvailable) {
+        stockIssues.push({
+          productId: item.productId,
+          productName: product.name.es,
+          issue: 'unavailable',
+          message: 'Producto no disponible',
+          requestedQuantity: item.quantity,
+          availableStock: 0
+        });
+        continue;
+      }
+
+      if (product.stock < item.quantity) {
+        stockIssues.push({
+          productId: item.productId,
+          productName: product.name.es,
+          issue: 'insufficient_stock',
+          message: `Stock insuficiente. Disponible: ${product.stock}`,
+          requestedQuantity: item.quantity,
+          availableStock: product.stock
+        });
+        continue;
+      }
+
+      validItems.push({
+        productId: product._id,
+        productName: product.name.es,
+        requestedQuantity: item.quantity,
+        availableStock: product.stock,
+        price: product.price
+      });
+    }
+
+    res.status(200).json({
+      success: stockIssues.length === 0,
+      allAvailable: stockIssues.length === 0,
+      data: {
+        validItems,
+        stockIssues
+      }
+    });
+  } catch (error) {
+    console.error('Error al verificar stock:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al verificar stock',
+      error: error.message
+    });
+  }
+};

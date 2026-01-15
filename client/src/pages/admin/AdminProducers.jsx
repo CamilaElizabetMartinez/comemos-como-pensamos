@@ -147,8 +147,8 @@ const AdminProducers = () => {
                       </div>
                     </div>
                     
-                    {producer.description && (
-                      <p className="producer-description">{producer.description}</p>
+                    {producer.description?.es && (
+                      <p className="producer-description">{producer.description.es}</p>
                     )}
 
                     <div className="producer-details">

@@ -20,9 +20,14 @@ export const authService = {
   },
 
   logout: async () => {
-    await api.post('/auth/logout');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    try {
+      await api.post('/auth/logout');
+    } catch (error) {
+      console.log('Logout request failed, clearing local session');
+    } finally {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
   },
 
   getMe: async () => {

@@ -35,13 +35,17 @@ const ProducerDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const [producerRes, ordersRes] = await Promise.all([
-        api.get('/producers/me'),
-        api.get('/orders/producer/orders?limit=5')
-      ]);
+      const producerRes = await api.get('/producers/me');
+      
+      if (!producerRes.data.success || !producerRes.data.data.producer) {
+        navigate('/producer/setup');
+        return;
+      }
 
       const producer = producerRes.data.data.producer;
-      const orders = ordersRes.data.data.orders;
+      
+      const ordersRes = await api.get('/orders/producer/orders?limit=5');
+      const orders = ordersRes.data.data?.orders || [];
 
       // Obtener productos del productor
       const productsRes = await api.get(`/products?producerId=${producer._id}`);
@@ -70,6 +74,10 @@ const ProducerDashboard = () => {
       });
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
+      if (error.response?.status === 404) {
+        navigate('/producer/setup');
+        return;
+      }
       toast.error(t('producer.dashboard.errorLoading'));
     } finally {
       setLoading(false);
