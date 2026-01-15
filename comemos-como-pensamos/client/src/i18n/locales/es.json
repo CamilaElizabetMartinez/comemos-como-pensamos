@@ -543,6 +543,21 @@
     "goProducts": "Ver productos",
     "suggestions": "También puedes visitar:"
   },
+  "cookies": {
+    "title": "Utilizamos cookies",
+    "message": "Usamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido. Puedes aceptar todas, rechazarlas o personalizar tus preferencias.",
+    "learnMore": "Más información",
+    "acceptAll": "Aceptar todas",
+    "rejectAll": "Rechazar",
+    "customize": "Personalizar",
+    "savePreferences": "Guardar preferencias",
+    "necessary": "Cookies necesarias",
+    "necessaryDesc": "Imprescindibles para el funcionamiento del sitio",
+    "analytics": "Cookies analíticas",
+    "analyticsDesc": "Nos ayudan a entender cómo usas el sitio",
+    "marketing": "Cookies de marketing",
+    "marketingDesc": "Permiten mostrarte anuncios relevantes"
+  },
   "footer": {
     "tagline": "Conectando productores locales con consumidores conscientes en toda Europa",
     "explore": "Explorar",
