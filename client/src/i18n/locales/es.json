@@ -536,6 +536,13 @@
     "responseTime": "Te responderemos lo antes posible",
     "sendAnother": "Enviar otro mensaje"
   },
+  "notFound": {
+    "title": "¡Ups! Página no encontrada",
+    "message": "Parece que esta página se ha ido al mercado. No te preocupes, te ayudamos a volver.",
+    "goHome": "Ir al inicio",
+    "goProducts": "Ver productos",
+    "suggestions": "También puedes visitar:"
+  },
   "footer": {
     "tagline": "Conectando productores locales con consumidores conscientes en toda Europa",
     "explore": "Explorar",

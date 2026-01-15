@@ -32,6 +32,7 @@ import ProducerDetailPage from './pages/ProducerDetailPage';
 import ContactPage from './pages/ContactPage';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Producer Pages
 import ProducerSetup from './pages/producer/ProducerSetup';
@@ -90,6 +91,9 @@ function App() {
                   <Route path="/admin/users" element={<AdminUsers />} />
                   <Route path="/admin/producers" element={<AdminProducers />} />
                   <Route path="/admin/orders" element={<AdminOrders />} />
+                  
+                  {/* 404 - Must be last */}
+                  <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </main>
               <Footer />

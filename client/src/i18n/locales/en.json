@@ -536,6 +536,13 @@
     "responseTime": "We'll get back to you as soon as possible",
     "sendAnother": "Send another message"
   },
+  "notFound": {
+    "title": "Oops! Page not found",
+    "message": "Looks like this page went to the market. Don't worry, we'll help you get back.",
+    "goHome": "Go home",
+    "goProducts": "Browse products",
+    "suggestions": "You can also visit:"
+  },
   "footer": {
     "tagline": "Connecting local producers with conscious consumers across Europe",
     "explore": "Explore",
