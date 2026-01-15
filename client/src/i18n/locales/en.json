@@ -209,7 +209,7 @@
   "imageUploader": {
     "dropHere": "Drop images here",
     "orClick": "or click to select",
-    "maxSize": "Max. 10MB per image",
+    "maxSize": "Max. 50MB per image",
     "images": "images",
     "uploading": "Uploading...",
     "uploadSuccess": "Image uploaded successfully",
@@ -219,7 +219,7 @@
     "mainImage": "Main",
     "maxImagesReached": "Maximum {{max}} images allowed",
     "invalidType": "Only images are allowed",
-    "fileTooLarge": "File is too large (max. 10MB)",
+    "fileTooLarge": "File is too large (max. 50MB)",
     "dragReorder": "Drag images to reorder. The first one will be the main image."
   },
   "producer": {
