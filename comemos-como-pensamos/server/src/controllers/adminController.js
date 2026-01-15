@@ -3,6 +3,7 @@ import Producer from '../models/Producer.js';
 import Product from '../models/Product.js';
 import Order from '../models/Order.js';
 import Review from '../models/Review.js';
+import { notifyProducerApproval } from '../services/notificationService.js';
 
 // @desc    Obtener estadísticas generales del dashboard
 // @route   GET /api/admin/dashboard
@@ -139,7 +140,12 @@ export const approveProducer = async (req, res) => {
     producer.isVerified = true;
     await producer.save();
 
-    // TODO: Enviar email de aprobación al productor
+    // Notificación push al productor
+    try {
+      await notifyProducerApproval(producer, true);
+    } catch (pushError) {
+      console.error('Error al enviar notificación push de aprobación:', pushError);
+    }
 
     res.status(200).json({
       success: true,
@@ -171,7 +177,12 @@ export const rejectProducer = async (req, res) => {
       });
     }
 
-    // TODO: Enviar email de rechazo al productor con la razón
+    // Notificación push al productor antes de eliminar
+    try {
+      await notifyProducerApproval(producer, false);
+    } catch (pushError) {
+      console.error('Error al enviar notificación push de rechazo:', pushError);
+    }
 
     await Producer.findByIdAndDelete(req.params.id);
 
