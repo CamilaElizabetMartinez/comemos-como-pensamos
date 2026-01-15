@@ -113,6 +113,15 @@ const Navbar = () => {
                       🏪 {t('nav.dashboard')}
                     </Link>
                   )}
+                  {user?.role === 'admin' && (
+                    <Link 
+                      to="/admin" 
+                      className="dropdown-item dropdown-admin"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      ⚙️ {t('nav.adminPanel')}
+                    </Link>
+                  )}
                   <div className="dropdown-divider"></div>
                   <button onClick={handleLogout} className="dropdown-item dropdown-logout">
                     🚪 {t('nav.logout')}

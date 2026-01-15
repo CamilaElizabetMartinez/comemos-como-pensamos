@@ -35,6 +35,12 @@ import ProducerProducts from './pages/producer/ProducerProducts';
 import ProducerProductForm from './pages/producer/ProducerProductForm';
 import ProducerOrders from './pages/producer/ProducerOrders';
 
+// Admin Pages
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminProducers from './pages/admin/AdminProducers';
+import AdminOrders from './pages/admin/AdminOrders';
+
 function App() {
   return (
     <Router>
@@ -68,6 +74,12 @@ function App() {
                   <Route path="/producer/products/new" element={<ProducerProductForm />} />
                   <Route path="/producer/products/edit/:id" element={<ProducerProductForm />} />
                   <Route path="/producer/orders" element={<ProducerOrders />} />
+                  
+                  {/* Admin Panel */}
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/admin/users" element={<AdminUsers />} />
+                  <Route path="/admin/producers" element={<AdminProducers />} />
+                  <Route path="/admin/orders" element={<AdminOrders />} />
                 </Routes>
               </main>
               <Footer />
