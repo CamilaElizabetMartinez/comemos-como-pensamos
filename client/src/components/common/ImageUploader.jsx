@@ -31,7 +31,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 5, folder = 'p
         toast.error(t('imageUploader.invalidType'));
         return false;
       }
-      if (file.size > 5 * 1024 * 1024) { // 5MB
+      if (file.size > 10 * 1024 * 1024) { // 10MB
         toast.error(t('imageUploader.fileTooLarge'));
         return false;
       }

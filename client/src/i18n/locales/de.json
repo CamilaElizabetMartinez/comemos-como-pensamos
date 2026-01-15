@@ -209,7 +209,7 @@
   "imageUploader": {
     "dropHere": "Bilder hierher ziehen",
     "orClick": "oder klicken zum Auswählen",
-    "maxSize": "Max. 5 MB pro Bild",
+    "maxSize": "Max. 10 MB pro Bild",
     "images": "Bilder",
     "uploading": "Hochladen...",
     "uploadSuccess": "Bild erfolgreich hochgeladen",
@@ -219,7 +219,7 @@
     "mainImage": "Haupt",
     "maxImagesReached": "Maximal {{max}} Bilder erlaubt",
     "invalidType": "Nur Bilder sind erlaubt",
-    "fileTooLarge": "Die Datei ist zu groß (max. 5 MB)",
+    "fileTooLarge": "Die Datei ist zu groß (max. 10 MB)",
     "dragReorder": "Bilder ziehen um neu zu ordnen. Das erste wird das Hauptbild."
   },
   "producer": {

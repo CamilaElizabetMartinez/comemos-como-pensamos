@@ -209,7 +209,7 @@
   "imageUploader": {
     "dropHere": "Arrastra imágenes aquí",
     "orClick": "o haz clic para seleccionar",
-    "maxSize": "Máx. 5MB por imagen",
+    "maxSize": "Máx. 10MB por imagen",
     "images": "imágenes",
     "uploading": "Subiendo...",
     "uploadSuccess": "Imagen subida correctamente",
@@ -219,7 +219,7 @@
     "mainImage": "Principal",
     "maxImagesReached": "Máximo {{max}} imágenes permitidas",
     "invalidType": "Solo se permiten imágenes",
-    "fileTooLarge": "El archivo es demasiado grande (máx. 5MB)",
+    "fileTooLarge": "El archivo es demasiado grande (máx. 10MB)",
     "dragReorder": "Arrastra las imágenes para reordenarlas. La primera será la imagen principal."
   },
   "producer": {

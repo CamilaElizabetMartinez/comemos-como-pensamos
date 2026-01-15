@@ -22,7 +22,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB máximo
+    fileSize: 10 * 1024 * 1024 // 10MB máximo
   }
 });
 
@@ -32,7 +32,7 @@ export const handleMulterError = (err, req, res, next) => {
     if (err.code === 'LIMIT_FILE_SIZE') {
       return res.status(400).json({
         success: false,
-        message: 'El archivo es demasiado grande. Tamaño máximo: 5MB'
+        message: 'El archivo es demasiado grande. Tamaño máximo: 10MB'
       });
     }
     return res.status(400).json({
