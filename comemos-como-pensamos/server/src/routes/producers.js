@@ -13,11 +13,14 @@ const router = express.Router();
 
 // Rutas públicas
 router.get('/', getProducers);
-router.get('/:id', getProducerById);
 
-// Rutas protegidas
-router.post('/', protect, authorize('producer', 'admin'), createProducer);
+// Rutas protegidas (DEBEN ir ANTES de /:id)
+router.get('/me', protect, authorize('producer', 'admin'), getMyProducerProfile);
 router.get('/my/profile', protect, authorize('producer', 'admin'), getMyProducerProfile);
+router.post('/', protect, authorize('producer', 'admin'), createProducer);
+
+// Rutas con parámetros (DEBEN ir AL FINAL)
+router.get('/:id', getProducerById);
 router.put('/:id', protect, updateProducer);
 router.get('/:id/stats', protect, getProducerStats);
 

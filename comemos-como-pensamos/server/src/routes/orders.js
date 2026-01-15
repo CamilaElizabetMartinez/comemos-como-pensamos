@@ -16,10 +16,12 @@ router.use(protect);
 // Rutas de clientes
 router.post('/', createOrder);
 router.get('/', getMyOrders);
-router.get('/:id', getOrderById);
 
-// Rutas de productores
+// Rutas de productores (DEBEN ir ANTES de /:id)
 router.get('/producer/orders', authorize('producer', 'admin'), getProducerOrders);
+
+// Rutas con parámetros (DEBEN ir AL FINAL)
+router.get('/:id', getOrderById);
 router.put('/:id/status', authorize('producer', 'admin'), updateOrderStatus);
 
 export default router;
