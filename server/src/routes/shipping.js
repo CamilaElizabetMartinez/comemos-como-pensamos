@@ -2,6 +2,7 @@ import express from 'express';
 import {
   createShippingZone,
   getProducerShippingZones,
+  getMyShippingZones,
   calculateShipping,
   updateShippingZone,
   deleteShippingZone
@@ -15,6 +16,7 @@ router.get('/zones/producer/:producerId', getProducerShippingZones);
 router.post('/calculate', calculateShipping);
 
 // Rutas protegidas
+router.get('/zones/my', protect, authorize('producer', 'admin'), getMyShippingZones);
 router.post('/zones', protect, authorize('producer', 'admin'), createShippingZone);
 router.put('/zones/:id', protect, authorize('producer', 'admin'), updateShippingZone);
 router.delete('/zones/:id', protect, authorize('producer', 'admin'), deleteShippingZone);
