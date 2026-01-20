@@ -11,6 +11,7 @@ const ProducerDetailPage = () => {
   const { id } = useParams();
   const [producer, setProducer] = useState(null);
   const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t, i18n } = useTranslation();
   const { addToCart } = useCart();
@@ -18,9 +19,13 @@ const ProducerDetailPage = () => {
   const fetchProducer = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await api.get(`/producers/${id}`);
-      setProducer(response.data.data.producer);
-      setProducts(response.data.data.products || []);
+      const [producerRes, reviewsRes] = await Promise.all([
+        api.get(`/producers/${id}`),
+        api.get(`/reviews/producer/${id}`)
+      ]);
+      setProducer(producerRes.data.data.producer);
+      setProducts(producerRes.data.data.products || []);
+      setReviews(reviewsRes.data.data?.reviews || []);
     } catch (error) {
       toast.error(t('producerDetail.errorLoading'));
     } finally {
@@ -190,6 +195,53 @@ const ProducerDetailPage = () => {
             </div>
           )}
         </div>
+
+        {reviews.length > 0 && (
+          <div className="producer-reviews-section">
+            <h2>⭐ {t('producerDetail.reviews')} ({reviews.length})</h2>
+            <div className="reviews-summary">
+              <div className="average-rating">
+                <span className="rating-number">
+                  {(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)}
+                </span>
+                <span className="rating-stars">
+                  {'★'.repeat(Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length))}
+                  {'☆'.repeat(5 - Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length))}
+                </span>
+              </div>
+            </div>
+            <div className="reviews-list">
+              {reviews.slice(0, 5).map((review) => (
+                <div key={review._id} className="review-card">
+                  <div className="review-header">
+                    <div className="reviewer-info">
+                      <span className="reviewer-name">
+                        {review.userId?.firstName || t('reviews.anonymous')}
+                      </span>
+                      <span className="review-date">
+                        {new Date(review.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <div className="review-rating">
+                      {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                    </div>
+                  </div>
+                  {review.productId && (
+                    <Link to={`/products/${review.productId._id}`} className="review-product">
+                      📦 {review.productId.name?.es || review.productId.name}
+                    </Link>
+                  )}
+                  {review.comment && (
+                    <p className="review-comment">{review.comment}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+            {reviews.length > 5 && (
+              <p className="more-reviews">{t('producerDetail.andMoreReviews', { count: reviews.length - 5 })}</p>
+            )}
+          </div>
+        )}
 
         {producer.userId && (
           <div className="producer-contact">

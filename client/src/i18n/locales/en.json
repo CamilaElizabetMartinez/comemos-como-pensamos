@@ -182,6 +182,13 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "search": {
+    "products": "Products",
+    "producers": "Producers",
+    "producer": "Producer",
+    "viewAllResults": "View all results",
+    "noResults": "No results found"
+  },
   "orders": {
     "title": "My Orders",
     "allOrders": "All orders",
@@ -274,7 +281,9 @@
     "contact": "Contact",
     "contactPerson": "Contact person",
     "notFound": "Producer not found",
-    "errorLoading": "Error loading producer information"
+    "errorLoading": "Error loading producer information",
+    "reviews": "Reviews",
+    "andMoreReviews": "and {{count}} more reviews..."
   },
   "reviews": {
     "title": "Customer Reviews",
@@ -348,7 +357,10 @@
       "totalProducts": "Total products",
       "activeProducts": "Active products",
       "pendingOrders": "Pending orders",
+      "completedOrders": "Completed orders",
       "totalRevenue": "Total revenue",
+      "rating": "Rating",
+      "reviews": "reviews",
       "manageProducts": "Manage Products",
       "manageProductsDesc": "View, edit and organize your catalog",
       "addProduct": "Add Product",

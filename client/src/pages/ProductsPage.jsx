@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import { ListSkeleton } from '../components/common/Skeleton';
+import SearchAutocomplete from '../components/common/SearchAutocomplete';
 import './ProductsPage.css';
 
 const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'other'];
@@ -143,14 +144,12 @@ const ProductsPage = () => {
 
         <div className="search-bar-container">
           <form onSubmit={handleSearchSubmit} className="search-form">
-            <input
-              type="text"
-              placeholder={t('products.search')}
+            <SearchAutocomplete
               value={filters.search}
-              onChange={(e) => handleFilterChange('search', e.target.value)}
-              className="search-input"
+              onChange={(value) => handleFilterChange('search', value)}
+              onSubmit={handleSearchSubmit}
+              placeholder={t('products.search')}
             />
-            <button type="submit" className="search-btn">🔍</button>
           </form>
           
           <button 
