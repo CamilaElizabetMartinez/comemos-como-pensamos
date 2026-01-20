@@ -25,14 +25,7 @@
 .logo-icon {
   width: 36px;
   height: 36px;
-}
-
-.logo-icon path {
-  stroke: white;
-}
-
-.logo-icon path[fill] {
-  fill: rgba(255, 255, 255, 0.15);
+  filter: brightness(0) invert(1);
 }
 
 .logo-text {

@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import logoSrc from '../../assets/logo.svg';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -37,7 +37,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <Logo className="logo-icon" />
+          <img src={logoSrc} alt="Logo" className="logo-icon" />
           <span className="logo-text">COMEMOS COMO PENSAMOS</span>
         </Link>
 
