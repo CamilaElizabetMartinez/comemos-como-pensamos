@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import { ListSkeleton } from '../components/common/Skeleton';
 import './OrdersPage.css';
 
 const STATUS_COLORS = {
@@ -67,7 +68,7 @@ const OrdersPage = () => {
       <div className="orders-page">
         <div className="orders-container">
           <h1>{t('orders.title')}</h1>
-          <div className="loading-spinner">{t('common.loading')}</div>
+          <ListSkeleton type="order" count={4} />
         </div>
       </div>
     );

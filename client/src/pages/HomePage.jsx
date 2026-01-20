@@ -10,7 +10,7 @@ const HomePage = () => {
     <div className="home-page">
       <section className="hero">
         <div className="hero-content">
-          <h1>Comemos Como Pensamos</h1>
+          <h1>COMEMOS COMO PENSAMOS</h1>
           <p>Conectando productores locales con consumidores conscientes</p>
           <div className="hero-actions">
             <Link to="/products" className="btn btn-primary">

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import { PageSpinner } from '../components/common/Spinner';
 import './OrderDetailPage.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -232,7 +233,7 @@ const OrderDetailPage = () => {
     return (
       <div className="order-detail-page">
         <div className="order-detail-container">
-          <div className="loading-spinner">{t('common.loading')}</div>
+          <PageSpinner text={t('common.loading')} />
         </div>
       </div>
     );
