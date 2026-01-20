@@ -240,7 +240,8 @@
     "submitReview": "Soumettre l'avis",
     "reviewAdded": "Avis ajouté avec succès",
     "reviewError": "Erreur lors de l'ajout de l'avis",
-    "selectRating": "Veuillez sélectionner une note"
+    "selectRating": "Veuillez sélectionner une note",
+    "alreadyReviewed": "Vous avez déjà donné votre avis"
   },
   "imageUploader": {
     "dropHere": "Déposez les images ici",

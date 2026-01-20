@@ -282,7 +282,8 @@
     "submitReview": "Submit review",
     "reviewAdded": "Review added successfully",
     "reviewError": "Error adding review",
-    "selectRating": "Please select a rating"
+    "selectRating": "Please select a rating",
+    "alreadyReviewed": "You already reviewed this"
   },
   "imageUploader": {
     "dropHere": "Drop images here",

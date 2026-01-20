@@ -240,7 +240,8 @@
     "submitReview": "Bewertung abschicken",
     "reviewAdded": "Bewertung erfolgreich hinzugefügt",
     "reviewError": "Fehler beim Hinzufügen der Bewertung",
-    "selectRating": "Bitte wählen Sie eine Bewertung"
+    "selectRating": "Bitte wählen Sie eine Bewertung",
+    "alreadyReviewed": "Sie haben bereits eine Bewertung abgegeben"
   },
   "imageUploader": {
     "dropHere": "Bilder hierher ziehen",

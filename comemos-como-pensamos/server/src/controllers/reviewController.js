@@ -9,47 +9,10 @@ export const createReview = async (req, res) => {
   try {
     const { productId, orderId, rating, comment } = req.body;
 
-    if (!productId || !orderId || !rating) {
+    if (!productId || !rating) {
       return res.status(400).json({
         success: false,
-        message: 'Se requieren productId, orderId y rating'
-      });
-    }
-
-    // Verificar que la orden existe y pertenece al usuario
-    const order = await Order.findById(orderId);
-
-    if (!order) {
-      return res.status(404).json({
-        success: false,
-        message: 'Orden no encontrada'
-      });
-    }
-
-    if (order.customerId.toString() !== req.user._id.toString()) {
-      return res.status(403).json({
-        success: false,
-        message: 'No puedes dejar reseña para una orden que no es tuya'
-      });
-    }
-
-    // Verificar que el producto está en la orden
-    const productInOrder = order.items.find(
-      item => item.productId.toString() === productId
-    );
-
-    if (!productInOrder) {
-      return res.status(400).json({
-        success: false,
-        message: 'Este producto no está en la orden especificada'
-      });
-    }
-
-    // Verificar que la orden ha sido entregada
-    if (order.status !== 'delivered') {
-      return res.status(400).json({
-        success: false,
-        message: 'Solo puedes dejar reseña después de que la orden sea entregada'
+        message: 'Se requieren productId y rating'
       });
     }
 
@@ -66,12 +29,70 @@ export const createReview = async (req, res) => {
       });
     }
 
+    let order;
+    let productInOrder;
+
+    if (orderId) {
+      // Si se proporciona orderId, verificar esa orden específica
+      order = await Order.findById(orderId);
+
+      if (!order) {
+        return res.status(404).json({
+          success: false,
+          message: 'Orden no encontrada'
+        });
+      }
+
+      if (order.customerId.toString() !== req.user._id.toString()) {
+        return res.status(403).json({
+          success: false,
+          message: 'No puedes dejar reseña para una orden que no es tuya'
+        });
+      }
+
+      productInOrder = order.items.find(
+        item => item.productId.toString() === productId
+      );
+
+      if (!productInOrder) {
+        return res.status(400).json({
+          success: false,
+          message: 'Este producto no está en la orden especificada'
+        });
+      }
+
+      if (order.status !== 'delivered') {
+        return res.status(400).json({
+          success: false,
+          message: 'Solo puedes dejar reseña después de que la orden sea entregada'
+        });
+      }
+    } else {
+      // Si no se proporciona orderId, buscar una orden entregada con este producto
+      order = await Order.findOne({
+        customerId: req.user._id,
+        'items.productId': productId,
+        status: 'delivered'
+      });
+
+      if (!order) {
+        return res.status(400).json({
+          success: false,
+          message: 'Debes haber comprado y recibido este producto para dejar una reseña'
+        });
+      }
+
+      productInOrder = order.items.find(
+        item => item.productId.toString() === productId
+      );
+    }
+
     // Crear reseña
     const review = await Review.create({
       userId: req.user._id,
       productId,
       producerId: productInOrder.producerId,
-      orderId,
+      orderId: order._id,
       rating,
       comment
     });

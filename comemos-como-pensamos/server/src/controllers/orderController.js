@@ -3,7 +3,7 @@ import Product from '../models/Product.js';
 import Producer from '../models/Producer.js';
 import User from '../models/User.js';
 import { generateInvoicePDF } from '../services/invoiceService.js';
-import { sendOrderStatusUpdateEmail, sendOrderConfirmationEmail, sendNewOrderToProducerEmail } from '../utils/emailSender.js';
+import { sendOrderStatusUpdateEmail, sendOrderConfirmationEmail, sendNewOrderToProducerEmail, sendReviewRequestEmail } from '../utils/emailSender.js';
 import { notifyOrderConfirmation, notifyProducerNewOrder, notifyOrderStatusChange } from '../services/notificationService.js';
 
 // @desc    Crear nueva orden
@@ -304,6 +304,17 @@ export const updateOrderStatus = async (req, res) => {
         const customer = await User.findById(order.customerId);
         if (customer) {
           await sendOrderStatusUpdateEmail(order, customer, status);
+          
+          // Send review request email when order is delivered
+          if (status === 'delivered') {
+            setTimeout(async () => {
+              try {
+                await sendReviewRequestEmail(order, customer);
+              } catch (reviewEmailError) {
+                console.error('Error al enviar email de solicitud de reseña:', reviewEmailError);
+              }
+            }, 2000); // Small delay to not overwhelm the user with emails
+          }
         }
       } catch (emailError) {
         console.error('Error al enviar email de actualización:', emailError);
