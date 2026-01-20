@@ -1,4 +1,0 @@
-[24-Jul-2023 19:41:49 UTC] PHP Warning:  Error while sending QUERY packet. PID=3844200 in /home/giacomobevanatic/public_html/wp-includes/class-wpdb.php on line 2431
-[24-Jul-2023 19:43:29 UTC] TFA: Beginning attempt to port private key encryption over to openssl
-[24-Jul-2023 19:44:18 UTC] PHP Warning:  Error while sending QUERY packet. PID=3848774 in /home/giacomobevanatic/public_html/wp-includes/class-wpdb.php on line 2431
-[06-Jun-2024 10:37:49 UTC] WordPress database error Commands out of sync; you can't run this command now for query SELECT option_value FROM wp_options WHERE option_name = 'complianz_options_custom-scripts' LIMIT 1 made by shutdown_action_hook, do_action('shutdown'), WP_Hook->do_action, WP_Hook->apply_filters, wp_ob_end_flush_all, ob_end_flush, cmplz_cookie_blocker->filter_buffer, cmplz_cookie_blocker->replace_tags, cmplz_cookie_blocker->placeholder_markers, get_option

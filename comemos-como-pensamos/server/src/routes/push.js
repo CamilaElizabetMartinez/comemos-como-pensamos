@@ -21,3 +21,4 @@ router.post('/test', protect, sendTestNotification);
 
 export default router;
 
+
