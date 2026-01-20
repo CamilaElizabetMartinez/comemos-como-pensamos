@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
-import { PageSpinner } from '../components/common/Spinner';
+import { ListSkeleton } from '../components/common/Skeleton';
 import './ProducersPage.css';
 
 const ProducersPage = () => {
@@ -99,7 +99,7 @@ const ProducersPage = () => {
         </form>
 
         {loading ? (
-          <PageSpinner text={t('common.loading')} />
+          <ListSkeleton type="producer" count={6} />
         ) : producers.length === 0 ? (
           <div className="no-producers">
             <div className="no-producers-icon">🌱</div>
