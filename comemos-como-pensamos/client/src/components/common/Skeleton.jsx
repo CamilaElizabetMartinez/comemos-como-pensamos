@@ -49,13 +49,47 @@ export const ProductCardSkeleton = () => (
   </div>
 );
 
-export const ListSkeleton = ({ type = 'order', count = 3 }) => (
-  <div className={`skeleton-list skeleton-list-${type}`}>
-    {Array(count).fill(null).map((_, index) => (
-      type === 'order' ? <OrderCardSkeleton key={index} /> : <ProductCardSkeleton key={index} />
-    ))}
+export const ProducerCardSkeleton = () => (
+  <div className="skeleton-producer-card">
+    <div className="skeleton-producer-header">
+      <Skeleton variant="circular" width="80px" height="80px" />
+      <div className="skeleton-producer-info">
+        <Skeleton variant="text" width="150px" height="1.25rem" />
+        <Skeleton variant="text" width="100px" height="0.85rem" />
+      </div>
+    </div>
+    <div className="skeleton-producer-body">
+      <Skeleton variant="text" width="100%" height="0.85rem" />
+      <Skeleton variant="text" width="80%" height="0.85rem" />
+    </div>
+    <div className="skeleton-producer-footer">
+      <Skeleton variant="rectangular" width="100%" height="36px" className="skeleton-button" />
+    </div>
   </div>
 );
+
+export const ListSkeleton = ({ type = 'order', count = 3 }) => {
+  const getSkeletonComponent = () => {
+    switch (type) {
+      case 'order':
+        return OrderCardSkeleton;
+      case 'producer':
+        return ProducerCardSkeleton;
+      default:
+        return ProductCardSkeleton;
+    }
+  };
+  
+  const SkeletonComponent = getSkeletonComponent();
+  
+  return (
+    <div className={`skeleton-list skeleton-list-${type}`}>
+      {Array(count).fill(null).map((_, index) => (
+        <SkeletonComponent key={index} />
+      ))}
+    </div>
+  );
+};
 
 export default Skeleton;
 

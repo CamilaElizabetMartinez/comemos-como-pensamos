@@ -94,6 +94,37 @@
   padding: 1rem;
 }
 
+/* Producer Card Skeleton */
+.skeleton-producer-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.skeleton-producer-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.skeleton-producer-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-producer-body {
+  margin-bottom: 1rem;
+}
+
+.skeleton-producer-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
 /* List containers */
 .skeleton-list {
   display: flex;
@@ -104,6 +135,12 @@
 .skeleton-list-product {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeleton-list-producer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
