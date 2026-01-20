@@ -168,6 +168,11 @@ const ProducerDashboard = () => {
             <span className="action-title">{t('producer.dashboard.reports')}</span>
             <span className="action-desc">{t('producer.dashboard.reportsDesc')}</span>
           </Link>
+          <Link to="/producer/shipping" className="action-card">
+            <span className="action-icon">🚚</span>
+            <span className="action-title">{t('producer.dashboard.shippingZones')}</span>
+            <span className="action-desc">{t('producer.dashboard.shippingZonesDesc')}</span>
+          </Link>
         </div>
 
         <section className="recent-orders-section">

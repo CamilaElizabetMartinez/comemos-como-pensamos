@@ -145,6 +145,11 @@ const AdminDashboard = () => {
             <span className="action-title">{t('admin.dashboard.reports')}</span>
             <span className="action-desc">{t('admin.dashboard.reportsDesc')}</span>
           </Link>
+          <Link to="/admin/contact" className="action-card">
+            <span className="action-icon">📬</span>
+            <span className="action-title">{t('admin.dashboard.contactMessages')}</span>
+            <span className="action-desc">{t('admin.dashboard.contactMessagesDesc')}</span>
+          </Link>
         </div>
 
         {stats.ordersByStatus && Object.keys(stats.ordersByStatus).length > 0 && (

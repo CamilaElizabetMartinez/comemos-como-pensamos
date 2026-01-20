@@ -73,6 +73,39 @@ export const getProducerShippingZones = async (req, res) => {
   }
 };
 
+// @desc    Obtener mis zonas de envío (productor logueado)
+// @route   GET /api/shipping/zones/my
+// @access  Private (Producer only)
+export const getMyShippingZones = async (req, res) => {
+  try {
+    const producer = await Producer.findOne({ userId: req.user._id });
+
+    if (!producer) {
+      return res.status(404).json({
+        success: false,
+        message: 'Perfil de productor no encontrado'
+      });
+    }
+
+    const shippingZones = await ShippingZone.find({
+      producerId: producer._id
+    }).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: shippingZones.length,
+      data: { shippingZones }
+    });
+  } catch (error) {
+    console.error('Error al obtener mis zonas de envío:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener zonas de envío',
+      error: error.message
+    });
+  }
+};
+
 // @desc    Calcular costo de envío
 // @route   POST /api/shipping/calculate
 // @access  Public

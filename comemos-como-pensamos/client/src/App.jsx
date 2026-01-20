@@ -42,6 +42,7 @@ import ProducerProducts from './pages/producer/ProducerProducts';
 import ProducerProductForm from './pages/producer/ProducerProductForm';
 import ProducerOrders from './pages/producer/ProducerOrders';
 import ProducerReports from './pages/producer/ProducerReports';
+import ProducerShipping from './pages/producer/ProducerShipping';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -49,6 +50,7 @@ import AdminUsers from './pages/admin/AdminUsers';
 import AdminProducers from './pages/admin/AdminProducers';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminReports from './pages/admin/AdminReports';
+import AdminContact from './pages/admin/AdminContact';
 
 function App() {
   return (
@@ -89,6 +91,7 @@ function App() {
                   <Route path="/producer/products/edit/:id" element={<ProducerProductForm />} />
                   <Route path="/producer/orders" element={<ProducerOrders />} />
                   <Route path="/producer/reports" element={<ProducerReports />} />
+                  <Route path="/producer/shipping" element={<ProducerShipping />} />
                   
                   {/* Admin Panel */}
                   <Route path="/admin" element={<AdminDashboard />} />
@@ -96,6 +99,7 @@ function App() {
                   <Route path="/admin/producers" element={<AdminProducers />} />
                   <Route path="/admin/orders" element={<AdminOrders />} />
                   <Route path="/admin/reports" element={<AdminReports />} />
+                  <Route path="/admin/contact" element={<AdminContact />} />
                   
                   {/* 404 - Must be last */}
                   <Route path="*" element={<NotFoundPage />} />
