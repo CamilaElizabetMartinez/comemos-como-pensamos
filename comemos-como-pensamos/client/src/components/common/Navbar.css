@@ -23,17 +23,11 @@
 }
 
 .logo-icon {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   filter: brightness(0) invert(1);
 }
 
-.logo-text {
-  color: white;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
 
 .navbar-menu {
   display: flex;
