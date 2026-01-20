@@ -282,7 +282,8 @@
     "submitReview": "Enviar opinión",
     "reviewAdded": "Opinión añadida correctamente",
     "reviewError": "Error al añadir opinión",
-    "selectRating": "Por favor selecciona una puntuación"
+    "selectRating": "Por favor selecciona una puntuación",
+    "alreadyReviewed": "Ya has dejado tu opinión"
   },
   "imageUploader": {
     "dropHere": "Arrastra imágenes aquí",

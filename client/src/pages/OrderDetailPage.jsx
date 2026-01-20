@@ -7,6 +7,93 @@ import './OrderDetailPage.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+const ReviewModal = ({ isOpen, onClose, product, orderId, onReviewSubmitted, t }) => {
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (rating === 0) {
+      toast.error(t('reviews.selectRating'));
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await api.post('/reviews', {
+        productId: product.productId._id || product.productId,
+        orderId,
+        rating,
+        comment
+      });
+      toast.success(t('reviews.reviewAdded'));
+      onReviewSubmitted(product.productId._id || product.productId);
+      onClose();
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || t('reviews.reviewError');
+      toast.error(errorMessage);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const renderStars = () => {
+    const stars = [];
+    for (let starIndex = 1; starIndex <= 5; starIndex++) {
+      stars.push(
+        <span
+          key={starIndex}
+          className={`star interactive ${starIndex <= rating ? 'filled' : ''}`}
+          onClick={() => setRating(starIndex)}
+        >
+          ★
+        </span>
+      );
+    }
+    return stars;
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="review-modal-overlay" onClick={onClose}>
+      <div className="review-modal" onClick={(event) => event.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>×</button>
+        <h2>{t('reviews.writeReview')}</h2>
+        <p className="modal-product-name">{product.productName}</p>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>{t('reviews.yourRating')} *</label>
+            <div className="rating-selector">{renderStars()}</div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="review-comment">{t('reviews.yourComment')}</label>
+            <textarea
+              id="review-comment"
+              value={comment}
+              onChange={(event) => setComment(event.target.value)}
+              placeholder={t('reviews.commentPlaceholder')}
+              rows={4}
+            />
+          </div>
+
+          <div className="modal-actions">
+            <button type="button" className="btn btn-secondary" onClick={onClose}>
+              {t('common.cancel')}
+            </button>
+            <button type="submit" className="btn btn-primary" disabled={submitting || rating === 0}>
+              {submitting ? t('common.loading') : t('reviews.submitReview')}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
 const STATUS_COLORS = {
   pending: '#ff9800',
   confirmed: '#2196f3',
@@ -22,6 +109,8 @@ const OrderDetailPage = () => {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reviewedProducts, setReviewedProducts] = useState([]);
+  const [reviewModal, setReviewModal] = useState({ isOpen: false, product: null });
   const { t } = useTranslation();
 
   const fetchOrder = useCallback(async () => {
@@ -35,6 +124,43 @@ const OrderDetailPage = () => {
       setLoading(false);
     }
   }, [id, t]);
+
+  const fetchUserReviews = useCallback(async () => {
+    if (!order) return;
+    try {
+      const productIds = order.items.map(item => item.productId._id || item.productId);
+      const reviewedIds = [];
+      
+      for (const productId of productIds) {
+        try {
+          const response = await api.get(`/reviews/product/${productId}`);
+          const userReview = response.data.data.reviews.find(
+            review => review.userId?._id === order.customerId._id || review.userId?._id === order.customerId
+          );
+          if (userReview) {
+            reviewedIds.push(productId);
+          }
+        } catch (reviewError) {
+          // Product might not have reviews, continue
+        }
+      }
+      setReviewedProducts(reviewedIds);
+    } catch (error) {
+      console.error('Error fetching user reviews:', error);
+    }
+  }, [order]);
+
+  const handleReviewSubmitted = (productId) => {
+    setReviewedProducts(prev => [...prev, productId]);
+  };
+
+  const openReviewModal = (product) => {
+    setReviewModal({ isOpen: true, product });
+  };
+
+  const closeReviewModal = () => {
+    setReviewModal({ isOpen: false, product: null });
+  };
 
   const handleDownloadInvoice = useCallback(async () => {
     try {
@@ -68,6 +194,12 @@ const OrderDetailPage = () => {
   useEffect(() => {
     fetchOrder();
   }, [fetchOrder]);
+
+  useEffect(() => {
+    if (order && order.status === 'delivered') {
+      fetchUserReviews();
+    }
+  }, [order, fetchUserReviews]);
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('es-ES', {
@@ -160,36 +292,55 @@ const OrderDetailPage = () => {
           <div className="order-items-section">
             <h2>{t('orderDetail.items')}</h2>
             <div className="order-items-list">
-              {order.items.map((item, index) => (
-                <div key={index} className="order-item-card">
-                  <div className="item-image">
-                    {item.productId?.images?.[0] ? (
-                      <img src={item.productId.images[0]} alt={item.productName} />
-                    ) : (
-                      <div className="image-placeholder">📦</div>
-                    )}
-                  </div>
-                  <div className="item-details">
-                    <h3>{item.productName}</h3>
-                    {item.producerId && (
-                      <p className="item-producer">
-                        {t('products.producer')}: {item.producerId.businessName}
-                      </p>
-                    )}
-                    <div className="item-meta">
-                      <span className="item-quantity">
-                        {t('orderDetail.quantity')}: {item.quantity}
-                      </span>
-                      <span className="item-price">
-                        €{item.priceAtPurchase.toFixed(2)} / {t('products.unit')}
-                      </span>
+              {order.items.map((item, index) => {
+                const productId = item.productId?._id || item.productId;
+                const hasReviewed = reviewedProducts.includes(productId);
+                
+                return (
+                  <div key={index} className="order-item-card">
+                    <div className="item-image">
+                      {item.productId?.images?.[0] ? (
+                        <img src={item.productId.images[0]} alt={item.productName} />
+                      ) : (
+                        <div className="image-placeholder">📦</div>
+                      )}
+                    </div>
+                    <div className="item-details">
+                      <h3>{item.productName}</h3>
+                      {item.producerId && (
+                        <p className="item-producer">
+                          {t('products.producer')}: {item.producerId.businessName}
+                        </p>
+                      )}
+                      <div className="item-meta">
+                        <span className="item-quantity">
+                          {t('orderDetail.quantity')}: {item.quantity}
+                        </span>
+                        <span className="item-price">
+                          €{item.priceAtPurchase.toFixed(2)} / {t('products.unit')}
+                        </span>
+                      </div>
+                      {order.status === 'delivered' && (
+                        <div className="item-review-action">
+                          {hasReviewed ? (
+                            <span className="review-done">✅ {t('reviews.alreadyReviewed')}</span>
+                          ) : (
+                            <button 
+                              className="btn-review-item"
+                              onClick={() => openReviewModal(item)}
+                            >
+                              ⭐ {t('reviews.writeReview')}
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <div className="item-total">
+                      €{(item.priceAtPurchase * item.quantity).toFixed(2)}
                     </div>
                   </div>
-                  <div className="item-total">
-                    €{(item.priceAtPurchase * item.quantity).toFixed(2)}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -309,6 +460,15 @@ const OrderDetailPage = () => {
           </div>
         </div>
       </div>
+
+      <ReviewModal
+        isOpen={reviewModal.isOpen}
+        onClose={closeReviewModal}
+        product={reviewModal.product}
+        orderId={id}
+        onReviewSubmitted={handleReviewSubmitted}
+        t={t}
+      />
     </div>
   );
 };

@@ -231,6 +231,62 @@ export const sendNewOrderToProducerEmail = async (order, producer, producerUser)
   await sendEmail(producerUser.email, `Nueva orden #${order.orderNumber} - ${producer.businessName}`, html);
 };
 
+export const sendReviewRequestEmail = async (order, user) => {
+  const orderUrl = `${process.env.CLIENT_URL}/orders/${order._id}`;
+
+  let productsHtml = '';
+  order.items.forEach(item => {
+    productsHtml += `
+      <div style="display: flex; align-items: center; padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 10px;">
+        <div style="flex: 1;">
+          <p style="margin: 0; font-weight: 600; color: #333;">${item.productName}</p>
+        </div>
+        <div style="text-align: right;">
+          <span style="color: #ffc107; font-size: 20px;">★★★★★</span>
+        </div>
+      </div>
+    `;
+  });
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2e7d32; text-align: center;">¡Tu pedido ha sido entregado! 📦</h2>
+      <p>Hola ${user.firstName},</p>
+      <p>Esperamos que estés disfrutando de tu pedido <strong>#${order.orderNumber}</strong>.</p>
+      
+      <div style="background: linear-gradient(135deg, #fff8e1, #fffde7); padding: 25px; border-radius: 12px; margin: 25px 0; text-align: center;">
+        <p style="font-size: 18px; margin: 0 0 10px 0; color: #333;">
+          <strong>¿Qué te parecieron los productos?</strong>
+        </p>
+        <p style="color: #666; margin: 0;">
+          Tu opinión ayuda a otros compradores y a nuestros productores locales 🌱
+        </p>
+      </div>
+
+      <h3 style="color: #333;">Productos para valorar:</h3>
+      ${productsHtml}
+
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="${orderUrl}"
+           style="background: linear-gradient(135deg, #ff9800, #ffa726); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: 600; font-size: 16px;">
+          ⭐ Dejar mi opinión
+        </a>
+      </div>
+
+      <p style="text-align: center; color: #666; font-size: 14px;">
+        Solo te tomará un minuto y nos ayuda mucho.
+      </p>
+
+      <hr style="border: 1px solid #eee; margin: 30px 0;">
+      <p style="color: #999; font-size: 12px; text-align: center;">
+        ¿Algún problema con tu pedido? <a href="${process.env.CLIENT_URL}/contact" style="color: #2e7d32;">Contáctanos</a>
+      </p>
+    </div>
+  `;
+
+  await sendEmail(user.email, `⭐ ¿Qué te pareció tu pedido #${order.orderNumber}?`, html);
+};
+
 export const sendContactNotificationEmail = async (contact) => {
   const subjectLabels = {
     general: 'Consulta General',
