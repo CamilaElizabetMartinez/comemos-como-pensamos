@@ -1,345 +1,1175 @@
-# Comemos Como Pensamos
+# 🥕 Comemos Como Pensamos
 
-Plataforma e-commerce full-stack para productores locales en Europa. Permite a productores locales cargar sus productos y vender directamente a consumidores.
+**Plataforma e-commerce de productos locales y sostenibles**
 
-## ✅ Proyecto Completado
+Una aplicación web completa que conecta productores locales con consumidores conscientes, promoviendo una alimentación sostenible y de proximidad.
 
-Este proyecto está **100% funcional** con backend y frontend completos.
+---
+
+## 📑 Tabla de Contenidos
+
+- [Descripción General](#descripción-general)
+- [Tecnologías](#tecnologías)
+- [Instalación](#instalación)
+- [Configuración](#configuración)
+- [Funcionalidades por Rol](#funcionalidades-por-rol)
+  - [Cliente](#-cliente-customer)
+  - [Productor](#-productor-producer)
+  - [Administrador](#-administrador-admin)
+- [Funcionalidades Comunes](#funcionalidades-comunes)
+- [API Endpoints](#api-endpoints)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+
+---
+
+## Descripción General
+
+**Comemos Como Pensamos** es una plataforma e-commerce que permite:
+
+- A los **productores locales** vender sus productos directamente al consumidor
+- A los **clientes** comprar productos frescos y sostenibles de su zona
+- A los **administradores** gestionar toda la plataforma
+
+### Características principales:
+- 🌍 Multiidioma (ES, EN, FR, DE)
+- 💳 Múltiples métodos de pago (Stripe, transferencia, contra reembolso)
+- 📱 Diseño responsive
+- 🔔 Notificaciones push en tiempo real
+- 📧 Emails transaccionales automáticos
+- 📄 Generación de facturas PDF
+- 📊 Exportación de reportes (PDF/Excel)
+
+---
 
 ## Tecnologías
 
-### Backend
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT para autenticación
-- Stripe para pagos
-- Nodemailer para emails
-- Cloudinary para gestión de imágenes
-- Multer para upload de archivos
-
 ### Frontend
-- React 19
-- Vite
-- React Router v7
-- Axios
-- React i18next (multiidioma: ES, EN, FR, DE)
-- React Toastify
-- Context API
+| Tecnología | Uso |
+|------------|-----|
+| React 18 | Framework UI |
+| Vite | Build tool |
+| React Router DOM 6 | Enrutamiento |
+| React i18next | Internacionalización |
+| Axios | Cliente HTTP |
+| React Toastify | Notificaciones toast |
+| CSS3 | Estilos personalizados |
 
-## Características Implementadas ✅
+### Backend
+| Tecnología | Uso |
+|------------|-----|
+| Node.js | Runtime |
+| Express.js | Framework API |
+| MongoDB | Base de datos |
+| Mongoose | ODM |
+| JWT | Autenticación |
+| bcryptjs | Hash de contraseñas |
+| Nodemailer | Envío de emails |
+| PDFKit | Generación de PDFs |
+| ExcelJS | Generación de Excel |
+| web-push | Notificaciones push |
+| Multer | Upload de archivos |
 
-### Backend Completo
-1. ✅ **Autenticación JWT** (registro, login, recuperación contraseña)
-2. ✅ **CRUD de productos** con imágenes (Cloudinary)
-3. ✅ **CRUD de productores** con aprobación de admin
-4. ✅ **Sistema de órdenes** completo
-5. ✅ **Integración Stripe** (pagos, webhooks)
-6. ✅ **Sistema de reseñas** con actualización automática de ratings
-7. ✅ **Zonas de envío** configurables por productor
-8. ✅ **Upload de imágenes** (Cloudinary + Multer)
-9. ✅ **Sistema de emails** (verificación, recuperación, confirmaciones)
-10. ✅ **Búsqueda avanzada** con filtros y autocomplete
-11. ✅ **Sistema de favoritos**
-12. ✅ **Panel de administrador** (aprobar productores, moderar, estadísticas)
+### Servicios Externos
+| Servicio | Uso |
+|----------|-----|
+| MongoDB Atlas | Base de datos cloud |
+| Cloudinary | Almacenamiento de imágenes |
+| Stripe | Pagos con tarjeta |
+| Gmail SMTP | Emails transaccionales |
 
-### Frontend Completo
-1. ✅ **Sistema de autenticación** (Login, Register)
-2. ✅ **Catálogo de productos** con grid responsivo
-3. ✅ **Detalle de producto**
-4. ✅ **Carrito de compras** funcional
-5. ✅ **Checkout** con dirección de envío
-6. ✅ **Navbar** con selector de idioma y contador de carrito
-7. ✅ **Context API** (Auth, Cart, Language)
-8. ✅ **i18n** en 4 idiomas (ES, EN, FR, DE)
-9. ✅ **Diseño responsivo**
-10. ✅ **Notificaciones toast**
+---
 
-## Estructura del Proyecto
-
-```
-comemos-como-pensamos/
-├── client/                 # Frontend React
-│   ├── src/
-│   │   ├── components/    # Componentes reutilizables
-│   │   │   └── common/    # Navbar, Footer
-│   │   ├── pages/         # Páginas (Home, Login, Products, Cart, etc)
-│   │   ├── context/       # Context API (Auth, Cart, Language)
-│   │   ├── services/      # Servicios API (axios)
-│   │   ├── i18n/          # Configuración i18n + traducciones
-│   │   └── index.css      # Estilos globales
-│   ├── vite.config.js
-│   └── package.json
-├── server/                # Backend Node.js/Express
-│   ├── src/
-│   │   ├── models/        # 6 Modelos MongoDB
-│   │   ├── routes/        # 12 Rutas API
-│   │   ├── controllers/   # Lógica de negocio
-│   │   ├── middleware/    # Auth, upload, validation
-│   │   ├── config/        # DB, Stripe, Cloudinary, Email
-│   │   └── utils/         # Helpers
-│   └── package.json
-└── README.md
-```
-
-## Instalación y Configuración
+## Instalación
 
 ### Prerrequisitos
-- Node.js v18 o superior
-- MongoDB instalado y corriendo
-- Cuenta de Stripe (modo test)
-- Cuenta de Cloudinary (plan gratuito)
-- Cuenta de Gmail o proveedor SMTP para emails
+- Node.js >= 18.x
+- npm >= 9.x
+- Cuenta en MongoDB Atlas
+- Cuenta en Cloudinary
+- Cuenta en Stripe (para pagos con tarjeta)
+- Cuenta Gmail con App Password
 
-### 1. Backend
+### Clonar repositorio
+```bash
+git clone <repository-url>
+cd comemos-como-pensamos
+```
 
+### Instalar dependencias
+
+**Backend:**
 ```bash
 cd server
 npm install
 ```
 
-Configurar variables de entorno en `server/.env`:
-
-```env
-NODE_ENV=development
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/comemos-como-pensamos
-JWT_SECRET=tu_secreto_jwt_aqui
-STRIPE_SECRET_KEY=sk_test_tu_clave_stripe
-STRIPE_WEBHOOK_SECRET=whsec_tu_webhook_secret
-CLIENT_URL=http://localhost:3000
-
-# Email (Gmail con App Password)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=tu_email@gmail.com
-EMAIL_PASSWORD=tu_app_password_de_gmail
-EMAIL_FROM="Comemos Como Pensamos <noreply@comemos.com>"
-
-# Cloudinary (obtener de cloudinary.com)
-CLOUDINARY_CLOUD_NAME=tu_cloud_name
-CLOUDINARY_API_KEY=tu_api_key
-CLOUDINARY_API_SECRET=tu_api_secret
-```
-
-Iniciar servidor:
-
-```bash
-npm run dev
-```
-
-El servidor correrá en `http://localhost:5000`
-
-### 2. Frontend
-
+**Frontend:**
 ```bash
 cd client
 npm install
 ```
 
-Configurar variables de entorno en `client/.env`:
+### Iniciar aplicación
 
-```env
-VITE_API_URL=http://localhost:5000/api
-VITE_STRIPE_PUBLIC_KEY=pk_test_tu_clave_publica_stripe
-```
-
-Iniciar aplicación:
-
+**Backend (puerto 5000):**
 ```bash
+cd server
 npm run dev
 ```
 
-La aplicación correrá en `http://localhost:3000`
+**Frontend (puerto 3000):**
+```bash
+cd client
+npm run dev
+```
 
-## Uso
+---
 
-### 1. Registrar un Usuario
+## Configuración
 
-- Ve a `/register`
-- Completa el formulario
-- Selecciona tipo: "Cliente" o "Productor"
-- Crea tu cuenta
+### Variables de entorno del servidor (`server/.env`)
 
-### 2. Para Productores
+```env
+# Base de datos
+MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/comemos-como-pensamos
 
-- Después de registrarte como productor
-- Tu cuenta necesita aprobación del admin
-- Una vez aprobado, puedes:
-  - Crear productos con imágenes
-  - Configurar zonas de envío
-  - Ver y gestionar órdenes
-  - Ver estadísticas
+# JWT
+JWT_SECRET=tu_secreto_jwt_super_seguro
+JWT_EXPIRE=30d
 
-### 3. Para Clientes
+# Servidor
+PORT=5000
+NODE_ENV=development
+CLIENT_URL=http://localhost:3000
 
-- Explora productos en `/products`
-- Agrega productos al carrito
-- Procede al checkout
-- Completa la información de envío
-- Realiza el pago
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=tu_cloud_name
+CLOUDINARY_API_KEY=tu_api_key
+CLOUDINARY_API_SECRET=tu_api_secret
 
-### 4. Para Administradores
+# Gmail SMTP
+GMAIL_USER=tu_email@gmail.com
+GMAIL_APP_PASSWORD=tu_app_password
 
-- Accede a `/admin` (requiere rol admin)
-- Aprueba/rechaza productores
-- Modera productos
-- Ve estadísticas generales
-- Gestiona usuarios
+# Stripe
+STRIPE_SECRET_KEY=sk_test_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
+
+# Web Push (VAPID Keys)
+VAPID_PUBLIC_KEY=tu_vapid_public_key
+VAPID_PRIVATE_KEY=tu_vapid_private_key
+
+# Datos bancarios (para transferencias)
+BANK_NAME=Tu Banco
+BANK_IBAN=ES00 0000 0000 0000 0000 0000
+BANK_BIC=XXXXESXX
+```
+
+### Variables de entorno del cliente (`client/.env`)
+
+```env
+VITE_API_URL=http://localhost:5000/api
+VITE_VAPID_PUBLIC_KEY=tu_vapid_public_key
+```
+
+---
+
+## Funcionalidades por Rol
+
+---
+
+## 👤 Cliente (Customer)
+
+### 1. Autenticación
+
+#### 1.1 Registro de cuenta
+- **Ruta:** `/register`
+- **Campos requeridos:**
+  - Email (único, validado)
+  - Contraseña (mínimo 6 caracteres)
+  - Nombre
+  - Apellidos
+- **Proceso:**
+  1. Usuario completa formulario
+  2. Sistema valida datos
+  3. Se crea cuenta con rol "customer"
+  4. Se envía email de verificación
+  5. Redirección a login
+
+#### 1.2 Inicio de sesión
+- **Ruta:** `/login`
+- **Campos:** Email y contraseña
+- **Proceso:**
+  1. Validación de credenciales
+  2. Generación de token JWT
+  3. Almacenamiento en localStorage
+  4. Redirección a página principal
+
+#### 1.3 Verificación de email
+- **Ruta:** `/verify-email/:token`
+- **Proceso:**
+  1. Usuario hace clic en enlace del email
+  2. Sistema valida token
+  3. Cuenta marcada como verificada
+  4. Mensaje de confirmación
+
+#### 1.4 Recuperación de contraseña
+- **Solicitar reset:** `/forgot-password`
+  1. Usuario introduce email
+  2. Sistema envía enlace de recuperación
+  3. Enlace válido por 1 hora
+- **Restablecer:** `/reset-password/:token`
+  1. Usuario introduce nueva contraseña
+  2. Contraseña actualizada
+  3. Redirección a login
+
+#### 1.5 Cerrar sesión
+- Elimina token de localStorage
+- Redirección a página principal
+
+---
+
+### 2. Catálogo de Productos
+
+#### 2.1 Listado de productos
+- **Ruta:** `/products`
+- **Características:**
+  - Grid de productos con imagen, nombre, precio
+  - Indicador de stock (disponible, bajo stock, agotado)
+  - Botón "Añadir al carrito"
+  - Paginación (12 productos por página)
+
+#### 2.2 Búsqueda
+- **Campo de búsqueda:** Busca en nombre y descripción
+- **Búsqueda en tiempo real** con debounce
+
+#### 2.3 Filtros
+| Filtro | Opciones |
+|--------|----------|
+| Categoría | Verduras, Frutas, Lácteos, Carnes, Panadería, Otros |
+| Productor | Lista de productores activos |
+| Precio mínimo | Input numérico |
+| Precio máximo | Input numérico |
+
+#### 2.4 Ordenación
+| Opción | Descripción |
+|--------|-------------|
+| Más recientes | Por fecha de creación (desc) |
+| Precio: menor a mayor | Por precio (asc) |
+| Precio: mayor a menor | Por precio (desc) |
+| Nombre: A-Z | Alfabético (asc) |
+| Nombre: Z-A | Alfabético (desc) |
+| Mejor valorados | Por rating (desc) |
+
+---
+
+### 3. Detalle de Producto
+
+- **Ruta:** `/products/:id`
+- **Información mostrada:**
+  - Galería de imágenes (principal + miniaturas)
+  - Nombre del producto
+  - Precio y unidad
+  - Descripción completa
+  - Categoría
+  - Stock disponible
+  - Información del productor (enlace al perfil)
+  - Selector de cantidad
+  - Botón añadir al carrito
+  - Botón añadir a favoritos
+
+#### 3.1 Galería de imágenes
+- Imagen principal grande
+- Miniaturas navegables
+- Clic en miniatura cambia imagen principal
+
+#### 3.2 Reseñas del producto
+- **Visualización:**
+  - Puntuación media (estrellas)
+  - Distribución de valoraciones (5★, 4★, 3★, 2★, 1★)
+  - Lista de reseñas con:
+    - Nombre del cliente
+    - Fecha
+    - Puntuación
+    - Comentario
+- **Escribir reseña:** (solo si ha comprado y recibido el producto)
+  - Selector de estrellas (1-5)
+  - Campo de comentario
+  - Botón enviar
+
+---
+
+### 4. Productores
+
+#### 4.1 Listado de productores
+- **Ruta:** `/producers`
+- **Información por productor:**
+  - Logo
+  - Nombre del negocio
+  - Descripción breve
+  - Ubicación (ciudad, región)
+  - Valoración media
+  - Certificaciones
+
+#### 4.2 Detalle de productor
+- **Ruta:** `/producers/:id`
+- **Información:**
+  - Logo grande
+  - Nombre del negocio
+  - Descripción completa
+  - Ubicación
+  - Certificaciones
+  - Contacto
+  - Productos del productor (grid)
+
+---
+
+### 5. Carrito de Compra
+
+- **Acceso:** Icono en navbar (muestra contador)
+- **Ruta:** `/cart`
+
+#### 5.1 Gestión del carrito
+| Acción | Descripción |
+|--------|-------------|
+| Añadir producto | Desde catálogo o detalle de producto |
+| Modificar cantidad | Botones +/- o input directo |
+| Eliminar producto | Botón eliminar por item |
+| Vaciar carrito | Eliminar todos los productos |
+
+#### 5.2 Resumen del carrito
+- Lista de productos con:
+  - Imagen miniatura
+  - Nombre
+  - Precio unitario
+  - Cantidad
+  - Subtotal por item
+- **Totales:**
+  - Subtotal
+  - Gastos de envío (calculado)
+  - **Total**
+
+#### 5.3 Validación de stock
+- Verificación automática de disponibilidad
+- Aviso si el stock ha cambiado
+- Bloqueo de checkout si hay problemas de stock
+
+---
+
+### 6. Proceso de Compra (Checkout)
+
+- **Ruta:** `/checkout`
+- **Requiere:** Usuario autenticado y carrito con productos
+
+#### 6.1 Dirección de envío
+| Campo | Requerido |
+|-------|-----------|
+| Calle y número | ✅ |
+| Piso/Puerta | ❌ |
+| Ciudad | ✅ |
+| Código postal | ✅ |
+| Provincia | ✅ |
+| País | ✅ |
+| Teléfono de contacto | ✅ |
+
+#### 6.2 Métodos de pago
+
+**💳 Tarjeta de crédito/débito (Stripe)**
+- Redirección a pasarela segura de Stripe
+- Soporta Visa, Mastercard, American Express
+- Pago procesado instantáneamente
+- Stock reducido automáticamente
+
+**🏦 Transferencia bancaria**
+- Datos bancarios mostrados tras confirmar:
+  - Nombre del banco
+  - IBAN
+  - BIC/SWIFT
+  - Referencia (número de pedido)
+- Pedido en estado "pendiente de pago"
+- Stock reducido tras confirmar pago manualmente
+
+**💵 Contra reembolso**
+- Pago en efectivo al recibir
+- Cargo adicional opcional
+- Stock reducido inmediatamente
+- Pedido confirmado automáticamente
+
+#### 6.3 Resumen del pedido
+- Lista de productos
+- Subtotal
+- Gastos de envío
+- Total a pagar
+- Botón "Confirmar pedido"
+
+---
+
+### 7. Confirmación de Pedido
+
+- **Ruta:** `/order-confirmation`
+- **Contenido según método de pago:**
+
+**Tarjeta:**
+- ✅ Mensaje de pago exitoso
+- Número de pedido
+- Resumen de productos
+- Siguiente: preparación del pedido
+
+**Transferencia:**
+- Datos bancarios para realizar transferencia
+- Referencia a incluir
+- Plazo para realizar el pago
+- Número de pedido
+
+**Contra reembolso:**
+- ✅ Pedido confirmado
+- Importe a pagar en entrega
+- Número de pedido
+
+---
+
+### 8. Mis Pedidos
+
+- **Ruta:** `/orders`
+
+#### 8.1 Listado de pedidos
+- Ordenados por fecha (más recientes primero)
+- Por cada pedido:
+  - Número de pedido
+  - Fecha
+  - Estado (badge de color)
+  - Total
+  - Número de productos
+  - Botón "Ver detalle"
+
+#### 8.2 Estados del pedido
+| Estado | Descripción | Color |
+|--------|-------------|-------|
+| pending | Pendiente de confirmación | 🟡 Amarillo |
+| confirmed | Confirmado | 🔵 Azul |
+| preparing | En preparación | 🟠 Naranja |
+| shipped | Enviado | 🟣 Morado |
+| delivered | Entregado | 🟢 Verde |
+| cancelled | Cancelado | 🔴 Rojo |
+
+#### 8.3 Detalle de pedido
+- **Ruta:** `/orders/:id`
+- **Información:**
+  - Número y fecha del pedido
+  - Estado actual
+  - Productos con cantidades y precios
+  - Dirección de envío
+  - Método de pago
+  - Estado del pago
+  - Subtotal, envío y total
+  - **Seguimiento** (si enviado):
+    - Número de tracking
+    - Transportista
+    - URL de seguimiento
+    - Fecha estimada de entrega
+  - **Botón "Descargar factura"** (PDF)
+
+---
+
+### 9. Favoritos
+
+- **Ruta:** `/favorites`
+
+#### 9.1 Funcionalidades
+- Añadir producto a favoritos (desde catálogo o detalle)
+- Ver lista de favoritos
+- Eliminar de favoritos
+- Añadir favorito al carrito directamente
+- Ver disponibilidad de stock
+
+---
+
+### 10. Perfil de Usuario
+
+- **Ruta:** `/profile`
+
+#### 10.1 Pestaña: Información personal
+| Campo | Editable |
+|-------|----------|
+| Nombre | ✅ |
+| Apellidos | ✅ |
+| Email | ❌ (solo lectura) |
+| Teléfono | ✅ |
+
+#### 10.2 Pestaña: Dirección
+| Campo | Editable |
+|-------|----------|
+| Calle | ✅ |
+| Ciudad | ✅ |
+| Código postal | ✅ |
+| Provincia | ✅ |
+| País | ✅ |
+
+#### 10.3 Pestaña: Preferencias
+- Idioma preferido (ES, EN, FR, DE)
+
+#### 10.4 Pestaña: Notificaciones
+- Activar/desactivar notificaciones push
+- Solicitud de permiso al navegador
+- Estado de suscripción
+
+---
+
+### 11. Notificaciones Push (Cliente)
+
+| Evento | Notificación |
+|--------|--------------|
+| Pedido creado | 🎉 ¡Pedido realizado! Tu pedido #XXX ha sido recibido |
+| Pedido confirmado | ✅ Pedido confirmado |
+| En preparación | 👨‍🍳 Preparando tu pedido |
+| Enviado | 🚚 Pedido enviado - está en camino |
+| Entregado | 📦 Pedido entregado. ¡Disfrútalo! |
+| Cancelado | ❌ Pedido cancelado |
+| Pago recibido | 💰 Hemos recibido el pago de tu pedido |
+
+---
+
+## 👨‍🌾 Productor (Producer)
+
+### 1. Convertirse en Productor
+
+#### 1.1 Prerrequisito
+- Tener cuenta de usuario con rol "producer"
+- (El rol se asigna durante el registro o por un admin)
+
+#### 1.2 Setup de perfil de productor
+- **Ruta:** `/producer/setup`
+- **Campos requeridos:**
+
+| Campo | Descripción |
+|-------|-------------|
+| Nombre del negocio | Nombre comercial |
+| Descripción | Texto descriptivo (multiidioma) |
+| Logo | Imagen del negocio |
+| Ciudad | Ubicación |
+| Región/Provincia | Ubicación |
+| Certificaciones | Eco, Bio, Km0, etc. (múltiple) |
+
+- **Proceso:**
+  1. Productor completa formulario
+  2. Perfil creado con estado "pendiente"
+  3. Notificación enviada a administradores
+  4. Esperar aprobación
+
+---
+
+### 2. Panel de Productor (Dashboard)
+
+- **Ruta:** `/producer`
+- **Acceso:** Solo productores aprobados
+
+#### 2.1 Estadísticas
+| Métrica | Descripción |
+|---------|-------------|
+| Total productos | Todos los productos creados |
+| Productos activos | Productos disponibles para venta |
+| Total pedidos | Pedidos recibidos |
+| Pedidos completados | Pedidos entregados |
+| Pedidos pendientes | Pedidos en proceso |
+| Ingresos totales | Suma de ventas (pagadas) |
+| Valoración media | Rating de productos |
+| Total reseñas | Número de reseñas recibidas |
+
+#### 2.2 Pedidos recientes
+- Últimos 5 pedidos
+- Acceso rápido a gestión de pedidos
+
+---
+
+### 3. Gestión de Productos
+
+- **Ruta:** `/producer/products`
+
+#### 3.1 Listado de productos
+- Tabla con:
+  - Imagen miniatura
+  - Nombre
+  - Precio
+  - Stock
+  - Estado (activo/inactivo)
+  - Acciones (editar, eliminar)
+- Paginación
+- Búsqueda por nombre
+
+#### 3.2 Crear producto
+- **Ruta:** `/producer/products/new`
+
+| Campo | Tipo | Requerido | Descripción |
+|-------|------|-----------|-------------|
+| Nombre (ES) | Texto | ✅ | Nombre en español |
+| Nombre (EN) | Texto | ❌ | Nombre en inglés |
+| Nombre (FR) | Texto | ❌ | Nombre en francés |
+| Nombre (DE) | Texto | ❌ | Nombre en alemán |
+| Descripción (ES) | Textarea | ✅ | Descripción en español |
+| Descripción (EN) | Textarea | ❌ | Descripción en inglés |
+| Descripción (FR) | Textarea | ❌ | Descripción en francés |
+| Descripción (DE) | Textarea | ❌ | Descripción en alemán |
+| Precio | Número | ✅ | Precio en euros |
+| Unidad | Select | ✅ | kg, unidad, docena, litro, etc. |
+| Categoría | Select | ✅ | Verduras, frutas, lácteos, etc. |
+| Stock | Número | ✅ | Cantidad disponible |
+| Disponible | Toggle | ✅ | Activo para venta |
+| Imágenes | Upload | ✅ | Hasta 10 imágenes |
+
+#### 3.3 Subida de imágenes
+- **Funcionalidades:**
+  - Drag & drop
+  - Selección múltiple
+  - Preview antes de subir
+  - Reordenar arrastrando
+  - Eliminar imagen
+  - Primera imagen = imagen principal
+  - Máximo 20MB por imagen
+  - Formatos: JPG, PNG, WebP, GIF
+
+#### 3.4 Editar producto
+- **Ruta:** `/producer/products/:id/edit`
+- Mismos campos que crear
+- Carga datos existentes
+- Mantiene imágenes actuales
+
+#### 3.5 Eliminar producto
+- Confirmación antes de eliminar
+- Eliminación permanente
+
+---
+
+### 4. Gestión de Pedidos
+
+- **Ruta:** `/producer/orders`
+
+#### 4.1 Listado de pedidos
+- Solo pedidos que contienen productos del productor
+- Tabla con:
+  - Número de pedido
+  - Cliente
+  - Fecha
+  - Productos (del productor)
+  - Total (parcial del productor)
+  - Estado
+  - Acciones
+
+#### 4.2 Filtros
+- Por estado (todos, pendiente, confirmado, etc.)
+- Por fecha
+
+#### 4.3 Detalle de pedido
+- Información del cliente
+- Dirección de envío
+- Productos del productor en ese pedido
+- Estado actual
+
+#### 4.4 Actualizar estado
+| Estado | Acción disponible |
+|--------|-------------------|
+| pending | → confirmed |
+| confirmed | → preparing |
+| preparing | → shipped |
+| shipped | → delivered |
+
+#### 4.5 Información de envío
+Al marcar como "shipped":
+
+| Campo | Descripción |
+|-------|-------------|
+| Número de tracking | Código de seguimiento |
+| Transportista | Correos, SEUR, MRW, DHL, UPS, GLS, FedEx |
+| URL de seguimiento | Enlace directo al tracking |
+| Fecha estimada entrega | Fecha prevista |
+
+---
+
+### 5. Perfil de Productor
+
+- **Ruta:** `/producer/profile` (o editar desde dashboard)
+
+#### 5.1 Editar información
+- Nombre del negocio
+- Descripción (todos los idiomas)
+- Logo
+- Ubicación
+- Certificaciones
+
+---
+
+### 6. Exportación de Datos
+
+#### 6.1 Exportar productos
+- Formato: Excel (.xlsx)
+- Contenido:
+  - Nombre
+  - Descripción
+  - Precio
+  - Stock
+  - Categoría
+  - Estado
+
+#### 6.2 Exportar pedidos
+- Formato: Excel (.xlsx)
+- Contenido:
+  - Número de pedido
+  - Fecha
+  - Cliente
+  - Productos
+  - Total
+  - Estado
+
+---
+
+### 7. Notificaciones Push (Productor)
+
+| Evento | Notificación |
+|--------|--------------|
+| Nuevo pedido | 🛒 ¡Nuevo pedido! Has recibido un pedido con X producto(s) |
+| Cuenta aprobada | 🎉 ¡Cuenta aprobada! Ya puedes empezar a vender |
+| Cuenta rechazada | ❌ Solicitud rechazada. Contacta con soporte |
+
+---
+
+## 👑 Administrador (Admin)
+
+### 1. Dashboard
+
+- **Ruta:** `/admin`
+
+#### 1.1 Métricas globales
+| Métrica | Descripción |
+|---------|-------------|
+| Total usuarios | Todos los usuarios registrados |
+| Total productores | Productores aprobados |
+| Total productos | Productos en la plataforma |
+| Total pedidos | Todos los pedidos |
+| Ingresos totales | Suma de pedidos pagados |
+| Nuevos usuarios (mes) | Registros este mes |
+| Pedidos (mes) | Pedidos este mes |
+| Productores pendientes | Solicitudes por aprobar |
+
+---
+
+### 2. Gestión de Usuarios
+
+- **Ruta:** `/admin/users`
+
+#### 2.1 Listado de usuarios
+- Tabla con:
+  - Nombre completo
+  - Email
+  - Rol
+  - Fecha de registro
+  - Estado de verificación
+  - Acciones
+
+#### 2.2 Filtros
+- Por rol (customer, producer, admin)
+- Paginación
+
+#### 2.3 Acciones
+| Acción | Descripción |
+|--------|-------------|
+| Ver detalle | Información completa del usuario |
+| Eliminar | Borrar usuario (no admins) |
+
+---
+
+### 3. Gestión de Productores
+
+- **Ruta:** `/admin/producers`
+
+#### 3.1 Productores pendientes
+- Lista de solicitudes sin aprobar
+- Por cada solicitud:
+  - Nombre del negocio
+  - Datos del usuario
+  - Descripción
+  - Ubicación
+  - Certificaciones
+  - Fecha de solicitud
+
+#### 3.2 Acciones
+| Acción | Efecto |
+|--------|--------|
+| Aprobar | Productor activo, puede vender |
+| Rechazar | Solicitud eliminada, notificación al usuario |
+
+#### 3.3 Lista de productores aprobados
+- Todos los productores activos
+- Posibilidad de desactivar
+
+---
+
+### 4. Gestión de Productos
+
+- **Ruta:** `/admin/products`
+
+#### 4.1 Listado global
+- Todos los productos de la plataforma
+- Filtros por:
+  - Productor
+  - Categoría
+  - Estado
+
+#### 4.2 Moderación
+| Acción | Efecto |
+|--------|--------|
+| Ocultar | Producto no visible (isAvailable = false) |
+| Eliminar | Borrado permanente |
+
+---
+
+### 5. Gestión de Pedidos
+
+- **Ruta:** `/admin/orders`
+
+#### 5.1 Listado global
+- Todos los pedidos de la plataforma
+- Tabla con:
+  - Número de pedido
+  - Cliente
+  - Productor(es)
+  - Total
+  - Estado
+  - Estado de pago
+  - Fecha
+
+#### 5.2 Filtros
+- Por estado del pedido
+- Por estado de pago
+- Por fecha
+- Paginación
+
+#### 5.3 Acciones
+- Ver detalle completo
+- Actualizar estado
+- Actualizar estado de pago
+
+---
+
+### 6. Reportes y Exportación
+
+- **Ruta:** `/admin/reports`
+
+#### 6.1 Reporte de ventas
+**Filtros:**
+- Fecha inicio
+- Fecha fin
+
+**Contenido:**
+- Ingresos totales
+- Número de pedidos
+- Valor medio de pedido
+- Top 10 productos más vendidos
+
+**Exportación:**
+- 📄 PDF: Documento formateado
+- 📊 Excel: Datos tabulados
+
+#### 6.2 Reporte de productos
+- Listado completo de productos
+- Stock actual
+- Ventas por producto
+- **Exportar a Excel**
+
+#### 6.3 Reporte de usuarios
+- Listado de usuarios
+- Rol
+- Fecha de registro
+- Número de pedidos
+- **Exportar a Excel**
+
+---
+
+### 7. Notificaciones Push (Admin)
+
+| Evento | Notificación |
+|--------|--------------|
+| Nuevo productor | 👤 Nuevo productor pendiente: [Nombre] solicita aprobación |
+
+---
+
+## Funcionalidades Comunes
+
+### 1. Multiidioma
+
+#### Idiomas soportados
+| Código | Idioma |
+|--------|--------|
+| es | Español |
+| en | English |
+| fr | Français |
+| de | Deutsch |
+
+#### Cambio de idioma
+- Selector en navbar
+- Selector en perfil (idioma preferido)
+- Persistencia en localStorage
+
+#### Contenido traducido
+- Toda la interfaz (labels, botones, mensajes)
+- Nombres de productos
+- Descripciones de productos
+- Información de productores
+
+---
+
+### 2. Emails Automáticos
+
+| Email | Destinatario | Trigger |
+|-------|--------------|---------|
+| Verificación de cuenta | Usuario | Registro |
+| Recuperar contraseña | Usuario | Solicitud de reset |
+| Confirmación de pedido | Cliente | Pedido creado |
+| Nuevo pedido | Productor | Pedido con sus productos |
+| Cambio de estado | Cliente | Estado de pedido actualizado |
+| Mensaje de contacto | Admin | Formulario de contacto enviado |
+
+---
+
+### 3. Notificaciones Push
+
+#### Configuración
+1. Usuario activa notificaciones en perfil
+2. Navegador solicita permiso
+3. Service Worker registrado
+4. Suscripción guardada en servidor
+
+#### Funcionamiento
+- Notificaciones incluso con app cerrada
+- Clic en notificación abre la página relevante
+- Icono y badge personalizados
+
+---
+
+### 4. Página de Contacto
+
+- **Ruta:** `/contact`
+
+#### Formulario
+| Campo | Requerido |
+|-------|-----------|
+| Nombre | ✅ |
+| Email | ✅ |
+| Asunto | ✅ |
+| Mensaje | ✅ |
+
+#### Información de contacto
+- Dirección física
+- Teléfono
+- Horario de atención
+
+---
+
+### 5. Páginas Legales
+
+| Página | Ruta |
+|--------|------|
+| Términos y condiciones | `/terms` |
+| Política de privacidad | `/privacy` |
+
+---
+
+### 6. Banner de Cookies (GDPR)
+
+#### Tipos de cookies
+| Tipo | Obligatorio | Descripción |
+|------|-------------|-------------|
+| Esenciales | ✅ | Funcionamiento básico |
+| Analíticas | ❌ | Estadísticas de uso |
+| Marketing | ❌ | Publicidad personalizada |
+
+#### Opciones
+- Aceptar todas
+- Rechazar todas
+- Configurar preferencias
+- Guardar preferencias (localStorage)
+
+---
+
+### 7. Página 404
+
+- **Ruta:** `/*` (cualquier ruta no existente)
+- **Contenido:**
+  - Mensaje amigable
+  - Animación
+  - Botón "Ir al inicio"
+  - Botón "Ver productos"
+  - Enlaces sugeridos
+
+---
 
 ## API Endpoints
 
 ### Autenticación
-- `POST /api/auth/register` - Registro
-- `POST /api/auth/login` - Login
-- `GET /api/auth/me` - Usuario actual
+```
+POST   /api/auth/register          Registro
+POST   /api/auth/login             Login
+POST   /api/auth/logout            Logout
+GET    /api/auth/verify-email/:token  Verificar email
+POST   /api/auth/forgot-password   Solicitar reset
+POST   /api/auth/reset-password/:token  Restablecer contraseña
+GET    /api/auth/me                Obtener usuario actual
+```
 
 ### Productos
-- `GET /api/products` - Listar productos
-- `GET /api/products/:id` - Producto por ID
-- `POST /api/products` - Crear (productor)
-- `PUT /api/products/:id` - Actualizar
-- `DELETE /api/products/:id` - Eliminar
+```
+GET    /api/products               Listar productos
+GET    /api/products/:id           Detalle de producto
+POST   /api/products               Crear producto (producer)
+PUT    /api/products/:id           Actualizar producto (producer)
+DELETE /api/products/:id           Eliminar producto (producer)
+POST   /api/products/validate-stock  Validar stock del carrito
+```
 
-### Órdenes
-- `POST /api/orders` - Crear orden
-- `GET /api/orders` - Mis órdenes
-- `GET /api/orders/:id` - Orden por ID
-- `GET /api/orders/producer/orders` - Órdenes del productor
+### Productores
+```
+GET    /api/producers              Listar productores
+GET    /api/producers/:id          Detalle de productor
+POST   /api/producers              Crear perfil (producer)
+PUT    /api/producers/:id          Actualizar perfil (producer)
+GET    /api/producers/my/profile   Mi perfil de productor
+GET    /api/producers/:id/stats    Estadísticas (producer)
+```
 
-### Pagos
-- `POST /api/payments/create-payment-intent` - Crear intent Stripe
-- `POST /api/payments/webhook` - Webhook Stripe
-- `GET /api/payments/order/:orderId/status` - Estado del pago
+### Pedidos
+```
+GET    /api/orders                 Mis pedidos (customer)
+GET    /api/orders/:id             Detalle de pedido
+POST   /api/orders                 Crear pedido
+PUT    /api/orders/:id/status      Actualizar estado (producer/admin)
+GET    /api/orders/:id/invoice     Descargar factura PDF
+GET    /api/orders/producer/orders Pedidos del productor
+```
 
-### Búsqueda
-- `GET /api/search/products` - Búsqueda avanzada
-- `GET /api/search/suggestions` - Autocomplete
-- `GET /api/search/producers` - Buscar productores
+### Usuarios
+```
+GET    /api/users/profile          Mi perfil
+PUT    /api/users/profile          Actualizar perfil
+GET    /api/users/favorites        Mis favoritos
+POST   /api/users/favorites/:productId  Añadir favorito
+DELETE /api/users/favorites/:productId  Eliminar favorito
+```
 
-### Favoritos
-- `GET /api/favorites` - Mis favoritos
-- `POST /api/favorites/:productId` - Agregar
-- `DELETE /api/favorites/:productId` - Remover
+### Reseñas
+```
+GET    /api/reviews/product/:productId  Reseñas de producto
+POST   /api/reviews                Crear reseña
+PUT    /api/reviews/:id            Actualizar reseña
+DELETE /api/reviews/:id            Eliminar reseña
+```
+
+### Pagos (Stripe)
+```
+POST   /api/stripe/create-checkout-session  Crear sesión
+POST   /api/stripe/webhook         Webhook de Stripe
+GET    /api/stripe/verify-payment/:sessionId  Verificar pago
+```
+
+### Subida de archivos
+```
+POST   /api/upload/image           Subir imagen
+POST   /api/upload/images          Subir múltiples imágenes
+DELETE /api/upload/image/:publicId Eliminar imagen
+```
+
+### Push Notifications
+```
+GET    /api/push/vapid-public-key  Obtener clave pública
+POST   /api/push/subscribe         Suscribirse
+DELETE /api/push/unsubscribe       Desuscribirse
+GET    /api/push/status            Estado de suscripción
+POST   /api/push/test              Enviar notificación de prueba
+```
+
+### Contacto
+```
+POST   /api/contact                Enviar mensaje
+```
 
 ### Admin
-- `GET /api/admin/dashboard` - Estadísticas
-- `GET /api/admin/users` - Listar usuarios
-- `GET /api/admin/producers/pending` - Productores pendientes
-- `PUT /api/admin/producers/:id/approve` - Aprobar productor
-- `GET /api/admin/reports/sales` - Reporte de ventas
+```
+GET    /api/admin/dashboard        Estadísticas
+GET    /api/admin/users            Listar usuarios
+DELETE /api/admin/users/:id        Eliminar usuario
+GET    /api/admin/producers/pending  Productores pendientes
+PUT    /api/admin/producers/:id/approve  Aprobar productor
+PUT    /api/admin/producers/:id/reject   Rechazar productor
+GET    /api/admin/orders           Todos los pedidos
+PUT    /api/admin/products/:id/moderate  Moderar producto
+GET    /api/admin/reports/sales    Reporte de ventas
+```
 
-## Modelos de Datos
-
-### User
-- Email, password (hasheado)
-- Role: customer | producer | admin
-- Datos personales, dirección
-- Verificación de email
-- Lista de favoritos
-
-### Producer
-- Referencia a User
-- Nombre del negocio
-- Descripción multiidioma
-- Logo (Cloudinary)
-- Ubicación con coordenadas
-- Certificaciones
-- Rating y reviews
-- Estado de aprobación
-
-### Product
-- Referencia a Producer
-- Nombre y descripción multiidioma
-- Categoría, precio, unidad
-- Stock
-- Imágenes (Cloudinary)
-- Rating y reviews
-
-### Order
-- Número único
-- Cliente, items
-- Dirección de envío
-- Estado (pending, confirmed, preparing, shipped, delivered)
-- Integración Stripe
-- Estado de pago
-
-### Review
-- Usuario, producto, productor
-- Rating (1-5)
-- Comentario
-- Actualización automática de ratings
-
-### ShippingZone
-- Productor
-- Códigos postales, ciudades
-- Costo, pedido mínimo
-- Días estimados
-
-## Scripts Disponibles
-
-### Backend
-- `npm run dev` - Servidor con nodemon (hot reload)
-- `npm start` - Servidor en producción
-
-### Frontend
-- `npm run dev` - Aplicación en desarrollo
-- `npm run build` - Build para producción
-- `npm run preview` - Preview del build
-
-## Seguridad
-
-- ✅ Passwords hasheados con bcrypt
-- ✅ JWT tokens con expiración
-- ✅ Helmet.js para headers de seguridad
-- ✅ CORS configurado
-- ✅ Rate limiting
-- ✅ express-validator para validación
-- ✅ Protección de rutas por roles
-- ✅ Stripe webhook signature verification
-
-## Idiomas Soportados
-
-- 🇪🇸 Español (por defecto)
-- 🇬🇧 English
-- 🇫🇷 Français
-- 🇩🇪 Deutsch
-
-## Deploy
-
-### Backend
-Recomendado: Railway, Render o Heroku
-- Configurar variables de entorno
-- Conectar a MongoDB Atlas
-- Configurar Stripe webhooks
-
-### Frontend
-Recomendado: Vercel o Netlify
-- Build automático con Vite
-- Configurar variables de entorno
-- Apuntar a URL de API en producción
-
-## Mejoras Futuras
-
-1. Integración completa de Stripe Elements en frontend
-2. Panel de productor con dashboard de ventas
-3. Sistema de chat en tiempo real
-4. Notificaciones push
-5. Sistema de cupones y descuentos
-6. Exportación de reportes en PDF/Excel
-7. Aplicación móvil (React Native)
-
-## Licencia
-
-ISC
-
-## Autor
-
-Comemos Como Pensamos - 2026
+### Reportes
+```
+GET    /api/reports/sales/pdf      Ventas en PDF
+GET    /api/reports/sales/excel    Ventas en Excel
+GET    /api/reports/products/excel Productos en Excel
+GET    /api/reports/users/excel    Usuarios en Excel
+```
 
 ---
 
-## 🎉 ¡Proyecto 100% Funcional!
+## Estructura del Proyecto
 
-Este es un proyecto completo y listo para usar. Todos los endpoints de API funcionan, el frontend está conectado correctamente, y las funcionalidades principales están implementadas.
+```
+comemos-como-pensamos/
+├── client/                     # Frontend React
+│   ├── public/
+│   │   └── sw.js              # Service Worker
+│   ├── src/
+│   │   ├── components/        # Componentes reutilizables
+│   │   │   ├── common/        # Navbar, Footer, CookieBanner...
+│   │   │   └── reviews/       # ProductReviews
+│   │   ├── context/           # Context API
+│   │   │   ├── AuthContext.jsx
+│   │   │   ├── CartContext.jsx
+│   │   │   └── LanguageContext.jsx
+│   │   ├── i18n/              # Internacionalización
+│   │   │   └── locales/       # es.json, en.json, fr.json, de.json
+│   │   ├── pages/             # Páginas
+│   │   │   ├── admin/         # Panel de admin
+│   │   │   └── producer/      # Panel de productor
+│   │   ├── services/          # Servicios API
+│   │   └── App.jsx            # Componente principal
+│   └── package.json
+│
+├── server/                     # Backend Node.js
+│   ├── src/
+│   │   ├── config/            # Configuraciones
+│   │   │   ├── db.js          # MongoDB
+│   │   │   ├── cloudinary.js  # Cloudinary
+│   │   │   ├── email.js       # Nodemailer
+│   │   │   ├── stripe.js      # Stripe
+│   │   │   └── webpush.js     # Web Push
+│   │   ├── controllers/       # Controladores
+│   │   ├── middleware/        # Middlewares
+│   │   │   ├── auth.js        # Autenticación JWT
+│   │   │   └── upload.js      # Multer
+│   │   ├── models/            # Modelos Mongoose
+│   │   ├── routes/            # Rutas Express
+│   │   ├── services/          # Servicios
+│   │   │   ├── invoiceService.js
+│   │   │   ├── notificationService.js
+│   │   │   └── reportService.js
+│   │   ├── utils/             # Utilidades
+│   │   │   └── emailSender.js
+│   │   └── app.js             # App Express
+│   ├── .env                   # Variables de entorno
+│   └── package.json
+│
+├── FUNCIONALIDADES.md         # Documentación de funcionalidades
+└── README.md                  # Este archivo
+```
 
-Para comenzar, simplemente sigue las instrucciones de instalación y configuración arriba.
+---
+
+## Licencia
+
+Este proyecto es privado y confidencial.
+
+---
+
+*Documentación actualizada: Enero 2026*
