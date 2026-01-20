@@ -80,6 +80,26 @@ export const authorize = (...roles) => {
   };
 };
 
+// Middleware para requerir email verificado
+export const requireVerifiedEmail = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({
+      success: false,
+      message: 'No autorizado'
+    });
+  }
+
+  if (!req.user.isEmailVerified) {
+    return res.status(403).json({
+      success: false,
+      code: 'EMAIL_NOT_VERIFIED',
+      message: 'Debes verificar tu email antes de realizar esta acción. Revisa tu bandeja de entrada.'
+    });
+  }
+
+  next();
+};
+
 // Middleware opcional - no requiere token pero si existe lo decodifica
 export const optionalAuth = async (req, res, next) => {
   try {

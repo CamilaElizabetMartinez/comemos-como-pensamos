@@ -118,8 +118,15 @@ const CheckoutPage = () => {
       }
     } catch (error) {
       console.error('Error creating order:', error);
-      const errorMessage = error.response?.data?.message || t('checkout.error');
-      toast.error(errorMessage);
+      
+      if (error.response?.data?.code === 'EMAIL_NOT_VERIFIED') {
+        toast.error(t('checkout.emailNotVerified'), {
+          autoClose: 8000
+        });
+      } else {
+        const errorMessage = error.response?.data?.message || t('checkout.error');
+        toast.error(errorMessage);
+      }
     } finally {
       setLoading(false);
     }
@@ -141,10 +148,38 @@ const CheckoutPage = () => {
     );
   }
 
+  const handleResendVerification = async () => {
+    try {
+      await api.post('/email/send-verification');
+      toast.success(t('checkout.verificationEmailSent'));
+    } catch (error) {
+      toast.error(t('checkout.verificationEmailError'));
+    }
+  };
+
   return (
     <div className="checkout-page">
       <div className="container">
         <h1>{t('checkout.title')}</h1>
+        
+        {user && !user.isEmailVerified && (
+          <div className="email-verification-banner">
+            <div className="banner-content">
+              <span className="banner-icon">⚠️</span>
+              <div className="banner-text">
+                <strong>{t('checkout.emailNotVerifiedTitle')}</strong>
+                <p>{t('checkout.emailNotVerifiedDesc')}</p>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              className="btn btn-resend" 
+              onClick={handleResendVerification}
+            >
+              {t('checkout.resendVerification')}
+            </button>
+          </div>
+        )}
         
         <div className="checkout-content">
           <form onSubmit={handleSubmit} className="checkout-form">

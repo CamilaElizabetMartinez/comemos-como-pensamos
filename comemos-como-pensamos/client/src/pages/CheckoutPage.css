@@ -409,3 +409,69 @@
     width: calc(100% - 3rem);
   }
 }
+
+/* Email Verification Banner */
+.email-verification-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 1px solid #ff9800;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.email-verification-banner .banner-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.email-verification-banner .banner-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.email-verification-banner .banner-text strong {
+  display: block;
+  color: #e65100;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.email-verification-banner .banner-text p {
+  margin: 0;
+  color: #795548;
+  font-size: 0.9rem;
+}
+
+.email-verification-banner .btn-resend {
+  padding: 0.6rem 1rem;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.email-verification-banner .btn-resend:hover {
+  background: #f57c00;
+}
+
+@media (max-width: 640px) {
+  .email-verification-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .email-verification-banner .btn-resend {
+    width: 100%;
+  }
+}
