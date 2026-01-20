@@ -132,7 +132,13 @@
     "fixStockIssues": "Fix stock issues",
     "verifyingPayment": "Verifying payment...",
     "redirectingToStripe": "Redirecting to Stripe...",
-    "stripeError": "Error connecting to Stripe. Please try again."
+    "stripeError": "Error connecting to Stripe. Please try again.",
+    "emailNotVerified": "You must verify your email before making purchases. Check your inbox.",
+    "emailNotVerifiedTitle": "Email not verified",
+    "emailNotVerifiedDesc": "Verify your email to complete your purchase. We've sent a link to your email.",
+    "resendVerification": "Resend verification",
+    "verificationEmailSent": "Verification email sent. Check your inbox.",
+    "verificationEmailError": "Error sending email. Please try again later."
   },
   "orderConfirmation": {
     "title": "Order Placed!",
@@ -349,6 +355,8 @@
       "addProductDesc": "Create a new product for your store",
       "viewOrders": "View Orders",
       "viewOrdersDesc": "Manage customer orders",
+      "reports": "Reports",
+      "reportsDesc": "Download sales and product reports",
       "recentOrders": "Recent Orders",
       "viewAll": "View all",
       "noOrders": "No orders yet",
@@ -425,6 +433,16 @@
       "advanceToDelivered": "Mark as delivered",
       "cancel": "Cancel",
       "errorLoading": "Error loading orders"
+    },
+    "reports": {
+      "subtitle": "Download reports of your sales and products",
+      "mySales": "My Sales",
+      "mySalesDesc": "Orders received, revenue and best-selling products from your store.",
+      "myProducts": "My Products",
+      "myProductsDesc": "Catalog of your products with current stock and prices.",
+      "downloadExcel": "Download Excel",
+      "infoSales": "Sales report includes only orders for your products.",
+      "infoProducts": "Products report shows your complete catalog."
     }
   },
   "admin": {
@@ -443,6 +461,8 @@
       "manageProducersDesc": "Approve and supervise producers",
       "manageOrders": "Manage Orders",
       "manageOrdersDesc": "View and update all orders",
+      "reports": "Reports",
+      "reportsDesc": "Download PDF and Excel reports",
       "ordersOverview": "Orders Overview",
       "errorLoading": "Error loading dashboard data"
     },
@@ -505,6 +525,27 @@
       "statusError": "Error updating status",
       "errorLoading": "Error loading orders"
     }
+  },
+  "reports": {
+    "title": "Reports & Export",
+    "subtitle": "Download detailed reports from your platform",
+    "dateFilter": "Date filter",
+    "dateFilterHint": "Applies to sales reports. Leave empty to include all data.",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "clearDates": "Clear dates",
+    "salesReport": "Sales Report",
+    "salesDescription": "Revenue, orders, best-selling products and sales metrics.",
+    "productsReport": "Products Report",
+    "productsDescription": "Complete catalog with stock, prices and availability status.",
+    "usersReport": "Users Report",
+    "usersDescription": "List of registered users with roles and registration dates.",
+    "downloadSuccess": "Report downloaded successfully",
+    "downloadError": "Error downloading report",
+    "infoTitle": "About reports",
+    "infoSales": "Sales report includes paid orders, revenue by date, and best-selling products.",
+    "infoProducts": "Products report shows the complete catalog with current stock.",
+    "infoUsers": "Users report is only available for administrators."
   },
   "contact": {
     "title": "Contact",

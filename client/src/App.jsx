@@ -41,12 +41,14 @@ import ProducerDashboard from './pages/producer/ProducerDashboard';
 import ProducerProducts from './pages/producer/ProducerProducts';
 import ProducerProductForm from './pages/producer/ProducerProductForm';
 import ProducerOrders from './pages/producer/ProducerOrders';
+import ProducerReports from './pages/producer/ProducerReports';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminProducers from './pages/admin/AdminProducers';
 import AdminOrders from './pages/admin/AdminOrders';
+import AdminReports from './pages/admin/AdminReports';
 
 function App() {
   return (
@@ -86,12 +88,14 @@ function App() {
                   <Route path="/producer/products/new" element={<ProducerProductForm />} />
                   <Route path="/producer/products/edit/:id" element={<ProducerProductForm />} />
                   <Route path="/producer/orders" element={<ProducerOrders />} />
+                  <Route path="/producer/reports" element={<ProducerReports />} />
                   
                   {/* Admin Panel */}
                   <Route path="/admin" element={<AdminDashboard />} />
                   <Route path="/admin/users" element={<AdminUsers />} />
                   <Route path="/admin/producers" element={<AdminProducers />} />
                   <Route path="/admin/orders" element={<AdminOrders />} />
+                  <Route path="/admin/reports" element={<AdminReports />} />
                   
                   {/* 404 - Must be last */}
                   <Route path="*" element={<NotFoundPage />} />

@@ -132,7 +132,13 @@
     "fixStockIssues": "Resolver problemas de stock",
     "verifyingPayment": "Verificando pago...",
     "redirectingToStripe": "Redirigiendo a Stripe...",
-    "stripeError": "Error al conectar con Stripe. Intenta de nuevo."
+    "stripeError": "Error al conectar con Stripe. Intenta de nuevo.",
+    "emailNotVerified": "Debes verificar tu email antes de realizar compras. Revisa tu bandeja de entrada.",
+    "emailNotVerifiedTitle": "Email no verificado",
+    "emailNotVerifiedDesc": "Verifica tu email para poder completar tu compra. Hemos enviado un enlace a tu correo.",
+    "resendVerification": "Reenviar verificación",
+    "verificationEmailSent": "Email de verificación enviado. Revisa tu bandeja de entrada.",
+    "verificationEmailError": "Error al enviar el email. Intenta de nuevo más tarde."
   },
   "orderConfirmation": {
     "title": "¡Pedido Realizado!",
@@ -349,6 +355,8 @@
       "addProductDesc": "Crear un nuevo producto para tu tienda",
       "viewOrders": "Ver Pedidos",
       "viewOrdersDesc": "Gestionar pedidos de clientes",
+      "reports": "Reportes",
+      "reportsDesc": "Descargar informes de ventas y productos",
       "recentOrders": "Pedidos Recientes",
       "viewAll": "Ver todos",
       "noOrders": "Aún no tienes pedidos",
@@ -425,6 +433,16 @@
       "advanceToDelivered": "Marcar como entregado",
       "cancel": "Cancelar",
       "errorLoading": "Error al cargar pedidos"
+    },
+    "reports": {
+      "subtitle": "Descarga informes de tus ventas y productos",
+      "mySales": "Mis Ventas",
+      "mySalesDesc": "Pedidos recibidos, ingresos y productos más vendidos de tu tienda.",
+      "myProducts": "Mis Productos",
+      "myProductsDesc": "Catálogo de tus productos con stock y precios actuales.",
+      "downloadExcel": "Descargar Excel",
+      "infoSales": "El reporte de ventas incluye solo los pedidos de tus productos.",
+      "infoProducts": "El reporte de productos muestra tu catálogo completo."
     }
   },
   "admin": {
@@ -443,6 +461,8 @@
       "manageProducersDesc": "Aprobar y supervisar productores",
       "manageOrders": "Gestionar Pedidos",
       "manageOrdersDesc": "Ver y actualizar todos los pedidos",
+      "reports": "Reportes",
+      "reportsDesc": "Descargar informes en PDF y Excel",
       "ordersOverview": "Resumen de Pedidos",
       "errorLoading": "Error al cargar datos del panel"
     },
@@ -505,6 +525,27 @@
       "statusError": "Error al actualizar estado",
       "errorLoading": "Error al cargar pedidos"
     }
+  },
+  "reports": {
+    "title": "Reportes y Exportación",
+    "subtitle": "Descarga informes detallados de tu plataforma",
+    "dateFilter": "Filtro por fechas",
+    "dateFilterHint": "Aplica a reportes de ventas. Deja vacío para incluir todos los datos.",
+    "startDate": "Fecha inicio",
+    "endDate": "Fecha fin",
+    "clearDates": "Limpiar fechas",
+    "salesReport": "Reporte de Ventas",
+    "salesDescription": "Ingresos, pedidos, productos más vendidos y métricas de ventas.",
+    "productsReport": "Reporte de Productos",
+    "productsDescription": "Catálogo completo con stock, precios y estado de disponibilidad.",
+    "usersReport": "Reporte de Usuarios",
+    "usersDescription": "Lista de usuarios registrados con roles y fechas de registro.",
+    "downloadSuccess": "Reporte descargado correctamente",
+    "downloadError": "Error al descargar el reporte",
+    "infoTitle": "Información sobre los reportes",
+    "infoSales": "El reporte de ventas incluye pedidos pagados, ingresos por fecha y productos más vendidos.",
+    "infoProducts": "El reporte de productos muestra el catálogo completo con stock actual.",
+    "infoUsers": "El reporte de usuarios solo está disponible para administradores."
   },
   "contact": {
     "title": "Contacto",

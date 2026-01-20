@@ -7,7 +7,7 @@ import {
   getProducerOrders,
   downloadInvoice
 } from '../controllers/orderController.js';
-import { protect, authorize } from '../middleware/auth.js';
+import { protect, authorize, requireVerifiedEmail } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ const router = express.Router();
 router.use(protect);
 
 // Rutas de clientes
-router.post('/', createOrder);
+router.post('/', requireVerifiedEmail, createOrder);
 router.get('/', getMyOrders);
 
 // Rutas de productores (DEBEN ir ANTES de /:id)
