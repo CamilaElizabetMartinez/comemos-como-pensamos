@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
+import { ListSkeleton } from '../components/common/Skeleton';
 import './FavoritesPage.css';
 
 const FavoritesPage = () => {
@@ -59,7 +60,7 @@ const FavoritesPage = () => {
       <div className="favorites-page">
         <div className="favorites-container">
           <h1>{t('favorites.title')}</h1>
-          <div className="loading-spinner">{t('common.loading')}</div>
+          <ListSkeleton type="product" count={4} />
         </div>
       </div>
     );

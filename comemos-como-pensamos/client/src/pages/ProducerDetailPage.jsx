@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
+import { PageSpinner } from '../components/common/Spinner';
 import './ProducerDetailPage.css';
 
 const ProducerDetailPage = () => {
@@ -67,7 +68,7 @@ const ProducerDetailPage = () => {
     return (
       <div className="producer-detail-page">
         <div className="producer-detail-container">
-          <div className="loading-spinner">{t('common.loading')}</div>
+          <PageSpinner text={t('common.loading')} />
         </div>
       </div>
     );

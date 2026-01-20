@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { ButtonSpinner } from '../../components/common/Spinner';
 import './AdminReports.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -163,7 +164,7 @@ const AdminReports = () => {
                     disabled={loading[`${report.id}_pdf`]}
                   >
                     {loading[`${report.id}_pdf`] ? (
-                      <span className="loading-spinner">⏳</span>
+                      <><ButtonSpinner /> PDF</>
                     ) : (
                       <>📄 PDF</>
                     )}
@@ -176,7 +177,7 @@ const AdminReports = () => {
                     disabled={loading[`${report.id}_excel`]}
                   >
                     {loading[`${report.id}_excel`] ? (
-                      <span className="loading-spinner">⏳</span>
+                      <><ButtonSpinner /> Excel</>
                     ) : (
                       <>📊 Excel</>
                     )}

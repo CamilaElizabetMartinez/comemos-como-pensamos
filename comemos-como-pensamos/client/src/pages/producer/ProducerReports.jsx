@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { ButtonSpinner } from '../../components/common/Spinner';
 import './ProducerReports.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -138,7 +139,7 @@ const ProducerReports = () => {
                 disabled={loading['sales_pdf']}
               >
                 {loading['sales_pdf'] ? (
-                  <span className="loading-spinner">⏳</span>
+                  <><ButtonSpinner /> PDF</>
                 ) : (
                   <>📄 PDF</>
                 )}
@@ -149,7 +150,7 @@ const ProducerReports = () => {
                 disabled={loading['sales_excel']}
               >
                 {loading['sales_excel'] ? (
-                  <span className="loading-spinner">⏳</span>
+                  <><ButtonSpinner /> Excel</>
                 ) : (
                   <>📊 Excel</>
                 )}
@@ -171,7 +172,7 @@ const ProducerReports = () => {
                 disabled={loading['products_excel']}
               >
                 {loading['products_excel'] ? (
-                  <span className="loading-spinner">⏳</span>
+                  <><ButtonSpinner /> {t('producer.reports.downloadExcel')}</>
                 ) : (
                   <>📊 {t('producer.reports.downloadExcel')}</>
                 )}

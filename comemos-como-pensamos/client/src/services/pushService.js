@@ -1,7 +1,15 @@
 import api from './api';
 
 const isPushSupported = () => {
-  return 'serviceWorker' in navigator && 'PushManager' in window;
+  const supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+  console.log('Push support check:', {
+    serviceWorker: 'serviceWorker' in navigator,
+    PushManager: 'PushManager' in window,
+    Notification: 'Notification' in window,
+    isSecureContext: window.isSecureContext,
+    protocol: window.location.protocol
+  });
+  return supported;
 };
 
 const registerServiceWorker = async () => {
@@ -90,11 +98,30 @@ const unsubscribeFromPush = async () => {
 const getSubscriptionStatus = async () => {
   try {
     if (!isPushSupported()) {
+      console.log('Push not supported: serviceWorker or PushManager not available');
+      return { supported: false, subscribed: false, permission: 'unsupported' };
+    }
+
+    if (!('Notification' in window)) {
+      console.log('Notification API not available');
       return { supported: false, subscribed: false, permission: 'unsupported' };
     }
 
     const permission = Notification.permission;
-    const registration = await navigator.serviceWorker.ready;
+    
+    let registration = await navigator.serviceWorker.getRegistration('/sw.js');
+    
+    if (!registration) {
+      try {
+        registration = await navigator.serviceWorker.register('/sw.js');
+        console.log('Service Worker registered during status check');
+      } catch (swError) {
+        console.error('Could not register Service Worker:', swError);
+        return { supported: true, subscribed: false, permission };
+      }
+    }
+
+    await navigator.serviceWorker.ready;
     const subscription = await registration.pushManager.getSubscription();
 
     return {
@@ -103,6 +130,7 @@ const getSubscriptionStatus = async () => {
       permission
     };
   } catch (error) {
+    console.error('Error getting subscription status:', error);
     return { supported: false, subscribed: false, permission: 'error' };
   }
 };

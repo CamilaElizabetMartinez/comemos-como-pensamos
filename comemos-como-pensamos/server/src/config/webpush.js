@@ -8,7 +8,7 @@ const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY;
 
 if (vapidPublicKey && vapidPrivateKey) {
   webpush.setVapidDetails(
-    'mailto:info@comemoscomopensamos.es',
+    'mailto:4xur174@gmail.com',
     vapidPublicKey,
     vapidPrivateKey
   );

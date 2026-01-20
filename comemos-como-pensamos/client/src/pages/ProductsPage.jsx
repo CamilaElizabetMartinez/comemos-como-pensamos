@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
+import { ListSkeleton } from '../components/common/Skeleton';
 import './ProductsPage.css';
 
 const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'other'];
@@ -239,10 +240,7 @@ const ProductsPage = () => {
         </div>
 
         {loading ? (
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-            <p>{t('common.loading')}</p>
-          </div>
+          <ListSkeleton type="product" count={8} />
         ) : products.length === 0 ? (
           <div className="no-products">
             <span className="no-products-icon">🔍</span>
