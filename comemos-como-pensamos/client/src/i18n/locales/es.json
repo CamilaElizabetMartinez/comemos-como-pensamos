@@ -182,6 +182,13 @@
     "previous": "Anterior",
     "next": "Siguiente"
   },
+  "search": {
+    "products": "Productos",
+    "producers": "Productores",
+    "producer": "Productor",
+    "viewAllResults": "Ver todos los resultados",
+    "noResults": "No se encontraron resultados"
+  },
   "orders": {
     "title": "Mis Pedidos",
     "allOrders": "Todos los pedidos",
@@ -274,7 +281,9 @@
     "contact": "Contacto",
     "contactPerson": "Persona de contacto",
     "notFound": "Productor no encontrado",
-    "errorLoading": "Error al cargar información del productor"
+    "errorLoading": "Error al cargar información del productor",
+    "reviews": "Reseñas",
+    "andMoreReviews": "y {{count}} reseñas más..."
   },
   "reviews": {
     "title": "Opiniones de clientes",
@@ -348,7 +357,10 @@
       "totalProducts": "Productos totales",
       "activeProducts": "Productos activos",
       "pendingOrders": "Pedidos pendientes",
+      "completedOrders": "Pedidos completados",
       "totalRevenue": "Ingresos totales",
+      "rating": "Valoración",
+      "reviews": "reseñas",
       "manageProducts": "Gestionar Productos",
       "manageProductsDesc": "Ver, editar y organizar tu catálogo",
       "addProduct": "Añadir Producto",

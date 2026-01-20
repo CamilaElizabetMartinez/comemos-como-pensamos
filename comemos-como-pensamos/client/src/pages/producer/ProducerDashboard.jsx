@@ -11,8 +11,11 @@ const ProducerDashboard = () => {
     totalProducts: 0,
     activeProducts: 0,
     pendingOrders: 0,
+    completedOrders: 0,
     totalOrders: 0,
     totalRevenue: 0,
+    rating: 0,
+    totalReviews: 0,
     recentOrders: []
   });
   const [loading, setLoading] = useState(true);
@@ -44,32 +47,23 @@ const ProducerDashboard = () => {
 
       const producer = producerRes.data.data.producer;
       
-      const ordersRes = await api.get('/orders/producer/orders?limit=5');
+      const [ordersRes, statsRes] = await Promise.all([
+        api.get('/orders/producer/orders?limit=5'),
+        api.get(`/producers/${producer._id}/stats`)
+      ]);
+
       const orders = ordersRes.data.data?.orders || [];
-
-      // Obtener productos del productor
-      const productsRes = await api.get(`/products?producerId=${producer._id}`);
-      const products = productsRes.data.data.products;
-
-      // Calcular estadísticas
-      const totalRevenue = orders.reduce((sum, order) => {
-        const producerItems = order.items.filter(
-          item => item.producerId === producer._id || item.producerId?._id === producer._id
-        );
-        return sum + producerItems.reduce((itemSum, item) => 
-          itemSum + (item.priceAtPurchase * item.quantity), 0);
-      }, 0);
-
-      const pendingOrders = orders.filter(
-        o => ['pending', 'confirmed', 'preparing'].includes(o.status)
-      ).length;
+      const producerStats = statsRes.data.data?.stats || {};
 
       setStats({
-        totalProducts: products.length,
-        activeProducts: products.filter(p => p.isAvailable && p.stock > 0).length,
-        pendingOrders,
-        totalOrders: ordersRes.data.total,
-        totalRevenue,
+        totalProducts: producerStats.totalProducts || 0,
+        activeProducts: producerStats.activeProducts || 0,
+        pendingOrders: producerStats.pendingOrders || 0,
+        completedOrders: producerStats.completedOrders || 0,
+        totalOrders: producerStats.totalOrders || 0,
+        totalRevenue: parseFloat(producerStats.totalRevenue) || 0,
+        rating: producerStats.rating || 0,
+        totalReviews: producerStats.totalReviews || 0,
         recentOrders: orders
       });
     } catch (error) {
@@ -139,10 +133,24 @@ const ProducerDashboard = () => {
             </div>
           </div>
           <div className="stat-card">
+            <div className="stat-icon">✔️</div>
+            <div className="stat-info">
+              <span className="stat-value">{stats.completedOrders}</span>
+              <span className="stat-label">{t('producer.dashboard.completedOrders')}</span>
+            </div>
+          </div>
+          <div className="stat-card">
             <div className="stat-icon">💰</div>
             <div className="stat-info">
               <span className="stat-value">€{stats.totalRevenue.toFixed(2)}</span>
               <span className="stat-label">{t('producer.dashboard.totalRevenue')}</span>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon">⭐</div>
+            <div className="stat-info">
+              <span className="stat-value">{stats.rating > 0 ? stats.rating.toFixed(1) : '-'}</span>
+              <span className="stat-label">{t('producer.dashboard.rating')} ({stats.totalReviews} {t('producer.dashboard.reviews')})</span>
             </div>
           </div>
         </div>
