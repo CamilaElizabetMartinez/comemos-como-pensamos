@@ -79,3 +79,4 @@ self.addEventListener('notificationclose', (event) => {
   console.log('Notification closed');
 });
 
+

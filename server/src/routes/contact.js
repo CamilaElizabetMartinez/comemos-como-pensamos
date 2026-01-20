@@ -21,3 +21,4 @@ router.delete('/:id', protect, authorize('admin'), deleteContactMessage);
 
 export default router;
 
+
