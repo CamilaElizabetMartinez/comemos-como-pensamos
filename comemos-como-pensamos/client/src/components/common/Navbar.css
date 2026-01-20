@@ -16,10 +16,30 @@
   gap: 1rem;
 }
 
-.navbar-logo h2 {
-  margin: 0;
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-icon path {
+  stroke: white;
+}
+
+.logo-icon path[fill] {
+  fill: rgba(255, 255, 255, 0.15);
+}
+
+.logo-text {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .navbar-menu {
