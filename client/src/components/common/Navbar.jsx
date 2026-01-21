@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTranslation } from 'react-i18next';
-import logoSrc from '../../assets/logo.png';
+import logoSrc from '../../assets/logo-v2.svg';
 import './Navbar.css';
 
 const Navbar = () => {
