@@ -233,3 +233,4 @@ const truncateText = (text, maxLength) => {
 export default { generateInvoicePDF };
 
 
+
