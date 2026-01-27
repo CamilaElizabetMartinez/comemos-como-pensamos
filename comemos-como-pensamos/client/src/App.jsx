@@ -11,6 +11,7 @@ import './i18n/config';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import CookieBanner from './components/common/CookieBanner';
+import WhatsAppButton from './components/common/WhatsAppButton';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -51,6 +52,13 @@ import AdminProducers from './pages/admin/AdminProducers';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminReports from './pages/admin/AdminReports';
 import AdminContact from './pages/admin/AdminContact';
+import AdminLeads from './pages/admin/AdminLeads';
+import AdminCoupons from './pages/admin/AdminCoupons';
+import AdminBlog from './pages/admin/AdminBlog';
+import ProducerCalculator from './pages/ProducerCalculator';
+import JoinAsProducerPage from './pages/JoinAsProducerPage';
+import BlogPage from './pages/BlogPage';
+import ArticlePage from './pages/ArticlePage';
 
 function App() {
   return (
@@ -80,6 +88,10 @@ function App() {
                   <Route path="/producers" element={<ProducersPage />} />
                   <Route path="/producers/:id" element={<ProducerDetailPage />} />
                   <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/calculadora-productor" element={<ProducerCalculator />} />
+                  <Route path="/unete" element={<JoinAsProducerPage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/:slug" element={<ArticlePage />} />
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/privacy" element={<PrivacyPage />} />
                   
@@ -100,6 +112,9 @@ function App() {
                   <Route path="/admin/orders" element={<AdminOrders />} />
                   <Route path="/admin/reports" element={<AdminReports />} />
                   <Route path="/admin/contact" element={<AdminContact />} />
+                  <Route path="/admin/leads" element={<AdminLeads />} />
+                  <Route path="/admin/coupons" element={<AdminCoupons />} />
+                  <Route path="/admin/blog" element={<AdminBlog />} />
                   
                   {/* 404 - Must be last */}
                   <Route path="*" element={<NotFoundPage />} />
@@ -107,6 +122,7 @@ function App() {
               </main>
               <Footer />
               <CookieBanner />
+              <WhatsAppButton />
               <ToastContainer position="bottom-right" autoClose={3000} />
             </div>
           </LanguageProvider>
