@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
@@ -112,6 +113,9 @@ const AdminContact = () => {
 
   return (
     <div className="admin-contact-page">
+      <Link to="/admin" className="back-link">
+        {t('admin.backToDashboard')}
+      </Link>
       <div className="contact-header">
         <div className="header-title">
           <h1>📬 {t('admin.contact.title')}</h1>
@@ -302,6 +306,13 @@ const AdminContact = () => {
 };
 
 export default AdminContact;
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { ButtonSpinner } from '../../components/common/Spinner';
@@ -98,6 +99,9 @@ const AdminReports = () => {
   return (
     <div className="admin-reports">
       <div className="reports-container">
+        <Link to="/admin" className="back-link">
+          {t('admin.backToDashboard')}
+        </Link>
         <div className="reports-header">
           <h1>📊 {t('reports.title')}</h1>
           <p className="reports-subtitle">{t('reports.subtitle')}</p>
