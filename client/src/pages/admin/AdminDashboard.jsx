@@ -150,6 +150,21 @@ const AdminDashboard = () => {
             <span className="action-title">{t('admin.dashboard.contactMessages')}</span>
             <span className="action-desc">{t('admin.dashboard.contactMessagesDesc')}</span>
           </Link>
+          <Link to="/admin/leads" className="action-card">
+            <span className="action-icon">🎯</span>
+            <span className="action-title">{t('admin.dashboard.producerLeads')}</span>
+            <span className="action-desc">{t('admin.dashboard.producerLeadsDesc')}</span>
+          </Link>
+          <Link to="/admin/coupons" className="action-card">
+            <span className="action-icon">🎟️</span>
+            <span className="action-title">{t('admin.dashboard.coupons')}</span>
+            <span className="action-desc">{t('admin.dashboard.couponsDesc')}</span>
+          </Link>
+          <Link to="/admin/blog" className="action-card">
+            <span className="action-icon">📝</span>
+            <span className="action-title">{t('admin.dashboard.blog')}</span>
+            <span className="action-desc">{t('admin.dashboard.blogDesc')}</span>
+          </Link>
         </div>
 
         {stats.ordersByStatus && Object.keys(stats.ordersByStatus).length > 0 && (
