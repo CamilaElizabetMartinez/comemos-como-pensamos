@@ -96,7 +96,7 @@ const AdminUsers = () => {
         <header className="page-header">
           <div className="header-left">
             <Link to="/admin" className="back-link">
-              ← {t('admin.users.backToDashboard')}
+              {t('admin.users.backToDashboard')}
             </Link>
             <h1>{t('admin.users.title')}</h1>
           </div>
