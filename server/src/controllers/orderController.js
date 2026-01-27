@@ -2,6 +2,7 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import Producer from '../models/Producer.js';
 import User from '../models/User.js';
+import Coupon from '../models/Coupon.js';
 import { generateInvoicePDF } from '../services/invoiceService.js';
 import { sendOrderStatusUpdateEmail, sendOrderConfirmationEmail, sendNewOrderToProducerEmail, sendReviewRequestEmail } from '../utils/emailSender.js';
 import { notifyOrderConfirmation, notifyProducerNewOrder, notifyOrderStatusChange } from '../services/notificationService.js';
@@ -11,7 +12,7 @@ import { notifyOrderConfirmation, notifyProducerNewOrder, notifyOrderStatusChang
 // @access  Private
 export const createOrder = async (req, res) => {
   try {
-    const { items, shippingAddress, shippingCost, notes, paymentMethod } = req.body;
+    const { items, shippingAddress, shippingCost, notes, paymentMethod, couponCode } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({
@@ -27,9 +28,9 @@ export const createOrder = async (req, res) => {
       });
     }
 
-    // Validar y calcular subtotal
     let subtotal = 0;
     const orderItems = [];
+    const producerCommissionCache = {};
 
     for (const item of items) {
       const product = await Product.findById(item.productId);
@@ -48,6 +49,19 @@ export const createOrder = async (req, res) => {
         });
       }
 
+      const producerId = product.producerId.toString();
+      let commissionRate = 15;
+      
+      if (!producerCommissionCache[producerId]) {
+        const producer = await Producer.findById(product.producerId);
+        if (producer) {
+          commissionRate = producer.getCurrentCommissionRate();
+          producerCommissionCache[producerId] = commissionRate;
+        }
+      } else {
+        commissionRate = producerCommissionCache[producerId];
+      }
+
       const itemSubtotal = product.price * item.quantity;
       subtotal += itemSubtotal;
 
@@ -56,27 +70,57 @@ export const createOrder = async (req, res) => {
         producerId: product.producerId,
         quantity: item.quantity,
         priceAtPurchase: product.price,
-        productName: product.name.es
+        productName: product.name.es,
+        commissionRate
       });
     }
 
-    const total = subtotal + (shippingCost || 0);
+    let discount = 0;
+    let appliedCoupon = null;
+    let appliedCouponId = null;
 
-    // Determinar estado inicial según método de pago
+    if (couponCode) {
+      const coupon = await Coupon.findOne({ 
+        code: couponCode.toUpperCase().trim() 
+      });
+
+      if (coupon && coupon.isValid() && coupon.canBeUsedByUser(req.user._id)) {
+        if (coupon.isFirstOrderOnly) {
+          const previousOrders = await Order.countDocuments({ 
+            customerId: req.user._id,
+            status: { $ne: 'cancelled' }
+          });
+          
+          if (previousOrders === 0 && subtotal >= coupon.minOrderAmount) {
+            discount = coupon.calculateDiscount(subtotal);
+            appliedCoupon = coupon.code;
+            appliedCouponId = coupon._id;
+          }
+        } else if (subtotal >= coupon.minOrderAmount) {
+          discount = coupon.calculateDiscount(subtotal);
+          appliedCoupon = coupon.code;
+          appliedCouponId = coupon._id;
+        }
+      }
+    }
+
+    const total = subtotal + (shippingCost || 0) - discount;
+
     let initialStatus = 'pending';
     let initialPaymentStatus = 'pending';
 
-    // Para contra entrega, la orden se confirma directamente
     if (paymentMethod === 'cash_on_delivery') {
       initialStatus = 'confirmed';
     }
 
-    // Crear orden
     const order = await Order.create({
       customerId: req.user._id,
       items: orderItems,
       subtotal,
       shippingCost: shippingCost || 0,
+      discount,
+      couponCode: appliedCoupon,
+      couponId: appliedCouponId,
       total,
       shippingAddress,
       notes,
@@ -84,6 +128,19 @@ export const createOrder = async (req, res) => {
       status: initialStatus,
       paymentStatus: initialPaymentStatus
     });
+
+    if (appliedCouponId) {
+      await Coupon.findByIdAndUpdate(appliedCouponId, {
+        $inc: { usedCount: 1 },
+        $push: { 
+          usedBy: { 
+            userId: req.user._id, 
+            orderId: order._id, 
+            usedAt: new Date() 
+          } 
+        }
+      });
+    }
 
     // Para contra entrega, reducir stock inmediatamente
     if (paymentMethod === 'cash_on_delivery') {

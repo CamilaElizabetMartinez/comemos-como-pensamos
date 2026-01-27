@@ -122,7 +122,72 @@ export const getPendingProducers = async (req, res) => {
   }
 };
 
-// @desc    Aprobar productor
+// @desc    Update producer commission rate
+// @route   PUT /api/admin/producers/:id/commission
+// @access  Private (Admin only)
+export const updateProducerCommission = async (req, res) => {
+  try {
+    const { commissionRate, specialCommissionRate, specialCommissionUntil } = req.body;
+    
+    const producer = await Producer.findById(req.params.id);
+
+    if (!producer) {
+      return res.status(404).json({
+        success: false,
+        message: 'Productor no encontrado'
+      });
+    }
+
+    if (commissionRate !== undefined) {
+      if (commissionRate < 0 || commissionRate > 100) {
+        return res.status(400).json({
+          success: false,
+          message: 'La comisión debe estar entre 0 y 100'
+        });
+      }
+      producer.commissionRate = commissionRate;
+    }
+
+    if (specialCommissionRate !== undefined) {
+      if (specialCommissionRate < 0 || specialCommissionRate > 100) {
+        return res.status(400).json({
+          success: false,
+          message: 'La comisión especial debe estar entre 0 y 100'
+        });
+      }
+      producer.specialCommissionRate = specialCommissionRate;
+    }
+
+    if (specialCommissionUntil !== undefined) {
+      producer.specialCommissionUntil = specialCommissionUntil ? new Date(specialCommissionUntil) : null;
+    }
+
+    if (specialCommissionRate === null || specialCommissionRate === '') {
+      producer.specialCommissionRate = undefined;
+      producer.specialCommissionUntil = undefined;
+    }
+
+    await producer.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Comisión actualizada correctamente',
+      data: { 
+        producer,
+        currentCommissionRate: producer.getCurrentCommissionRate()
+      }
+    });
+  } catch (error) {
+    console.error('Error al actualizar comisión:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al actualizar comisión',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Approve producer
 // @route   PUT /api/admin/producers/:id/approve
 // @access  Private (Admin only)
 export const approveProducer = async (req, res) => {
@@ -138,9 +203,38 @@ export const approveProducer = async (req, res) => {
 
     producer.isApproved = true;
     producer.isVerified = true;
+
+    const REFERRAL_BONUS_COMMISSION = 10;
+    const REFERRAL_BONUS_DURATION_MONTHS = 3;
+
+    if (producer.referredBy && !producer.referralBonusApplied) {
+      const bonusEndDate = new Date();
+      bonusEndDate.setMonth(bonusEndDate.getMonth() + REFERRAL_BONUS_DURATION_MONTHS);
+
+      producer.referralBonusApplied = true;
+      producer.specialCommissionRate = REFERRAL_BONUS_COMMISSION;
+      producer.specialCommissionUntil = bonusEndDate;
+
+      const referrer = await Producer.findById(producer.referredBy);
+      if (referrer) {
+        referrer.referralCount += 1;
+        
+        if (!referrer.specialCommissionRate || 
+            !referrer.specialCommissionUntil || 
+            referrer.specialCommissionUntil < new Date()) {
+          referrer.specialCommissionRate = REFERRAL_BONUS_COMMISSION;
+          referrer.specialCommissionUntil = bonusEndDate;
+        } else {
+          referrer.specialCommissionUntil = new Date(
+            Math.max(referrer.specialCommissionUntil.getTime(), bonusEndDate.getTime())
+          );
+        }
+        await referrer.save();
+      }
+    }
+
     await producer.save();
 
-    // Notificación push al productor
     try {
       await notifyProducerApproval(producer, true);
     } catch (pushError) {
