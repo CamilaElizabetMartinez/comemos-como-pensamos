@@ -9,29 +9,29 @@
   margin: 0 auto;
 }
 
-.dashboard-header {
+.admin-dashboard .dashboard-header {
   margin-bottom: 2rem;
   color: white;
 }
 
-.dashboard-header h1 {
+.admin-dashboard .dashboard-header h1 {
   margin: 0 0 0.5rem 0;
   font-size: 2rem;
 }
 
-.dashboard-header .subtitle {
+.admin-dashboard .dashboard-header .subtitle {
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
 }
 
-.stats-grid {
+.admin-dashboard .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
-.stat-card {
+.admin-dashboard .stat-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 1.5rem;
@@ -44,17 +44,17 @@
   transition: transform 0.2s, background 0.2s;
 }
 
-.stat-card:hover {
+.admin-dashboard .stat-card:hover {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.15);
 }
 
-.stat-card.highlight {
+.admin-dashboard .stat-card.highlight {
   background: linear-gradient(135deg, #00c853, #00e676);
   border: none;
 }
 
-.stat-card.alert {
+.admin-dashboard .stat-card.alert {
   background: linear-gradient(135deg, #ff6d00, #ff9100);
   border: none;
   animation: pulse 2s infinite;
@@ -65,7 +65,7 @@
   50% { transform: scale(1.02); }
 }
 
-.stat-icon {
+.admin-dashboard .stat-icon {
   font-size: 2.5rem;
   width: 60px;
   height: 60px;
@@ -76,30 +76,30 @@
   border-radius: 12px;
 }
 
-.stat-info {
+.admin-dashboard .stat-info {
   display: flex;
   flex-direction: column;
 }
 
-.stat-value {
+.admin-dashboard .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
-.stat-label {
+.admin-dashboard .stat-label {
   font-size: 0.9rem;
   opacity: 0.85;
 }
 
-.dashboard-actions {
+.admin-dashboard .dashboard-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
-.action-card {
+.admin-dashboard .action-card {
   position: relative;
   background: rgba(255, 255, 255, 0.95);
   padding: 1.5rem;
@@ -113,27 +113,27 @@
   border: 2px solid transparent;
 }
 
-.action-card:hover {
+.admin-dashboard .action-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-color: #00c853;
 }
 
-.action-icon {
+.admin-dashboard .action-icon {
   font-size: 2rem;
 }
 
-.action-title {
+.admin-dashboard .action-title {
   font-size: 1.1rem;
   font-weight: 600;
 }
 
-.action-desc {
+.admin-dashboard .action-desc {
   font-size: 0.9rem;
   color: #666;
 }
 
-.action-badge {
+.admin-dashboard .action-badge {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -145,7 +145,7 @@
   border-radius: 20px;
 }
 
-.orders-overview {
+.admin-dashboard .orders-overview {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 1.5rem;
@@ -153,58 +153,58 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.orders-overview h2 {
+.admin-dashboard .orders-overview h2 {
   color: white;
   margin: 0 0 1.25rem 0;
   font-size: 1.25rem;
 }
 
-.status-grid {
+.admin-dashboard .status-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1rem;
 }
 
-.status-card {
+.admin-dashboard .status-card {
   padding: 1rem;
   border-radius: 12px;
   text-align: center;
   background: rgba(255, 255, 255, 0.1);
 }
 
-.status-count {
+.admin-dashboard .status-count {
   display: block;
   font-size: 1.75rem;
   font-weight: 700;
   color: white;
 }
 
-.status-name {
+.admin-dashboard .status-name {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.status-card.status-pending {
+.admin-dashboard .status-card.status-pending {
   background: linear-gradient(135deg, rgba(255, 152, 0, 0.3), rgba(255, 193, 7, 0.3));
 }
 
-.status-card.status-confirmed {
+.admin-dashboard .status-card.status-confirmed {
   background: linear-gradient(135deg, rgba(33, 150, 243, 0.3), rgba(3, 169, 244, 0.3));
 }
 
-.status-card.status-preparing {
+.admin-dashboard .status-card.status-preparing {
   background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(171, 71, 188, 0.3));
 }
 
-.status-card.status-shipped {
+.admin-dashboard .status-card.status-shipped {
   background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(129, 199, 132, 0.3));
 }
 
-.status-card.status-delivered {
+.admin-dashboard .status-card.status-delivered {
   background: linear-gradient(135deg, rgba(0, 200, 83, 0.3), rgba(105, 240, 174, 0.3));
 }
 
-.status-card.status-cancelled {
+.admin-dashboard .status-card.status-cancelled {
   background: linear-gradient(135deg, rgba(244, 67, 54, 0.3), rgba(229, 115, 115, 0.3));
 }
 
@@ -213,26 +213,26 @@
     padding: 1rem;
   }
 
-  .stats-grid {
+  .admin-dashboard .stats-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
-  .stat-card {
+  .admin-dashboard .stat-card {
     padding: 1rem;
   }
 
-  .stat-icon {
+  .admin-dashboard .stat-icon {
     font-size: 1.75rem;
     width: 48px;
     height: 48px;
   }
 
-  .stat-value {
+  .admin-dashboard .stat-value {
     font-size: 1.25rem;
   }
 
-  .dashboard-actions {
+  .admin-dashboard .dashboard-actions {
     grid-template-columns: 1fr;
   }
 }
