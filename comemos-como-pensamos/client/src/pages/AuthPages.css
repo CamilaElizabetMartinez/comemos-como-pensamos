@@ -182,3 +182,36 @@
 .verify-actions .btn {
   width: 100%;
 }
+
+/* Referral Banner */
+.referral-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  border: 2px dashed #2D5A3D;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.referral-banner-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.referral-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.referral-banner-text strong {
+  color: #1E3D2A;
+  font-size: 0.95rem;
+}
+
+.referral-banner-text span {
+  color: #2D5A3D;
+  font-size: 0.8rem;
+}

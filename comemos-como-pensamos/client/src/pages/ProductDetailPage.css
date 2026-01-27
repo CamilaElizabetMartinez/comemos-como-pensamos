@@ -258,6 +258,33 @@
   cursor: not-allowed;
 }
 
+.btn-whatsapp-inquiry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: transparent;
+  color: #25D366;
+  border: 2px solid #25D366;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-whatsapp-inquiry:hover {
+  background: #25D366;
+  color: white;
+}
+
+.btn-whatsapp-inquiry svg {
+  flex-shrink: 0;
+}
+
 .not-found {
   text-align: center;
   padding: 4rem 2rem;

@@ -92,8 +92,11 @@ const ProducersPage = () => {
               onChange={(event) => setCityFilter(event.target.value)}
               className="city-input"
             />
-            <button type="submit" className="btn btn-primary">
-              {t('common.search')}
+            <button type="submit" className="btn btn-primary search-btn" aria-label={t('common.search')}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
             </button>
           </div>
         </form>
@@ -115,50 +118,33 @@ const ProducersPage = () => {
                   to={`/producers/${producer._id}`}
                   className="producer-card"
                 >
-                  <div className="producer-logo">
-                    {producer.logo ? (
-                      <img src={producer.logo} alt={producer.businessName} />
-                    ) : (
-                      <div className="logo-placeholder">
-                        {producer.businessName?.charAt(0)}
-                      </div>
-                    )}
-                  </div>
-                  <div className="producer-info">
-                    <h3 className="producer-name">{producer.businessName}</h3>
-                    
-                    {producer.location && (
-                      <p className="producer-location">
-                        📍 {producer.location.city}, {producer.location.region}
-                      </p>
-                    )}
-
-                    <p className="producer-description">
-                      {getDescription(producer)}
-                    </p>
-
-                    <div className="producer-meta">
+                  <div className="producer-header">
+                    <div className="producer-logo">
+                      {producer.logo ? (
+                        <img src={producer.logo} alt={producer.businessName} />
+                      ) : (
+                        <div className="logo-placeholder">
+                          {producer.businessName?.charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div className="producer-info">
+                      {producer.location && (
+                        <p className="producer-location">
+                          {producer.location.city}, {producer.location.region}
+                        </p>
+                      )}
+                      <h3 className="producer-name">{producer.businessName}</h3>
                       <div className="producer-rating">
-                        {renderStars(producer.rating)}
-                        <span className="rating-value">
-                          {producer.rating?.toFixed(1) || '0.0'}
-                        </span>
-                        <span className="review-count">
-                          ({producer.totalReviews || 0})
-                        </span>
+                        <span className="rating-star">★</span>
+                        <span className="rating-value">{producer.rating?.toFixed(1) || '0.0'}</span>
+                        <span className="review-count">({producer.totalReviews || 0})</span>
                       </div>
                     </div>
-
-                    {producer.certifications && producer.certifications.length > 0 && (
-                      <div className="producer-certifications">
-                        {producer.certifications.slice(0, 3).map((cert, index) => (
-                          <span key={index} className="certification-badge">
-                            {cert}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
+                  <p className="producer-description">
+                    {getDescription(producer)}
+                  </p>
                 </Link>
               ))}
             </div>
@@ -192,4 +178,11 @@ const ProducersPage = () => {
 };
 
 export default ProducersPage;
+
+
+
+
+
+
+
 

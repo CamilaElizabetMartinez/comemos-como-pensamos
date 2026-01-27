@@ -5,6 +5,20 @@ import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import './OrderConfirmationPage.css';
 
+const COUNTRY_NAMES = {
+  ES: 'España',
+  PT: 'Portugal',
+  FR: 'Francia',
+  IT: 'Italia',
+  DE: 'Alemania',
+  BE: 'Bélgica',
+  NL: 'Países Bajos',
+  AT: 'Austria',
+  CH: 'Suiza'
+};
+
+const getCountryName = (code) => COUNTRY_NAMES[code] || code;
+
 const OrderConfirmationPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -85,16 +99,40 @@ const OrderConfirmationPage = () => {
       <div className="container">
         <div className="confirmation-card">
           <div className="success-header">
-            <span className="success-icon">✅</span>
+            <div className="success-checkmark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
             <h1>{t('orderConfirmation.title')}</h1>
             <p className="order-number">
               {t('orderConfirmation.orderNumber')}: <strong>{order.orderNumber}</strong>
             </p>
           </div>
 
+          <div className="order-summary-mini">
+            <h3>{t('checkout.orderSummary')}</h3>
+            <div className="summary-items">
+              {order.items?.map((item, index) => (
+                <div key={index} className="summary-item">
+                  <span>{item.productName} x{item.quantity}</span>
+                  <span>€{(item.priceAtPurchase * item.quantity).toFixed(2)}</span>
+                </div>
+              ))}
+              <div className="summary-item shipping">
+                <span>{t('cart.shipping')}</span>
+                <span>€{order.shippingCost?.toFixed(2)}</span>
+              </div>
+              <div className="summary-item total">
+                <span>{t('cart.total')}</span>
+                <span>€{order.total?.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+
           {paymentMethod === 'bank_transfer' && bankDetails && (
             <div className="payment-instructions bank-transfer">
-              <h2>🏦 {t('orderConfirmation.bankTransferTitle')}</h2>
+              <h2>{t('orderConfirmation.bankTransferTitle')}</h2>
               <p className="instructions-text">
                 {t('orderConfirmation.bankTransferInstructions')}
               </p>
@@ -127,7 +165,6 @@ const OrderConfirmationPage = () => {
               </div>
 
               <div className="important-notice">
-                <span className="notice-icon">⚠️</span>
                 <p>{t('orderConfirmation.includeReference')}</p>
               </div>
             </div>
@@ -135,18 +172,17 @@ const OrderConfirmationPage = () => {
 
           {paymentMethod === 'cash_on_delivery' && (
             <div className="payment-instructions cash-delivery">
-              <h2>💵 {t('orderConfirmation.cashOnDeliveryTitle')}</h2>
+              <h2>{t('orderConfirmation.cashOnDeliveryTitle')}</h2>
               <p className="instructions-text">
                 {t('orderConfirmation.cashOnDeliveryInstructions')}
               </p>
               
               <div className="amount-to-pay">
-                <span className="label">{t('orderConfirmation.amountToPay')}:</span>
+                <span className="label">{t('orderConfirmation.amountToPay')}</span>
                 <span className="value">€{order.total?.toFixed(2)}</span>
               </div>
 
               <div className="delivery-note">
-                <span className="note-icon">📦</span>
                 <p>{t('orderConfirmation.prepareExactAmount')}</p>
               </div>
             </div>
@@ -154,41 +190,21 @@ const OrderConfirmationPage = () => {
 
           {paymentMethod === 'card' && (
             <div className="payment-instructions card-payment">
-              <h2>💳 {t('orderConfirmation.cardPaymentTitle')}</h2>
+              <h2>{t('orderConfirmation.cardPaymentTitle')}</h2>
               <p className="instructions-text">
                 {t('orderConfirmation.cardPaymentSuccess')}
               </p>
             </div>
           )}
 
-          <div className="order-summary-mini">
-            <h3>{t('checkout.orderSummary')}</h3>
-            <div className="summary-items">
-              {order.items?.map((item, index) => (
-                <div key={index} className="summary-item">
-                  <span>{item.productName} x{item.quantity}</span>
-                  <span>€{(item.priceAtPurchase * item.quantity).toFixed(2)}</span>
-                </div>
-              ))}
-              <div className="summary-item shipping">
-                <span>{t('cart.shipping')}</span>
-                <span>€{order.shippingCost?.toFixed(2)}</span>
-              </div>
-              <div className="summary-item total">
-                <span>{t('cart.total')}</span>
-                <span>€{order.total?.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>
-
           <div className="shipping-info">
-            <h3>📍 {t('checkout.shippingAddress')}</h3>
+            <h3>{t('checkout.shippingAddress')}</h3>
             <p>
               {order.shippingAddress?.firstName} {order.shippingAddress?.lastName}<br />
               {order.shippingAddress?.street}<br />
               {order.shippingAddress?.postalCode} {order.shippingAddress?.city}<br />
-              {order.shippingAddress?.country}<br />
-              📞 {order.shippingAddress?.phone}
+              {getCountryName(order.shippingAddress?.country)}<br />
+              {order.shippingAddress?.phone}
             </p>
           </div>
 

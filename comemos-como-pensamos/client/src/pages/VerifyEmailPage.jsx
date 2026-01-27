@@ -13,7 +13,7 @@ const VerifyEmailPage = () => {
 
   const verifyEmail = useCallback(async () => {
     try {
-      const response = await api.get(`/auth/verify-email/${token}`);
+      const response = await api.get(`/email/verify/${token}`);
       if (response.data.success) {
         setStatus('success');
         setMessage(t('auth.emailVerified'));
