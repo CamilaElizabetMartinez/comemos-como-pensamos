@@ -106,7 +106,7 @@ const ProducerOrders = () => {
         <header className="page-header">
           <div className="header-left">
             <Link to="/producer" className="back-link">
-              ← {t('producer.orders.backToDashboard')}
+              {t('producer.orders.backToDashboard')}
             </Link>
             <h1>{t('producer.orders.title')}</h1>
           </div>
@@ -173,7 +173,9 @@ const ProducerOrders = () => {
                   </div>
 
                   <div className="order-customer">
-                    <span className="customer-icon">👤</span>
+                    <div className="customer-avatar">
+                      {order.customerId?.firstName?.charAt(0) || 'C'}
+                    </div>
                     <div className="customer-info">
                       <span className="customer-name">
                         {order.customerId?.firstName} {order.customerId?.lastName}
@@ -189,7 +191,11 @@ const ProducerOrders = () => {
                           {item.productId?.images?.[0] ? (
                             <img src={item.productId.images[0]} alt={item.productName} />
                           ) : (
-                            <span>📦</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                              <rect x="3" y="3" width="18" height="18" rx="2" />
+                              <circle cx="8.5" cy="8.5" r="1.5" />
+                              <path d="M21 15l-5-5L5 21" />
+                            </svg>
                           )}
                         </div>
                         <div className="item-details">
@@ -241,21 +247,76 @@ const ProducerOrders = () => {
             {totalPages > 1 && (
               <div className="pagination">
                 <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  onClick={() => setCurrentPage(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="btn btn-pagination"
+                  className="pagination-arrow"
+                  aria-label={t('common.previous')}
                 >
-                  {t('common.previous')}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
                 </button>
-                <span className="page-info">
-                  {currentPage} / {totalPages}
-                </span>
+                <div className="pagination-numbers">
+                  {(() => {
+                    const pages = [];
+                    const showEllipsisStart = currentPage > 3;
+                    const showEllipsisEnd = currentPage < totalPages - 2;
+                    
+                    pages.push(
+                      <button
+                        key={1}
+                        onClick={() => setCurrentPage(1)}
+                        className={`pagination-number ${currentPage === 1 ? 'active' : ''}`}
+                      >
+                        1
+                      </button>
+                    );
+                    
+                    if (showEllipsisStart) {
+                      pages.push(<span key="ellipsis-start" className="pagination-number ellipsis">...</span>);
+                    }
+                    
+                    for (let pageNumber = Math.max(2, currentPage - 1); pageNumber <= Math.min(totalPages - 1, currentPage + 1); pageNumber++) {
+                      if (pageNumber === 1 || pageNumber === totalPages) continue;
+                      pages.push(
+                        <button
+                          key={pageNumber}
+                          onClick={() => setCurrentPage(pageNumber)}
+                          className={`pagination-number ${currentPage === pageNumber ? 'active' : ''}`}
+                        >
+                          {pageNumber}
+                        </button>
+                      );
+                    }
+                    
+                    if (showEllipsisEnd) {
+                      pages.push(<span key="ellipsis-end" className="pagination-number ellipsis">...</span>);
+                    }
+                    
+                    if (totalPages > 1) {
+                      pages.push(
+                        <button
+                          key={totalPages}
+                          onClick={() => setCurrentPage(totalPages)}
+                          className={`pagination-number ${currentPage === totalPages ? 'active' : ''}`}
+                        >
+                          {totalPages}
+                        </button>
+                      );
+                    }
+                    
+                    return pages;
+                  })()}
+                </div>
                 <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="btn btn-pagination"
+                  className="pagination-arrow"
+                  aria-label={t('common.next')}
                 >
-                  {t('common.next')}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
                 </button>
               </div>
             )}

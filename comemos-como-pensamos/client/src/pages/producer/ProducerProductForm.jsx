@@ -152,7 +152,7 @@ const ProducerProductForm = () => {
       <div className="container">
         <header className="form-header">
           <Link to="/producer/products" className="back-link">
-            ← {t('producer.productForm.backToProducts')}
+            {t('producer.productForm.backToProducts')}
           </Link>
           <h1>
             {isEditing 
