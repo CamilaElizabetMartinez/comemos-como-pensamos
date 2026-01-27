@@ -1,4 +1,29 @@
 {
+  "home": {
+    "title": "WE EAT AS WE THINK",
+    "subtitle": "Connecting local producers with conscious consumers",
+    "exploreProducts": "Explore Products",
+    "meetProducers": "Meet the Producers",
+    "whyChooseUs": "Why choose us?",
+    "localProducts": "Local Products",
+    "localProductsDesc": "We support local producers and reduce the carbon footprint",
+    "qualityGuaranteed": "Quality Guaranteed",
+    "qualityGuaranteedDesc": "All our producers are verified and certified",
+    "fastShipping": "Fast Shipping",
+    "fastShippingDesc": "From the producer to your door as quickly as possible",
+    "sustainable": "Sustainable",
+    "sustainableDesc": "Sustainable and environmentally friendly practices",
+    "carousel": {
+      "slide1Title": "From Farm to Table",
+      "slide1Subtitle": "Fresh products directly from verified local producers",
+      "slide2Title": "Organic Fruits & Vegetables",
+      "slide2Subtitle": "Grown with love and respect for the environment",
+      "slide3Title": "Support Local Producers",
+      "slide3Subtitle": "Every purchase strengthens your community's economy",
+      "slide4Title": "Quality You Can Taste",
+      "slide4Subtitle": "Authentic flavor in every product we bring to your home"
+    }
+  },
   "nav": {
     "home": "Home",
     "products": "Products",
@@ -56,7 +81,9 @@
     "goToLogin": "Go to Login",
     "verificationError": "Verification Error",
     "verificationFailed": "Could not verify your email. The link may have expired.",
-    "resendVerification": "Resend verification"
+    "resendVerification": "Resend verification",
+    "referredBy": "Invited by {{name}}",
+    "referralBonusInfo": "You'll both get a reduced 10% commission for 3 months!"
   },
   "products": {
     "title": "Products",
@@ -138,7 +165,21 @@
     "emailNotVerifiedDesc": "Verify your email to complete your purchase. We've sent a link to your email.",
     "resendVerification": "Resend verification",
     "verificationEmailSent": "Verification email sent. Check your inbox.",
-    "verificationEmailError": "Error sending email. Please try again later."
+    "verificationEmailError": "Error sending email. Please try again later.",
+    "emailAlreadyVerified": "Your email is already verified! You can proceed with your purchase.",
+    "addressLine1": "Address",
+    "addressLine1Placeholder": "Street, number",
+    "addressLine2": "Address line 2 (optional)",
+    "addressLine2Placeholder": "Floor, door, building...",
+    "province": "Province / Region",
+    "selectProvince": "Select a province",
+    "phonePlaceholder": "+34 600 000 000",
+    "couponCode": "Discount code",
+    "couponPlaceholder": "Enter your code",
+    "applyCoupon": "Apply",
+    "couponApplied": "Coupon applied successfully",
+    "couponInvalid": "Invalid coupon",
+    "discount": "Discount"
   },
   "orderConfirmation": {
     "title": "Order Placed!",
@@ -165,9 +206,14 @@
     "dairy": "Dairy",
     "meat": "Meat",
     "bakery": "Bakery",
+    "eggs": "Eggs",
+    "honey": "Honey",
+    "oil": "Oil",
+    "wine": "Wine",
     "other": "Other"
   },
   "common": {
+    "backToHome": "Back to home",
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
@@ -338,6 +384,11 @@
       "regionPlaceholder": "Your region",
       "postalCode": "Postal Code",
       "postalCodePlaceholder": "12345",
+      "contactInfo": "Contact Information",
+      "contactInfoHint": "Add your WhatsApp so customers can contact you directly",
+      "whatsapp": "WhatsApp",
+      "whatsappPlaceholder": "+34 600 000 000",
+      "whatsappHint": "Include the country code. Customers will be able to contact you directly from your profile.",
       "certifications": "Certifications",
       "certificationsHint": "Select the certifications that apply to your products",
       "cert_organic": "Organic",
@@ -349,16 +400,49 @@
       "approvalNotice": "Your profile will be reviewed by an administrator before you can start selling. We'll notify you when it's approved.",
       "submit": "Create Producer Profile",
       "success": "Profile created successfully. Pending approval.",
-      "error": "Error creating profile"
+      "error": "Error creating profile",
+      "referralTitle": "Were you referred?",
+      "referralHint": "If another producer recommended you, enter their code so you both get benefits",
+      "referralCode": "Referral code",
+      "referralPlaceholder": "E.g.: FARM1234",
+      "validateCode": "Validate",
+      "referralValid": "Valid code! Referred by {{name}}",
+      "referralInvalid": "Invalid referral code",
+      "referredBy": "Referred by: {{name}}",
+      "referralBonus": "10% commission 3 months"
+    },
+    "referrals": {
+      "title": "Referral Program",
+      "yourCode": "Your referral code",
+      "copy": "Copy",
+      "codeCopied": "Code copied!",
+      "linkCopied": "Link copied!",
+      "shareHint": "Share this code with other producers and you'll both get a reduced 10% commission for 3 months",
+      "referredCount": "referred producers",
+      "bonusInfo": "10% commission per referral",
+      "yourReferrals": "Your referrals",
+      "statusApproved": "Active",
+      "statusPending": "Pending",
+      "shareWhatsApp": "WhatsApp",
+      "shareLink": "Copy link",
+      "shareTitle": "Join as a producer",
+      "shareText": "Register as a producer and we'll both get benefits!",
+      "whatsappMessage": "Hi! I invite you to join as a producer. If you register with my link, we'll both get a reduced 10% commission for 3 months:"
     },
     "dashboard": {
       "title": "Producer Dashboard",
+      "backToDashboard": "Back to dashboard",
       "welcome": "Welcome",
       "totalProducts": "Total products",
       "activeProducts": "Active products",
       "pendingOrders": "Pending orders",
       "completedOrders": "Completed orders",
+      "grossRevenue": "Gross sales",
+      "platformCommission": "Platform commission",
+      "netRevenue": "Net revenue",
       "totalRevenue": "Total revenue",
+      "specialCommissionActive": "Special commission active!",
+      "specialCommissionInfo": "You currently have a {{rate}}% commission until {{date}}",
       "rating": "Rating",
       "reviews": "reviews",
       "manageProducts": "Manage Products",
@@ -498,6 +582,7 @@
     }
   },
   "admin": {
+    "backToDashboard": "Back to dashboard",
     "dashboard": {
       "title": "Admin Panel",
       "subtitle": "Manage your local commerce platform",
@@ -517,8 +602,55 @@
       "reportsDesc": "Download PDF and Excel reports",
       "contactMessages": "Contact Messages",
       "contactMessagesDesc": "View and reply to contact form messages",
+      "producerLeads": "Producer CRM",
+      "producerLeadsDesc": "Manage leads and acquisition tracking",
+      "coupons": "Coupons",
+      "couponsDesc": "Create and manage discount codes",
+      "blog": "Blog",
+      "blogDesc": "Publish and manage articles",
       "ordersOverview": "Orders Overview",
       "errorLoading": "Error loading dashboard data"
+    },
+    "blog": {
+      "title": "Blog Management",
+      "newArticle": "New article",
+      "editArticle": "Edit article",
+      "all": "All",
+      "published": "Published",
+      "drafts": "Drafts",
+      "draft": "Draft",
+      "noArticles": "No articles yet",
+      "createFirst": "Create first article",
+      "titleColumn": "Title",
+      "category": "Category",
+      "status": "Status",
+      "date": "Date",
+      "views": "Views",
+      "actions": "Actions",
+      "titleLabel": "Title",
+      "slugLabel": "Slug (URL)",
+      "slugPlaceholder": "auto-generated",
+      "slugHint": "Auto-generated from title. You can edit it if needed.",
+      "excerptLabel": "Excerpt",
+      "contentLabel": "Content",
+      "contentPlaceholder": "Write the article content here...\n\n## Use headers with ##\n\n**Bold** and *italic*\n\n- Lists with dashes",
+      "markdownHint": "You can use basic formatting: **bold**, *italic*, ## headers, - lists",
+      "featuredImage": "Featured image",
+      "tagsLabel": "Tags",
+      "tagsPlaceholder": "tag1, tag2, tag3",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "articleCreated": "Article created successfully",
+      "articleUpdated": "Article updated successfully",
+      "articleDeleted": "Article deleted successfully",
+      "articlePublished": "Article published",
+      "articleUnpublished": "Article unpublished",
+      "confirmDelete": "Are you sure you want to delete this article?",
+      "requiredFields": "Title, excerpt and content are required (in Spanish)",
+      "errorLoading": "Error loading articles",
+      "errorSaving": "Error saving article",
+      "errorUpdating": "Error updating article",
+      "errorDeleting": "Error deleting article"
     },
     "users": {
       "title": "User Management",
@@ -560,7 +692,18 @@
       "products": "Products",
       "rating": "Rating",
       "viewProfile": "View profile",
-      "errorLoading": "Error loading producers"
+      "errorLoading": "Error loading producers",
+      "commission": "Commission",
+      "editCommission": "Edit commission",
+      "editCommissionTitle": "Configure Commission",
+      "standardCommission": "Standard commission",
+      "standardCommissionHint": "Default commission applied to this producer",
+      "specialOffer": "Special offer (optional)",
+      "specialCommission": "Promotional commission",
+      "specialCommissionUntil": "Valid until",
+      "specialCommissionHint": "Leave empty to not apply special commission",
+      "commissionUpdated": "Commission updated successfully",
+      "commissionError": "Error updating commission"
     },
     "orders": {
       "title": "Order Management",
@@ -619,6 +762,121 @@
       "productApproved": "Product approved",
       "productRejected": "Product rejected",
       "errorModeration": "Error moderating product"
+    },
+    "leads": {
+      "title": "Producer CRM",
+      "backToDashboard": "Back to dashboard",
+      "addLead": "New Lead",
+      "editLead": "Edit Lead",
+      "addFirst": "Add first lead",
+      "noLeads": "No leads registered",
+      "overdueAlert": "You have {{count}} overdue follow-ups",
+      "filterActive": "Active",
+      "filterAll": "All",
+      "statusNew": "New",
+      "statusContacted": "Contacted",
+      "statusInterested": "Interested",
+      "statusNegotiating": "Negotiating",
+      "statusRegistered": "Converted",
+      "statusLost": "Lost",
+      "status": "Status",
+      "name": "Name",
+      "namePlaceholder": "Contact name",
+      "nameRequired": "Name is required",
+      "businessName": "Business name",
+      "businessNamePlaceholder": "E.g.: Green Valley Farm",
+      "phone": "Phone",
+      "email": "Email",
+      "city": "City",
+      "cityPlaceholder": "E.g.: London",
+      "market": "Market/Stall",
+      "marketPlaceholder": "E.g.: Borough Market, Stall 23",
+      "source": "Source",
+      "sourceMarket": "Market",
+      "sourceReferral": "Referral",
+      "sourceEvent": "Event",
+      "sourceSocialmedia": "Social media",
+      "sourceWebsite": "Website",
+      "sourceAssociation": "Association",
+      "sourceOther": "Other",
+      "priority": "Priority",
+      "priorityLow": "Low",
+      "priorityMedium": "Medium",
+      "priorityHigh": "High",
+      "categories": "Product categories",
+      "nextFollowUp": "Next follow-up",
+      "estimatedVolume": "Estimated volume",
+      "volumePlaceholder": "E.g.: 50-100 kg/week",
+      "initialNote": "Initial note",
+      "notePlaceholder": "Information from first conversation...",
+      "notes": "Notes",
+      "addNote": "Add note",
+      "addNotePlaceholder": "Write a follow-up note...",
+      "contactInfo": "Contact information",
+      "location": "Location",
+      "lostReasonPrompt": "Reason for loss (optional):",
+      "created": "Lead created successfully",
+      "updated": "Lead updated successfully",
+      "deleted": "Lead deleted",
+      "statusUpdated": "Status updated",
+      "noteAdded": "Note added",
+      "confirmDelete": "Are you sure you want to delete this lead?",
+      "errorLoading": "Error loading leads",
+      "saveError": "Error saving lead",
+      "statusError": "Error changing status",
+      "noteError": "Error adding note",
+      "deleteError": "Error deleting lead"
+    },
+    "coupons": {
+      "title": "Coupon Management",
+      "backToDashboard": "Back to dashboard",
+      "addCoupon": "New Coupon",
+      "editCoupon": "Edit Coupon",
+      "noCoupons": "No coupons created",
+      "createFirst": "Create first coupon",
+      "filterAll": "All",
+      "filterActive": "Active",
+      "filterInactive": "Inactive",
+      "code": "Code",
+      "codeRequired": "Code is required",
+      "description": "Description",
+      "descriptionPlaceholder": "E.g.: Welcome discount for new customers",
+      "discountType": "Discount type",
+      "percentage": "Percentage",
+      "fixedAmount": "Fixed amount",
+      "discountValue": "Discount value",
+      "valueRequired": "Discount value must be greater than 0",
+      "minOrderAmount": "Minimum order",
+      "maxDiscount": "Maximum discount",
+      "noLimit": "No limit",
+      "validFrom": "Valid from",
+      "validUntilLabel": "Valid until",
+      "validUntil": "Valid until",
+      "maxUses": "Maximum uses",
+      "unlimited": "Unlimited",
+      "maxUsesPerUser": "Uses per user",
+      "isFirstOrderOnly": "First order only",
+      "firstOrderHint": "This coupon can only be used by customers making their first order",
+      "firstOrderOnly": "First order only",
+      "uses": "Uses",
+      "off": "off",
+      "minOrder": "Min",
+      "generate": "Generate",
+      "statusActive": "Active",
+      "statusInactive": "Inactive",
+      "statusExpired": "Expired",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "created": "Coupon created successfully",
+      "updated": "Coupon updated successfully",
+      "deleted": "Coupon deleted",
+      "activated": "Coupon activated",
+      "deactivated": "Coupon deactivated",
+      "confirmDelete": "Are you sure you want to delete this coupon?",
+      "errorLoading": "Error loading coupons",
+      "saveError": "Error saving coupon",
+      "toggleError": "Error changing coupon status",
+      "deleteError": "Error deleting coupon"
     }
   },
   "reports": {
@@ -720,11 +978,41 @@
   "footer": {
     "tagline": "Connecting local producers with conscious consumers across Europe",
     "explore": "Explore",
+    "blog": "Blog",
+    "forProducers": "For Producers",
+    "calculator": "Earnings Calculator",
+    "joinUs": "Join as Producer",
     "help": "Help",
     "contact": "Contact",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "rights": "All rights reserved"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Tips, recipes and stories from local producers",
+    "seo": {
+      "title": "Blog | Comemos Como Pensamos",
+      "description": "Discover local food tips, recipes with seasonal products and stories from our producers.",
+      "keywords": "local food blog, local product recipes, local producers, food sustainability"
+    },
+    "categories": {
+      "all": "All",
+      "recipes": "Recipes",
+      "tips": "Tips",
+      "producers": "Producers",
+      "sustainability": "Sustainability",
+      "news": "News",
+      "other": "Other"
+    },
+    "noArticles": "No articles published yet",
+    "readingTime": "{{minutes}} min read",
+    "backToBlog": "Back to blog",
+    "viewAllArticles": "View all articles",
+    "articleNotFound": "Article not found",
+    "articleNotFoundDesc": "The article you're looking for doesn't exist or has been removed.",
+    "tags": "Tags",
+    "share": "Share"
   },
   "legal": {
     "lastUpdated": "Last updated",
@@ -822,5 +1110,172 @@
         "content": "To exercise your rights or resolve privacy questions, contact our Data Protection Officer at privacy@comemoscomopensamos.es"
       }
     }
+  },
+  "calculator": {
+    "backToHome": "Back to home",
+    "title": "Producer Earnings Calculator",
+    "subtitle": "Discover how much you can earn selling your products on our platform",
+    "productInfo": "Product information",
+    "selectCategory": "Select main category",
+    "avgPrice": "Average price per unit",
+    "avgPriceHint": "The price you would sell each unit for",
+    "weeklyUnits": "Weekly units",
+    "weeklyUnitsHint": "Estimated sales per week",
+    "platformCommission": "Commission",
+    "commissionExplain": "We only charge when you sell. No fixed fees, no risks.",
+    "yourEarnings": "Your net earnings",
+    "monthly": "Monthly",
+    "weekly": "Weekly",
+    "yearly": "Yearly",
+    "grossRevenue": "Gross revenue",
+    "commission": "Platform commission",
+    "showComparison": "Compare with traditional market",
+    "hideComparison": "Hide comparison",
+    "vsTraditional": "Platform vs. Traditional Market",
+    "withPlatform": "With our platform",
+    "traditionalMarket": "Traditional market",
+    "noStallCost": "No stall cost",
+    "noTransport": "No transport expenses",
+    "sellFromHome": "Sell from your farm",
+    "reachMoreCustomers": "Reach more customers",
+    "stallRent": "Stall rental",
+    "transport": "Transport",
+    "timeValue": "Your time value",
+    "morePerMonth": "more per month",
+    "saveHours": "Save {{hours}} hours per month",
+    "readyToStart": "Ready to start selling?",
+    "ctaDescription": "Join our community of local producers and reach thousands of customers",
+    "registerNow": "Register now",
+    "contactUs": "Contact us"
+  },
+  "join": {
+    "seo": {
+      "title": "Join as Local Producer | Comemos Como Pensamos",
+      "description": "Sell your local products online without stall or transport costs. Join our community of producers and reach thousands of customers. 15% commission.",
+      "keywords": "sell local products, local producer, online market, sell fruits vegetables, farmer sell online, producer platform"
+    },
+    "hero": {
+      "badge": "For local producers",
+      "title": "Sell your products without leaving your farm",
+      "subtitle": "Join our community of local producers and reach thousands of customers without the costs and time of traditional markets.",
+      "cta": "Get started now",
+      "calculator": "Calculate my earnings"
+    },
+    "stats": {
+      "producers": "Producers",
+      "products": "Products",
+      "customers": "Customers"
+    },
+    "howItWorks": {
+      "title": "How does it work?",
+      "subtitle": "In just 3 steps you'll be selling your products",
+      "steps": {
+        "register": {
+          "title": "Register",
+          "description": "Create your producer account and complete your profile with your business information"
+        },
+        "approval": {
+          "title": "Approval",
+          "description": "Our team reviews your profile and welcomes you to the platform"
+        },
+        "sell": {
+          "title": "Start selling!",
+          "description": "Upload your products and start receiving orders from customers across the area"
+        }
+      }
+    },
+    "benefits": {
+      "title": "Benefits of joining",
+      "subtitle": "Everything you need to sell online, hassle-free",
+      "items": {
+        "noStallFees": {
+          "title": "No stall rental",
+          "description": "Forget about paying 50-150€ for a market stall. Here your shop is always open."
+        },
+        "noTransport": {
+          "title": "No transport costs",
+          "description": "No more trips to the market. Customers receive their orders and you stay on your farm."
+        },
+        "digitalPresence": {
+          "title": "Digital presence",
+          "description": "Your own producer profile with photos, description and all your products."
+        },
+        "securePayments": {
+          "title": "Secure payments",
+          "description": "Receive payments securely. We handle the entire process."
+        },
+        "orderManagement": {
+          "title": "Order management",
+          "description": "Simple panel to view and manage all your orders in one place."
+        },
+        "salesReports": {
+          "title": "Sales reports",
+          "description": "Access your sales statistics and download reports when you need them."
+        }
+      }
+    },
+    "comparison": {
+      "title": "Platform vs. Traditional market",
+      "subtitle": "Compare the costs and benefits of each option",
+      "platformTitle": "Our platform",
+      "traditionalTitle": "Traditional market",
+      "labels": {
+        "commission": "Commission",
+        "stallCost": "Stall cost",
+        "transport": "Transport",
+        "timeInvested": "Time invested",
+        "reach": "Customer reach"
+      },
+      "minimal": "Minimal",
+      "unlimited": "Unlimited",
+      "local": "Local",
+      "calculateEarnings": "Calculate my exact earnings"
+    },
+    "testimonials": {
+      "title": "What our producers say",
+      "subtitle": "Real stories from producers like you",
+      "quotes": {
+        "testimonial1": "Since I joined, I've tripled my sales without having to wake up early for the market. Now I have more time to tend my garden.",
+        "testimonial2": "The platform is very easy to use. I upload my products, receive orders and that's it. No complications.",
+        "testimonial3": "We reach customers we would never have reached in our village. It's been a total game changer for our business."
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Everything you need to know before getting started",
+      "items": {
+        "commission": {
+          "question": "How much commission does the platform charge?",
+          "answer": "The standard commission is 15% on each sale. If you come referred by another producer, you both enjoy a reduced 10% commission for the first 3 months."
+        },
+        "requirements": {
+          "question": "What requirements do I need to sell?",
+          "answer": "You need to be a local food producer, have your paperwork in order and be able to manage your product shipments. Our team will guide you through the registration process."
+        },
+        "payments": {
+          "question": "How and when do I receive my payments?",
+          "answer": "Payments are processed weekly. You receive your sales amount (minus commission) directly into your bank account."
+        },
+        "shipping": {
+          "question": "How does product shipping work?",
+          "answer": "You define your shipping zones and rates. When you receive an order, you prepare the package and ship or deliver it as you've configured."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Ready to start selling?",
+      "subtitle": "Join today and start reaching new customers tomorrow",
+      "register": "Create my account",
+      "contact": "I have questions, contact us",
+      "hint": "Registration is free. You only pay commission when you sell."
+    }
+  },
+  "whatsapp": {
+    "support": "Need help?",
+    "supportMessage": "Hi! I'd like to make an inquiry about Comemos Como Pensamos",
+    "contactProducer": "Contact via WhatsApp",
+    "askAboutProduct": "Ask via WhatsApp",
+    "producerMessage": "Hello {{businessName}}, I found your business on Comemos Como Pensamos and I'd like to ask you something.",
+    "productMessage": "Hello {{businessName}}, I'm interested in the product \"{{productName}}\" that I saw on Comemos Como Pensamos. Could you give me more information?"
   }
 }
