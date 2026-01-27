@@ -103,7 +103,7 @@ const ProducerProducts = () => {
         <header className="page-header">
           <div className="header-left">
             <Link to="/producer" className="back-link">
-              ← {t('producer.products.backToDashboard')}
+              {t('producer.products.backToDashboard')}
             </Link>
             <h1>{t('producer.products.title')}</h1>
           </div>

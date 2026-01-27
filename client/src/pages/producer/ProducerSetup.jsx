@@ -17,6 +17,8 @@ const CERTIFICATIONS_OPTIONS = [
 ];
 
 const ProducerSetup = () => {
+  const savedReferralCode = localStorage.getItem('referralCode') || '';
+  
   const [formData, setFormData] = useState({
     businessName: '',
     description: {
@@ -31,10 +33,14 @@ const ProducerSetup = () => {
       city: '',
       region: ''
     },
-    certifications: []
+    certifications: [],
+    whatsapp: '',
+    referralCode: savedReferralCode
   });
   const [loading, setLoading] = useState(false);
   const [checkingProfile, setCheckingProfile] = useState(true);
+  const [referralValidated, setReferralValidated] = useState(null);
+  const [validatingReferral, setValidatingReferral] = useState(false);
   const { user } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -51,6 +57,12 @@ const ProducerSetup = () => {
     }
     checkExistingProfile();
   }, [user, navigate]);
+
+  useEffect(() => {
+    if (savedReferralCode && !referralValidated) {
+      validateReferralCode();
+    }
+  }, [savedReferralCode]);
 
   const checkExistingProfile = async () => {
     try {
@@ -124,6 +136,30 @@ const ProducerSetup = () => {
     }
   }, []);
 
+  const handleReferralCodeChange = useCallback((event) => {
+    const code = event.target.value.toUpperCase();
+    setFormData(prevData => ({ ...prevData, referralCode: code }));
+    setReferralValidated(null);
+  }, []);
+
+  const validateReferralCode = useCallback(async () => {
+    if (!formData.referralCode.trim()) return;
+    
+    setValidatingReferral(true);
+    try {
+      const response = await api.get(`/referrals/validate/${formData.referralCode}`);
+      if (response.data.success) {
+        setReferralValidated(response.data.data.referrer);
+        toast.success(t('producer.setup.referralValid', { name: response.data.data.referrer.businessName }));
+      }
+    } catch (error) {
+      setReferralValidated(false);
+      toast.error(t('producer.setup.referralInvalid'));
+    } finally {
+      setValidatingReferral(false);
+    }
+  }, [formData.referralCode, t]);
+
   const validateForm = useCallback(() => {
     if (!formData.businessName.trim()) {
       toast.error(t('producer.setup.businessNameRequired'));
@@ -150,6 +186,7 @@ const ProducerSetup = () => {
       const response = await api.post('/producers', formData);
       
       if (response.data.success) {
+        localStorage.removeItem('referralCode');
         toast.success(t('producer.setup.success'));
         navigate('/producer');
       }
@@ -281,6 +318,27 @@ const ProducerSetup = () => {
             </section>
 
             <section className="form-section">
+              <h2>{t('producer.setup.contactInfo')}</h2>
+              <p className="section-hint">{t('producer.setup.contactInfoHint')}</p>
+              
+              <div className="form-group">
+                <label htmlFor="whatsapp">
+                  <span className="whatsapp-label-icon">📱</span>
+                  {t('producer.setup.whatsapp')}
+                </label>
+                <input
+                  type="tel"
+                  id="whatsapp"
+                  name="whatsapp"
+                  value={formData.whatsapp}
+                  onChange={handleInputChange}
+                  placeholder={t('producer.setup.whatsappPlaceholder')}
+                />
+                <p className="field-hint">{t('producer.setup.whatsappHint')}</p>
+              </div>
+            </section>
+
+            <section className="form-section">
               <h2>{t('producer.setup.certifications')}</h2>
               <p className="section-hint">{t('producer.setup.certificationsHint')}</p>
               
@@ -295,6 +353,41 @@ const ProducerSetup = () => {
                     {t(`producer.setup.cert_${certification}`)}
                   </button>
                 ))}
+              </div>
+            </section>
+
+            <section className="form-section referral-section">
+              <h2>{t('producer.setup.referralTitle')}</h2>
+              <p className="section-hint">{t('producer.setup.referralHint')}</p>
+              
+              <div className="form-group">
+                <label htmlFor="referralCode">{t('producer.setup.referralCode')}</label>
+                <div className="referral-input-wrapper">
+                  <input
+                    type="text"
+                    id="referralCode"
+                    name="referralCode"
+                    value={formData.referralCode}
+                    onChange={handleReferralCodeChange}
+                    placeholder={t('producer.setup.referralPlaceholder')}
+                    className={referralValidated === false ? 'invalid' : referralValidated ? 'valid' : ''}
+                  />
+                  <button
+                    type="button"
+                    className="btn-validate-referral"
+                    onClick={validateReferralCode}
+                    disabled={!formData.referralCode.trim() || validatingReferral}
+                  >
+                    {validatingReferral ? '...' : t('producer.setup.validateCode')}
+                  </button>
+                </div>
+                {referralValidated && (
+                  <div className="referral-success">
+                    <span className="referral-icon">✓</span>
+                    {t('producer.setup.referredBy', { name: referralValidated.businessName })}
+                    <span className="referral-bonus">{t('producer.setup.referralBonus')}</span>
+                  </div>
+                )}
               </div>
             </section>
 

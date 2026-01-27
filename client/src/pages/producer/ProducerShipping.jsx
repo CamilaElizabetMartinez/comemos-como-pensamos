@@ -118,16 +118,26 @@ const ProducerShipping = () => {
         <div className="shipping-header">
           <div>
             <Link to="/producer" className="back-link">
-              ← {t('producer.shipping.backToDashboard')}
+              {t('producer.shipping.backToDashboard')}
             </Link>
-            <h1>🚚 {t('producer.shipping.title')}</h1>
+            <h1>{t('producer.shipping.title')}</h1>
             <p className="subtitle">{t('producer.shipping.subtitle')}</p>
           </div>
           <button 
-            className="btn btn-primary"
+            className="btn-add-zone"
             onClick={() => setShowForm(!showForm)}
           >
-            {showForm ? t('common.cancel') : `+ ${t('producer.shipping.addZone')}`}
+            {showForm ? (
+              t('common.cancel')
+            ) : (
+              <>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                {t('producer.shipping.addZone')}
+              </>
+            )}
           </button>
         </div>
 
@@ -226,7 +236,14 @@ const ProducerShipping = () => {
             <ListSkeleton type="order" count={3} />
           ) : zones.length === 0 ? (
             <div className="no-zones">
-              <span className="no-zones-icon">📦</span>
+              <div className="no-zones-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="1" y="3" width="15" height="13" />
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                  <circle cx="5.5" cy="18.5" r="2.5" />
+                  <circle cx="18.5" cy="18.5" r="2.5" />
+                </svg>
+              </div>
               <p>{t('producer.shipping.noZones')}</p>
               <p className="no-zones-hint">{t('producer.shipping.noZonesHint')}</p>
             </div>
@@ -244,29 +261,29 @@ const ProducerShipping = () => {
                   <div className="zone-details">
                     {zone.postalCodes?.length > 0 && (
                       <div className="zone-detail">
-                        <span className="detail-label">📍 {t('producer.shipping.postalCodes')}:</span>
+                        <span className="detail-label">{t('producer.shipping.postalCodes')}</span>
                         <span className="detail-value">{zone.postalCodes.join(', ')}</span>
                       </div>
                     )}
                     {zone.cities?.length > 0 && (
                       <div className="zone-detail">
-                        <span className="detail-label">🏙️ {t('producer.shipping.cities')}:</span>
+                        <span className="detail-label">{t('producer.shipping.cities')}</span>
                         <span className="detail-value">{zone.cities.join(', ')}</span>
                       </div>
                     )}
                     <div className="zone-detail">
-                      <span className="detail-label">💰 {t('producer.shipping.cost')}:</span>
+                      <span className="detail-label">{t('producer.shipping.cost')}</span>
                       <span className="detail-value price">€{zone.cost.toFixed(2)}</span>
                     </div>
                     {zone.minimumOrder > 0 && (
                       <div className="zone-detail">
-                        <span className="detail-label">🛒 {t('producer.shipping.minimumOrder')}:</span>
+                        <span className="detail-label">{t('producer.shipping.minimumOrder')}</span>
                         <span className="detail-value">€{zone.minimumOrder.toFixed(2)}</span>
                       </div>
                     )}
                     {zone.estimatedDays && (
                       <div className="zone-detail">
-                        <span className="detail-label">📅 {t('producer.shipping.estimatedDays')}:</span>
+                        <span className="detail-label">{t('producer.shipping.estimatedDays')}</span>
                         <span className="detail-value">{zone.estimatedDays}</span>
                       </div>
                     )}
@@ -274,22 +291,22 @@ const ProducerShipping = () => {
 
                   <div className="zone-actions">
                     <button 
-                      className="btn btn-sm btn-secondary"
+                      className="btn-sm btn-secondary"
                       onClick={() => handleToggleActive(zone)}
                     >
                       {zone.isActive ? t('producer.shipping.disable') : t('producer.shipping.enable')}
                     </button>
                     <button 
-                      className="btn btn-sm btn-secondary"
+                      className="btn-sm btn-secondary"
                       onClick={() => handleEdit(zone)}
                     >
-                      ✏️ {t('common.edit')}
+                      {t('common.edit')}
                     </button>
                     <button 
-                      className="btn btn-sm btn-danger"
+                      className="btn-sm btn-danger"
                       onClick={() => handleDelete(zone._id)}
                     >
-                      🗑️
+                      {t('common.delete')}
                     </button>
                   </div>
                 </div>
@@ -303,6 +320,7 @@ const ProducerShipping = () => {
 };
 
 export default ProducerShipping;
+
 
 
 
