@@ -23,6 +23,12 @@ const orderItemSchema = new mongoose.Schema({
   productName: {
     type: String,
     required: true
+  },
+  commissionRate: {
+    type: Number,
+    default: 15,
+    min: 0,
+    max: 100
   }
 });
 
@@ -47,6 +53,18 @@ const orderSchema = new mongoose.Schema({
     required: true,
     min: 0,
     default: 0
+  },
+  discount: {
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  couponCode: {
+    type: String
+  },
+  couponId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Coupon'
   },
   total: {
     type: Number,

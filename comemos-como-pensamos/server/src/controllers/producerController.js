@@ -106,10 +106,10 @@ export const createProducer = async (req, res) => {
       description,
       logo,
       location,
-      certifications
+      certifications,
+      referralCode
     } = req.body;
 
-    // Verificar que el usuario tiene rol de productor
     if (req.user.role !== 'producer' && req.user.role !== 'admin') {
       return res.status(403).json({
         success: false,
@@ -117,7 +117,6 @@ export const createProducer = async (req, res) => {
       });
     }
 
-    // Verificar que no existe ya un perfil de productor para este usuario
     const existingProducer = await Producer.findOne({ userId: req.user._id });
 
     if (existingProducer) {
@@ -127,18 +126,29 @@ export const createProducer = async (req, res) => {
       });
     }
 
-    // Crear productor
-    const producer = await Producer.create({
+    const producerData = {
       userId: req.user._id,
       businessName,
       description,
       logo,
       location,
       certifications: certifications || [],
-      isApproved: false // Requiere aprobación del admin
-    });
+      isApproved: false
+    };
 
-    // Notificar a administradores
+    if (referralCode) {
+      const referrer = await Producer.findOne({ 
+        referralCode: referralCode.toUpperCase(),
+        isApproved: true
+      });
+      
+      if (referrer) {
+        producerData.referredBy = referrer._id;
+      }
+    }
+
+    const producer = await Producer.create(producerData);
+
     try {
       await notifyAdminNewProducer(producer);
     } catch (pushError) {
@@ -214,7 +224,7 @@ export const updateProducer = async (req, res) => {
   }
 };
 
-// @desc    Obtener estadísticas del productor
+// @desc    Get producer statistics
 // @route   GET /api/producers/:id/stats
 // @access  Private (Owner or Admin)
 export const getProducerStats = async (req, res) => {
@@ -228,7 +238,6 @@ export const getProducerStats = async (req, res) => {
       });
     }
 
-    // Verificar permisos
     if (producer.userId.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
       return res.status(403).json({
         success: false,
@@ -236,11 +245,9 @@ export const getProducerStats = async (req, res) => {
       });
     }
 
-    // Obtener estadísticas
     const totalProducts = await Product.countDocuments({ producerId: producer._id });
     const activeProducts = await Product.countDocuments({ producerId: producer._id, isAvailable: true });
 
-    // Obtener órdenes
     const orders = await Order.find({ 'items.producerId': producer._id });
     const totalOrders = orders.length;
 
@@ -249,17 +256,26 @@ export const getProducerStats = async (req, res) => {
       ['pending', 'confirmed', 'preparing', 'shipped'].includes(order.status)
     ).length;
 
-    // Calcular ingresos totales
-    let totalRevenue = 0;
+    let grossRevenue = 0;
+    let totalCommission = 0;
+
     orders.forEach(order => {
       if (order.paymentStatus === 'paid') {
         order.items.forEach(item => {
           if (item.producerId.toString() === producer._id.toString()) {
-            totalRevenue += item.priceAtPurchase * item.quantity;
+            const itemTotal = item.priceAtPurchase * item.quantity;
+            const itemCommissionRate = item.commissionRate !== undefined ? item.commissionRate : 15;
+            const itemCommission = itemTotal * (itemCommissionRate / 100);
+            
+            grossRevenue += itemTotal;
+            totalCommission += itemCommission;
           }
         });
       }
     });
+
+    const netRevenue = grossRevenue - totalCommission;
+    const currentCommissionRate = producer.getCurrentCommissionRate();
 
     res.status(200).json({
       success: true,
@@ -270,7 +286,14 @@ export const getProducerStats = async (req, res) => {
           totalOrders,
           completedOrders,
           pendingOrders,
-          totalRevenue: totalRevenue.toFixed(2),
+          grossRevenue: grossRevenue.toFixed(2),
+          totalCommission: totalCommission.toFixed(2),
+          netRevenue: netRevenue.toFixed(2),
+          totalRevenue: netRevenue.toFixed(2),
+          currentCommissionRate,
+          commissionRate: producer.commissionRate,
+          specialCommissionRate: producer.specialCommissionRate,
+          specialCommissionUntil: producer.specialCommissionUntil,
           rating: producer.rating,
           totalReviews: producer.totalReviews
         }

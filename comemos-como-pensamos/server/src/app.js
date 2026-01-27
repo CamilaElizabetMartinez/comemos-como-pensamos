@@ -77,6 +77,10 @@ import stripeRoutes from './routes/stripe.js';
 import contactRoutes from './routes/contact.js';
 import reportRoutes from './routes/reports.js';
 import pushRoutes from './routes/push.js';
+import leadRoutes from './routes/leads.js';
+import couponRoutes from './routes/coupons.js';
+import referralRoutes from './routes/referrals.js';
+import articleRoutes from './routes/articles.js';
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
@@ -95,6 +99,10 @@ app.use('/api/stripe', stripeRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/push', pushRoutes);
+app.use('/api/leads', leadRoutes);
+app.use('/api/coupons', couponRoutes);
+app.use('/api/referrals', referralRoutes);
+app.use('/api/articles', articleRoutes);
 
 // Manejador de errores 404
 app.use((req, res, next) => {
