@@ -68,6 +68,21 @@ export const ProducerCardSkeleton = () => (
   </div>
 );
 
+export const ArticleCardSkeleton = () => (
+  <div className="skeleton-article-card">
+    <Skeleton variant="rectangular" height="160px" className="skeleton-image" />
+    <div className="skeleton-article-body">
+      <Skeleton variant="text" width="80%" height="1.1rem" />
+      <Skeleton variant="text" width="100%" height="0.85rem" />
+      <Skeleton variant="text" width="60%" height="0.85rem" />
+      <div className="skeleton-article-meta">
+        <Skeleton variant="text" width="80px" height="0.75rem" />
+        <Skeleton variant="text" width="60px" height="0.75rem" />
+      </div>
+    </div>
+  </div>
+);
+
 export const ListSkeleton = ({ type = 'order', count = 3 }) => {
   const getSkeletonComponent = () => {
     switch (type) {
@@ -75,6 +90,8 @@ export const ListSkeleton = ({ type = 'order', count = 3 }) => {
         return OrderCardSkeleton;
       case 'producer':
         return ProducerCardSkeleton;
+      case 'article':
+        return ArticleCardSkeleton;
       default:
         return ProductCardSkeleton;
     }

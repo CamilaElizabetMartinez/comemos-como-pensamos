@@ -147,7 +147,6 @@ const SearchAutocomplete = ({
           className="search-autocomplete-input"
           autoComplete="off"
         />
-        {loading && <span className="search-loading">⏳</span>}
         <button 
           type="submit" 
           className="search-autocomplete-btn"
@@ -156,7 +155,10 @@ const SearchAutocomplete = ({
             onSubmit?.(e);
           }}
         >
-          🔍
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
         </button>
       </div>
 
@@ -239,6 +241,7 @@ const SearchAutocomplete = ({
 };
 
 export default SearchAutocomplete;
+
 
 
 
