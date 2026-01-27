@@ -125,6 +125,24 @@
   border-top: 1px solid #f0f0f0;
 }
 
+/* Article Card Skeleton */
+.skeleton-article-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.skeleton-article-body {
+  padding: 1rem;
+}
+
+.skeleton-article-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
 /* List containers */
 .skeleton-list {
   display: flex;
@@ -142,6 +160,24 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+}
+
+.skeleton-list-article {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .skeleton-list-article {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-list-article {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Responsive */
