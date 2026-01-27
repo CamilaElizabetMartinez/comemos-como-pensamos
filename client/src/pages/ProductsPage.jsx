@@ -156,7 +156,10 @@ const ProductsPage = () => {
             className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
             onClick={() => setShowFilters(!showFilters)}
           >
-            🎛️ {t('common.filter')}
+            <svg className="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
+            {t('common.filter')}
             {activeFiltersCount > 0 && (
               <span className="filter-badge">{activeFiltersCount}</span>
             )}
@@ -242,7 +245,6 @@ const ProductsPage = () => {
           <ListSkeleton type="product" count={8} />
         ) : products.length === 0 ? (
           <div className="no-products">
-            <span className="no-products-icon">🔍</span>
             <h2>{t('products.noProducts')}</h2>
             <p>{t('products.noProductsDesc')}</p>
             {activeFiltersCount > 0 && (
@@ -264,7 +266,7 @@ const ProductsPage = () => {
                     {product.images?.[0] ? (
                       <img src={product.images[0]} alt={product.name?.[currentLang] || product.name?.es} />
                     ) : (
-                      <div className="no-image">📦</div>
+                      <div className="no-image"></div>
                     )}
                     {!product.isAvailable && (
                       <div className="out-of-stock-badge">{t('products.outOfStock')}</div>
@@ -292,7 +294,11 @@ const ProductsPage = () => {
                           className="add-to-cart-btn"
                           title={t('products.addToCart')}
                         >
-                          🛒
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="20" cy="21" r="1" />
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                          </svg>
                         </button>
                       )}
                     </div>

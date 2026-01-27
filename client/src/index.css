@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/d-din');
 
 * {
   margin: 0;
@@ -7,24 +8,78 @@
 }
 
 :root {
-  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography */
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'D-DIN', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Colors - Primary (Warm Green Palette) */
+  --color-primary: #2D5A3D;
+  --color-primary-dark: #1E3D2A;
+  --color-primary-light: #8AAB7F;
+  --color-primary-hover: #3A6B4A;
+  --color-primary-muted: #B8D4B0;
+  
+  /* Colors - Backgrounds */
+  --color-bg-cream: #F4F1EC;
+  --color-bg-white: #FFFFFF;
+  --color-bg-light: #F9F7F4;
+  --color-bg-sand: #E8E4DC;
+  
+  /* Colors - Text */
+  --color-text-primary: #1E3D2A;
+  --color-text-body: #4A4A4A;
+  --color-text-muted: #7A7A72;
+  --color-text-light: #F4F1EC;
+  
+  /* Colors - Accents */
+  --color-accent-warm: #C4956A;
+  --color-accent-warm-light: #D4B08A;
+  --color-border: #DDD9D2;
+  --color-border-light: #EBE8E3;
+  
+  /* Spacing (8px base) */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
 }
 
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
-  color: #333;
+  background-color: var(--color-bg-cream);
+  color: var(--color-text-body);
   line-height: 1.6;
   letter-spacing: -0.01em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-main);
+  font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
 }
 
 code {
@@ -51,40 +106,58 @@ code {
 /* Botones globales */
 .btn {
   padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   border: none;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-  transition: all 0.3s;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: all var(--transition-base);
   display: inline-block;
   text-align: center;
 }
 
 .btn-primary {
-  background-color: #2e7d32;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  transition: all var(--transition-base);
 }
 
 .btn-primary:hover {
-  background-color: #1b5e20;
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-light);
+  color: var(--color-text-light);
 }
 
 .btn-primary:disabled {
-  background-color: #ccc;
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: #2e7d32;
-  border: 2px solid #2e7d32;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .btn-secondary:hover {
-  background-color: #2e7d32;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.btn-accent {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.btn-accent:hover {
+  background-color: var(--color-primary-hover);
 }
 
 .btn-block {
@@ -93,14 +166,14 @@ code {
 
 /* Formularios */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-md);
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-xs);
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .form-group input,
@@ -108,54 +181,103 @@ code {
 .form-group select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 1rem;
   font-family: inherit;
+  background-color: var(--color-bg-white);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(47, 107, 47, 0.1);
 }
 
 /* Loading */
 .loading {
   text-align: center;
-  padding: 4rem;
+  padding: var(--space-2xl);
   font-size: 1.5rem;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 /* Links */
 a {
-  color: #2e7d32;
+  color: var(--color-primary);
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 a:hover {
+  color: var(--color-primary-dark);
   text-decoration: underline;
+}
+
+/* Sections */
+.section {
+  padding: var(--space-2xl) 0;
+}
+
+.section-white {
+  background-color: var(--color-bg-white);
+}
+
+.section-cream {
+  background-color: var(--color-bg-cream);
+}
+
+.section-light {
+  background-color: var(--color-bg-light);
+}
+
+.section-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.section-primary h1,
+.section-primary h2,
+.section-primary h3 {
+  color: var(--color-text-light);
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 var(--space-sm);
+  }
+  
+  .section {
+    padding: var(--space-xl) 0;
   }
 }
 
 /* Toast customization */
 .Toastify__toast {
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .Toastify__toast--success {
-  background-color: #2e7d32;
+  background-color: var(--color-primary);
 }
 
 .Toastify__toast--error {
-  background-color: #f44336;
+  background-color: #DC2626;
 }

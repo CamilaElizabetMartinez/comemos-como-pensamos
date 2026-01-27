@@ -1,22 +1,43 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import api from '../services/api';
 import './AuthPages.css';
 
 const RegisterPage = () => {
+  const [searchParams] = useSearchParams();
+  const referralCode = useMemo(() => searchParams.get('ref'), [searchParams]);
+  
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     firstName: '',
     lastName: '',
-    role: 'customer'
+    role: referralCode ? 'producer' : 'customer'
   });
   const [loading, setLoading] = useState(false);
+  const [referrerInfo, setReferrerInfo] = useState(null);
   const { register } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (referralCode) {
+      localStorage.setItem('referralCode', referralCode);
+      
+      api.get(`/referrals/validate/${referralCode}`)
+        .then(response => {
+          if (response.data.success) {
+            setReferrerInfo(response.data.data.referrer);
+          }
+        })
+        .catch(() => {
+          setReferrerInfo(null);
+        });
+    }
+  }, [referralCode]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -41,6 +62,17 @@ const RegisterPage = () => {
     <div className="auth-page">
       <div className="auth-container">
         <h2>{t('auth.registerTitle')}</h2>
+        
+        {referrerInfo && (
+          <div className="referral-banner">
+            <span className="referral-banner-icon">🎁</span>
+            <div className="referral-banner-text">
+              <strong>{t('auth.referredBy', { name: referrerInfo.businessName })}</strong>
+              <span>{t('auth.referralBonusInfo')}</span>
+            </div>
+          </div>
+        )}
+        
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
             <label>{t('auth.firstName')}</label>

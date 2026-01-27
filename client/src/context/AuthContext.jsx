@@ -1,5 +1,6 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { authService } from '../services/authService';
+import api from '../services/api';
 
 const AuthContext = createContext();
 
@@ -52,6 +53,21 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(userData));
   };
 
+  const refreshUser = useCallback(async () => {
+    try {
+      const response = await api.get('/users/profile');
+      if (response.data.success) {
+        const updatedUser = response.data.data.user;
+        setUser(updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        return updatedUser;
+      }
+    } catch (error) {
+      console.error('Error refreshing user:', error);
+    }
+    return null;
+  }, []);
+
   const value = {
     user,
     loading,
@@ -59,6 +75,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     updateUser,
+    refreshUser,
     isAuthenticated: !!user
   };
 
