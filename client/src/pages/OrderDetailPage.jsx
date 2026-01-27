@@ -1,12 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { PageSpinner } from '../components/common/Spinner';
 import './OrderDetailPage.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+const COUNTRY_NAMES = {
+  ES: 'España',
+  PT: 'Portugal',
+  FR: 'Francia',
+  IT: 'Italia',
+  DE: 'Alemania',
+  BE: 'Bélgica',
+  NL: 'Países Bajos',
+  AT: 'Austria',
+  CH: 'Suiza'
+};
+
+const getCountryName = (code) => COUNTRY_NAMES[code] || code;
 
 const ReviewModal = ({ isOpen, onClose, product, orderId, onReviewSubmitted, t }) => {
   const [rating, setRating] = useState(0);
@@ -108,11 +123,25 @@ const STATUS_STEPS = ['pending', 'confirmed', 'preparing', 'shipped', 'delivered
 
 const OrderDetailPage = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const { user } = useAuth();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [reviewedProducts, setReviewedProducts] = useState([]);
   const [reviewModal, setReviewModal] = useState({ isOpen: false, product: null });
   const { t } = useTranslation();
+
+  const isFromAdmin = useMemo(() => {
+    return location.state?.from === 'admin' || user?.role === 'admin';
+  }, [location.state, user]);
+
+  const backUrl = useMemo(() => {
+    return isFromAdmin ? '/admin/orders' : '/orders';
+  }, [isFromAdmin]);
+
+  const backText = useMemo(() => {
+    return isFromAdmin ? t('admin.backToDashboard') : t('orderDetail.backToOrders');
+  }, [isFromAdmin, t]);
 
   const fetchOrder = useCallback(async () => {
     setLoading(true);
@@ -231,7 +260,7 @@ const OrderDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="order-detail-page">
+      <div className={`order-detail-page ${isFromAdmin ? 'admin-view' : ''}`}>
         <div className="order-detail-container">
           <PageSpinner text={t('common.loading')} />
         </div>
@@ -241,12 +270,12 @@ const OrderDetailPage = () => {
 
   if (!order) {
     return (
-      <div className="order-detail-page">
+      <div className={`order-detail-page ${isFromAdmin ? 'admin-view' : ''}`}>
         <div className="order-detail-container">
           <div className="order-not-found">
             <h2>{t('orderDetail.notFound')}</h2>
-            <Link to="/orders" className="btn btn-primary">
-              {t('orderDetail.backToOrders')}
+            <Link to={backUrl} className="btn btn-primary">
+              {backText}
             </Link>
           </div>
         </div>
@@ -255,11 +284,11 @@ const OrderDetailPage = () => {
   }
 
   return (
-    <div className="order-detail-page">
+    <div className={`order-detail-page ${isFromAdmin ? 'admin-view' : ''}`}>
       <div className="order-detail-container">
         <div className="order-detail-header">
-          <Link to="/orders" className="back-link">
-            ← {t('orderDetail.backToOrders')}
+          <Link to={backUrl} className="back-link">
+            {backText}
           </Link>
           <h1>{t('orderDetail.title')} #{order.orderNumber}</h1>
           <p className="order-date">{formatDate(order.createdAt)}</p>
@@ -285,7 +314,7 @@ const OrderDetailPage = () => {
 
         {order.status === 'cancelled' && (
           <div className="order-cancelled-banner">
-            <span>❌</span> {t('orderDetail.orderCancelled')}
+            {t('orderDetail.orderCancelled')}
           </div>
         )}
 
@@ -303,7 +332,7 @@ const OrderDetailPage = () => {
                       {item.productId?.images?.[0] ? (
                         <img src={item.productId.images[0]} alt={item.productName} />
                       ) : (
-                        <div className="image-placeholder">📦</div>
+                        <div className="image-placeholder"></div>
                       )}
                     </div>
                     <div className="item-details">
@@ -324,13 +353,13 @@ const OrderDetailPage = () => {
                       {order.status === 'delivered' && (
                         <div className="item-review-action">
                           {hasReviewed ? (
-                            <span className="review-done">✅ {t('reviews.alreadyReviewed')}</span>
+                            <span className="review-done">{t('reviews.alreadyReviewed')}</span>
                           ) : (
                             <button 
                               className="btn-review-item"
                               onClick={() => openReviewModal(item)}
                             >
-                              ⭐ {t('reviews.writeReview')}
+                              {t('reviews.writeReview')}
                             </button>
                           )}
                         </div>
@@ -372,7 +401,7 @@ const OrderDetailPage = () => {
                 className="btn-download-invoice"
                 onClick={handleDownloadInvoice}
               >
-                📄 {t('orderDetail.downloadInvoice')}
+                {t('orderDetail.downloadInvoice')}
               </button>
             </div>
 
@@ -386,9 +415,9 @@ const OrderDetailPage = () => {
                 <p>
                   {order.shippingAddress?.postalCode} {order.shippingAddress?.city}
                 </p>
-                <p>{order.shippingAddress?.country}</p>
+                <p>{getCountryName(order.shippingAddress?.country)}</p>
                 {order.shippingAddress?.phone && (
-                  <p className="address-phone">📞 {order.shippingAddress.phone}</p>
+                  <p className="address-phone">{order.shippingAddress.phone}</p>
                 )}
               </div>
             </div>
@@ -446,7 +475,7 @@ const OrderDetailPage = () => {
                     rel="noopener noreferrer"
                     className="btn-track-package"
                   >
-                    📍 {t('orderDetail.trackPackage')}
+                    {t('orderDetail.trackPackage')}
                   </a>
                 )}
               </div>
