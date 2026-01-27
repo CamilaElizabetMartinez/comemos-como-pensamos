@@ -93,7 +93,7 @@ const AdminOrders = () => {
         <header className="page-header">
           <div className="header-left">
             <Link to="/admin" className="back-link">
-              ← {t('admin.orders.backToDashboard')}
+              {t('admin.orders.backToDashboard')}
             </Link>
             <h1>{t('admin.orders.title')}</h1>
           </div>
@@ -167,7 +167,7 @@ const AdminOrders = () => {
                     </td>
                     <td className="date-cell">{formatDate(order.createdAt)}</td>
                     <td>
-                      <Link to={`/orders/${order._id}`} className="btn-view">
+                      <Link to={`/orders/${order._id}`} state={{ from: 'admin' }} className="btn-view">
                         👁️
                       </Link>
                     </td>
