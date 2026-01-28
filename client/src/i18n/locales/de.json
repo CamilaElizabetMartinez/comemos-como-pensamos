@@ -315,7 +315,8 @@
     "cityPlaceholder": "Nach Stadt filtern",
     "noProducers": "Keine Produzenten gefunden",
     "noProducersDescription": "Versuchen Sie andere Suchbegriffe",
-    "errorLoading": "Fehler beim Laden der Produzenten"
+    "errorLoading": "Fehler beim Laden der Produzenten",
+    "viewProducts": "Produkte ansehen"
   },
   "producerDetail": {
     "backToProducers": "Zurück zu Produzenten",

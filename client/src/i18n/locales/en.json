@@ -350,7 +350,8 @@
     "cityPlaceholder": "Filter by city",
     "noProducers": "No producers found",
     "noProducersDescription": "Try different search terms",
-    "errorLoading": "Error loading producers"
+    "errorLoading": "Error loading producers",
+    "viewProducts": "View products"
   },
   "producerDetail": {
     "backToProducers": "Back to producers",
