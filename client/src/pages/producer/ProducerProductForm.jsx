@@ -11,6 +11,8 @@ const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'eggs', '
 const UNITS = ['kg', 'unit', 'liter', 'gram', 'dozen'];
 const WEIGHT_UNITS = ['g', 'kg', 'ml', 'l'];
 
+const TABS = ['general', 'images', 'pricing'];
+
 const EMPTY_VARIANT = {
   name: { es: '', en: '', fr: '', de: '' },
   sku: '',
@@ -27,6 +29,8 @@ const ProducerProductForm = () => {
   const isEditing = Boolean(id);
   const [loading, setLoading] = useState(isEditing);
   const [saving, setSaving] = useState(false);
+  const [activeTab, setActiveTab] = useState('general');
+  const [showTranslations, setShowTranslations] = useState(false);
   const [formData, setFormData] = useState({
     name: { es: '', en: '', fr: '', de: '' },
     description: { es: '', en: '', fr: '', de: '' },
@@ -73,9 +77,21 @@ const ProducerProductForm = () => {
         weightUnit: variant.weightUnit || 'g'
       }));
       
+      const productName = product.name || { es: '', en: '', fr: '', de: '' };
+      const productDescription = product.description || { es: '', en: '', fr: '', de: '' };
+      
+      // Check if there are existing translations to show them expanded
+      const hasExistingTranslations = 
+        productName.en || productName.fr || productName.de ||
+        productDescription.en || productDescription.fr || productDescription.de;
+      
+      if (hasExistingTranslations) {
+        setShowTranslations(true);
+      }
+
       setFormData({
-        name: product.name || { es: '', en: '', fr: '', de: '' },
-        description: product.description || { es: '', en: '', fr: '', de: '' },
+        name: productName,
+        description: productDescription,
         category: product.category || 'vegetables',
         price: product.price?.toString() || '',
         unit: product.unit || 'kg',
@@ -300,295 +316,383 @@ const ProducerProductForm = () => {
           </h1>
         </header>
 
-        <form onSubmit={handleSubmit} className="product-form">
-          <section className="form-section">
-            <h2>{t('producer.productForm.basicInfo')}</h2>
-            
-            <div className="form-group">
-              <label>{t('producer.productForm.nameSectionTitle')} *</label>
-              <div className="localized-inputs">
-                {['es', 'en', 'fr', 'de'].map(lang => (
-                  <div key={lang} className="localized-input">
-                    <span className="lang-label">{lang.toUpperCase()}</span>
+        <form onSubmit={handleSubmit} className="product-form tabbed-form">
+          <nav className="form-tabs">
+            {TABS.map(tab => (
+              <button
+                key={tab}
+                type="button"
+                className={`tab-btn ${activeTab === tab ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                <span className="tab-icon">
+                  {tab === 'general' && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                  )}
+                  {tab === 'images' && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                  )}
+                  {tab === 'pricing' && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="1" x2="12" y2="23" />
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                  )}
+                </span>
+                <span className="tab-label">{t(`producer.productForm.tabs.${tab}`)}</span>
+              </button>
+            ))}
+          </nav>
+
+          <div className="form-content">
+            {/* Tab: General */}
+            {activeTab === 'general' && (
+              <div className="tab-panel">
+                <section className="form-section">
+                  <h2>{t('producer.productForm.nameSectionTitle')} *</h2>
+                  <div className="form-group">
                     <input
                       type="text"
-                      value={formData.name[lang]}
-                      onChange={(event) => handleLocalizedChange('name', lang, event.target.value)}
+                      value={formData.name.es}
+                      onChange={(event) => handleLocalizedChange('name', 'es', event.target.value)}
                       placeholder={t('producer.productForm.namePlaceholder')}
-                      required={lang === 'es'}
+                      className="input-main"
                     />
                   </div>
-                ))}
-              </div>
-            </div>
+                </section>
 
-            <div className="form-group">
-              <label>{t('producer.productForm.descriptionSectionTitle')}</label>
-              <div className="localized-inputs">
-                {['es', 'en', 'fr', 'de'].map(lang => (
-                  <div key={lang} className="localized-input">
-                    <span className="lang-label">{lang.toUpperCase()}</span>
+                <section className="form-section">
+                  <h2>{t('producer.productForm.descriptionSectionTitle')}</h2>
+                  <div className="form-group">
                     <textarea
-                      value={formData.description[lang]}
-                      onChange={(event) => handleLocalizedChange('description', lang, event.target.value)}
+                      value={formData.description.es}
+                      onChange={(event) => handleLocalizedChange('description', 'es', event.target.value)}
                       placeholder={t('producer.productForm.descriptionPlaceholder')}
-                      rows="3"
+                      rows="4"
+                      className="input-main"
                     />
                   </div>
-                ))}
-              </div>
-            </div>
+                </section>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label>{t('producer.productForm.category')}</label>
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                >
-                  {CATEGORIES.map(cat => (
-                    <option key={cat} value={cat}>
-                      {t(`categories.${cat}`)}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>{t('producer.productForm.unit')}</label>
-                <select
-                  name="unit"
-                  value={formData.unit}
-                  onChange={handleChange}
-                >
-                  {UNITS.map(unit => (
-                    <option key={unit} value={unit}>{t(`units.${unit}`)}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </section>
-
-          <section className="form-section">
-            <h2>{t('producer.productForm.pricingStock')}</h2>
-            
-            <div className="form-group checkbox-group variants-toggle">
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={formData.hasVariants}
-                  onChange={handleToggleVariants}
-                />
-                <span className="checkbox-text">
-                  {t('producer.productForm.useVariants')}
-                </span>
-              </label>
-              <p className="hint-text">{t('producer.productForm.variantsHint')}</p>
-            </div>
-
-            {!formData.hasVariants ? (
-              <>
-                <div className="form-row">
+                <section className="form-section">
+                  <h2>{t('producer.productForm.category')}</h2>
                   <div className="form-group">
-                    <label>{t('producer.productForm.price')} (€) *</label>
-                    <input
-                      type="number"
-                      name="price"
-                      value={formData.price}
+                    <select
+                      name="category"
+                      value={formData.category}
                       onChange={handleChange}
-                      step="0.01"
-                      min="0"
-                      required
-                      placeholder="0.00"
-                    />
+                    >
+                      {CATEGORIES.map(cat => (
+                        <option key={cat} value={cat}>
+                          {t(`categories.${cat}`)}
+                        </option>
+                      ))}
+                    </select>
                   </div>
+                </section>
 
-                  <div className="form-group">
-                    <label>{t('producer.productForm.stock')} *</label>
-                    <input
-                      type="number"
-                      name="stock"
-                      value={formData.stock}
-                      onChange={handleChange}
-                      min="0"
-                      required
-                      placeholder="0"
-                    />
-                  </div>
-                </div>
+                {/* Collapsible translations */}
+                <div className="translations-section">
+                  <button
+                    type="button"
+                    className="btn-toggle-translations"
+                    onClick={() => setShowTranslations(!showTranslations)}
+                  >
+                    <span className={`toggle-icon ${showTranslations ? 'open' : ''}`}>▶</span>
+                    {t('producer.productForm.addTranslations')}
+                    <span className="optional-badge">{t('common.optional')}</span>
+                  </button>
 
-                <div className="form-group checkbox-group">
-                  <label className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      name="isAvailable"
-                      checked={formData.isAvailable}
-                      onChange={handleChange}
-                    />
-                    <span className="checkbox-text">
-                      {t('producer.productForm.isAvailable')}
-                    </span>
-                  </label>
-                </div>
-              </>
-            ) : (
-              <div className="variants-section">
-                <div className="variants-header">
-                  <h3>{t('producer.productForm.variantsTitle')}</h3>
-                  <span className="variants-stock-total">
-                    {t('producer.productForm.totalStock')}: {totalVariantsStock}
-                  </span>
-                </div>
-
-                {formData.variants.map((variant, index) => (
-                  <div key={index} className={`variant-card ${variant.isDefault ? 'is-default' : ''}`}>
-                    <div className="variant-header">
-                      <span className="variant-number">
-                        {t('producer.productForm.variant')} {index + 1}
-                        {variant.isDefault && (
-                          <span className="default-badge">{t('producer.productForm.default')}</span>
-                        )}
-                      </span>
-                      <div className="variant-actions">
-                        {!variant.isDefault && (
-                          <button
-                            type="button"
-                            className="btn-set-default"
-                            onClick={() => handleSetDefaultVariant(index)}
-                          >
-                            {t('producer.productForm.setDefault')}
-                          </button>
-                        )}
-                        {formData.variants.length > 1 && (
-                          <button
-                            type="button"
-                            className="btn-remove-variant"
-                            onClick={() => handleRemoveVariant(index)}
-                          >
-                            ✕
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="variant-body">
+                  {showTranslations && (
+                    <div className="translations-content">
+                      <p className="translations-hint">{t('producer.productForm.translationsHint')}</p>
+                      
                       <div className="form-group">
-                        <label>{t('producer.productForm.variantName')} *</label>
-                        <div className="localized-inputs compact">
-                          {['es', 'en', 'fr', 'de'].map(lang => (
+                        <label>{t('producer.productForm.nameSectionTitle')}</label>
+                        <div className="localized-inputs">
+                          {['en', 'fr', 'de'].map(lang => (
                             <div key={lang} className="localized-input">
                               <span className="lang-label">{lang.toUpperCase()}</span>
                               <input
                                 type="text"
-                                value={variant.name[lang]}
-                                onChange={(event) => handleVariantLocalizedChange(index, 'name', lang, event.target.value)}
-                                placeholder={t('producer.productForm.variantNamePlaceholder')}
-                                required={lang === 'es'}
+                                value={formData.name[lang]}
+                                onChange={(event) => handleLocalizedChange('name', lang, event.target.value)}
+                                placeholder={t('producer.productForm.namePlaceholder')}
                               />
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      <div className="form-row four-cols">
+                      <div className="form-group">
+                        <label>{t('producer.productForm.descriptionSectionTitle')}</label>
+                        <div className="localized-inputs">
+                          {['en', 'fr', 'de'].map(lang => (
+                            <div key={lang} className="localized-input">
+                              <span className="lang-label">{lang.toUpperCase()}</span>
+                              <textarea
+                                value={formData.description[lang]}
+                                onChange={(event) => handleLocalizedChange('description', lang, event.target.value)}
+                                placeholder={t('producer.productForm.descriptionPlaceholder')}
+                                rows="2"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Tab: Images */}
+            {activeTab === 'images' && (
+              <div className="tab-panel">
+                <section className="form-section">
+                  <h2>{t('producer.productForm.images')}</h2>
+                  <p className="section-hint">{t('imageUploader.dragReorder')}</p>
+                  <ImageUploader
+                    images={formData.images}
+                    onImagesChange={handleImagesChange}
+                    maxImages={5}
+                    folder="products"
+                  />
+                </section>
+              </div>
+            )}
+
+            {/* Tab: Pricing */}
+            {activeTab === 'pricing' && (
+              <div className="tab-panel">
+                <section className="form-section">
+                  <h2>{t('producer.productForm.pricingStock')}</h2>
+                  
+                  <div className="form-group checkbox-group variants-toggle">
+                    <label className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={formData.hasVariants}
+                        onChange={handleToggleVariants}
+                      />
+                      <span className="checkbox-text">
+                        {t('producer.productForm.useVariants')}
+                      </span>
+                    </label>
+                    <p className="hint-text">{t('producer.productForm.variantsHint')}</p>
+                  </div>
+
+                  {!formData.hasVariants ? (
+                    <>
+                      <div className="form-row three-cols">
                         <div className="form-group">
                           <label>{t('producer.productForm.price')} (€) *</label>
                           <input
                             type="number"
-                            value={variant.price}
-                            onChange={(event) => handleVariantChange(index, 'price', event.target.value)}
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
                             step="0.01"
                             min="0"
-                            required
                             placeholder="0.00"
                           />
                         </div>
 
                         <div className="form-group">
-                          <label>{t('producer.productForm.compareAtPrice')}</label>
-                          <input
-                            type="number"
-                            value={variant.compareAtPrice}
-                            onChange={(event) => handleVariantChange(index, 'compareAtPrice', event.target.value)}
-                            step="0.01"
-                            min="0"
-                            placeholder="0.00"
-                          />
+                          <label>{t('producer.productForm.unit')} *</label>
+                          <select
+                            name="unit"
+                            value={formData.unit}
+                            onChange={handleChange}
+                          >
+                            {UNITS.map(unit => (
+                              <option key={unit} value={unit}>{t(`units.${unit}`)}</option>
+                            ))}
+                          </select>
                         </div>
 
                         <div className="form-group">
                           <label>{t('producer.productForm.stock')} *</label>
                           <input
                             type="number"
-                            value={variant.stock}
-                            onChange={(event) => handleVariantChange(index, 'stock', event.target.value)}
+                            name="stock"
+                            value={formData.stock}
+                            onChange={handleChange}
                             min="0"
-                            required
                             placeholder="0"
                           />
                         </div>
-
-                        <div className="form-group">
-                          <label>{t('producer.productForm.sku')}</label>
-                          <input
-                            type="text"
-                            value={variant.sku}
-                            onChange={(event) => handleVariantChange(index, 'sku', event.target.value)}
-                            placeholder="SKU-001"
-                          />
-                        </div>
                       </div>
 
-                      <div className="form-row">
-                        <div className="form-group">
-                          <label>{t('producer.productForm.weight')}</label>
-                          <div className="weight-input-group">
-                            <input
-                              type="number"
-                              value={variant.weight}
-                              onChange={(event) => handleVariantChange(index, 'weight', event.target.value)}
-                              min="0"
-                              step="0.01"
-                              placeholder="500"
-                            />
-                            <select
-                              value={variant.weightUnit}
-                              onChange={(event) => handleVariantChange(index, 'weightUnit', event.target.value)}
-                            >
-                              {WEIGHT_UNITS.map(unit => (
-                                <option key={unit} value={unit}>{unit}</option>
-                              ))}
-                            </select>
+                      <div className="form-group checkbox-group">
+                        <label className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            name="isAvailable"
+                            checked={formData.isAvailable}
+                            onChange={handleChange}
+                          />
+                          <span className="checkbox-text">
+                            {t('producer.productForm.isAvailable')}
+                          </span>
+                        </label>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="variants-section">
+                      <div className="variants-header">
+                        <h3>{t('producer.productForm.variantsTitle')}</h3>
+                        <span className="variants-stock-total">
+                          {t('producer.productForm.totalStock')}: {totalVariantsStock}
+                        </span>
+                      </div>
+
+                      {formData.variants.map((variant, index) => (
+                        <div key={index} className={`variant-card ${variant.isDefault ? 'is-default' : ''}`}>
+                          <div className="variant-header">
+                            <span className="variant-number">
+                              {t('producer.productForm.variant')} {index + 1}
+                              {variant.isDefault && (
+                                <span className="default-badge">{t('producer.productForm.default')}</span>
+                              )}
+                            </span>
+                            <div className="variant-actions">
+                              {!variant.isDefault && (
+                                <button
+                                  type="button"
+                                  className="btn-set-default"
+                                  onClick={() => handleSetDefaultVariant(index)}
+                                >
+                                  {t('producer.productForm.setDefault')}
+                                </button>
+                              )}
+                              {formData.variants.length > 1 && (
+                                <button
+                                  type="button"
+                                  className="btn-remove-variant"
+                                  onClick={() => handleRemoveVariant(index)}
+                                >
+                                  ✕
+                                </button>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="variant-body">
+                            <div className="form-group">
+                              <label>{t('producer.productForm.variantName')} *</label>
+                              <div className="localized-inputs compact">
+                                {['es', 'en', 'fr', 'de'].map(lang => (
+                                  <div key={lang} className="localized-input">
+                                    <span className="lang-label">{lang.toUpperCase()}</span>
+                                    <input
+                                      type="text"
+                                      value={variant.name[lang]}
+                                      onChange={(event) => handleVariantLocalizedChange(index, 'name', lang, event.target.value)}
+                                      placeholder={t('producer.productForm.variantNamePlaceholder')}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="form-row four-cols">
+                              <div className="form-group">
+                                <label>{t('producer.productForm.price')} (€) *</label>
+                                <input
+                                  type="number"
+                                  value={variant.price}
+                                  onChange={(event) => handleVariantChange(index, 'price', event.target.value)}
+                                  step="0.01"
+                                  min="0"
+                                  placeholder="0.00"
+                                />
+                              </div>
+
+                              <div className="form-group">
+                                <label>{t('producer.productForm.compareAtPrice')}</label>
+                                <input
+                                  type="number"
+                                  value={variant.compareAtPrice}
+                                  onChange={(event) => handleVariantChange(index, 'compareAtPrice', event.target.value)}
+                                  step="0.01"
+                                  min="0"
+                                  placeholder="0.00"
+                                />
+                              </div>
+
+                              <div className="form-group">
+                                <label>{t('producer.productForm.stock')} *</label>
+                                <input
+                                  type="number"
+                                  value={variant.stock}
+                                  onChange={(event) => handleVariantChange(index, 'stock', event.target.value)}
+                                  min="0"
+                                  placeholder="0"
+                                />
+                              </div>
+
+                              <div className="form-group">
+                                <label>{t('producer.productForm.sku')}</label>
+                                <input
+                                  type="text"
+                                  value={variant.sku}
+                                  onChange={(event) => handleVariantChange(index, 'sku', event.target.value)}
+                                  placeholder="SKU-001"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="form-row">
+                              <div className="form-group">
+                                <label>{t('producer.productForm.weight')}</label>
+                                <div className="weight-input-group">
+                                  <input
+                                    type="number"
+                                    value={variant.weight}
+                                    onChange={(event) => handleVariantChange(index, 'weight', event.target.value)}
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="500"
+                                  />
+                                  <select
+                                    value={variant.weightUnit}
+                                    onChange={(event) => handleVariantChange(index, 'weightUnit', event.target.value)}
+                                  >
+                                    {WEIGHT_UNITS.map(unit => (
+                                      <option key={unit} value={unit}>{unit}</option>
+                                    ))}
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                      ))}
 
-                <button
-                  type="button"
-                  className="btn-add-variant"
-                  onClick={handleAddVariant}
-                >
-                  + {t('producer.productForm.addVariant')}
-                </button>
+                      <button
+                        type="button"
+                        className="btn-add-variant"
+                        onClick={handleAddVariant}
+                      >
+                        + {t('producer.productForm.addVariant')}
+                      </button>
+                    </div>
+                  )}
+                </section>
               </div>
             )}
-          </section>
-
-          <section className="form-section">
-            <h2>{t('producer.productForm.images')}</h2>
-            <p className="section-hint">{t('imageUploader.dragReorder')}</p>
-            
-            <ImageUploader
-              images={formData.images}
-              onImagesChange={handleImagesChange}
-              maxImages={5}
-              folder="products"
-            />
-          </section>
+          </div>
 
           <div className="form-actions">
             <Link to="/producer/products" className="btn btn-secondary">

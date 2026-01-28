@@ -233,6 +233,7 @@
   "common": {
     "backToHome": "Back to home",
     "loading": "Loading...",
+    "optional": "optional",
     "error": "Error",
     "success": "Success",
     "save": "Save",
@@ -504,6 +505,11 @@
       "createTitle": "Create Product",
       "editTitle": "Edit Product",
       "backToProducts": "Back to products",
+      "tabs": {
+        "general": "General",
+        "images": "Images",
+        "pricing": "Pricing"
+      },
       "basicInfo": "Basic Information",
       "nameSectionTitle": "Product name",
       "namePlaceholder": "E.g.: Organic tomatoes",
@@ -544,7 +550,9 @@
       "variantsRequired": "You must add at least one variant",
       "variantNameRequired": "Variant {{index}} name is required",
       "variantPriceRequired": "Variant {{index}} price must be greater than 0",
-      "variantStockRequired": "Variant {{index}} stock cannot be negative"
+      "variantStockRequired": "Variant {{index}} stock cannot be negative",
+      "addTranslations": "Add translations",
+      "translationsHint": "Translate name and description for international customers"
     },
     "orders": {
       "title": "Received Orders",
