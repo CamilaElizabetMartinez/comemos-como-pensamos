@@ -22,21 +22,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-primary);
+  color: #2D5A3D;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.75rem;
-  transition: all var(--transition-fast);
+  transition: color 0.15s ease;
 }
 
 .producer-shipping-page .back-link::before {
   content: '←';
-  transition: transform var(--transition-fast);
+  transition: transform 0.15s ease;
 }
 
 .producer-shipping-page .back-link:hover {
-  color: var(--color-primary-dark);
+  color: #1E3D2A;
 }
 
 .producer-shipping-page .back-link:hover::before {
