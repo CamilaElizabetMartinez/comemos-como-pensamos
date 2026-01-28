@@ -13,7 +13,7 @@ const ProducersPage = () => {
   const [cityFilter, setCityFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const fetchProducers = useCallback(async () => {
     setLoading(true);
@@ -40,32 +40,6 @@ const ProducersPage = () => {
     event.preventDefault();
     setCurrentPage(1);
     fetchProducers();
-  };
-
-  const getDescription = (producer) => {
-    const currentLang = i18n.language;
-    const description = producer.description?.[currentLang] || producer.description?.es || producer.description;
-    if (typeof description === 'string' && description.length > 150) {
-      return description.substring(0, 150) + '...';
-    }
-    return description || '';
-  };
-
-  const renderStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating || 0);
-    const hasHalfStar = (rating || 0) % 1 >= 0.5;
-
-    for (let i = 0; i < 5; i++) {
-      if (i < fullStars) {
-        stars.push(<span key={i} className="star filled">★</span>);
-      } else if (i === fullStars && hasHalfStar) {
-        stars.push(<span key={i} className="star half">★</span>);
-      } else {
-        stars.push(<span key={i} className="star">★</span>);
-      }
-    }
-    return stars;
   };
 
   return (
@@ -113,39 +87,31 @@ const ProducersPage = () => {
           <>
             <div className="producers-grid">
               {producers.map((producer) => (
-                <Link
-                  key={producer._id}
-                  to={`/producers/${producer._id}`}
-                  className="producer-card"
-                >
-                  <div className="producer-header">
-                    <div className="producer-logo">
+                <article key={producer._id} className="producer-card">
+                  <div className="producer-image">
+                    <Link to={`/productores/${producer._id}`} title={producer.businessName}>
                       {producer.logo ? (
                         <img src={producer.logo} alt={producer.businessName} />
                       ) : (
-                        <div className="logo-placeholder">
+                        <div className="image-placeholder">
                           {producer.businessName?.charAt(0)}
                         </div>
                       )}
-                    </div>
-                    <div className="producer-info">
-                      {producer.location && (
-                        <p className="producer-location">
-                          {producer.location.city}, {producer.location.region}
-                        </p>
-                      )}
-                      <h3 className="producer-name">{producer.businessName}</h3>
-                      <div className="producer-rating">
-                        <span className="rating-star">★</span>
-                        <span className="rating-value">{producer.rating?.toFixed(1) || '0.0'}</span>
-                        <span className="review-count">({producer.totalReviews || 0})</span>
-                      </div>
-                    </div>
+                    </Link>
                   </div>
-                  <p className="producer-description">
-                    {getDescription(producer)}
-                  </p>
-                </Link>
+                  <div className="producer-text">
+                    <h2>
+                      <Link to={`/productores/${producer._id}`} title={producer.businessName}>
+                        {producer.businessName}
+                      </Link>
+                    </h2>
+                    {producer.location && (
+                      <p className="producer-location">
+                        {producer.location.city}
+                      </p>
+                    )}
+                  </div>
+                </article>
               ))}
             </div>
 
