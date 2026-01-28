@@ -8,10 +8,115 @@ import { toast } from 'react-toastify';
 import './CheckoutPage.css';
 
 const PAYMENT_METHODS = [
-  { id: 'card', icon: '💳', available: true },
-  { id: 'bank_transfer', icon: '🏦', available: true },
-  { id: 'cash_on_delivery', icon: '💵', available: true }
+  { id: 'card', available: true },
+  { id: 'bank_transfer', available: true },
+  { id: 'cash_on_delivery', available: true }
 ];
+
+const ICONS = {
+  location: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+  ),
+  payment: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+      <line x1="1" y1="10" x2="23" y2="10"/>
+    </svg>
+  ),
+  card: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+      <line x1="1" y1="10" x2="23" y2="10"/>
+    </svg>
+  ),
+  bank: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 21h18"/>
+      <path d="M3 10h18"/>
+      <path d="M5 6l7-3 7 3"/>
+      <path d="M4 10v11"/>
+      <path d="M20 10v11"/>
+      <path d="M8 14v3"/>
+      <path d="M12 14v3"/>
+      <path d="M16 14v3"/>
+    </svg>
+  ),
+  cash: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M2 9h2"/>
+      <path d="M20 9h2"/>
+      <path d="M2 15h2"/>
+      <path d="M20 15h2"/>
+    </svg>
+  ),
+  warning: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+  ),
+  package: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16.5 9.4l-9-5.19"/>
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+      <line x1="12" y1="22.08" x2="12" y2="12"/>
+    </svg>
+  ),
+  ticket: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+      <path d="M13 5v2"/>
+      <path d="M13 17v2"/>
+      <path d="M13 11v2"/>
+    </svg>
+  ),
+  cart: (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="21" r="1"/>
+      <circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+  ),
+  check: (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  ),
+  close: (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  ),
+  loader: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="spinner-icon">
+      <line x1="12" y1="2" x2="12" y2="6"/>
+      <line x1="12" y1="18" x2="12" y2="22"/>
+      <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+      <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+      <line x1="2" y1="12" x2="6" y2="12"/>
+      <line x1="18" y1="12" x2="22" y2="12"/>
+      <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+      <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+    </svg>
+  )
+};
+
+const getPaymentIcon = (methodId) => {
+  switch (methodId) {
+    case 'card': return ICONS.card;
+    case 'bank_transfer': return ICONS.bank;
+    case 'cash_on_delivery': return ICONS.cash;
+    default: return ICONS.payment;
+  }
+};
 
 const COUNTRIES = [
   { code: 'ES', name: 'España' },
@@ -233,8 +338,8 @@ const CheckoutPage = () => {
     return (
       <div className="checkout-page">
         <div className="container">
-          <div className="empty-cart-message">
-            <span className="empty-icon">🛒</span>
+          <div className="empty-cart-message" role="status" aria-live="polite">
+            <span className="empty-icon" aria-hidden="true">{ICONS.cart}</span>
             <h2>{t('cart.empty')}</h2>
             <button onClick={() => navigate('/products')} className="btn btn-primary">
               {t('cart.continueShopping')}
@@ -265,9 +370,9 @@ const CheckoutPage = () => {
         <h1>{t('checkout.title')}</h1>
         
         {user && !user.isEmailVerified && (
-          <div className="email-verification-banner">
+          <div className="email-verification-banner" role="alert" aria-live="polite">
             <div className="banner-content">
-              <span className="banner-icon">⚠️</span>
+              <span className="banner-icon" aria-hidden="true">{ICONS.warning}</span>
               <div className="banner-text">
                 <strong>{t('checkout.emailNotVerifiedTitle')}</strong>
                 <p>{t('checkout.emailNotVerifiedDesc')}</p>
@@ -284,10 +389,12 @@ const CheckoutPage = () => {
         )}
         
         <div className="checkout-content">
-          <form onSubmit={handleSubmit} className="checkout-form">
-            {/* Shipping Address */}
-            <section className="form-section">
-              <h2>📍 {t('checkout.shippingAddress')}</h2>
+          <form onSubmit={handleSubmit} className="checkout-form" aria-label={t('checkout.title')}>
+            <section className="form-section" aria-labelledby="shipping-title">
+              <h2 id="shipping-title" className="section-title">
+                <span className="section-icon" aria-hidden="true">{ICONS.location}</span>
+                {t('checkout.shippingAddress')}
+              </h2>
               
               <div className="form-row">
                 <div className="form-group">
@@ -417,31 +524,48 @@ const CheckoutPage = () => {
               </div>
             </section>
 
-            {/* Payment Method */}
-            <section className="form-section">
-              <h2>💰 {t('checkout.paymentMethod')}</h2>
+            <fieldset className="form-section" aria-labelledby="payment-title">
+              <legend id="payment-title" className="section-title">
+                <span className="section-icon" aria-hidden="true">{ICONS.payment}</span>
+                {t('checkout.paymentMethod')}
+              </legend>
               
-              <div className="payment-methods">
+              <div className="payment-methods" role="radiogroup" aria-label={t('checkout.paymentMethod')}>
                 {PAYMENT_METHODS.map((method) => (
-                  <div
+                  <label
                     key={method.id}
                     className={`payment-option ${paymentMethod === method.id ? 'selected' : ''} ${!method.available ? 'disabled' : ''}`}
-                    onClick={() => method.available && setPaymentMethod(method.id)}
+                    htmlFor={`payment-${method.id}`}
                   >
-                    <div className="payment-option-header">
-                      <span className="payment-icon">{method.icon}</span>
-                      <span className="payment-name">{t(`checkout.payment_${method.id}`)}</span>
-                      {!method.available && (
-                        <span className="coming-soon">{t('checkout.comingSoon')}</span>
-                      )}
+                    <input
+                      type="radio"
+                      id={`payment-${method.id}`}
+                      name="paymentMethod"
+                      value={method.id}
+                      checked={paymentMethod === method.id}
+                      onChange={() => method.available && setPaymentMethod(method.id)}
+                      disabled={!method.available}
+                      className="payment-radio"
+                    />
+                    <div className="payment-option-content">
+                      <div className="payment-option-header">
+                        <span className="payment-icon" aria-hidden="true">{getPaymentIcon(method.id)}</span>
+                        <span className="payment-name">{t(`checkout.payment_${method.id}`)}</span>
+                        {!method.available && (
+                          <span className="coming-soon">{t('checkout.comingSoon')}</span>
+                        )}
+                      </div>
+                      <p className="payment-description">
+                        {t(`checkout.payment_${method.id}_desc`)}
+                      </p>
                     </div>
-                    <p className="payment-description">
-                      {t(`checkout.payment_${method.id}_desc`)}
-                    </p>
-                  </div>
+                    {paymentMethod === method.id && (
+                      <span className="payment-check" aria-hidden="true">{ICONS.check}</span>
+                    )}
+                  </label>
                 ))}
               </div>
-            </section>
+            </fieldset>
 
             <button 
               type="submit" 
@@ -455,13 +579,12 @@ const CheckoutPage = () => {
             </button>
           </form>
 
-          {/* Order Summary */}
-          <div className="order-summary">
-            <h2>{t('checkout.orderSummary')}</h2>
+          <aside className="order-summary" aria-labelledby="summary-title">
+            <h2 id="summary-title">{t('checkout.orderSummary')}</h2>
             
             {stockIssues.length > 0 && (
-              <div className="stock-warning-banner">
-                <span className="warning-icon">⚠️</span>
+              <div className="stock-warning-banner" role="alert">
+                <span className="warning-icon" aria-hidden="true">{ICONS.warning}</span>
                 <div className="warning-content">
                   <strong>{t('checkout.stockProblems')}</strong>
                   <ul>
@@ -476,12 +599,13 @@ const CheckoutPage = () => {
             )}
 
             {validatingStock && (
-              <div className="validating-stock">
-                <span className="spinner">⏳</span> {t('checkout.validatingStock')}
+              <div className="validating-stock" role="status" aria-live="polite">
+                <span className="spinner" aria-hidden="true">{ICONS.loader}</span> 
+                {t('checkout.validatingStock')}
               </div>
             )}
             
-            <div className="summary-items">
+            <ul className="summary-items" aria-label={t('checkout.orderSummary')}>
               {cartItems.map((item) => {
                 const itemKey = item.variantId ? `${item._id}_${item.variantId}` : item._id;
                 const hasStockIssue = stockIssues.some(issue => 
@@ -489,12 +613,12 @@ const CheckoutPage = () => {
                   (!item.variantId || issue.variantId === item.variantId)
                 );
                 return (
-                  <div key={itemKey} className={`summary-item ${hasStockIssue ? 'stock-issue' : ''}`}>
-                    <div className="item-image">
+                  <li key={itemKey} className={`summary-item ${hasStockIssue ? 'stock-issue' : ''}`}>
+                    <div className="item-image" aria-hidden="true">
                       {item.images?.[0] ? (
-                        <img src={item.images[0]} alt={item.name?.es} />
+                        <img src={item.images[0]} alt="" />
                       ) : (
-                        <span>📦</span>
+                        <span className="item-placeholder">{ICONS.package}</span>
                       )}
                     </div>
                     <div className="item-details">
@@ -503,20 +627,29 @@ const CheckoutPage = () => {
                         <span className="item-variant">{item.variantName}</span>
                       )}
                       <span className="item-qty">x{item.quantity}</span>
-                      {hasStockIssue && <span className="stock-issue-badge">⚠️</span>}
+                      {hasStockIssue && (
+                        <span className="stock-issue-badge" aria-label={t('checkout.stockIssue')}>
+                          {ICONS.warning}
+                        </span>
+                      )}
                     </div>
-                    <span className="item-price">€{(item.price * item.quantity).toFixed(2)}</span>
-                  </div>
+                    <span className="item-price" aria-label={`${t('cart.total')}: €${(item.price * item.quantity).toFixed(2)}`}>
+                      €{(item.price * item.quantity).toFixed(2)}
+                    </span>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
 
-            <div className="coupon-section">
-              <h3>{t('checkout.couponCode')}</h3>
+            <div className="coupon-section" aria-labelledby="coupon-title">
+              <h3 id="coupon-title">{t('checkout.couponCode')}</h3>
               {appliedCoupon ? (
-                <div className="applied-coupon">
+                <div className="applied-coupon" role="status" aria-live="polite">
                   <div className="coupon-info">
-                    <span className="coupon-badge">🎟️ {appliedCoupon.code}</span>
+                    <span className="coupon-badge">
+                      <span className="coupon-icon" aria-hidden="true">{ICONS.ticket}</span>
+                      {appliedCoupon.code}
+                    </span>
                     <span className="coupon-discount">
                       -{appliedCoupon.discountType === 'percentage' 
                         ? `${appliedCoupon.discountValue}%` 
@@ -527,14 +660,19 @@ const CheckoutPage = () => {
                     type="button" 
                     className="btn-remove-coupon"
                     onClick={handleRemoveCoupon}
+                    aria-label={t('checkout.removeCoupon')}
                   >
-                    ✕
+                    {ICONS.close}
                   </button>
                 </div>
               ) : (
                 <div className="coupon-input-wrapper">
+                  <label htmlFor="coupon-input" className="visually-hidden">
+                    {t('checkout.couponCode')}
+                  </label>
                   <input
                     type="text"
+                    id="coupon-input"
                     value={couponCode}
                     onChange={(e) => {
                       setCouponCode(e.target.value.toUpperCase());
@@ -542,6 +680,8 @@ const CheckoutPage = () => {
                     }}
                     placeholder={t('checkout.couponPlaceholder')}
                     className={couponError ? 'error' : ''}
+                    aria-invalid={!!couponError}
+                    aria-describedby={couponError ? 'coupon-error' : undefined}
                   />
                   <button
                     type="button"
@@ -549,11 +689,15 @@ const CheckoutPage = () => {
                     onClick={handleApplyCoupon}
                     disabled={validatingCoupon || !couponCode.trim()}
                   >
-                    {validatingCoupon ? '...' : t('checkout.applyCoupon')}
+                    {validatingCoupon ? ICONS.loader : t('checkout.applyCoupon')}
                   </button>
                 </div>
               )}
-              {couponError && <p className="coupon-error">{couponError}</p>}
+              {couponError && (
+                <p id="coupon-error" className="coupon-error" role="alert">
+                  {couponError}
+                </p>
+              )}
             </div>
 
             <div className="summary-totals">
@@ -576,7 +720,7 @@ const CheckoutPage = () => {
                 <span>€{(getCartTotal() + shippingCost - couponDiscount).toFixed(2)}</span>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </div>

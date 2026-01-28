@@ -209,6 +209,7 @@
     "couponCode": "Código de descuento",
     "couponPlaceholder": "Introduce tu código",
     "applyCoupon": "Aplicar",
+    "removeCoupon": "Eliminar cupón",
     "couponApplied": "Cupón aplicado correctamente",
     "couponInvalid": "Cupón no válido",
     "discount": "Descuento"

@@ -71,7 +71,7 @@ const CartPage = () => {
         <div className="cart-header">
           <h1>{t('cart.title')}</h1>
           <span className="cart-count">
-            {totalItemsCount} {t('cart.items', { count: totalItemsCount })}
+            {t('cart.items', { count: totalItemsCount })}
             {producerGroupsCount > 1 && (
               <span className="producer-count">
                 {' · '}{producerGroupsCount} {t('cart.producers')}

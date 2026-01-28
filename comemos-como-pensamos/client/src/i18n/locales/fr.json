@@ -192,6 +192,7 @@
     "couponCode": "Code de réduction",
     "couponPlaceholder": "Entrez votre code",
     "applyCoupon": "Appliquer",
+    "removeCoupon": "Supprimer le coupon",
     "couponApplied": "Coupon appliqué avec succès",
     "couponInvalid": "Coupon invalide",
     "discount": "Réduction"
