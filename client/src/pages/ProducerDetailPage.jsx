@@ -209,7 +209,7 @@ const ProducerDetailPage = () => {
 
         {reviews.length > 0 && (
           <div className="producer-reviews-section">
-            <h2>⭐ {t('producerDetail.reviews')} ({reviews.length})</h2>
+            <h2>{t('producerDetail.reviews')} ({reviews.length})</h2>
             <div className="reviews-summary">
               <div className="average-rating">
                 <span className="rating-number">
@@ -239,7 +239,7 @@ const ProducerDetailPage = () => {
                   </div>
                   {review.productId && (
                     <Link to={`/products/${review.productId._id}`} className="review-product">
-                      📦 {review.productId.name?.es || review.productId.name}
+                      {review.productId.name?.es || review.productId.name}
                     </Link>
                   )}
                   {review.comment && (
