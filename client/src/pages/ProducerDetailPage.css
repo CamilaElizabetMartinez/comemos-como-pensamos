@@ -9,16 +9,16 @@
   margin: 0 auto;
 }
 
-.back-link {
+.producer-detail-page .back-link {
   display: inline-block;
-  color: #2e7d32;
+  color: #2D5A3D;
   text-decoration: none;
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
 
-.back-link:hover {
-  text-decoration: underline;
+.producer-detail-page .back-link:hover {
+  color: #1E3D2A;
 }
 
 .producer-hero {

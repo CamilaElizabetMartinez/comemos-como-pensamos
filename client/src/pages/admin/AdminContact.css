@@ -5,7 +5,7 @@
   min-height: calc(100vh - 140px);
 }
 
-.back-link {
+.admin-contact .back-link {
   display: inline-block;
   color: #666;
   text-decoration: none;
@@ -14,11 +14,11 @@
   transition: color 0.2s;
 }
 
-.back-link::before {
+.admin-contact .back-link::before {
   content: '← ';
 }
 
-.back-link:hover {
+.admin-contact .back-link:hover {
   color: #2d5a27;
 }
 
