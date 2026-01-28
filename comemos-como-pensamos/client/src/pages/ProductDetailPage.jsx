@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import api from '../services/api';
 import ProductReviews from '../components/reviews/ProductReviews';
+import { ProductDetailSkeleton } from '../components/common/Skeleton';
 import './ProductDetailPage.css';
 
 const ProductDetailPage = () => {
@@ -212,9 +213,7 @@ const ProductDetailPage = () => {
   if (loading) {
     return (
       <div className="product-detail-page">
-        <div className="container">
-          <div className="loading">{t('common.loading')}</div>
-        </div>
+        <ProductDetailSkeleton />
       </div>
     );
   }

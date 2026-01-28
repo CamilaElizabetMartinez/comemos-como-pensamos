@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
-import { PageSpinner } from '../components/common/Spinner';
+import { ProducerDetailSkeleton } from '../components/common/Skeleton';
 import './ProducerDetailPage.css';
 
 const ProducerDetailPage = () => {
@@ -83,9 +83,7 @@ const ProducerDetailPage = () => {
   if (loading) {
     return (
       <div className="producer-detail-page">
-        <div className="producer-detail-container">
-          <PageSpinner text={t('common.loading')} />
-        </div>
+        <ProducerDetailSkeleton />
       </div>
     );
   }

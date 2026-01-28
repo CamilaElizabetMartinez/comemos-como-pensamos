@@ -29,25 +29,22 @@
 .spinner-small .spinner-circle {
   width: 20px;
   height: 20px;
-  border-width: 2px;
 }
 
 .spinner-medium .spinner-circle {
   width: 36px;
   height: 36px;
-  border-width: 3px;
 }
 
 .spinner-large .spinner-circle {
   width: 48px;
   height: 48px;
-  border-width: 4px;
 }
 
-/* Colors */
+/* Colors - Using design system variables */
 .spinner-primary .spinner-circle {
-  border: 3px solid #e8e4dc;
-  border-top-color: #2d5a27;
+  border: 3px solid var(--color-bg-sand, #E8E4DC);
+  border-top-color: var(--color-primary, #2D5A3D);
 }
 
 .spinner-white .spinner-circle {
@@ -56,15 +53,16 @@
 }
 
 .spinner-secondary .spinner-circle {
-  border: 3px solid #f0f0f0;
-  border-top-color: #666;
+  border: 3px solid var(--color-border, #DDD9D2);
+  border-top-color: var(--color-text-muted, #7A7A72);
 }
 
 /* Spinner Text */
 .spinner-text {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-muted, #7A7A72);
   font-weight: 500;
+  font-family: var(--font-body);
 }
 
 /* Page Spinner */
