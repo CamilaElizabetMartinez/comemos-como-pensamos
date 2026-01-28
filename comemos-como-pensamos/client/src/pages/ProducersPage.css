@@ -73,14 +73,13 @@
   gap: var(--space-md);
 }
 
-/* Producer Card - Square card */
+/* Producer Card */
 .producer-card {
   background: var(--color-bg-white);
   border-radius: 0;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
-  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
 }
@@ -91,7 +90,7 @@
 }
 
 .producer-image {
-  flex: 1;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--color-bg-light);
 }
@@ -127,9 +126,15 @@
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
 }
 
-.producer-text {
+.producer-content {
+  display: flex;
+  flex-direction: column;
   padding: var(--space-sm) var(--space-md);
+}
+
+.producer-text {
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .producer-text h2 {
@@ -156,6 +161,39 @@
   color: var(--color-text-muted);
   font-size: 0.85rem;
   margin: 0;
+}
+
+/* Producer Actions */
+.producer-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-view-products {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
+}
+
+.btn-view-products svg {
+  flex-shrink: 0;
+}
+
+.btn-view-products:hover {
+  background: var(--color-primary-dark, #1E3D2A);
+  transform: translateY(-1px);
 }
 
 /* No producers */
@@ -232,8 +270,12 @@
     gap: var(--space-sm);
   }
 
-  .producer-text {
+  .producer-content {
     padding: var(--space-xs) var(--space-sm);
+  }
+
+  .producer-text {
+    margin-bottom: 0.35rem;
   }
 
   .producer-text h2 {
@@ -242,6 +284,16 @@
 
   .producer-location {
     font-size: 0.75rem;
+  }
+
+  .btn-view-products {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .btn-view-products svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -274,12 +326,31 @@
     font-size: 2.5rem;
   }
 
+  .producer-content {
+    padding: 0.5rem;
+  }
+
+  .producer-text {
+    margin-bottom: 0.25rem;
+  }
+
   .producer-text h2 {
     font-size: 0.8rem;
   }
 
   .producer-location {
     font-size: 0.7rem;
+  }
+
+  .btn-view-products {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.65rem;
+    gap: 0.25rem;
+  }
+
+  .btn-view-products svg {
+    width: 12px;
+    height: 12px;
   }
 
   .no-producers {
