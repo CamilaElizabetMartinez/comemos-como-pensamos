@@ -259,7 +259,8 @@
     "filter": "Filter",
     "sort": "Sort",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "anonymous": "Anonymous"
   },
   "search": {
     "products": "Products",

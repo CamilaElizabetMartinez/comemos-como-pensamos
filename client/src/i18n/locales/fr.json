@@ -241,7 +241,8 @@
     "filter": "Filtrer",
     "sort": "Trier",
     "previous": "Précédent",
-    "next": "Suivant"
+    "next": "Suivant",
+    "anonymous": "Anonyme"
   },
   "orders": {
     "title": "Mes Commandes",
