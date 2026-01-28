@@ -19,21 +19,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-primary);
+  color: #2D5A3D;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  margin-bottom: var(--space-sm);
-  transition: color var(--transition-fast);
+  margin-bottom: 16px;
+  transition: color 0.15s ease;
 }
 
 .producer-dashboard .back-link::before {
   content: '←';
-  transition: transform var(--transition-fast);
+  transition: transform 0.15s ease;
 }
 
 .producer-dashboard .back-link:hover {
-  color: var(--color-primary-dark);
+  color: #1E3D2A;
 }
 
 .producer-dashboard .back-link:hover::before {
