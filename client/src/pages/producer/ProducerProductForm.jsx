@@ -306,8 +306,8 @@ const ProducerProductForm = () => {
     <div className="producer-product-form">
       <div className="container">
         <header className="form-header">
-          <Link to="/producer/products" className="back-link">
-            ← {t('producer.productForm.backToProducts')}
+          <Link to="/producer" className="back-link">
+            ← {t('producer.products.backToDashboard')}
           </Link>
           <h1>
             {isEditing 
