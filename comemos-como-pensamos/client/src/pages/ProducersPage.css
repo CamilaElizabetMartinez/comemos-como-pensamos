@@ -1,7 +1,7 @@
 .producers-page {
   min-height: 80vh;
-  padding: 2rem;
-  background-color: #f5f5f5;
+  padding: var(--space-lg);
+  background-color: var(--color-bg-cream);
 }
 
 .producers-container {
@@ -11,27 +11,30 @@
 
 .producers-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-lg);
 }
 
 .producers-header h1 {
-  color: var(--color-text-primary);
+  color: var(--color-primary);
   font-family: var(--font-heading);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   margin: 0 0 0.5rem 0;
 }
 
 .producers-subtitle {
-  color: #666;
+  color: var(--color-text-muted);
   font-size: 1.1rem;
   margin: 0;
 }
 
 .producers-filters {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  background: var(--color-bg-white);
+  padding: var(--space-md);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .search-group {
@@ -45,9 +48,10 @@
   flex: 1;
   min-width: 200px;
   padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 1rem;
+  font-family: var(--font-body);
 }
 
 .search-btn {
@@ -59,176 +63,131 @@
 .search-input:focus,
 .city-input:focus {
   outline: none;
-  border-color: #2e7d32;
+  border-color: var(--color-primary);
 }
 
+/* Producers Grid */
 .producers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
 }
 
+/* Producer Card - Square card */
 .producer-card {
   background: var(--color-bg-white);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
   overflow: hidden;
-  text-decoration: none;
-  color: inherit;
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
 }
 
 .producer-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
 }
 
-.producer-header {
-  display: flex;
-  flex-direction: row;
-}
-
-.producer-logo {
-  width: 100px;
-  min-width: 100px;
-  height: 100px;
-  margin: var(--space-sm);
-  border-radius: 50%;
-  background: var(--color-bg-light);
+.producer-image {
+  flex: 1;
   overflow: hidden;
+  background: var(--color-bg-light);
 }
 
-.producer-logo img {
+.producer-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.producer-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-base);
 }
 
-.producer-card:hover .producer-logo img {
-  transform: scale(1.08);
+.producer-card:hover .producer-image img {
+  transform: scale(1.05);
 }
 
-.logo-placeholder {
+.producer-image .image-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 4rem;
   font-family: var(--font-heading);
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--color-text-white);
-  background: var(--color-primary);
+  color: var(--color-bg-white);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
 }
 
-.producer-info {
-  padding: var(--space-sm);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.producer-text {
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+}
+
+.producer-text h2 {
+  margin: 0 0 0.25rem 0;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.producer-text h2 a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.producer-text h2 a:hover {
+  color: var(--color-primary);
 }
 
 .producer-location {
-  color: var(--color-primary-light);
-  font-size: 0.65rem;
-  margin: 0 0 0.2rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.producer-name {
-  margin: 0 0 0.25rem 0;
-  color: var(--color-text-primary);
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  text-transform: none;
-  letter-spacing: 0;
-  line-height: 1.2;
-}
-
-.producer-description {
-  color: var(--color-text-body);
-  font-size: 0.8rem;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0 var(--space-sm) var(--space-sm);
-  opacity: 0.8;
-}
-
-.producer-rating {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  margin-top: auto;
-}
-
-.producer-rating .rating-star {
-  color: var(--color-accent);
+  color: var(--color-text-muted);
   font-size: 0.85rem;
+  margin: 0;
 }
 
-.producer-rating .rating-value {
-  font-weight: 600;
-  color: var(--color-text-primary);
-  font-size: 0.8rem;
-}
-
-.producer-rating .review-count {
-  color: var(--color-text-body);
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
-
-.producer-certifications {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.5rem;
-}
-
-.certification-badge {
-  background: var(--color-bg-light);
-  color: var(--color-primary);
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.7rem;
-  font-weight: 500;
-}
-
+/* No producers */
 .no-producers {
   text-align: center;
-  padding: 4rem 2rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-bg-white);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .no-producers-icon {
   font-size: 4rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
 }
 
 .no-producers h2 {
-  color: #333;
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
 }
 
 .no-producers p {
-  color: #666;
+  color: var(--color-text-muted);
 }
 
+/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: var(--space-lg);
 }
 
 .btn-pagination {
@@ -236,28 +195,23 @@
 }
 
 .page-info {
-  color: #666;
+  color: var(--color-text-muted);
 }
 
-.loading-spinner {
-  text-align: center;
-  padding: 4rem;
-  color: #666;
-}
-
+/* Responsive */
 @media (max-width: 1024px) {
   .producers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .producers-page {
-    padding: 1rem;
+    padding: var(--space-sm);
   }
 
   .producers-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-md);
   }
 
   .producers-header h1 {
@@ -269,39 +223,25 @@
   }
 
   .producers-filters {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
   }
 
   .producers-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
   }
 
-  .producer-logo {
-    width: 80px;
-    min-width: 80px;
-    height: 80px;
-    margin: 0.75rem;
+  .producer-text {
+    padding: var(--space-xs) var(--space-sm);
   }
 
-  .producer-info {
-    padding: 0.6rem;
-    padding-left: 0;
-  }
-
-  .producer-name {
+  .producer-text h2 {
     font-size: 0.85rem;
   }
 
-  .producer-description {
+  .producer-location {
     font-size: 0.75rem;
-    padding: 0 0.75rem 0.75rem;
-  }
-
-  .pagination {
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
 }
 
@@ -325,36 +265,28 @@
     min-width: auto;
   }
 
-  .producer-logo {
-    width: 60px;
-    min-width: 60px;
-    height: 60px;
-    margin: 0.5rem;
+  .producers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 
-  .producer-location {
-    font-size: 0.6rem;
+  .producer-image .image-placeholder {
+    font-size: 2.5rem;
   }
 
-  .producer-name {
+  .producer-text h2 {
     font-size: 0.8rem;
   }
 
-  .producer-rating .rating-star,
-  .producer-rating .rating-value {
+  .producer-location {
     font-size: 0.7rem;
   }
 
-  .producer-rating .review-count {
-    font-size: 0.65rem;
-  }
-
   .no-producers {
-    padding: 2rem 1rem;
+    padding: var(--space-lg) var(--space-sm);
   }
 
   .no-producers-icon {
     font-size: 2.5rem;
   }
 }
-
