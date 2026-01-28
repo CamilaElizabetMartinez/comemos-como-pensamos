@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
@@ -7,8 +7,20 @@ import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
 import './ProducerProductForm.css';
 
-const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'other'];
-const UNITS = ['kg', 'g', 'l', 'ml', 'ud', 'docena', 'manojo'];
+const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'eggs', 'honey', 'oil', 'wine', 'other'];
+const UNITS = ['kg', 'unit', 'liter', 'gram', 'dozen'];
+const WEIGHT_UNITS = ['g', 'kg', 'ml', 'l'];
+
+const EMPTY_VARIANT = {
+  name: { es: '', en: '', fr: '', de: '' },
+  sku: '',
+  price: '',
+  compareAtPrice: '',
+  stock: '',
+  weight: '',
+  weightUnit: 'g',
+  isDefault: false
+};
 
 const ProducerProductForm = () => {
   const { id } = useParams();
@@ -23,7 +35,9 @@ const ProducerProductForm = () => {
     unit: 'kg',
     stock: '',
     images: [],
-    isAvailable: true
+    isAvailable: true,
+    hasVariants: false,
+    variants: []
   });
   const { user } = useAuth();
   const { t } = useTranslation();
@@ -39,15 +53,25 @@ const ProducerProductForm = () => {
     }
   }, [user, id, navigate, isEditing]);
 
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
     try {
       const res = await api.get(`/products/${id}`);
       const product = res.data.data.product;
       
-      // Convertir imágenes a formato con url/publicId si son strings
       const normalizedImages = (product.images || []).map(img => 
         typeof img === 'string' ? { url: img, publicId: null } : img
       );
+
+      const normalizedVariants = (product.variants || []).map(variant => ({
+        ...variant,
+        _id: variant._id,
+        name: variant.name || { es: '', en: '', fr: '', de: '' },
+        price: variant.price?.toString() || '',
+        compareAtPrice: variant.compareAtPrice?.toString() || '',
+        stock: variant.stock?.toString() || '',
+        weight: variant.weight?.toString() || '',
+        weightUnit: variant.weightUnit || 'g'
+      }));
       
       setFormData({
         name: product.name || { es: '', en: '', fr: '', de: '' },
@@ -57,7 +81,9 @@ const ProducerProductForm = () => {
         unit: product.unit || 'kg',
         stock: product.stock?.toString() || '',
         images: normalizedImages,
-        isAvailable: product.isAvailable ?? true
+        isAvailable: product.isAvailable ?? true,
+        hasVariants: product.hasVariants || false,
+        variants: normalizedVariants
       });
     } catch (error) {
       toast.error(t('producer.productForm.loadError'));
@@ -65,17 +91,17 @@ const ProducerProductForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id, navigate, t]);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = useCallback((event) => {
+    const { name, value, type, checked } = event.target;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-  };
+  }, []);
 
-  const handleLocalizedChange = (field, lang, value) => {
+  const handleLocalizedChange = useCallback((field, lang, value) => {
     setFormData(prev => ({
       ...prev,
       [field]: {
@@ -83,44 +109,152 @@ const ProducerProductForm = () => {
         [lang]: value
       }
     }));
-  };
+  }, []);
 
-  const handleImagesChange = (newImages) => {
+  const handleImagesChange = useCallback((newImages) => {
     setFormData(prev => ({
       ...prev,
       images: newImages
     }));
-  };
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleToggleVariants = useCallback((event) => {
+    const hasVariants = event.target.checked;
+    setFormData(prev => ({
+      ...prev,
+      hasVariants,
+      variants: hasVariants && prev.variants.length === 0 
+        ? [{ ...EMPTY_VARIANT, isDefault: true }] 
+        : prev.variants
+    }));
+  }, []);
 
+  const handleAddVariant = useCallback(() => {
+    setFormData(prev => ({
+      ...prev,
+      variants: [...prev.variants, { ...EMPTY_VARIANT }]
+    }));
+  }, []);
+
+  const handleRemoveVariant = useCallback((index) => {
+    setFormData(prev => {
+      const newVariants = prev.variants.filter((_, variantIndex) => variantIndex !== index);
+      if (newVariants.length > 0 && !newVariants.some(variant => variant.isDefault)) {
+        newVariants[0].isDefault = true;
+      }
+      return { ...prev, variants: newVariants };
+    });
+  }, []);
+
+  const handleVariantChange = useCallback((index, field, value) => {
+    setFormData(prev => {
+      const newVariants = [...prev.variants];
+      newVariants[index] = { ...newVariants[index], [field]: value };
+      return { ...prev, variants: newVariants };
+    });
+  }, []);
+
+  const handleVariantLocalizedChange = useCallback((index, field, lang, value) => {
+    setFormData(prev => {
+      const newVariants = [...prev.variants];
+      newVariants[index] = {
+        ...newVariants[index],
+        [field]: {
+          ...newVariants[index][field],
+          [lang]: value
+        }
+      };
+      return { ...prev, variants: newVariants };
+    });
+  }, []);
+
+  const handleSetDefaultVariant = useCallback((index) => {
+    setFormData(prev => ({
+      ...prev,
+      variants: prev.variants.map((variant, variantIndex) => ({
+        ...variant,
+        isDefault: variantIndex === index
+      }))
+    }));
+  }, []);
+
+  const validateForm = useCallback(() => {
     if (!formData.name.es) {
       toast.error(t('producer.productForm.nameRequired'));
-      return;
+      return false;
     }
-    if (!formData.price || parseFloat(formData.price) <= 0) {
-      toast.error(t('producer.productForm.priceRequired'));
-      return;
+
+    if (formData.hasVariants) {
+      if (formData.variants.length === 0) {
+        toast.error(t('producer.productForm.variantsRequired'));
+        return false;
+      }
+      for (let index = 0; index < formData.variants.length; index++) {
+        const variant = formData.variants[index];
+        if (!variant.name.es) {
+          toast.error(t('producer.productForm.variantNameRequired', { index: index + 1 }));
+          return false;
+        }
+        if (!variant.price || parseFloat(variant.price) <= 0) {
+          toast.error(t('producer.productForm.variantPriceRequired', { index: index + 1 }));
+          return false;
+        }
+        if (variant.stock === '' || parseInt(variant.stock) < 0) {
+          toast.error(t('producer.productForm.variantStockRequired', { index: index + 1 }));
+          return false;
+        }
+      }
+    } else {
+      if (!formData.price || parseFloat(formData.price) <= 0) {
+        toast.error(t('producer.productForm.priceRequired'));
+        return false;
+      }
+      if (formData.stock === '' || parseInt(formData.stock) < 0) {
+        toast.error(t('producer.productForm.stockRequired'));
+        return false;
+      }
     }
-    if (!formData.stock || parseInt(formData.stock) < 0) {
-      toast.error(t('producer.productForm.stockRequired'));
-      return;
-    }
+
+    return true;
+  }, [formData, t]);
+
+  const handleSubmit = useCallback(async (event) => {
+    event.preventDefault();
+
+    if (!validateForm()) return;
 
     setSaving(true);
     try {
-      // Extraer solo las URLs de las imágenes para guardar
       const imageUrls = formData.images.map(img => 
         typeof img === 'string' ? img : img.url
       );
 
       const payload = {
-        ...formData,
+        name: formData.name,
+        description: formData.description,
+        category: formData.category,
+        unit: formData.unit,
         images: imageUrls,
-        price: parseFloat(formData.price),
-        stock: parseInt(formData.stock)
+        hasVariants: formData.hasVariants
       };
+
+      if (formData.hasVariants) {
+        payload.variants = formData.variants.map(variant => ({
+          _id: variant._id,
+          name: variant.name,
+          sku: variant.sku,
+          price: parseFloat(variant.price),
+          compareAtPrice: variant.compareAtPrice ? parseFloat(variant.compareAtPrice) : undefined,
+          stock: parseInt(variant.stock),
+          weight: variant.weight ? parseFloat(variant.weight) : undefined,
+          weightUnit: variant.weightUnit,
+          isDefault: variant.isDefault
+        }));
+      } else {
+        payload.price = parseFloat(formData.price);
+        payload.stock = parseInt(formData.stock);
+        payload.isAvailable = formData.isAvailable;
+      }
 
       if (isEditing) {
         await api.put(`/products/${id}`, payload);
@@ -135,7 +269,12 @@ const ProducerProductForm = () => {
     } finally {
       setSaving(false);
     }
-  };
+  }, [formData, validateForm, isEditing, id, navigate, t]);
+
+  const totalVariantsStock = useMemo(() => {
+    if (!formData.hasVariants) return 0;
+    return formData.variants.reduce((sum, variant) => sum + (parseInt(variant.stock) || 0), 0);
+  }, [formData.hasVariants, formData.variants]);
 
   if (loading) {
     return (
@@ -152,7 +291,7 @@ const ProducerProductForm = () => {
       <div className="container">
         <header className="form-header">
           <Link to="/producer/products" className="back-link">
-            {t('producer.productForm.backToProducts')}
+            ← {t('producer.productForm.backToProducts')}
           </Link>
           <h1>
             {isEditing 
@@ -166,7 +305,7 @@ const ProducerProductForm = () => {
             <h2>{t('producer.productForm.basicInfo')}</h2>
             
             <div className="form-group">
-              <label>{t('producer.productForm.nameSectionTitle')}</label>
+              <label>{t('producer.productForm.nameSectionTitle')} *</label>
               <div className="localized-inputs">
                 {['es', 'en', 'fr', 'de'].map(lang => (
                   <div key={lang} className="localized-input">
@@ -174,7 +313,7 @@ const ProducerProductForm = () => {
                     <input
                       type="text"
                       value={formData.name[lang]}
-                      onChange={(e) => handleLocalizedChange('name', lang, e.target.value)}
+                      onChange={(event) => handleLocalizedChange('name', lang, event.target.value)}
                       placeholder={t('producer.productForm.namePlaceholder')}
                       required={lang === 'es'}
                     />
@@ -191,7 +330,7 @@ const ProducerProductForm = () => {
                     <span className="lang-label">{lang.toUpperCase()}</span>
                     <textarea
                       value={formData.description[lang]}
-                      onChange={(e) => handleLocalizedChange('description', lang, e.target.value)}
+                      onChange={(event) => handleLocalizedChange('description', lang, event.target.value)}
                       placeholder={t('producer.productForm.descriptionPlaceholder')}
                       rows="3"
                     />
@@ -224,7 +363,7 @@ const ProducerProductForm = () => {
                   onChange={handleChange}
                 >
                   {UNITS.map(unit => (
-                    <option key={unit} value={unit}>{unit}</option>
+                    <option key={unit} value={unit}>{t(`units.${unit}`)}</option>
                   ))}
                 </select>
               </div>
@@ -234,48 +373,209 @@ const ProducerProductForm = () => {
           <section className="form-section">
             <h2>{t('producer.productForm.pricingStock')}</h2>
             
-            <div className="form-row">
-              <div className="form-group">
-                <label>{t('producer.productForm.price')} (€)</label>
-                <input
-                  type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleChange}
-                  step="0.01"
-                  min="0"
-                  required
-                  placeholder="0.00"
-                />
-              </div>
-
-              <div className="form-group">
-                <label>{t('producer.productForm.stock')}</label>
-                <input
-                  type="number"
-                  name="stock"
-                  value={formData.stock}
-                  onChange={handleChange}
-                  min="0"
-                  required
-                  placeholder="0"
-                />
-              </div>
-            </div>
-
-            <div className="form-group checkbox-group">
+            <div className="form-group checkbox-group variants-toggle">
               <label className="checkbox-label">
                 <input
                   type="checkbox"
-                  name="isAvailable"
-                  checked={formData.isAvailable}
-                  onChange={handleChange}
+                  checked={formData.hasVariants}
+                  onChange={handleToggleVariants}
                 />
                 <span className="checkbox-text">
-                  {t('producer.productForm.isAvailable')}
+                  {t('producer.productForm.useVariants')}
                 </span>
               </label>
+              <p className="hint-text">{t('producer.productForm.variantsHint')}</p>
             </div>
+
+            {!formData.hasVariants ? (
+              <>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>{t('producer.productForm.price')} (€) *</label>
+                    <input
+                      type="number"
+                      name="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                      step="0.01"
+                      min="0"
+                      required
+                      placeholder="0.00"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>{t('producer.productForm.stock')} *</label>
+                    <input
+                      type="number"
+                      name="stock"
+                      value={formData.stock}
+                      onChange={handleChange}
+                      min="0"
+                      required
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group checkbox-group">
+                  <label className="checkbox-label">
+                    <input
+                      type="checkbox"
+                      name="isAvailable"
+                      checked={formData.isAvailable}
+                      onChange={handleChange}
+                    />
+                    <span className="checkbox-text">
+                      {t('producer.productForm.isAvailable')}
+                    </span>
+                  </label>
+                </div>
+              </>
+            ) : (
+              <div className="variants-section">
+                <div className="variants-header">
+                  <h3>{t('producer.productForm.variantsTitle')}</h3>
+                  <span className="variants-stock-total">
+                    {t('producer.productForm.totalStock')}: {totalVariantsStock}
+                  </span>
+                </div>
+
+                {formData.variants.map((variant, index) => (
+                  <div key={index} className={`variant-card ${variant.isDefault ? 'is-default' : ''}`}>
+                    <div className="variant-header">
+                      <span className="variant-number">
+                        {t('producer.productForm.variant')} {index + 1}
+                        {variant.isDefault && (
+                          <span className="default-badge">{t('producer.productForm.default')}</span>
+                        )}
+                      </span>
+                      <div className="variant-actions">
+                        {!variant.isDefault && (
+                          <button
+                            type="button"
+                            className="btn-set-default"
+                            onClick={() => handleSetDefaultVariant(index)}
+                          >
+                            {t('producer.productForm.setDefault')}
+                          </button>
+                        )}
+                        {formData.variants.length > 1 && (
+                          <button
+                            type="button"
+                            className="btn-remove-variant"
+                            onClick={() => handleRemoveVariant(index)}
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="variant-body">
+                      <div className="form-group">
+                        <label>{t('producer.productForm.variantName')} *</label>
+                        <div className="localized-inputs compact">
+                          {['es', 'en', 'fr', 'de'].map(lang => (
+                            <div key={lang} className="localized-input">
+                              <span className="lang-label">{lang.toUpperCase()}</span>
+                              <input
+                                type="text"
+                                value={variant.name[lang]}
+                                onChange={(event) => handleVariantLocalizedChange(index, 'name', lang, event.target.value)}
+                                placeholder={t('producer.productForm.variantNamePlaceholder')}
+                                required={lang === 'es'}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="form-row four-cols">
+                        <div className="form-group">
+                          <label>{t('producer.productForm.price')} (€) *</label>
+                          <input
+                            type="number"
+                            value={variant.price}
+                            onChange={(event) => handleVariantChange(index, 'price', event.target.value)}
+                            step="0.01"
+                            min="0"
+                            required
+                            placeholder="0.00"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label>{t('producer.productForm.compareAtPrice')}</label>
+                          <input
+                            type="number"
+                            value={variant.compareAtPrice}
+                            onChange={(event) => handleVariantChange(index, 'compareAtPrice', event.target.value)}
+                            step="0.01"
+                            min="0"
+                            placeholder="0.00"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label>{t('producer.productForm.stock')} *</label>
+                          <input
+                            type="number"
+                            value={variant.stock}
+                            onChange={(event) => handleVariantChange(index, 'stock', event.target.value)}
+                            min="0"
+                            required
+                            placeholder="0"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label>{t('producer.productForm.sku')}</label>
+                          <input
+                            type="text"
+                            value={variant.sku}
+                            onChange={(event) => handleVariantChange(index, 'sku', event.target.value)}
+                            placeholder="SKU-001"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>{t('producer.productForm.weight')}</label>
+                          <div className="weight-input-group">
+                            <input
+                              type="number"
+                              value={variant.weight}
+                              onChange={(event) => handleVariantChange(index, 'weight', event.target.value)}
+                              min="0"
+                              step="0.01"
+                              placeholder="500"
+                            />
+                            <select
+                              value={variant.weightUnit}
+                              onChange={(event) => handleVariantChange(index, 'weightUnit', event.target.value)}
+                            >
+                              {WEIGHT_UNITS.map(unit => (
+                                <option key={unit} value={unit}>{unit}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  className="btn-add-variant"
+                  onClick={handleAddVariant}
+                >
+                  + {t('producer.productForm.addVariant')}
+                </button>
+              </div>
+            )}
           </section>
 
           <section className="form-section">
