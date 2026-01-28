@@ -379,7 +379,7 @@ const ProductDetailPage = () => {
             {/* Producer link */}
             {product.producerId && (
               <Link
-                to={`/productores/${product.producerId._id || product.producerId}`}
+                to={`/producers/${product.producerId._id || product.producerId}`}
                 className="producer-link"
               >
                 {product.producerId.businessName || t('products.viewProducer')}
