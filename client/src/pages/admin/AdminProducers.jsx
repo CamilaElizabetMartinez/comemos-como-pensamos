@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { TableSkeleton } from '../../components/common/Skeleton';
 import './AdminProducers.css';
 
 const INITIAL_COMMISSION_STATE = {
@@ -164,7 +165,7 @@ const AdminProducers = () => {
     return (
       <div className="admin-producers">
         <div className="container">
-          <div className="loading">{t('common.loading')}</div>
+          <TableSkeleton />
         </div>
       </div>
     );

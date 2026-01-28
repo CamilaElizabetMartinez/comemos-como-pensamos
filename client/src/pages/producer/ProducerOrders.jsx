@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { TableSkeleton } from '../../components/common/Skeleton';
 import './ProducerOrders.css';
 
 const ProducerOrders = () => {
@@ -94,7 +95,7 @@ const ProducerOrders = () => {
     return (
       <div className="producer-orders">
         <div className="container">
-          <div className="loading">{t('common.loading')}</div>
+          <TableSkeleton rows={6} columns={5} />
         </div>
       </div>
     );

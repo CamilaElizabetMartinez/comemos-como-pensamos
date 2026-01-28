@@ -186,5 +186,128 @@ export const PageSkeleton = ({ type = 'product' }) => {
   }
 };
 
+export const DashboardSkeleton = () => (
+  <div className="skeleton-dashboard">
+    <div className="skeleton-stats-grid">
+      {Array(4).fill(null).map((_, index) => (
+        <div key={index} className="skeleton-stat-card">
+          <Skeleton variant="text" width="60%" height="0.9rem" />
+          <Skeleton variant="text" width="40%" height="2rem" />
+        </div>
+      ))}
+    </div>
+    <div className="skeleton-dashboard-content">
+      <div className="skeleton-chart-section">
+        <Skeleton variant="text" width="150px" height="1.25rem" />
+        <Skeleton variant="rectangular" height="250px" />
+      </div>
+      <div className="skeleton-list-section">
+        <Skeleton variant="text" width="180px" height="1.25rem" />
+        {Array(5).fill(null).map((_, index) => (
+          <div key={index} className="skeleton-list-item">
+            <Skeleton variant="text" width="70%" height="1rem" />
+            <Skeleton variant="text" width="20%" height="1rem" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+export const TableSkeleton = ({ rows = 5, columns = 4 }) => (
+  <div className="skeleton-table">
+    <div className="skeleton-table-header">
+      {Array(columns).fill(null).map((_, index) => (
+        <Skeleton key={index} variant="text" height="1rem" />
+      ))}
+    </div>
+    <div className="skeleton-table-body">
+      {Array(rows).fill(null).map((_, rowIndex) => (
+        <div key={rowIndex} className="skeleton-table-row">
+          {Array(columns).fill(null).map((_, colIndex) => (
+            <Skeleton key={colIndex} variant="text" height="1rem" />
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+export const FormSkeleton = () => (
+  <div className="skeleton-form">
+    <Skeleton variant="text" width="150px" height="1.5rem" />
+    <div className="skeleton-form-fields">
+      {Array(4).fill(null).map((_, index) => (
+        <div key={index} className="skeleton-form-group">
+          <Skeleton variant="text" width="100px" height="0.9rem" />
+          <Skeleton variant="rectangular" height="44px" />
+        </div>
+      ))}
+    </div>
+    <div className="skeleton-form-actions">
+      <Skeleton variant="rectangular" width="100px" height="40px" className="skeleton-button" />
+      <Skeleton variant="rectangular" width="120px" height="40px" className="skeleton-button" />
+    </div>
+  </div>
+);
+
+export const OrderDetailSkeleton = () => (
+  <div className="skeleton-order-detail">
+    <Skeleton variant="text" width="150px" height="1rem" />
+    <div className="skeleton-order-header-section">
+      <Skeleton variant="text" width="200px" height="1.75rem" />
+      <Skeleton variant="rectangular" width="100px" height="28px" className="skeleton-badge" />
+    </div>
+    <div className="skeleton-order-grid">
+      <div className="skeleton-order-items">
+        <Skeleton variant="text" width="120px" height="1.25rem" />
+        {Array(3).fill(null).map((_, index) => (
+          <div key={index} className="skeleton-order-item">
+            <Skeleton variant="rectangular" width="80px" height="80px" />
+            <div className="skeleton-item-info">
+              <Skeleton variant="text" width="70%" height="1rem" />
+              <Skeleton variant="text" width="40%" height="0.9rem" />
+            </div>
+            <Skeleton variant="text" width="60px" height="1rem" />
+          </div>
+        ))}
+      </div>
+      <div className="skeleton-order-sidebar">
+        <div className="skeleton-summary-card">
+          <Skeleton variant="text" width="100px" height="1.25rem" />
+          <Skeleton variant="text" width="100%" height="1rem" />
+          <Skeleton variant="text" width="100%" height="1rem" />
+          <Skeleton variant="text" width="100%" height="1.25rem" />
+        </div>
+        <div className="skeleton-address-card">
+          <Skeleton variant="text" width="120px" height="1.25rem" />
+          <Skeleton variant="text" width="100%" height="0.9rem" />
+          <Skeleton variant="text" width="80%" height="0.9rem" />
+          <Skeleton variant="text" width="60%" height="0.9rem" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const ArticleDetailSkeleton = () => (
+  <div className="skeleton-article-detail">
+    <Skeleton variant="text" width="150px" height="1rem" />
+    <Skeleton variant="rectangular" height="400px" className="skeleton-featured-image" />
+    <div className="skeleton-article-content">
+      <Skeleton variant="text" width="80%" height="2.5rem" />
+      <div className="skeleton-article-meta">
+        <Skeleton variant="text" width="100px" height="0.9rem" />
+        <Skeleton variant="text" width="80px" height="0.9rem" />
+      </div>
+      <div className="skeleton-article-body">
+        {Array(8).fill(null).map((_, index) => (
+          <Skeleton key={index} variant="text" width={`${90 - (index % 3) * 10}%`} height="1rem" />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 export default Skeleton;
 

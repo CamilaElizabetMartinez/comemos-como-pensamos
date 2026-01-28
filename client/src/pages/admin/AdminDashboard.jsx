@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { DashboardSkeleton } from '../../components/common/Skeleton';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -60,7 +61,7 @@ const AdminDashboard = () => {
     return (
       <div className="admin-dashboard">
         <div className="container">
-          <div className="loading">{t('common.loading')}</div>
+          <DashboardSkeleton />
         </div>
       </div>
     );

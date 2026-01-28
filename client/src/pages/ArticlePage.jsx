@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import useSEO from '../hooks/useSEO';
-import { PageSpinner } from '../components/common/Spinner';
+import { ArticleDetailSkeleton } from '../components/common/Skeleton';
 import './ArticlePage.css';
 
 const ArticlePage = () => {
@@ -121,9 +121,7 @@ const ArticlePage = () => {
   if (loading) {
     return (
       <div className="article-page">
-        <div className="container">
-          <PageSpinner text={t('common.loading')} />
-        </div>
+        <ArticleDetailSkeleton />
       </div>
     );
   }

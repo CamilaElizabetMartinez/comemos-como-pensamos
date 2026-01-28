@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
-import { PageSpinner } from '../components/common/Spinner';
+import { OrderDetailSkeleton } from '../components/common/Skeleton';
 import './OrderDetailPage.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -261,9 +261,7 @@ const OrderDetailPage = () => {
   if (loading) {
     return (
       <div className={`order-detail-page ${isFromAdmin ? 'admin-view' : ''}`}>
-        <div className="order-detail-container">
-          <PageSpinner text={t('common.loading')} />
-        </div>
+        <OrderDetailSkeleton />
       </div>
     );
   }
