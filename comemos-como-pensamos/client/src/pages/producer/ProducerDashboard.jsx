@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { DashboardSkeleton } from '../../components/common/Skeleton';
 import './ProducerDashboard.css';
 
 const ProducerDashboard = () => {
@@ -162,9 +163,7 @@ const ProducerDashboard = () => {
   if (loading) {
     return (
       <div className="producer-dashboard">
-        <div className="container">
-          <div className="loading">{t('common.loading')}</div>
-        </div>
+        <DashboardSkeleton />
       </div>
     );
   }
