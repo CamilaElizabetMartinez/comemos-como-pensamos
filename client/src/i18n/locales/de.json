@@ -192,6 +192,7 @@
     "couponCode": "Rabattcode",
     "couponPlaceholder": "Code eingeben",
     "applyCoupon": "Anwenden",
+    "removeCoupon": "Gutschein entfernen",
     "couponApplied": "Gutschein erfolgreich angewendet",
     "couponInvalid": "Ungültiger Gutschein",
     "discount": "Rabatt"
