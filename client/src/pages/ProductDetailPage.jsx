@@ -15,6 +15,7 @@ const ProductDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState(null);
   const { addToCart } = useCart();
@@ -156,6 +157,40 @@ const ProductDetailPage = () => {
     setSelectedVariantId(variantId);
   }, []);
 
+  const openLightbox = useCallback(() => {
+    setLightboxOpen(true);
+    document.body.style.overflow = 'hidden';
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false);
+    document.body.style.overflow = 'unset';
+  }, []);
+
+  const handleLightboxPrev = useCallback(() => {
+    setSelectedImage(prev => 
+      prev === 0 ? (product?.images?.length || 1) - 1 : prev - 1
+    );
+  }, [product?.images?.length]);
+
+  const handleLightboxNext = useCallback(() => {
+    setSelectedImage(prev => 
+      prev === (product?.images?.length || 1) - 1 ? 0 : prev + 1
+    );
+  }, [product?.images?.length]);
+
+  const handleKeyDown = useCallback((event) => {
+    if (!lightboxOpen) return;
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowLeft') handleLightboxPrev();
+    if (event.key === 'ArrowRight') handleLightboxNext();
+  }, [lightboxOpen, closeLightbox, handleLightboxPrev, handleLightboxNext]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
   if (loading) {
     return (
       <div className="product-detail-page">
@@ -190,21 +225,50 @@ const ProductDetailPage = () => {
 
         <div className="product-detail">
           <div className="product-gallery">
-            <div className="main-image">
+            <div className="main-image-container">
               {product.images?.length > 0 ? (
-                <img
-                  src={product.images[selectedImage]}
-                  alt={getLocalizedText(product.name)}
-                />
+                <>
+                  <img
+                    src={product.images[selectedImage]}
+                    alt={getLocalizedText(product.name)}
+                    className="main-image"
+                    onClick={openLightbox}
+                  />
+                  <button
+                    className="zoom-btn"
+                    onClick={openLightbox}
+                    aria-label={t('products.viewFullscreen')}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35" />
+                      <path d="M11 8v6M8 11h6" />
+                    </svg>
+                  </button>
+                </>
               ) : (
-                <div className="no-image">📦</div>
+                <div className="no-image">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                </div>
               )}
               <button
                 className={`favorite-btn ${isFavorite ? 'active' : ''}`}
                 onClick={handleToggleFavorite}
                 title={isFavorite ? t('favorites.remove') : t('favorites.add')}
               >
-                {isFavorite ? '❤️' : '🤍'}
+                {isFavorite ? (
+                  <svg viewBox="0 0 24 24" fill="#e53935" stroke="#e53935" strokeWidth="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                )}
               </button>
             </div>
             {product.images?.length > 1 && (
@@ -340,6 +404,61 @@ const ProductDetailPage = () => {
 
         <ProductReviews productId={id} />
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && product?.images?.length > 0 && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <div className="lightbox-content" onClick={(event) => event.stopPropagation()}>
+            <button className="lightbox-close" onClick={closeLightbox} aria-label={t('common.close')}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <div className="lightbox-image-container">
+              {product.images.length > 1 && (
+                <button className="lightbox-nav lightbox-prev" onClick={handleLightboxPrev} aria-label={t('common.previous')}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+              )}
+              
+              <img
+                src={product.images[selectedImage]}
+                alt={getLocalizedText(product.name)}
+                className="lightbox-image"
+              />
+              
+              {product.images.length > 1 && (
+                <button className="lightbox-nav lightbox-next" onClick={handleLightboxNext} aria-label={t('common.next')}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {product.images.length > 1 && (
+              <div className="lightbox-thumbnails">
+                {product.images.map((img, index) => (
+                  <button
+                    key={index}
+                    className={`lightbox-thumb ${selectedImage === index ? 'active' : ''}`}
+                    onClick={() => setSelectedImage(index)}
+                  >
+                    <img src={img} alt={`${getLocalizedText(product.name)} ${index + 1}`} />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="lightbox-counter">
+              {selectedImage + 1} / {product.images.length}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
