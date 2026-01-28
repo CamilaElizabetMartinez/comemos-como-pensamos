@@ -95,6 +95,8 @@
     "addedToCart": "Produit ajouté au panier",
     "outOfStock": "Rupture de stock",
     "lowStock": "Dernières unités",
+    "new": "Nouveau !",
+    "vatIncluded": "TVA incluse",
     "producer": "Producteur",
     "unit": "Unité",
     "reviews": "Avis",
@@ -124,11 +126,22 @@
   "cart": {
     "title": "Panier",
     "empty": "Votre panier est vide",
+    "items": "{{count}} article",
+    "items_plural": "{{count}} articles",
+    "producers": "producteurs",
     "subtotal": "Sous-total",
     "shipping": "Livraison",
+    "productsTotal": "Total produits",
     "total": "Total",
+    "summary": "Résumé",
     "checkout": "Procéder au paiement",
-    "continueShopping": "Continuer les achats"
+    "continueShopping": "Continuer les achats",
+    "shippingCalculatedAtCheckout": "Frais de port calculés au checkout",
+    "calculatedAtCheckout": "Calculé au checkout",
+    "multiProducerNotice": "Vous recevrez {{count}} envois séparés, un de chaque producteur",
+    "decrease": "Réduire la quantité",
+    "increase": "Augmenter la quantité",
+    "remove": "Supprimer le produit"
   },
   "checkout": {
     "title": "Finaliser la Commande",
