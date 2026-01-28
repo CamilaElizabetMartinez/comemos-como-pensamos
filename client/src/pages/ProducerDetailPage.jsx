@@ -127,7 +127,7 @@ const ProducerDetailPage = () => {
             
             {producer.location && (
               <p className="hero-location">
-                📍 {producer.location.street && `${producer.location.street}, `}
+                {producer.location.street && `${producer.location.street}, `}
                 {producer.location.city}, {producer.location.region}
                 {producer.location.country && `, ${producer.location.country}`}
               </p>
