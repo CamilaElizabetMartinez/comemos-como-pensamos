@@ -226,15 +226,17 @@ const ProducerDetailPage = () => {
                 <div key={review._id} className="review-card">
                   <div className="review-header">
                     <div className="reviewer-info">
-                      <span className="reviewer-name">
-                        {review.userId?.firstName || t('reviews.anonymous')}
-                      </span>
+                      <div className="reviewer-name-rating">
+                        <span className="reviewer-name">
+                          {review.userId?.firstName || t('common.anonymous')}
+                        </span>
+                        <span className="review-rating">
+                          {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                        </span>
+                      </div>
                       <span className="review-date">
                         {new Date(review.createdAt).toLocaleDateString()}
                       </span>
-                    </div>
-                    <div className="review-rating">
-                      {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
                     </div>
                   </div>
                   {review.productId && (

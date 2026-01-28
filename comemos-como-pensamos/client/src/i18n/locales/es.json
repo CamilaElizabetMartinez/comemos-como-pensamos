@@ -259,7 +259,8 @@
     "filter": "Filtrar",
     "sort": "Ordenar",
     "previous": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "anonymous": "Anónimo"
   },
   "search": {
     "products": "Productos",

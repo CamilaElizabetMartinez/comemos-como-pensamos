@@ -241,7 +241,8 @@
     "filter": "Filtern",
     "sort": "Sortieren",
     "previous": "Zurück",
-    "next": "Weiter"
+    "next": "Weiter",
+    "anonymous": "Anonym"
   },
   "orders": {
     "title": "Meine Bestellungen",
