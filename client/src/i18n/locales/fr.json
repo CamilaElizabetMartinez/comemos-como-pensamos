@@ -105,6 +105,8 @@
     "addToCart": "Ajouter au panier",
     "addedToCart": "Produit ajouté au panier",
     "outOfStock": "Rupture de stock",
+    "inStock": "En stock",
+    "quantity": "Quantité",
     "viewFullscreen": "Voir en plein écran",
     "lowStock": "Dernières unités",
     "new": "Nouveau !",
@@ -325,8 +327,14 @@
     "notFound": "Producteur non trouvé",
     "errorLoading": "Erreur lors du chargement des informations du producteur"
   },
+  "productTabs": {
+    "description": "Description",
+    "reviews": "Avis"
+  },
   "reviews": {
     "title": "Avis des clients",
+    "review": "avis",
+    "reviews": "avis",
     "reviewsCount": "avis",
     "noReviews": "Ce produit n'a pas encore d'avis",
     "beFirstToReview": "Soyez le premier à donner votre avis après votre achat!",
