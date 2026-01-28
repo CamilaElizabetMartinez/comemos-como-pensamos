@@ -89,7 +89,7 @@ const ProducersPage = () => {
               {producers.map((producer) => (
                 <article key={producer._id} className="producer-card">
                   <div className="producer-image">
-                    <Link to={`/productores/${producer._id}`} title={producer.businessName}>
+                    <Link to={`/producers/${producer._id}`} title={producer.businessName}>
                       {producer.logo ? (
                         <img src={producer.logo} alt={producer.businessName} />
                       ) : (
@@ -102,7 +102,7 @@ const ProducersPage = () => {
                   <div className="producer-content">
                     <div className="producer-text">
                       <h2>
-                        <Link to={`/productores/${producer._id}`} title={producer.businessName}>
+                        <Link to={`/producers/${producer._id}`} title={producer.businessName}>
                           {producer.businessName}
                         </Link>
                       </h2>
