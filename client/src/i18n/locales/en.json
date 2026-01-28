@@ -212,7 +212,17 @@
     "removeCoupon": "Remove coupon",
     "couponApplied": "Coupon applied successfully",
     "couponInvalid": "Invalid coupon",
-    "discount": "Discount"
+    "discount": "Discount",
+    "saveAddress": "Save address for future purchases",
+    "fixFormErrors": "Please fix the form errors"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "Minimum {{min}} characters",
+    "addressTooShort": "Address is too short",
+    "selectProvince": "Select a province",
+    "invalidPostalCode": "Invalid postal code",
+    "invalidPhone": "Invalid phone number"
   },
   "orderConfirmation": {
     "title": "Order Placed!",

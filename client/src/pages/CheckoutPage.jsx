@@ -194,7 +194,83 @@ const CheckoutPage = () => {
     phone: user?.phone || ''
   });
 
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [touchedFields, setTouchedFields] = useState({});
+  const [saveAddress, setSaveAddress] = useState(false);
+
   const shippingCost = 5.00;
+
+  const POSTAL_CODE_PATTERNS = {
+    ES: /^\d{5}$/,
+    PT: /^\d{4}-\d{3}$/,
+    FR: /^\d{5}$/,
+    IT: /^\d{5}$/,
+    DE: /^\d{5}$/,
+    BE: /^\d{4}$/,
+    NL: /^\d{4}\s?[A-Z]{2}$/i,
+    AT: /^\d{4}$/,
+    CH: /^\d{4}$/
+  };
+
+  const validateField = useCallback((fieldName, value) => {
+    switch (fieldName) {
+      case 'firstName':
+      case 'lastName':
+        if (!value.trim()) return t('validation.required');
+        if (value.length < 2) return t('validation.minLength', { min: 2 });
+        return '';
+      case 'street':
+        if (!value.trim()) return t('validation.required');
+        if (value.length < 5) return t('validation.addressTooShort');
+        return '';
+      case 'city':
+        if (!value.trim()) return t('validation.required');
+        return '';
+      case 'province':
+        if (!value) return t('validation.selectProvince');
+        return '';
+      case 'postalCode':
+        if (!value.trim()) return t('validation.required');
+        const pattern = POSTAL_CODE_PATTERNS[shippingAddress.country];
+        if (pattern && !pattern.test(value)) {
+          return t('validation.invalidPostalCode');
+        }
+        return '';
+      case 'phone':
+        if (!value.trim()) return t('validation.required');
+        const phoneClean = value.replace(/[\s\-\(\)]/g, '');
+        if (!/^\+?\d{9,15}$/.test(phoneClean)) {
+          return t('validation.invalidPhone');
+        }
+        return '';
+      default:
+        return '';
+    }
+  }, [t, shippingAddress.country]);
+
+  const formatPhone = useCallback((value) => {
+    const digits = value.replace(/\D/g, '');
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+    return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)}`;
+  }, []);
+
+  const formatPostalCode = useCallback((value, country) => {
+    const clean = value.replace(/[^\dA-Za-z\s-]/g, '');
+    if (country === 'PT') {
+      const digits = clean.replace(/\D/g, '');
+      if (digits.length <= 4) return digits;
+      return `${digits.slice(0, 4)}-${digits.slice(4, 7)}`;
+    }
+    if (country === 'NL') {
+      const upper = clean.toUpperCase();
+      const digits = upper.replace(/[^0-9]/g, '').slice(0, 4);
+      const letters = upper.replace(/[^A-Z]/g, '').slice(0, 2);
+      if (digits.length < 4) return digits;
+      return `${digits} ${letters}`;
+    }
+    return clean.slice(0, 5);
+  }, []);
 
   useEffect(() => {
     refreshUser();
@@ -216,11 +292,53 @@ const CheckoutPage = () => {
 
   const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
+    let formattedValue = value;
+
+    if (name === 'phone') {
+      formattedValue = formatPhone(value);
+    } else if (name === 'postalCode') {
+      formattedValue = formatPostalCode(value, shippingAddress.country);
+    }
+
     setShippingAddress(prev => ({
       ...prev,
-      [name]: value
+      [name]: formattedValue
     }));
-  }, []);
+
+    if (touchedFields[name]) {
+      const error = validateField(name, formattedValue);
+      setFieldErrors(prev => ({ ...prev, [name]: error }));
+    }
+  }, [formatPhone, formatPostalCode, shippingAddress.country, touchedFields, validateField]);
+
+  const handleBlur = useCallback((event) => {
+    const { name, value } = event.target;
+    setTouchedFields(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setFieldErrors(prev => ({ ...prev, [name]: error }));
+  }, [validateField]);
+
+  const handleSaveAddress = useCallback(async () => {
+    if (!saveAddress) return;
+    
+    try {
+      await api.put('/auth/profile', {
+        firstName: shippingAddress.firstName,
+        lastName: shippingAddress.lastName,
+        phone: shippingAddress.phone,
+        address: {
+          street: shippingAddress.street,
+          addressLine2: shippingAddress.addressLine2,
+          city: shippingAddress.city,
+          province: shippingAddress.province,
+          postalCode: shippingAddress.postalCode,
+          country: shippingAddress.country
+        }
+      });
+    } catch (error) {
+      console.error('Error saving address:', error);
+    }
+  }, [saveAddress, shippingAddress]);
 
   const handleApplyCoupon = useCallback(async () => {
     if (!couponCode.trim()) return;
@@ -269,6 +387,25 @@ const CheckoutPage = () => {
       return;
     }
 
+    const requiredFields = ['firstName', 'lastName', 'street', 'city', 'province', 'postalCode', 'phone'];
+    const newErrors = {};
+    let hasErrors = false;
+
+    requiredFields.forEach(field => {
+      const error = validateField(field, shippingAddress[field]);
+      if (error) {
+        newErrors[field] = error;
+        hasErrors = true;
+      }
+    });
+
+    if (hasErrors) {
+      setFieldErrors(newErrors);
+      setTouchedFields(requiredFields.reduce((acc, field) => ({ ...acc, [field]: true }), {}));
+      toast.error(t('checkout.fixFormErrors'));
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -278,6 +415,8 @@ const CheckoutPage = () => {
         setLoading(false);
         return;
       }
+
+      await handleSaveAddress();
 
       const items = cartItems.map(item => ({
         productId: item._id,
@@ -397,41 +536,74 @@ const CheckoutPage = () => {
               </h2>
               
               <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="firstName">{t('auth.firstName')}</label>
+                <div className={`form-group ${fieldErrors.firstName && touchedFields.firstName ? 'has-error' : ''}`}>
+                  <label htmlFor="firstName">
+                    {t('auth.firstName')} <span className="required" aria-hidden="true">*</span>
+                  </label>
                   <input
                     type="text"
                     id="firstName"
                     name="firstName"
                     value={shippingAddress.firstName}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    autoComplete="given-name"
                     required
+                    aria-invalid={!!fieldErrors.firstName}
+                    aria-describedby={fieldErrors.firstName ? 'firstName-error' : undefined}
                   />
+                  {fieldErrors.firstName && touchedFields.firstName && (
+                    <span id="firstName-error" className="field-error" role="alert">
+                      {fieldErrors.firstName}
+                    </span>
+                  )}
                 </div>
-                <div className="form-group">
-                  <label htmlFor="lastName">{t('auth.lastName')}</label>
+                <div className={`form-group ${fieldErrors.lastName && touchedFields.lastName ? 'has-error' : ''}`}>
+                  <label htmlFor="lastName">
+                    {t('auth.lastName')} <span className="required" aria-hidden="true">*</span>
+                  </label>
                   <input
                     type="text"
                     id="lastName"
                     name="lastName"
                     value={shippingAddress.lastName}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    autoComplete="family-name"
                     required
+                    aria-invalid={!!fieldErrors.lastName}
+                    aria-describedby={fieldErrors.lastName ? 'lastName-error' : undefined}
                   />
+                  {fieldErrors.lastName && touchedFields.lastName && (
+                    <span id="lastName-error" className="field-error" role="alert">
+                      {fieldErrors.lastName}
+                    </span>
+                  )}
                 </div>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="street">{t('checkout.addressLine1')}</label>
+              <div className={`form-group ${fieldErrors.street && touchedFields.street ? 'has-error' : ''}`}>
+                <label htmlFor="street">
+                  {t('checkout.addressLine1')} <span className="required" aria-hidden="true">*</span>
+                </label>
                 <input
                   type="text"
                   id="street"
                   name="street"
                   value={shippingAddress.street}
                   onChange={handleInputChange}
+                  onBlur={handleBlur}
                   placeholder={t('checkout.addressLine1Placeholder')}
+                  autoComplete="address-line1"
                   required
+                  aria-invalid={!!fieldErrors.street}
+                  aria-describedby={fieldErrors.street ? 'street-error' : undefined}
                 />
+                {fieldErrors.street && touchedFields.street && (
+                  <span id="street-error" className="field-error" role="alert">
+                    {fieldErrors.street}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
@@ -443,43 +615,71 @@ const CheckoutPage = () => {
                   value={shippingAddress.addressLine2}
                   onChange={handleInputChange}
                   placeholder={t('checkout.addressLine2Placeholder')}
+                  autoComplete="address-line2"
                 />
               </div>
 
               <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="postalCode">{t('profile.postalCode')}</label>
+                <div className={`form-group ${fieldErrors.postalCode && touchedFields.postalCode ? 'has-error' : ''}`}>
+                  <label htmlFor="postalCode">
+                    {t('profile.postalCode')} <span className="required" aria-hidden="true">*</span>
+                  </label>
                   <input
                     type="text"
                     id="postalCode"
                     name="postalCode"
                     value={shippingAddress.postalCode}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    autoComplete="postal-code"
                     required
+                    aria-invalid={!!fieldErrors.postalCode}
+                    aria-describedby={fieldErrors.postalCode ? 'postalCode-error' : undefined}
                   />
+                  {fieldErrors.postalCode && touchedFields.postalCode && (
+                    <span id="postalCode-error" className="field-error" role="alert">
+                      {fieldErrors.postalCode}
+                    </span>
+                  )}
                 </div>
-                <div className="form-group">
-                  <label htmlFor="city">{t('profile.city')}</label>
+                <div className={`form-group ${fieldErrors.city && touchedFields.city ? 'has-error' : ''}`}>
+                  <label htmlFor="city">
+                    {t('profile.city')} <span className="required" aria-hidden="true">*</span>
+                  </label>
                   <input
                     type="text"
                     id="city"
                     name="city"
                     value={shippingAddress.city}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    autoComplete="address-level2"
                     required
+                    aria-invalid={!!fieldErrors.city}
+                    aria-describedby={fieldErrors.city ? 'city-error' : undefined}
                   />
+                  {fieldErrors.city && touchedFields.city && (
+                    <span id="city-error" className="field-error" role="alert">
+                      {fieldErrors.city}
+                    </span>
+                  )}
                 </div>
               </div>
 
               <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="province">{t('checkout.province')}</label>
+                <div className={`form-group ${fieldErrors.province && touchedFields.province ? 'has-error' : ''}`}>
+                  <label htmlFor="province">
+                    {t('checkout.province')} <span className="required" aria-hidden="true">*</span>
+                  </label>
                   <select
                     id="province"
                     name="province"
                     value={shippingAddress.province}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                     required
+                    aria-invalid={!!fieldErrors.province}
+                    aria-describedby={fieldErrors.province ? 'province-error' : undefined}
                   >
                     <option value="">{t('checkout.selectProvince')}</option>
                     {(PROVINCES_BY_COUNTRY[shippingAddress.country] || []).map((province) => (
@@ -488,17 +688,26 @@ const CheckoutPage = () => {
                       </option>
                     ))}
                   </select>
+                  {fieldErrors.province && touchedFields.province && (
+                    <span id="province-error" className="field-error" role="alert">
+                      {fieldErrors.province}
+                    </span>
+                  )}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="country">{t('profile.country')}</label>
+                  <label htmlFor="country">
+                    {t('profile.country')} <span className="required" aria-hidden="true">*</span>
+                  </label>
                   <select
                     id="country"
                     name="country"
                     value={shippingAddress.country}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setShippingAddress(prev => ({ ...prev, province: '' }));
+                    onChange={(event) => {
+                      handleInputChange(event);
+                      setShippingAddress(prev => ({ ...prev, province: '', postalCode: '' }));
+                      setFieldErrors(prev => ({ ...prev, province: '', postalCode: '' }));
                     }}
+                    autoComplete="country"
                     required
                   >
                     {COUNTRIES.map((country) => (
@@ -510,17 +719,40 @@ const CheckoutPage = () => {
                 </div>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="phone">{t('profile.phone')}</label>
+              <div className={`form-group ${fieldErrors.phone && touchedFields.phone ? 'has-error' : ''}`}>
+                <label htmlFor="phone">
+                  {t('profile.phone')} <span className="required" aria-hidden="true">*</span>
+                </label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
                   value={shippingAddress.phone}
                   onChange={handleInputChange}
+                  onBlur={handleBlur}
                   placeholder={t('checkout.phonePlaceholder')}
+                  autoComplete="tel"
                   required
+                  aria-invalid={!!fieldErrors.phone}
+                  aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
                 />
+                {fieldErrors.phone && touchedFields.phone && (
+                  <span id="phone-error" className="field-error" role="alert">
+                    {fieldErrors.phone}
+                  </span>
+                )}
+              </div>
+
+              <div className="form-group-checkbox">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={saveAddress}
+                    onChange={(event) => setSaveAddress(event.target.checked)}
+                  />
+                  <span className="checkbox-custom" aria-hidden="true"></span>
+                  {t('checkout.saveAddress')}
+                </label>
               </div>
             </section>
 

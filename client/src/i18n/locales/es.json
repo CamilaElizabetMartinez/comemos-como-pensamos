@@ -212,7 +212,17 @@
     "removeCoupon": "Eliminar cupón",
     "couponApplied": "Cupón aplicado correctamente",
     "couponInvalid": "Cupón no válido",
-    "discount": "Descuento"
+    "discount": "Descuento",
+    "saveAddress": "Guardar dirección para futuras compras",
+    "fixFormErrors": "Por favor, corrige los errores del formulario"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "minLength": "Mínimo {{min}} caracteres",
+    "addressTooShort": "La dirección es demasiado corta",
+    "selectProvince": "Selecciona una provincia",
+    "invalidPostalCode": "Código postal no válido",
+    "invalidPhone": "Número de teléfono no válido"
   },
   "orderConfirmation": {
     "title": "¡Pedido Realizado!",
