@@ -15,9 +15,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showLangMenu, setShowLangMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [badgeAnimate, setBadgeAnimate] = useState(false);
   const userMenuRef = useRef(null);
+  const langMenuRef = useRef(null);
   const prevCartCount = useRef(getCartCount());
 
   const handleLogout = async () => {
@@ -30,6 +32,9 @@ const Navbar = () => {
   const handleClickOutside = useCallback((event) => {
     if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
       setShowUserMenu(false);
+    }
+    if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
+      setShowLangMenu(false);
     }
   }, []);
 
@@ -87,21 +92,43 @@ const Navbar = () => {
         </div>
 
         <div className={`navbar-actions ${mobileMenuOpen ? 'open' : ''}`}>
-          <div className="language-selector">
-            <span className="language-label">IDIOMA</span>
-            <div className="language-options">
-              {languages.map((lang, index) => (
-                <React.Fragment key={lang.code}>
-                  {index > 0 && <span className="language-divider">|</span>}
+          <div className="language-selector" ref={langMenuRef}>
+            <button 
+              className="language-trigger"
+              onClick={() => setShowLangMenu(!showLangMenu)}
+              aria-label={t('nav.changeLanguage')}
+            >
+              <svg className="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <span className="current-lang">{currentLanguage.toUpperCase()}</span>
+              <svg className={`dropdown-icon ${showLangMenu ? 'open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            {showLangMenu && (
+              <div className="language-dropdown">
+                {languages.map((lang) => (
                   <button
+                    key={lang.code}
                     className={`language-option ${currentLanguage === lang.code ? 'active' : ''}`}
-                    onClick={() => changeLanguage(lang.code)}
+                    onClick={() => {
+                      changeLanguage(lang.code);
+                      setShowLangMenu(false);
+                    }}
                   >
-                    {lang.code.toUpperCase()}
+                    <span className="lang-code">{lang.code.toUpperCase()}</span>
+                    <span className="lang-name">{lang.name}</span>
+                    {currentLanguage === lang.code && (
+                      <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
                   </button>
-                </React.Fragment>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <Link to="/cart" className="navbar-cart" onClick={closeMobileMenu}>
@@ -175,22 +202,23 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <>
+            <nav className="auth-nav">
               <Link 
                 to="/login" 
-                className={`navbar-btn ${location.pathname === '/login' ? 'navbar-btn-primary active' : ''}`}
+                className="auth-nav-link"
                 onClick={closeMobileMenu}
               >
                 {t('nav.login')}
               </Link>
+              <span className="auth-nav-divider">|</span>
               <Link 
                 to="/register" 
-                className={`navbar-btn ${location.pathname === '/login' ? '' : 'navbar-btn-primary'} ${location.pathname === '/register' ? 'active' : ''}`}
+                className="auth-nav-link"
                 onClick={closeMobileMenu}
               >
                 {t('nav.register')}
               </Link>
-            </>
+            </nav>
           )}
         </div>
       </div>

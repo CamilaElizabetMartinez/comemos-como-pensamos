@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
@@ -39,29 +39,32 @@ const RegisterPage = () => {
     }
   }, [referralCode]);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = useCallback((event) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(async (event) => {
+    event.preventDefault();
     setLoading(true);
 
     try {
       await register(formData);
-      toast.success('¡Cuenta creada exitosamente!');
+      toast.success(t('auth.registerSuccess'));
       navigate('/');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Error al crear cuenta');
+      toast.error(error.response?.data?.message || t('auth.registerError'));
     } finally {
       setLoading(false);
     }
-  };
+  }, [formData, register, navigate, t]);
 
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <h2>{t('auth.registerTitle')}</h2>
+        <header className="auth-header">
+          <h1>{t('auth.registerTitle')}</h1>
+        </header>
         
         {referrerInfo && (
           <div className="referral-banner">
@@ -74,61 +77,89 @@ const RegisterPage = () => {
         )}
         
         <form onSubmit={handleSubmit} className="auth-form">
-          <div className="form-group">
-            <label>{t('auth.firstName')}</label>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="register-firstName">{t('auth.firstName')}</label>
+              <input
+                id="register-firstName"
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder={t('auth.firstNamePlaceholder')}
+                autoComplete="given-name"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="register-lastName">{t('auth.lastName')}</label>
+              <input
+                id="register-lastName"
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder={t('auth.lastNamePlaceholder')}
+                autoComplete="family-name"
+                required
+              />
+            </div>
           </div>
+
           <div className="form-group">
-            <label>{t('auth.lastName')}</label>
+            <label htmlFor="register-email">{t('auth.email')}</label>
             <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>{t('auth.email')}</label>
-            <input
+              id="register-email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder={t('auth.emailPlaceholder')}
+              autoComplete="email"
               required
             />
           </div>
+
           <div className="form-group">
-            <label>{t('auth.password')}</label>
+            <label htmlFor="register-password">{t('auth.password')}</label>
             <input
+              id="register-password"
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
+              placeholder={t('auth.newPasswordPlaceholder')}
+              autoComplete="new-password"
               required
               minLength="6"
             />
           </div>
+
           <div className="form-group">
-            <label>Tipo de cuenta</label>
-            <select name="role" value={formData.role} onChange={handleChange}>
-              <option value="customer">Cliente</option>
-              <option value="producer">Productor</option>
+            <label htmlFor="register-role">{t('auth.accountType')}</label>
+            <select 
+              id="register-role"
+              name="role" 
+              value={formData.role} 
+              onChange={handleChange}
+            >
+              <option value="customer">{t('auth.roleCustomer')}</option>
+              <option value="producer">{t('auth.roleProducer')}</option>
             </select>
           </div>
+
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? t('common.loading') : t('auth.registerButton')}
           </button>
         </form>
-        <p className="auth-link">
-          {t('auth.hasAccount')} <Link to="/login">{t('auth.loginButton')}</Link>
-        </p>
+
+        <footer className="auth-footer">
+          <nav className="auth-links">
+            <Link to="/login" className="link-primary">
+              {t('auth.loginButton')}
+            </Link>
+          </nav>
+        </footer>
       </div>
     </div>
   );

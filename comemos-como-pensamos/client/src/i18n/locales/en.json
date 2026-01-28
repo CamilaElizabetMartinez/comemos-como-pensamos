@@ -36,7 +36,8 @@
     "favorites": "Favorites",
     "orders": "My Orders",
     "dashboard": "Dashboard",
-    "adminPanel": "Administration"
+    "adminPanel": "Administration",
+    "changeLanguage": "Change language"
   },
   "auth": {
     "email": "Email",
@@ -56,6 +57,13 @@
     "passwordPlaceholder": "Your password",
     "welcomeMessage": "Welcome!",
     "loginError": "Login failed",
+    "registerSuccess": "Account created successfully!",
+    "registerError": "Error creating account",
+    "firstNamePlaceholder": "Your first name",
+    "lastNamePlaceholder": "Your last name",
+    "accountType": "Account type",
+    "roleCustomer": "Customer",
+    "roleProducer": "Producer",
     "sendResetLink": "Send Reset Link",
     "backToLogin": "Back to Login",
     "checkYourEmail": "Check Your Email",
@@ -97,6 +105,7 @@
     "addToCart": "Add to Cart",
     "addedToCart": "Product added to cart",
     "outOfStock": "Out of Stock",
+    "viewFullscreen": "View fullscreen",
     "lowStock": "Low stock",
     "new": "New!",
     "vatIncluded": "VAT included",
