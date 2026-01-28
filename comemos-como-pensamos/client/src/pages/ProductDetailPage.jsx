@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { productService } from '../services/productService';
@@ -16,14 +16,30 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState(null);
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
   const { t, i18n } = useTranslation();
 
+  const getLocalizedText = useCallback((textObject) => {
+    if (!textObject) return '';
+    const currentLang = i18n.language;
+    return textObject[currentLang] || textObject.es || textObject;
+  }, [i18n.language]);
+
   const fetchProduct = useCallback(async () => {
     try {
       const data = await productService.getProductById(id);
-      setProduct(data.data.product);
+      const fetchedProduct = data.data.product;
+      setProduct(fetchedProduct);
+      
+      // Set default variant if product has variants
+      if (fetchedProduct.hasVariants && fetchedProduct.variants?.length > 0) {
+        const defaultVariant = fetchedProduct.variants.find(variant => variant.isDefault) 
+          || fetchedProduct.variants.find(variant => variant.isAvailable)
+          || fetchedProduct.variants[0];
+        setSelectedVariantId(defaultVariant._id);
+      }
     } catch (error) {
       toast.error(t('products.errorLoading'));
     } finally {
@@ -46,12 +62,57 @@ const ProductDetailPage = () => {
     checkFavorite();
   }, [fetchProduct, checkFavorite]);
 
-  const handleAddToCart = () => {
-    addToCart(product, quantity);
-    toast.success(t('products.addedToCart'));
-  };
+  // Reset quantity when variant changes
+  useEffect(() => {
+    setQuantity(1);
+  }, [selectedVariantId]);
 
-  const handleToggleFavorite = async () => {
+  // Get selected variant details
+  const selectedVariant = useMemo(() => {
+    if (!product?.hasVariants || !selectedVariantId) return null;
+    return product.variants?.find(variant => variant._id === selectedVariantId);
+  }, [product, selectedVariantId]);
+
+  // Get current price and stock based on variant selection
+  const currentPrice = useMemo(() => {
+    if (selectedVariant) return selectedVariant.price;
+    return product?.price || 0;
+  }, [product, selectedVariant]);
+
+  const currentStock = useMemo(() => {
+    if (selectedVariant) return selectedVariant.stock;
+    return product?.stock || 0;
+  }, [product, selectedVariant]);
+
+  const currentCompareAtPrice = useMemo(() => {
+    if (selectedVariant) return selectedVariant.compareAtPrice;
+    return null;
+  }, [selectedVariant]);
+
+  const isCurrentlyAvailable = useMemo(() => {
+    if (selectedVariant) return selectedVariant.isAvailable && selectedVariant.stock > 0;
+    return product?.isAvailable && product?.stock > 0;
+  }, [product, selectedVariant]);
+
+  const handleAddToCart = useCallback(() => {
+    const cartProduct = {
+      ...product,
+      // Override with variant data if applicable
+      price: currentPrice,
+      stock: currentStock,
+      variantId: selectedVariantId,
+      variantName: selectedVariant ? getLocalizedText(selectedVariant.name) : null
+    };
+    
+    const result = addToCart(cartProduct, quantity);
+    if (result.success === false) {
+      toast.error(result.message);
+    } else {
+      toast.success(t('products.addedToCart'));
+    }
+  }, [product, currentPrice, currentStock, selectedVariantId, selectedVariant, quantity, addToCart, t, getLocalizedText]);
+
+  const handleToggleFavorite = useCallback(async () => {
     if (!isAuthenticated) {
       toast.info(t('favorites.loginRequired'));
       return;
@@ -70,7 +131,7 @@ const ProductDetailPage = () => {
     } catch (error) {
       toast.error(t('favorites.error'));
     }
-  };
+  }, [isAuthenticated, isFavorite, id, t]);
 
   const handleWhatsAppInquiry = useCallback(() => {
     const producer = product?.producerId;
@@ -81,20 +142,19 @@ const ProductDetailPage = () => {
     
     const cleanNumber = whatsappNumber.replace(/\D/g, '');
     const productName = getLocalizedText(product.name);
+    const variantInfo = selectedVariant ? ` (${getLocalizedText(selectedVariant.name)})` : '';
     const message = encodeURIComponent(
       t('whatsapp.productMessage', { 
-        productName, 
+        productName: productName + variantInfo, 
         businessName: producer.businessName 
       })
     );
     window.open(`https://wa.me/${cleanNumber}?text=${message}`, '_blank');
-  }, [product, t, getLocalizedText]);
+  }, [product, selectedVariant, t, getLocalizedText]);
 
-  const getLocalizedText = (textObject) => {
-    if (!textObject) return '';
-    const currentLang = i18n.language;
-    return textObject[currentLang] || textObject.es || textObject;
-  };
+  const handleVariantChange = useCallback((variantId) => {
+    setSelectedVariantId(variantId);
+  }, []);
 
   if (loading) {
     return (
@@ -125,7 +185,7 @@ const ProductDetailPage = () => {
     <div className="product-detail-page">
       <div className="container">
         <Link to="/products" className="back-link">
-          {t('products.backToProducts')}
+          ← {t('products.backToProducts')}
         </Link>
 
         <div className="product-detail">
@@ -167,7 +227,7 @@ const ProductDetailPage = () => {
               <h1>{getLocalizedText(product.name)}</h1>
               {product.producerId && (
                 <Link
-                  to={`/producers/${product.producerId._id || product.producerId}`}
+                  to={`/productores/${product.producerId._id || product.producerId}`}
                   className="producer-link"
                 >
                   {product.producerId.businessName || t('products.viewProducer')}
@@ -176,17 +236,52 @@ const ProductDetailPage = () => {
             </div>
 
             <div className="product-price">
-              <span className="price">€{product.price?.toFixed(2)}</span>
-              <span className="unit">/ {product.unit || 'ud'}</span>
+              {currentCompareAtPrice && currentCompareAtPrice > currentPrice && (
+                <span className="compare-at-price">€{currentCompareAtPrice.toFixed(2)}</span>
+              )}
+              <span className="price">€{currentPrice.toFixed(2)}</span>
+              {!product.hasVariants && (
+                <span className="unit">/ {t(`units.${product.unit}`) || product.unit}</span>
+              )}
+              <small className="vat-info">{t('products.vatIncluded')}</small>
             </div>
+
+            {/* Variant Selector */}
+            {product.hasVariants && product.variants?.length > 0 && (
+              <div className="variant-selector">
+                <label>{t('products.selectVariant')}</label>
+                <div className="variant-options">
+                  {product.variants.map((variant) => {
+                    const isSelected = selectedVariantId === variant._id;
+                    const isAvailable = variant.isAvailable && variant.stock > 0;
+                    
+                    return (
+                      <button
+                        key={variant._id}
+                        type="button"
+                        className={`variant-option ${isSelected ? 'selected' : ''} ${!isAvailable ? 'unavailable' : ''}`}
+                        onClick={() => handleVariantChange(variant._id)}
+                        disabled={!isAvailable}
+                      >
+                        <span className="variant-name">{getLocalizedText(variant.name)}</span>
+                        <span className="variant-price">€{variant.price.toFixed(2)}</span>
+                        {!isAvailable && (
+                          <span className="variant-stock-badge">{t('products.outOfStock')}</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <p className="product-description">{getLocalizedText(product.description)}</p>
 
             <div className="product-meta">
               <div className="meta-item">
                 <span className="meta-label">{t('products.stock')}:</span>
-                <span className={`meta-value ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}`}>
-                  {product.stock > 0 ? `${product.stock} ${t('products.units')}` : t('products.outOfStock')}
+                <span className={`meta-value ${currentStock > 0 ? 'in-stock' : 'out-of-stock'}`}>
+                  {currentStock > 0 ? `${currentStock} ${t('products.units')}` : t('products.outOfStock')}
                 </span>
               </div>
               {product.category && (
@@ -195,9 +290,17 @@ const ProductDetailPage = () => {
                   <span className="meta-value">{t(`categories.${product.category}`)}</span>
                 </div>
               )}
+              {selectedVariant?.weight && (
+                <div className="meta-item">
+                  <span className="meta-label">{t('products.weight')}:</span>
+                  <span className="meta-value">
+                    {selectedVariant.weight} {selectedVariant.weightUnit}
+                  </span>
+                </div>
+              )}
             </div>
 
-            {product.isAvailable && product.stock > 0 ? (
+            {isCurrentlyAvailable ? (
               <div className="add-to-cart-section">
                 <div className="quantity-selector">
                   <button
@@ -208,14 +311,14 @@ const ProductDetailPage = () => {
                   </button>
                   <span className="quantity-value">{quantity}</span>
                   <button
-                    onClick={() => setQuantity((prev) => Math.min(product.stock, prev + 1))}
-                    disabled={quantity >= product.stock}
+                    onClick={() => setQuantity((prev) => Math.min(currentStock, prev + 1))}
+                    disabled={quantity >= currentStock}
                   >
                     +
                   </button>
                 </div>
                 <button onClick={handleAddToCart} className="btn btn-primary btn-add-cart">
-                  {t('products.addToCart')} - €{(product.price * quantity).toFixed(2)}
+                  {t('products.addToCart')} - €{(currentPrice * quantity).toFixed(2)}
                 </button>
               </div>
             ) : (

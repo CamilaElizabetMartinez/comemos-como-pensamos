@@ -108,9 +108,20 @@ export const getProductById = async (req, res) => {
 // @access  Private (Producer only)
 export const createProduct = async (req, res) => {
   try {
-    const { name, description, category, price, unit, stock, images, nutritionalInfo } = req.body;
+    const { 
+      name, 
+      description, 
+      category, 
+      price, 
+      unit, 
+      stock, 
+      images, 
+      nutritionalInfo,
+      hasVariants,
+      variants 
+    } = req.body;
 
-    // Verificar que el usuario es productor y tiene perfil de productor
+    // Verify user is a producer
     const producer = await Producer.findOne({ userId: req.user._id });
 
     if (!producer) {
@@ -127,18 +138,57 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // Crear producto
-    const product = await Product.create({
+    // Validate variants if hasVariants is true
+    if (hasVariants && (!variants || variants.length === 0)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Debes añadir al menos una variante'
+      });
+    }
+
+    // Process variants - ensure one is default
+    let processedVariants = [];
+    if (hasVariants && variants && variants.length > 0) {
+      processedVariants = variants.map((variant, index) => ({
+        ...variant,
+        isDefault: variant.isDefault || index === 0,
+        isAvailable: variant.stock > 0
+      }));
+      
+      // Ensure only one default
+      const defaultCount = processedVariants.filter(v => v.isDefault).length;
+      if (defaultCount > 1) {
+        processedVariants = processedVariants.map((variant, index) => ({
+          ...variant,
+          isDefault: index === 0
+        }));
+      }
+    }
+
+    // Create product
+    const productData = {
       producerId: producer._id,
       name,
       description,
       category,
-      price,
       unit,
-      stock,
       images: images || [],
-      nutritionalInfo
-    });
+      nutritionalInfo,
+      hasVariants: hasVariants || false
+    };
+
+    if (hasVariants) {
+      productData.variants = processedVariants;
+      // Set base price from default variant for sorting/filtering
+      const defaultVariant = processedVariants.find(v => v.isDefault) || processedVariants[0];
+      productData.price = defaultVariant.price;
+      productData.stock = processedVariants.reduce((sum, v) => sum + (v.stock || 0), 0);
+    } else {
+      productData.price = price;
+      productData.stock = stock;
+    }
+
+    const product = await Product.create(productData);
 
     res.status(201).json({
       success: true,
@@ -169,7 +219,7 @@ export const updateProduct = async (req, res) => {
       });
     }
 
-    // Verificar que el usuario es el dueño del producto
+    // Verify owner
     const producer = await Producer.findOne({ userId: req.user._id });
 
     if (!producer || product.producerId.toString() !== producer._id.toString()) {
@@ -179,18 +229,74 @@ export const updateProduct = async (req, res) => {
       });
     }
 
-    // Actualizar campos
-    const { name, description, category, price, unit, stock, images, isAvailable, nutritionalInfo } = req.body;
+    const { 
+      name, 
+      description, 
+      category, 
+      price, 
+      unit, 
+      stock, 
+      images, 
+      isAvailable, 
+      nutritionalInfo,
+      hasVariants,
+      variants 
+    } = req.body;
 
+    // Update basic fields
     if (name) product.name = name;
     if (description) product.description = description;
     if (category) product.category = category;
-    if (price !== undefined) product.price = price;
     if (unit) product.unit = unit;
-    if (stock !== undefined) product.stock = stock;
     if (images) product.images = images;
-    if (isAvailable !== undefined) product.isAvailable = isAvailable;
     if (nutritionalInfo) product.nutritionalInfo = nutritionalInfo;
+
+    // Handle variants update
+    if (hasVariants !== undefined) {
+      product.hasVariants = hasVariants;
+    }
+
+    if (product.hasVariants) {
+      if (variants && variants.length > 0) {
+        // Process variants
+        const processedVariants = variants.map((variant, index) => ({
+          _id: variant._id,
+          name: variant.name,
+          sku: variant.sku,
+          price: variant.price,
+          compareAtPrice: variant.compareAtPrice,
+          stock: variant.stock,
+          weight: variant.weight,
+          weightUnit: variant.weightUnit,
+          isDefault: variant.isDefault || index === 0,
+          isAvailable: variant.stock > 0
+        }));
+
+        // Ensure only one default
+        const defaults = processedVariants.filter(v => v.isDefault);
+        if (defaults.length > 1) {
+          processedVariants.forEach((variant, index) => {
+            variant.isDefault = index === 0;
+          });
+        } else if (defaults.length === 0) {
+          processedVariants[0].isDefault = true;
+        }
+
+        product.variants = processedVariants;
+        
+        // Update base price/stock for filtering
+        const defaultVariant = processedVariants.find(v => v.isDefault) || processedVariants[0];
+        product.price = defaultVariant.price;
+        product.stock = processedVariants.reduce((sum, v) => sum + (v.stock || 0), 0);
+        product.isAvailable = processedVariants.some(v => v.stock > 0);
+      }
+    } else {
+      // No variants - use base price/stock
+      product.variants = [];
+      if (price !== undefined) product.price = price;
+      if (stock !== undefined) product.stock = stock;
+      if (isAvailable !== undefined) product.isAvailable = isAvailable;
+    }
 
     await product.save();
 
@@ -320,6 +426,7 @@ export const checkStock = async (req, res) => {
       if (!product) {
         stockIssues.push({
           productId: item.productId,
+          variantId: item.variantId,
           issue: 'not_found',
           message: 'Producto no encontrado'
         });
@@ -329,6 +436,7 @@ export const checkStock = async (req, res) => {
       if (!product.isAvailable) {
         stockIssues.push({
           productId: item.productId,
+          variantId: item.variantId,
           productName: product.name.es,
           issue: 'unavailable',
           message: 'Producto no disponible',
@@ -338,24 +446,66 @@ export const checkStock = async (req, res) => {
         continue;
       }
 
-      if (product.stock < item.quantity) {
+      // Check stock based on variants
+      let currentStock = product.stock;
+      let itemPrice = product.price;
+      let variantName = null;
+
+      if (product.hasVariants && item.variantId) {
+        const variant = product.getVariant(item.variantId);
+        
+        if (!variant) {
+          stockIssues.push({
+            productId: item.productId,
+            variantId: item.variantId,
+            productName: product.name.es,
+            issue: 'variant_not_found',
+            message: 'Variante no encontrada'
+          });
+          continue;
+        }
+
+        if (!variant.isAvailable) {
+          stockIssues.push({
+            productId: item.productId,
+            variantId: item.variantId,
+            productName: product.name.es,
+            variantName: variant.name?.es,
+            issue: 'variant_unavailable',
+            message: 'Variante no disponible',
+            requestedQuantity: item.quantity,
+            availableStock: 0
+          });
+          continue;
+        }
+
+        currentStock = variant.stock;
+        itemPrice = variant.price;
+        variantName = variant.name?.es;
+      }
+
+      if (currentStock < item.quantity) {
         stockIssues.push({
           productId: item.productId,
+          variantId: item.variantId,
           productName: product.name.es,
+          variantName,
           issue: 'insufficient_stock',
-          message: `Stock insuficiente. Disponible: ${product.stock}`,
+          message: `Stock insuficiente. Disponible: ${currentStock}`,
           requestedQuantity: item.quantity,
-          availableStock: product.stock
+          availableStock: currentStock
         });
         continue;
       }
 
       validItems.push({
         productId: product._id,
+        variantId: item.variantId,
         productName: product.name.es,
+        variantName,
         requestedQuantity: item.quantity,
-        availableStock: product.stock,
-        price: product.price
+        availableStock: currentStock,
+        price: itemPrice
       });
     }
 

@@ -256,55 +256,106 @@ const ProductsPage = () => {
         ) : (
           <>
             <div className="products-grid">
-              {products.map((product) => (
-                <Link 
-                  to={`/products/${product._id}`} 
-                  key={product._id} 
-                  className="product-card"
-                >
-                  <div className="product-image">
-                    {product.images?.[0] ? (
-                      <img src={product.images[0]} alt={product.name?.[currentLang] || product.name?.es} />
-                    ) : (
-                      <div className="no-image"></div>
+              {products.map((product) => {
+                const productName = product.name?.[currentLang] || product.name?.es;
+                const hasSecondImage = product.images?.length > 1;
+                const isNew = product.createdAt && 
+                  (new Date() - new Date(product.createdAt)) < 7 * 24 * 60 * 60 * 1000;
+                const hasVariants = product.hasVariants && product.variants?.length > 0;
+                
+                // Get minimum price for products with variants
+                const displayPrice = hasVariants 
+                  ? Math.min(...product.variants.map(variant => variant.price))
+                  : product.price;
+                
+                return (
+                  <article key={product._id} className="product-card">
+                    {isNew && (
+                      <span className="badge-new">{t('products.new')}</span>
                     )}
                     {!product.isAvailable && (
-                      <div className="out-of-stock-badge">{t('products.outOfStock')}</div>
+                      <span className="badge-out-of-stock">{t('products.outOfStock')}</span>
                     )}
-                    {product.stock > 0 && product.stock <= 5 && (
-                      <div className="low-stock-badge">{t('products.lowStock')}</div>
+                    {product.isAvailable && product.stock > 0 && product.stock <= 5 && (
+                      <span className="badge-low-stock">{t('products.lowStock')}</span>
                     )}
-                  </div>
-                  <div className="product-info">
-                    <span className="product-category">{t(`categories.${product.category}`)}</span>
-                    <h3>{product.name?.[currentLang] || product.name?.es}</h3>
-                    {product.producerId && (
-                      <p className="product-producer">
-                        {product.producerId.businessName}
-                      </p>
-                    )}
-                    <div className="product-footer">
-                      <div className="product-price">
-                        <span className="price">€{product.price?.toFixed(2)}</span>
-                        <span className="unit">/ {t(`units.${product.unit}`)}</span>
-                      </div>
-                      {product.isAvailable && (
-                        <button
-                          onClick={(e) => handleAddToCart(product, e)}
-                          className="add-to-cart-btn"
-                          title={t('products.addToCart')}
-                        >
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="9" cy="21" r="1" />
-                            <circle cx="20" cy="21" r="1" />
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                          </svg>
-                        </button>
-                      )}
+                    
+                    <div className="product-image-container">
+                      <Link to={`/products/${product._id}`}>
+                        {product.images?.[0] ? (
+                          <>
+                            <img 
+                              src={product.images[0]} 
+                              alt={productName}
+                              className="product-image-main"
+                            />
+                            {hasSecondImage && (
+                              <img 
+                                src={product.images[1]} 
+                                alt={productName}
+                                className="product-image-hover"
+                              />
+                            )}
+                          </>
+                        ) : (
+                          <div className="product-no-image" />
+                        )}
+                      </Link>
                     </div>
-                  </div>
-                </Link>
-              ))}
+
+                    <h3 className="product-title">
+                      <Link to={`/products/${product._id}`}>
+                        {productName}
+                      </Link>
+                    </h3>
+
+                    <div className="product-price-block">
+                      {hasVariants && (
+                        <span className="price-from">{t('products.fromPrice')}</span>
+                      )}
+                      <span className="product-price-main">
+                        {displayPrice?.toFixed(2).replace('.', ',')}
+                        <span className="currency">€</span>
+                      </span>
+                      <small className="product-iva">{t('products.vatIncluded')}</small>
+                    </div>
+
+                    {!hasVariants && (
+                      <span className="product-unit-badge">
+                        {t(`units.${product.unit}`)}
+                      </span>
+                    )}
+
+                    {hasVariants && (
+                      <span className="product-variants-badge">
+                        {product.variants.length} {t('products.options')}
+                      </span>
+                    )}
+
+                    {product.isAvailable ? (
+                      hasVariants ? (
+                        <Link 
+                          to={`/products/${product._id}`}
+                          className="btn-add-to-cart btn-select-options"
+                        >
+                          {t('products.selectOptions')}
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={(event) => handleAddToCart(product, event)}
+                          className="btn-add-to-cart"
+                        >
+                          {t('products.addToCart')}
+                        </button>
+                      )
+                    ) : (
+                      <button className="btn-add-to-cart disabled" disabled>
+                        {t('products.outOfStock')}
+                      </button>
+                    )}
+                  </article>
+                );
+              })}
             </div>
 
             {totalPages > 1 && (
