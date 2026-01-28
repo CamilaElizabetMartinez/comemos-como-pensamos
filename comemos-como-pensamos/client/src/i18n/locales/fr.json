@@ -195,7 +195,17 @@
     "removeCoupon": "Supprimer le coupon",
     "couponApplied": "Coupon appliqué avec succès",
     "couponInvalid": "Coupon invalide",
-    "discount": "Réduction"
+    "discount": "Réduction",
+    "saveAddress": "Enregistrer l'adresse pour les achats futurs",
+    "fixFormErrors": "Veuillez corriger les erreurs du formulaire"
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "minLength": "Minimum {{min}} caractères",
+    "addressTooShort": "L'adresse est trop courte",
+    "selectProvince": "Sélectionnez une province",
+    "invalidPostalCode": "Code postal invalide",
+    "invalidPhone": "Numéro de téléphone invalide"
   },
   "orderConfirmation": {
     "title": "Commande Passée!",

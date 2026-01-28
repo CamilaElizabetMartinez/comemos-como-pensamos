@@ -195,7 +195,17 @@
     "removeCoupon": "Gutschein entfernen",
     "couponApplied": "Gutschein erfolgreich angewendet",
     "couponInvalid": "Ungültiger Gutschein",
-    "discount": "Rabatt"
+    "discount": "Rabatt",
+    "saveAddress": "Adresse für zukünftige Einkäufe speichern",
+    "fixFormErrors": "Bitte beheben Sie die Formularfehler"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "minLength": "Mindestens {{min}} Zeichen",
+    "addressTooShort": "Die Adresse ist zu kurz",
+    "selectProvince": "Wählen Sie eine Provinz",
+    "invalidPostalCode": "Ungültige Postleitzahl",
+    "invalidPhone": "Ungültige Telefonnummer"
   },
   "orderConfirmation": {
     "title": "Bestellung Aufgegeben!",
