@@ -18,6 +18,7 @@ const ProductDetailPage = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState(null);
+  const [reviewStats, setReviewStats] = useState({ average: 0, count: 0 });
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
   const { t, i18n } = useTranslation();
@@ -58,10 +59,27 @@ const ProductDetailPage = () => {
     }
   }, [id, isAuthenticated]);
 
+  const fetchReviewStats = useCallback(async () => {
+    try {
+      const response = await api.get(`/reviews/product/${id}`);
+      const reviews = response.data.data.reviews || [];
+      if (reviews.length > 0) {
+        const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+        setReviewStats({
+          average: totalRating / reviews.length,
+          count: reviews.length
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching review stats:', error);
+    }
+  }, [id]);
+
   useEffect(() => {
     fetchProduct();
     checkFavorite();
-  }, [fetchProduct, checkFavorite]);
+    fetchReviewStats();
+  }, [fetchProduct, checkFavorite, fetchReviewStats]);
 
   // Reset quantity when variant changes
   useEffect(() => {
@@ -216,12 +234,63 @@ const ProductDetailPage = () => {
     );
   }
 
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    
+    for (let starIndex = 0; starIndex < 5; starIndex++) {
+      if (starIndex < fullStars) {
+        stars.push(
+          <svg key={starIndex} className="star filled" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        );
+      } else if (starIndex === fullStars && hasHalfStar) {
+        stars.push(
+          <svg key={starIndex} className="star half" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="halfGrad">
+                <stop offset="50%" stopColor="currentColor" />
+                <stop offset="50%" stopColor="#ddd" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#halfGrad)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        );
+      } else {
+        stars.push(
+          <svg key={starIndex} className="star empty" viewBox="0 0 24 24" fill="#ddd">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        );
+      }
+    }
+    return stars;
+  };
+
+  const categoryName = product?.category ? t(`categories.${product.category}`) : '';
+  const variantWeight = selectedVariant?.weight 
+    ? `${selectedVariant.weight}${selectedVariant.weightUnit}` 
+    : '';
+
   return (
     <div className="product-detail-page">
       <div className="container">
-        <Link to="/products" className="back-link">
-          ← {t('products.backToProducts')}
-        </Link>
+        {/* Breadcrumbs */}
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <Link to="/">{t('nav.home')}</Link>
+          <span className="breadcrumb-separator">/</span>
+          <Link to="/products">{t('nav.products')}</Link>
+          {product.category && (
+            <>
+              <span className="breadcrumb-separator">/</span>
+              <Link to={`/products?category=${product.category}`}>{categoryName}</Link>
+            </>
+          )}
+          <span className="breadcrumb-separator">/</span>
+          <span className="breadcrumb-current">{getLocalizedText(product.name)}</span>
+        </nav>
 
         <div className="product-detail">
           <div className="product-gallery">
@@ -287,26 +356,47 @@ const ProductDetailPage = () => {
           </div>
 
           <div className="product-info">
+            {/* Title with weight */}
             <div className="product-header">
-              <h1>{getLocalizedText(product.name)}</h1>
-              {product.producerId && (
-                <Link
-                  to={`/productores/${product.producerId._id || product.producerId}`}
-                  className="producer-link"
-                >
-                  {product.producerId.businessName || t('products.viewProducer')}
-                </Link>
-              )}
+              <h1 className="product-title">
+                {getLocalizedText(product.name)}
+                {variantWeight && <span className="product-weight">{variantWeight}</span>}
+              </h1>
             </div>
 
+            {/* Rating summary */}
+            {reviewStats.count > 0 && (
+              <div className="rating-summary">
+                <div className="stars-container">
+                  {renderStars(reviewStats.average)}
+                </div>
+                <span className="rating-text">
+                  {reviewStats.average.toFixed(1)} ({reviewStats.count} {reviewStats.count === 1 ? t('reviews.review') : t('reviews.reviews')})
+                </span>
+              </div>
+            )}
+
+            {/* Producer link */}
+            {product.producerId && (
+              <Link
+                to={`/productores/${product.producerId._id || product.producerId}`}
+                className="producer-link"
+              >
+                {product.producerId.businessName || t('products.viewProducer')}
+              </Link>
+            )}
+
+            {/* Price section */}
             <div className="product-price">
-              {currentCompareAtPrice && currentCompareAtPrice > currentPrice && (
-                <span className="compare-at-price">€{currentCompareAtPrice.toFixed(2)}</span>
-              )}
-              <span className="price">€{currentPrice.toFixed(2)}</span>
-              {!product.hasVariants && (
-                <span className="unit">/ {t(`units.${product.unit}`) || product.unit}</span>
-              )}
+              <div className="price-main">
+                {currentCompareAtPrice && currentCompareAtPrice > currentPrice && (
+                  <span className="compare-at-price">€{currentCompareAtPrice.toFixed(2)}</span>
+                )}
+                <span className="price">€{currentPrice.toFixed(2)}</span>
+                {!product.hasVariants && product.unit && (
+                  <span className="unit">/ {t(`units.${product.unit}`) || product.unit}</span>
+                )}
+              </div>
               <small className="vat-info">{t('products.vatIncluded')}</small>
             </div>
 
@@ -339,58 +429,70 @@ const ProductDetailPage = () => {
               </div>
             )}
 
-            <p className="product-description">{getLocalizedText(product.description)}</p>
-
-            <div className="product-meta">
-              <div className="meta-item">
-                <span className="meta-label">{t('products.stock')}:</span>
-                <span className={`meta-value ${currentStock > 0 ? 'in-stock' : 'out-of-stock'}`}>
-                  {currentStock > 0 ? `${currentStock} ${t('products.units')}` : t('products.outOfStock')}
-                </span>
-              </div>
-              {product.category && (
-                <div className="meta-item">
-                  <span className="meta-label">{t('products.category')}:</span>
-                  <span className="meta-value">{t(`categories.${product.category}`)}</span>
-                </div>
-              )}
-              {selectedVariant?.weight && (
-                <div className="meta-item">
-                  <span className="meta-label">{t('products.weight')}:</span>
-                  <span className="meta-value">
-                    {selectedVariant.weight} {selectedVariant.weightUnit}
-                  </span>
-                </div>
-              )}
+            {/* Stock info */}
+            <div className="stock-info">
+              <span className={`stock-badge ${currentStock > 0 ? 'in-stock' : 'out-of-stock'}`}>
+                {currentStock > 0 
+                  ? `${t('products.inStock')} (${currentStock} ${t('products.units')})` 
+                  : t('products.outOfStock')
+                }
+              </span>
             </div>
 
+            {/* Add to cart section */}
             {isCurrentlyAvailable ? (
               <div className="add-to-cart-section">
                 <div className="quantity-selector">
                   <button
+                    type="button"
                     onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
                     disabled={quantity <= 1}
+                    aria-label={t('common.decrease')}
                   >
-                    −
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14" />
+                    </svg>
                   </button>
-                  <span className="quantity-value">{quantity}</span>
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(event) => {
+                      const newValue = parseInt(event.target.value, 10);
+                      if (!isNaN(newValue) && newValue >= 1 && newValue <= currentStock) {
+                        setQuantity(newValue);
+                      }
+                    }}
+                    min="1"
+                    max={currentStock}
+                    aria-label={t('products.quantity')}
+                  />
                   <button
+                    type="button"
                     onClick={() => setQuantity((prev) => Math.min(currentStock, prev + 1))}
                     disabled={quantity >= currentStock}
+                    aria-label={t('common.increase')}
                   >
-                    +
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
                   </button>
                 </div>
-                <button onClick={handleAddToCart} className="btn btn-primary btn-add-cart">
+                <button onClick={handleAddToCart} className="btn-add-cart">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                  </svg>
                   {t('products.addToCart')} - €{(currentPrice * quantity).toFixed(2)}
                 </button>
               </div>
             ) : (
-              <button className="btn btn-disabled" disabled>
+              <button className="btn-out-of-stock" disabled>
                 {t('products.outOfStock')}
               </button>
             )}
 
+            {/* WhatsApp inquiry */}
             {(product.producerId?.whatsapp || product.producerId?.userId?.phone) && (
               <button className="btn-whatsapp-inquiry" onClick={handleWhatsAppInquiry}>
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -399,10 +501,20 @@ const ProductDetailPage = () => {
                 {t('whatsapp.askAboutProduct')}
               </button>
             )}
+
+            {/* Category tag */}
+            {product.category && (
+              <div className="product-category-tag">
+                <span className="category-label">{t('products.category')}:</span>
+                <Link to={`/products?category=${product.category}`} className="category-link">
+                  {categoryName}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
-        <ProductReviews productId={id} />
+        <ProductReviews productId={id} description={getLocalizedText(product.description)} />
       </div>
 
       {/* Lightbox Modal */}

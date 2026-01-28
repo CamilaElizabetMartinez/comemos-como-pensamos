@@ -105,6 +105,8 @@
     "addToCart": "Añadir al carrito",
     "addedToCart": "Producto agregado al carrito",
     "outOfStock": "Agotado",
+    "inStock": "En stock",
+    "quantity": "Cantidad",
     "viewFullscreen": "Ver a pantalla completa",
     "lowStock": "Últimas unidades",
     "new": "¡Novedad!",
@@ -362,8 +364,14 @@
     "reviews": "Reseñas",
     "andMoreReviews": "y {{count}} reseñas más..."
   },
+  "productTabs": {
+    "description": "Descripción",
+    "reviews": "Valoraciones"
+  },
   "reviews": {
     "title": "Opiniones de clientes",
+    "review": "opinión",
+    "reviews": "opiniones",
     "reviewsCount": "opiniones",
     "noReviews": "Este producto aún no tiene opiniones",
     "beFirstToReview": "¡Sé el primero en opinar después de tu compra!",
