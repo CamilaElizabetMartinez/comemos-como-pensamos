@@ -233,6 +233,7 @@
   "common": {
     "backToHome": "Volver al inicio",
     "loading": "Cargando...",
+    "optional": "opcional",
     "error": "Error",
     "success": "Éxito",
     "save": "Guardar",
@@ -504,6 +505,11 @@
       "createTitle": "Crear Producto",
       "editTitle": "Editar Producto",
       "backToProducts": "Volver a productos",
+      "tabs": {
+        "general": "General",
+        "images": "Imágenes",
+        "pricing": "Precio"
+      },
       "basicInfo": "Información Básica",
       "nameSectionTitle": "Nombre del producto",
       "namePlaceholder": "Ej: Tomates ecológicos",
@@ -544,7 +550,9 @@
       "variantsRequired": "Debes añadir al menos una variante",
       "variantNameRequired": "El nombre de la variante {{index}} es obligatorio",
       "variantPriceRequired": "El precio de la variante {{index}} debe ser mayor que 0",
-      "variantStockRequired": "El stock de la variante {{index}} no puede ser negativo"
+      "variantStockRequired": "El stock de la variante {{index}} no puede ser negativo",
+      "addTranslations": "Añadir traducciones",
+      "translationsHint": "Traduce el nombre y descripción para clientes internacionales"
     },
     "orders": {
       "title": "Pedidos Recibidos",
