@@ -11,6 +11,9 @@ const orderItemSchema = new mongoose.Schema({
     ref: 'Producer',
     required: true
   },
+  variantId: {
+    type: mongoose.Schema.Types.ObjectId
+  },
   quantity: {
     type: Number,
     required: true,
@@ -23,6 +26,9 @@ const orderItemSchema = new mongoose.Schema({
   productName: {
     type: String,
     required: true
+  },
+  variantName: {
+    type: String
   },
   commissionRate: {
     type: Number,

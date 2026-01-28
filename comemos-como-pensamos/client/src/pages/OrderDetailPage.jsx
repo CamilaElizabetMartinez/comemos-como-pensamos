@@ -326,8 +326,10 @@ const OrderDetailPage = () => {
                 const productId = item.productId?._id || item.productId;
                 const hasReviewed = reviewedProducts.includes(productId);
                 
+                const itemKey = item.variantId ? `${index}_${item.variantId}` : index;
+                
                 return (
-                  <div key={index} className="order-item-card">
+                  <div key={itemKey} className="order-item-card">
                     <div className="item-image">
                       {item.productId?.images?.[0] ? (
                         <img src={item.productId.images[0]} alt={item.productName} />
@@ -337,6 +339,9 @@ const OrderDetailPage = () => {
                     </div>
                     <div className="item-details">
                       <h3>{item.productName}</h3>
+                      {item.variantName && (
+                        <span className="item-variant-badge">{item.variantName}</span>
+                      )}
                       {item.producerId && (
                         <p className="item-producer">
                           {t('products.producer')}: {item.producerId.businessName}
@@ -347,7 +352,7 @@ const OrderDetailPage = () => {
                           {t('orderDetail.quantity')}: {item.quantity}
                         </span>
                         <span className="item-price">
-                          €{item.priceAtPurchase.toFixed(2)} / {t('products.unit')}
+                          €{item.priceAtPurchase.toFixed(2)}
                         </span>
                       </div>
                       {order.status === 'delivered' && (

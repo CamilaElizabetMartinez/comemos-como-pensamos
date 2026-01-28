@@ -176,6 +176,7 @@ const CheckoutPage = () => {
 
       const items = cartItems.map(item => ({
         productId: item._id,
+        variantId: item.variantId || null,
         quantity: item.quantity
       }));
 
@@ -482,9 +483,13 @@ const CheckoutPage = () => {
             
             <div className="summary-items">
               {cartItems.map((item) => {
-                const hasStockIssue = stockIssues.some(issue => issue.productId === item._id);
+                const itemKey = item.variantId ? `${item._id}_${item.variantId}` : item._id;
+                const hasStockIssue = stockIssues.some(issue => 
+                  issue.productId === item._id && 
+                  (!item.variantId || issue.variantId === item.variantId)
+                );
                 return (
-                  <div key={item._id} className={`summary-item ${hasStockIssue ? 'stock-issue' : ''}`}>
+                  <div key={itemKey} className={`summary-item ${hasStockIssue ? 'stock-issue' : ''}`}>
                     <div className="item-image">
                       {item.images?.[0] ? (
                         <img src={item.images[0]} alt={item.name?.es} />
@@ -494,6 +499,9 @@ const CheckoutPage = () => {
                     </div>
                     <div className="item-details">
                       <span className="item-name">{item.name?.es}</span>
+                      {item.variantName && (
+                        <span className="item-variant">{item.variantName}</span>
+                      )}
                       <span className="item-qty">x{item.quantity}</span>
                       {hasStockIssue && <span className="stock-issue-badge">⚠️</span>}
                     </div>

@@ -42,11 +42,33 @@ export const createOrder = async (req, res) => {
         });
       }
 
-      if (!product.hasStock(item.quantity)) {
-        return res.status(400).json({
-          success: false,
-          message: `Stock insuficiente para ${product.name.es}`
-        });
+      // Handle variant stock check
+      let itemPrice = product.price;
+      let variantName = null;
+      
+      if (product.hasVariants && item.variantId) {
+        const variant = product.getVariant(item.variantId);
+        if (!variant) {
+          return res.status(404).json({
+            success: false,
+            message: `Variante no encontrada para ${product.name.es}`
+          });
+        }
+        if (!variant.isAvailable || variant.stock < item.quantity) {
+          return res.status(400).json({
+            success: false,
+            message: `Stock insuficiente para ${product.name.es} - ${variant.name.es}`
+          });
+        }
+        itemPrice = variant.price;
+        variantName = variant.name.es;
+      } else {
+        if (!product.hasStock(item.quantity)) {
+          return res.status(400).json({
+            success: false,
+            message: `Stock insuficiente para ${product.name.es}`
+          });
+        }
       }
 
       const producerId = product.producerId.toString();
@@ -62,15 +84,17 @@ export const createOrder = async (req, res) => {
         commissionRate = producerCommissionCache[producerId];
       }
 
-      const itemSubtotal = product.price * item.quantity;
+      const itemSubtotal = itemPrice * item.quantity;
       subtotal += itemSubtotal;
 
       orderItems.push({
         productId: product._id,
         producerId: product.producerId,
+        variantId: item.variantId || null,
         quantity: item.quantity,
-        priceAtPurchase: product.price,
+        priceAtPurchase: itemPrice,
         productName: product.name.es,
+        variantName,
         commissionRate
       });
     }
@@ -147,7 +171,7 @@ export const createOrder = async (req, res) => {
       for (const item of order.items) {
         const product = await Product.findById(item.productId);
         if (product) {
-          await product.reduceStock(item.quantity);
+          await product.reduceStock(item.quantity, item.variantId);
         }
       }
     }
@@ -465,11 +489,11 @@ export const confirmOrderPayment = async (orderId, paymentIntentId) => {
 
     await order.save();
 
-    // Reducir stock de productos
+    // Reducir stock de productos (con soporte para variantes)
     for (const item of order.items) {
       const product = await Product.findById(item.productId);
       if (product) {
-        await product.reduceStock(item.quantity);
+        await product.reduceStock(item.quantity, item.variantId);
       }
     }
 

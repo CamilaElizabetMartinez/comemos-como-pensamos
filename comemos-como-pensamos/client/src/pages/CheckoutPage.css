@@ -345,6 +345,17 @@
   text-overflow: ellipsis;
 }
 
+.summary-item .item-variant {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  background: #f0f0f0;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  margin-top: 0.2rem;
+  width: fit-content;
+}
+
 .summary-item .item-qty {
   font-size: 0.8rem;
   color: #888;

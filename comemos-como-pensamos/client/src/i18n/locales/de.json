@@ -95,6 +95,8 @@
     "addedToCart": "Produkt zum Warenkorb hinzugefügt",
     "outOfStock": "Nicht vorrätig",
     "lowStock": "Letzte Einheiten",
+    "new": "Neu!",
+    "vatIncluded": "MwSt. inbegriffen",
     "producer": "Produzent",
     "unit": "Einheit",
     "reviews": "Bewertungen",
@@ -124,11 +126,22 @@
   "cart": {
     "title": "Warenkorb",
     "empty": "Ihr Warenkorb ist leer",
+    "items": "{{count}} Artikel",
+    "items_plural": "{{count}} Artikel",
+    "producers": "Produzenten",
     "subtotal": "Zwischensumme",
     "shipping": "Versand",
+    "productsTotal": "Produktsumme",
     "total": "Gesamt",
+    "summary": "Zusammenfassung",
     "checkout": "Zur Kasse",
-    "continueShopping": "Weiter einkaufen"
+    "continueShopping": "Weiter einkaufen",
+    "shippingCalculatedAtCheckout": "Versand wird an der Kasse berechnet",
+    "calculatedAtCheckout": "Berechnet an der Kasse",
+    "multiProducerNotice": "Sie erhalten {{count}} separate Sendungen, eine von jedem Produzenten",
+    "decrease": "Menge verringern",
+    "increase": "Menge erhöhen",
+    "remove": "Produkt entfernen"
   },
   "checkout": {
     "title": "Bestellung Abschließen",
