@@ -9,18 +9,18 @@
   margin: 0 auto;
 }
 
-.back-link {
+.product-detail-page .back-link {
   display: inline-flex;
   align-items: center;
-  color: #2e7d32;
+  color: #2D5A3D;
   text-decoration: none;
   margin-bottom: 1.5rem;
   font-weight: 500;
   transition: color 0.2s;
 }
 
-.back-link:hover {
-  color: #1b5e20;
+.product-detail-page .back-link:hover {
+  color: #1E3D2A;
 }
 
 .product-detail {

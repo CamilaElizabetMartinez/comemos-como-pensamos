@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 
-.back-link {
+.admin-reports .back-link {
   display: inline-block;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
@@ -18,11 +18,11 @@
   transition: color 0.2s;
 }
 
-.back-link::before {
+.admin-reports .back-link::before {
   content: '← ';
 }
 
-.back-link:hover {
+.admin-reports .back-link:hover {
   color: white;
 }
 

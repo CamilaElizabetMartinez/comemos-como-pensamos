@@ -13,7 +13,7 @@
   margin-bottom: 2rem;
 }
 
-.back-link {
+.order-detail-page .back-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -25,16 +25,16 @@
   transition: all var(--transition-fast);
 }
 
-.back-link::before {
+.order-detail-page .back-link::before {
   content: '←';
   transition: transform var(--transition-fast);
 }
 
-.back-link:hover {
+.order-detail-page .back-link:hover {
   color: var(--color-primary-dark);
 }
 
-.back-link:hover::before {
+.order-detail-page .back-link:hover::before {
   transform: translateX(-3px);
 }
 
