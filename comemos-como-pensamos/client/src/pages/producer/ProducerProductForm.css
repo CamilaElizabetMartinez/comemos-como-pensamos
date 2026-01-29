@@ -102,12 +102,16 @@
 
 /* Form Content Area */
 .form-content {
+  grid-column: 2;
+  grid-row: 1;
   padding: 1.5rem;
   overflow-y: auto;
-  max-height: calc(100vh - 300px);
+  min-height: 300px;
+  display: block;
 }
 
 .tab-panel {
+  display: block;
   animation: fadeIn 0.2s ease;
 }
 
@@ -557,6 +561,10 @@ textarea.input-main {
   font-size: 0.7rem;
 }
 
+.form-row.two-cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .form-row.three-cols {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -672,6 +680,8 @@ textarea.input-main {
   }
 
   .form-content {
+    grid-column: 1;
+    grid-row: 2;
     max-height: none;
     padding: 1.25rem;
   }

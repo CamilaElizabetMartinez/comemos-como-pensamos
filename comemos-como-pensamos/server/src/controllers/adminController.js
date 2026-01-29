@@ -294,6 +294,86 @@ export const rejectProducer = async (req, res) => {
   }
 };
 
+// @desc    Get all products for admin
+// @route   GET /api/admin/products
+// @access  Private (Admin only)
+export const getAllProducts = async (req, res) => {
+  try {
+    const { page = 1, limit = 20, search, featured } = req.query;
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+
+    const filters = {};
+    if (search) {
+      filters.name = { $regex: search, $options: 'i' };
+    }
+    if (featured === 'true') {
+      filters.isFeatured = true;
+    } else if (featured === 'false') {
+      filters.isFeatured = false;
+    }
+
+    const [products, total] = await Promise.all([
+      Product.find(filters)
+        .populate('producerId', 'businessName')
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(parseInt(limit)),
+      Product.countDocuments(filters)
+    ]);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        products,
+        pagination: {
+          total,
+          page: parseInt(page),
+          pages: Math.ceil(total / parseInt(limit))
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener productos',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Toggle product featured status
+// @route   PUT /api/admin/products/:id/featured
+// @access  Private (Admin only)
+export const toggleProductFeatured = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Producto no encontrado'
+      });
+    }
+
+    product.isFeatured = !product.isFeatured;
+    await product.save();
+
+    res.status(200).json({
+      success: true,
+      data: { isFeatured: product.isFeatured },
+      message: product.isFeatured ? 'Producto destacado' : 'Producto quitado de destacados'
+    });
+  } catch (error) {
+    console.error('Error toggling featured:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al actualizar producto',
+      error: error.message
+    });
+  }
+};
+
 // @desc    Moderar producto (ocultar/eliminar)
 // @route   PUT /api/admin/products/:id/moderate
 // @access  Private (Admin only)

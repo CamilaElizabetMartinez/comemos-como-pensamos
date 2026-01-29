@@ -55,6 +55,7 @@ import AdminContact from './pages/admin/AdminContact';
 import AdminLeads from './pages/admin/AdminLeads';
 import AdminCoupons from './pages/admin/AdminCoupons';
 import AdminBlog from './pages/admin/AdminBlog';
+import AdminProducts from './pages/admin/AdminProducts';
 import ProducerCalculator from './pages/ProducerCalculator';
 import JoinAsProducerPage from './pages/JoinAsProducerPage';
 import BlogPage from './pages/BlogPage';
@@ -115,6 +116,7 @@ function App() {
                   <Route path="/admin/leads" element={<AdminLeads />} />
                   <Route path="/admin/coupons" element={<AdminCoupons />} />
                   <Route path="/admin/blog" element={<AdminBlog />} />
+                  <Route path="/admin/products" element={<AdminProducts />} />
                   
                   {/* 404 - Must be last */}
                   <Route path="*" element={<NotFoundPage />} />

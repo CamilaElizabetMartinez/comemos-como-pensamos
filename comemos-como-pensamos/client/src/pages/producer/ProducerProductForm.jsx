@@ -11,8 +11,6 @@ const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'eggs', '
 const UNITS = ['kg', 'unit', 'liter', 'gram', 'dozen'];
 const WEIGHT_UNITS = ['g', 'kg', 'ml', 'l'];
 
-const TABS = ['general', 'images', 'pricing'];
-
 const EMPTY_VARIANT = {
   name: { es: '', en: '', fr: '', de: '' },
   sku: '',
@@ -24,13 +22,43 @@ const EMPTY_VARIANT = {
   isDefault: false
 };
 
+const TAB_ICONS = {
+  general: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </svg>
+  ),
+  images: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+      <circle cx="8.5" cy="8.5" r="1.5" />
+      <polyline points="21 15 16 10 5 21" />
+    </svg>
+  ),
+  pricing: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="12" y1="1" x2="12" y2="23" />
+      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+    </svg>
+  )
+};
+
 const ProducerProductForm = () => {
   const { id } = useParams();
   const isEditing = Boolean(id);
+  const { user } = useAuth();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(isEditing);
   const [saving, setSaving] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
   const [showTranslations, setShowTranslations] = useState(false);
+
   const [formData, setFormData] = useState({
     name: { es: '', en: '', fr: '', de: '' },
     description: { es: '', en: '', fr: '', de: '' },
@@ -43,9 +71,6 @@ const ProducerProductForm = () => {
     hasVariants: false,
     variants: []
   });
-  const { user } = useAuth();
-  const { t } = useTranslation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.role !== 'producer') {
@@ -55,16 +80,12 @@ const ProducerProductForm = () => {
     if (isEditing) {
       fetchProduct();
     }
-  }, [user, id, navigate, isEditing]);
+  }, [user, navigate, isEditing]);
 
   const fetchProduct = useCallback(async () => {
     try {
-      const res = await api.get(`/products/${id}`);
-      const product = res.data.data.product;
-      
-      const normalizedImages = (product.images || []).map(img => 
-        typeof img === 'string' ? { url: img, publicId: null } : img
-      );
+      const response = await api.get(`/products/${id}`);
+      const product = response.data.data.product;
 
       const normalizedVariants = (product.variants || []).map(variant => ({
         ...variant,
@@ -76,15 +97,14 @@ const ProducerProductForm = () => {
         weight: variant.weight?.toString() || '',
         weightUnit: variant.weightUnit || 'g'
       }));
-      
+
       const productName = product.name || { es: '', en: '', fr: '', de: '' };
       const productDescription = product.description || { es: '', en: '', fr: '', de: '' };
-      
-      // Check if there are existing translations to show them expanded
-      const hasExistingTranslations = 
+
+      const hasExistingTranslations =
         productName.en || productName.fr || productName.de ||
         productDescription.en || productDescription.fr || productDescription.de;
-      
+
       if (hasExistingTranslations) {
         setShowTranslations(true);
       }
@@ -96,13 +116,13 @@ const ProducerProductForm = () => {
         price: product.price?.toString() || '',
         unit: product.unit || 'kg',
         stock: product.stock?.toString() || '',
-        images: normalizedImages,
+        images: product.images || [],
         isAvailable: product.isAvailable ?? true,
         hasVariants: product.hasVariants || false,
         variants: normalizedVariants
       });
     } catch (error) {
-      toast.error(t('producer.productForm.loadError'));
+      toast.error(t('producer.productForm.loadError', 'Error al cargar producto'));
       navigate('/producer/products');
     } finally {
       setLoading(false);
@@ -120,18 +140,12 @@ const ProducerProductForm = () => {
   const handleLocalizedChange = useCallback((field, lang, value) => {
     setFormData(prev => ({
       ...prev,
-      [field]: {
-        ...prev[field],
-        [lang]: value
-      }
+      [field]: { ...prev[field], [lang]: value }
     }));
   }, []);
 
   const handleImagesChange = useCallback((newImages) => {
-    setFormData(prev => ({
-      ...prev,
-      images: newImages
-    }));
+    setFormData(prev => ({ ...prev, images: newImages }));
   }, []);
 
   const handleToggleVariants = useCallback((event) => {
@@ -139,8 +153,8 @@ const ProducerProductForm = () => {
     setFormData(prev => ({
       ...prev,
       hasVariants,
-      variants: hasVariants && prev.variants.length === 0 
-        ? [{ ...EMPTY_VARIANT, isDefault: true }] 
+      variants: hasVariants && prev.variants.length === 0
+        ? [{ ...EMPTY_VARIANT, isDefault: true }]
         : prev.variants
     }));
   }, []);
@@ -175,10 +189,7 @@ const ProducerProductForm = () => {
       const newVariants = [...prev.variants];
       newVariants[index] = {
         ...newVariants[index],
-        [field]: {
-          ...newVariants[index][field],
-          [lang]: value
-        }
+        [field]: { ...newVariants[index][field], [lang]: value }
       };
       return { ...prev, variants: newVariants };
     });
@@ -196,37 +207,37 @@ const ProducerProductForm = () => {
 
   const validateForm = useCallback(() => {
     if (!formData.name.es) {
-      toast.error(t('producer.productForm.nameRequired'));
+      toast.error(t('producer.productForm.nameRequired', 'El nombre es obligatorio'));
       return false;
     }
 
     if (formData.hasVariants) {
       if (formData.variants.length === 0) {
-        toast.error(t('producer.productForm.variantsRequired'));
+        toast.error(t('producer.productForm.variantsRequired', 'Debes añadir al menos una variante'));
         return false;
       }
       for (let index = 0; index < formData.variants.length; index++) {
         const variant = formData.variants[index];
         if (!variant.name.es) {
-          toast.error(t('producer.productForm.variantNameRequired', { index: index + 1 }));
+          toast.error(t('producer.productForm.variantNameRequired', `Variante ${index + 1}: nombre obligatorio`));
           return false;
         }
         if (!variant.price || parseFloat(variant.price) <= 0) {
-          toast.error(t('producer.productForm.variantPriceRequired', { index: index + 1 }));
+          toast.error(t('producer.productForm.variantPriceRequired', `Variante ${index + 1}: precio obligatorio`));
           return false;
         }
         if (variant.stock === '' || parseInt(variant.stock) < 0) {
-          toast.error(t('producer.productForm.variantStockRequired', { index: index + 1 }));
+          toast.error(t('producer.productForm.variantStockRequired', `Variante ${index + 1}: stock obligatorio`));
           return false;
         }
       }
     } else {
       if (!formData.price || parseFloat(formData.price) <= 0) {
-        toast.error(t('producer.productForm.priceRequired'));
+        toast.error(t('producer.productForm.priceRequired', 'El precio es obligatorio'));
         return false;
       }
       if (formData.stock === '' || parseInt(formData.stock) < 0) {
-        toast.error(t('producer.productForm.stockRequired'));
+        toast.error(t('producer.productForm.stockRequired', 'El stock es obligatorio'));
         return false;
       }
     }
@@ -241,9 +252,7 @@ const ProducerProductForm = () => {
 
     setSaving(true);
     try {
-      const imageUrls = formData.images.map(img => 
-        typeof img === 'string' ? img : img.url
-      );
+      const imageUrls = formData.images.map(img => typeof img === 'string' ? img : img.url);
 
       const payload = {
         name: formData.name,
@@ -274,14 +283,14 @@ const ProducerProductForm = () => {
 
       if (isEditing) {
         await api.put(`/products/${id}`, payload);
-        toast.success(t('producer.productForm.updated'));
+        toast.success(t('producer.productForm.updated', 'Producto actualizado'));
       } else {
         await api.post('/products', payload);
-        toast.success(t('producer.productForm.created'));
+        toast.success(t('producer.productForm.created', 'Producto creado'));
       }
       navigate('/producer/products');
     } catch (error) {
-      toast.error(error.response?.data?.message || t('producer.productForm.saveError'));
+      toast.error(error.response?.data?.message || t('producer.productForm.saveError', 'Error al guardar'));
     } finally {
       setSaving(false);
     }
@@ -292,11 +301,17 @@ const ProducerProductForm = () => {
     return formData.variants.reduce((sum, variant) => sum + (parseInt(variant.stock) || 0), 0);
   }, [formData.hasVariants, formData.variants]);
 
+  const tabs = useMemo(() => [
+    { id: 'general', label: t('producer.productForm.tabs.general', 'General') },
+    { id: 'images', label: t('producer.productForm.tabs.images', 'Imágenes') },
+    { id: 'pricing', label: t('producer.productForm.tabs.pricing', 'Precio') }
+  ], [t]);
+
   if (loading) {
     return (
       <div className="producer-product-form">
         <div className="container">
-          <div className="loading">{t('common.loading')}</div>
+          <div className="loading">{t('common.loading', 'Cargando...')}</div>
         </div>
       </div>
     );
@@ -306,78 +321,54 @@ const ProducerProductForm = () => {
     <div className="producer-product-form">
       <div className="container">
         <header className="form-header">
-          <Link to="/producer" className="back-link">
-            ← {t('producer.products.backToDashboard')}
+          <Link to="/producer/products" className="back-link">
+            ← {t('producer.products.backToDashboard', 'Volver')}
           </Link>
           <h1>
-            {isEditing 
-              ? t('producer.productForm.editTitle') 
-              : t('producer.productForm.createTitle')}
+            {isEditing
+              ? t('producer.productForm.editTitle', 'Editar Producto')
+              : t('producer.productForm.createTitle', 'Crear Producto')}
           </h1>
         </header>
 
         <form onSubmit={handleSubmit} className="product-form tabbed-form">
           <nav className="form-tabs">
-            {TABS.map(tab => (
+            {tabs.map(tab => (
               <button
-                key={tab}
+                key={tab.id}
                 type="button"
-                className={`tab-btn ${activeTab === tab ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab)}
+                className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
               >
-                <span className="tab-icon">
-                  {tab === 'general' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="16" y1="13" x2="8" y2="13" />
-                      <line x1="16" y1="17" x2="8" y2="17" />
-                      <polyline points="10 9 9 9 8 9" />
-                    </svg>
-                  )}
-                  {tab === 'images' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                  )}
-                  {tab === 'pricing' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="12" y1="1" x2="12" y2="23" />
-                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-                  )}
-                </span>
-                <span className="tab-label">{t(`producer.productForm.tabs.${tab}`)}</span>
+                <span className="tab-icon">{TAB_ICONS[tab.id]}</span>
+                <span className="tab-label">{tab.label}</span>
               </button>
             ))}
           </nav>
 
           <div className="form-content">
-            {/* Tab: General */}
             {activeTab === 'general' && (
               <div className="tab-panel">
                 <section className="form-section">
-                  <h2>{t('producer.productForm.nameSectionTitle')} *</h2>
+                  <h2>{t('producer.productForm.nameSectionTitle', 'Nombre del producto')} *</h2>
                   <div className="form-group">
                     <input
                       type="text"
                       value={formData.name.es}
                       onChange={(event) => handleLocalizedChange('name', 'es', event.target.value)}
-                      placeholder={t('producer.productForm.namePlaceholder')}
+                      placeholder={t('producer.productForm.namePlaceholder', 'Ej: Tomates cherry ecológicos')}
                       className="input-main"
                     />
                   </div>
                 </section>
 
                 <section className="form-section">
-                  <h2>{t('producer.productForm.descriptionSectionTitle')}</h2>
+                  <h2>{t('producer.productForm.descriptionSectionTitle', 'Descripción')}</h2>
                   <div className="form-group">
                     <textarea
                       value={formData.description.es}
                       onChange={(event) => handleLocalizedChange('description', 'es', event.target.value)}
-                      placeholder={t('producer.productForm.descriptionPlaceholder')}
+                      placeholder={t('producer.productForm.descriptionPlaceholder', 'Describe tu producto...')}
                       rows="4"
                       className="input-main"
                     />
@@ -385,23 +376,18 @@ const ProducerProductForm = () => {
                 </section>
 
                 <section className="form-section">
-                  <h2>{t('producer.productForm.category')}</h2>
+                  <h2>{t('producer.productForm.category', 'Categoría')}</h2>
                   <div className="form-group">
-                    <select
-                      name="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                    >
+                    <select name="category" value={formData.category} onChange={handleChange}>
                       {CATEGORIES.map(cat => (
                         <option key={cat} value={cat}>
-                          {t(`categories.${cat}`)}
+                          {t(`categories.${cat}`, cat)}
                         </option>
                       ))}
                     </select>
                   </div>
                 </section>
 
-                {/* Collapsible translations */}
                 <div className="translations-section">
                   <button
                     type="button"
@@ -409,16 +395,16 @@ const ProducerProductForm = () => {
                     onClick={() => setShowTranslations(!showTranslations)}
                   >
                     <span className={`toggle-icon ${showTranslations ? 'open' : ''}`}>▶</span>
-                    {t('producer.productForm.addTranslations')}
-                    <span className="optional-badge">{t('common.optional')}</span>
+                    {t('producer.productForm.addTranslations', 'Añadir traducciones')}
+                    <span className="optional-badge">{t('common.optional', 'opcional')}</span>
                   </button>
 
                   {showTranslations && (
                     <div className="translations-content">
-                      <p className="translations-hint">{t('producer.productForm.translationsHint')}</p>
-                      
+                      <p className="translations-hint">{t('producer.productForm.translationsHint', 'Añade traducciones para otros idiomas')}</p>
+
                       <div className="form-group">
-                        <label>{t('producer.productForm.nameSectionTitle')}</label>
+                        <label>{t('producer.productForm.nameSectionTitle', 'Nombre')}</label>
                         <div className="localized-inputs">
                           {['en', 'fr', 'de'].map(lang => (
                             <div key={lang} className="localized-input">
@@ -427,7 +413,7 @@ const ProducerProductForm = () => {
                                 type="text"
                                 value={formData.name[lang]}
                                 onChange={(event) => handleLocalizedChange('name', lang, event.target.value)}
-                                placeholder={t('producer.productForm.namePlaceholder')}
+                                placeholder={t('producer.productForm.namePlaceholder', 'Nombre del producto')}
                               />
                             </div>
                           ))}
@@ -435,7 +421,7 @@ const ProducerProductForm = () => {
                       </div>
 
                       <div className="form-group">
-                        <label>{t('producer.productForm.descriptionSectionTitle')}</label>
+                        <label>{t('producer.productForm.descriptionSectionTitle', 'Descripción')}</label>
                         <div className="localized-inputs">
                           {['en', 'fr', 'de'].map(lang => (
                             <div key={lang} className="localized-input">
@@ -443,7 +429,7 @@ const ProducerProductForm = () => {
                               <textarea
                                 value={formData.description[lang]}
                                 onChange={(event) => handleLocalizedChange('description', lang, event.target.value)}
-                                placeholder={t('producer.productForm.descriptionPlaceholder')}
+                                placeholder={t('producer.productForm.descriptionPlaceholder', 'Descripción')}
                                 rows="2"
                               />
                             </div>
@@ -456,12 +442,11 @@ const ProducerProductForm = () => {
               </div>
             )}
 
-            {/* Tab: Images */}
             {activeTab === 'images' && (
               <div className="tab-panel">
                 <section className="form-section">
-                  <h2>{t('producer.productForm.images')}</h2>
-                  <p className="section-hint">{t('imageUploader.dragReorder')}</p>
+                  <h2>{t('producer.productForm.images', 'Imágenes')}</h2>
+                  <p className="section-hint">{t('imageUploader.dragReorder', 'Arrastra para reordenar. Máximo 5 imágenes.')}</p>
                   <ImageUploader
                     images={formData.images}
                     onImagesChange={handleImagesChange}
@@ -472,12 +457,11 @@ const ProducerProductForm = () => {
               </div>
             )}
 
-            {/* Tab: Pricing */}
             {activeTab === 'pricing' && (
               <div className="tab-panel">
                 <section className="form-section">
-                  <h2>{t('producer.productForm.pricingStock')}</h2>
-                  
+                  <h2>{t('producer.productForm.pricingStock', 'Precio y Stock')}</h2>
+
                   <div className="form-group checkbox-group variants-toggle">
                     <label className="checkbox-label">
                       <input
@@ -486,17 +470,17 @@ const ProducerProductForm = () => {
                         onChange={handleToggleVariants}
                       />
                       <span className="checkbox-text">
-                        {t('producer.productForm.useVariants')}
+                        {t('producer.productForm.useVariants', 'Usar variantes (ej: 500g, 1kg)')}
                       </span>
                     </label>
-                    <p className="hint-text">{t('producer.productForm.variantsHint')}</p>
+                    <p className="hint-text">{t('producer.productForm.variantsHint', 'Activa esta opción si tu producto tiene diferentes presentaciones con distintos precios')}</p>
                   </div>
 
                   {!formData.hasVariants ? (
                     <>
                       <div className="form-row three-cols">
                         <div className="form-group">
-                          <label>{t('producer.productForm.price')} (€) *</label>
+                          <label>{t('producer.productForm.price', 'Precio')} (€) *</label>
                           <input
                             type="number"
                             name="price"
@@ -509,20 +493,16 @@ const ProducerProductForm = () => {
                         </div>
 
                         <div className="form-group">
-                          <label>{t('producer.productForm.unit')} *</label>
-                          <select
-                            name="unit"
-                            value={formData.unit}
-                            onChange={handleChange}
-                          >
+                          <label>{t('producer.productForm.unit', 'Unidad')} *</label>
+                          <select name="unit" value={formData.unit} onChange={handleChange}>
                             {UNITS.map(unit => (
-                              <option key={unit} value={unit}>{t(`units.${unit}`)}</option>
+                              <option key={unit} value={unit}>{t(`units.${unit}`, unit)}</option>
                             ))}
                           </select>
                         </div>
 
                         <div className="form-group">
-                          <label>{t('producer.productForm.stock')} *</label>
+                          <label>{t('producer.productForm.stock', 'Stock')} *</label>
                           <input
                             type="number"
                             name="stock"
@@ -543,7 +523,7 @@ const ProducerProductForm = () => {
                             onChange={handleChange}
                           />
                           <span className="checkbox-text">
-                            {t('producer.productForm.isAvailable')}
+                            {t('producer.productForm.isAvailable', 'Producto disponible para venta')}
                           </span>
                         </label>
                       </div>
@@ -551,9 +531,9 @@ const ProducerProductForm = () => {
                   ) : (
                     <div className="variants-section">
                       <div className="variants-header">
-                        <h3>{t('producer.productForm.variantsTitle')}</h3>
+                        <h3>{t('producer.productForm.variantsTitle', 'Variantes del producto')}</h3>
                         <span className="variants-stock-total">
-                          {t('producer.productForm.totalStock')}: {totalVariantsStock}
+                          {t('producer.productForm.totalStock', 'Stock total')}: {totalVariantsStock}
                         </span>
                       </div>
 
@@ -561,9 +541,9 @@ const ProducerProductForm = () => {
                         <div key={index} className={`variant-card ${variant.isDefault ? 'is-default' : ''}`}>
                           <div className="variant-header">
                             <span className="variant-number">
-                              {t('producer.productForm.variant')} {index + 1}
+                              {t('producer.productForm.variant', 'Variante')} {index + 1}
                               {variant.isDefault && (
-                                <span className="default-badge">{t('producer.productForm.default')}</span>
+                                <span className="default-badge">{t('producer.productForm.default', 'Principal')}</span>
                               )}
                             </span>
                             <div className="variant-actions">
@@ -573,7 +553,7 @@ const ProducerProductForm = () => {
                                   className="btn-set-default"
                                   onClick={() => handleSetDefaultVariant(index)}
                                 >
-                                  {t('producer.productForm.setDefault')}
+                                  {t('producer.productForm.setDefault', 'Hacer principal')}
                                 </button>
                               )}
                               {formData.variants.length > 1 && (
@@ -590,25 +570,18 @@ const ProducerProductForm = () => {
 
                           <div className="variant-body">
                             <div className="form-group">
-                              <label>{t('producer.productForm.variantName')} *</label>
-                              <div className="localized-inputs compact">
-                                {['es', 'en', 'fr', 'de'].map(lang => (
-                                  <div key={lang} className="localized-input">
-                                    <span className="lang-label">{lang.toUpperCase()}</span>
-                                    <input
-                                      type="text"
-                                      value={variant.name[lang]}
-                                      onChange={(event) => handleVariantLocalizedChange(index, 'name', lang, event.target.value)}
-                                      placeholder={t('producer.productForm.variantNamePlaceholder')}
-                                    />
-                                  </div>
-                                ))}
-                              </div>
+                              <label>{t('producer.productForm.variantName', 'Nombre de la variante')} * (ej: 500g, 1kg)</label>
+                              <input
+                                type="text"
+                                value={variant.name.es}
+                                onChange={(event) => handleVariantLocalizedChange(index, 'name', 'es', event.target.value)}
+                                placeholder={t('producer.productForm.variantNamePlaceholder', 'Ej: Pack 500g')}
+                              />
                             </div>
 
-                            <div className="form-row four-cols">
+                            <div className="form-row three-cols">
                               <div className="form-group">
-                                <label>{t('producer.productForm.price')} (€) *</label>
+                                <label>{t('producer.productForm.price', 'Precio')} (€) *</label>
                                 <input
                                   type="number"
                                   value={variant.price}
@@ -620,7 +593,30 @@ const ProducerProductForm = () => {
                               </div>
 
                               <div className="form-group">
-                                <label>{t('producer.productForm.compareAtPrice')}</label>
+                                <label>{t('producer.productForm.stock', 'Stock')} *</label>
+                                <input
+                                  type="number"
+                                  value={variant.stock}
+                                  onChange={(event) => handleVariantChange(index, 'stock', event.target.value)}
+                                  min="0"
+                                  placeholder="0"
+                                />
+                              </div>
+
+                              <div className="form-group">
+                                <label>{t('producer.productForm.sku', 'SKU')}</label>
+                                <input
+                                  type="text"
+                                  value={variant.sku}
+                                  onChange={(event) => handleVariantChange(index, 'sku', event.target.value)}
+                                  placeholder="SKU-001"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="form-row two-cols">
+                              <div className="form-group">
+                                <label>{t('producer.productForm.compareAtPrice', 'Precio anterior')} (€)</label>
                                 <input
                                   type="number"
                                   value={variant.compareAtPrice}
@@ -632,30 +628,7 @@ const ProducerProductForm = () => {
                               </div>
 
                               <div className="form-group">
-                                <label>{t('producer.productForm.stock')} *</label>
-                                <input
-                                  type="number"
-                                  value={variant.stock}
-                                  onChange={(event) => handleVariantChange(index, 'stock', event.target.value)}
-                                  min="0"
-                                  placeholder="0"
-                                />
-                              </div>
-
-                              <div className="form-group">
-                                <label>{t('producer.productForm.sku')}</label>
-                                <input
-                                  type="text"
-                                  value={variant.sku}
-                                  onChange={(event) => handleVariantChange(index, 'sku', event.target.value)}
-                                  placeholder="SKU-001"
-                                />
-                              </div>
-                            </div>
-
-                            <div className="form-row">
-                              <div className="form-group">
-                                <label>{t('producer.productForm.weight')}</label>
+                                <label>{t('producer.productForm.weight', 'Peso')}</label>
                                 <div className="weight-input-group">
                                   <input
                                     type="number"
@@ -685,7 +658,7 @@ const ProducerProductForm = () => {
                         className="btn-add-variant"
                         onClick={handleAddVariant}
                       >
-                        + {t('producer.productForm.addVariant')}
+                        + {t('producer.productForm.addVariant', 'Añadir variante')}
                       </button>
                     </div>
                   )}
@@ -696,14 +669,14 @@ const ProducerProductForm = () => {
 
           <div className="form-actions">
             <Link to="/producer/products" className="btn btn-secondary">
-              {t('common.cancel')}
+              {t('common.cancel', 'Cancelar')}
             </Link>
             <button type="submit" className="btn btn-primary" disabled={saving}>
-              {saving 
-                ? t('common.loading') 
-                : isEditing 
-                  ? t('producer.productForm.saveChanges') 
-                  : t('producer.productForm.createProduct')}
+              {saving
+                ? t('common.loading', 'Guardando...')
+                : isEditing
+                  ? t('producer.productForm.saveChanges', 'Guardar cambios')
+                  : t('producer.productForm.createProduct', 'Crear producto')}
             </button>
           </div>
         </form>
