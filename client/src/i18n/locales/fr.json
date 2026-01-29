@@ -22,7 +22,29 @@
       "slide3Subtitle": "Chaque achat renforce l'économie de votre communauté",
       "slide4Title": "Une Qualité qui se Goûte",
       "slide4Subtitle": "Une saveur authentique dans chaque produit que nous livrons"
-    }
+    },
+    "featuredProducts": "Produits Vedettes",
+    "latestProducts": "Nouveautés",
+    "bestsellers": "Meilleures Ventes",
+    "viewAll": "Voir tout",
+    "sections": {
+      "featured": {
+        "line1": "PRODUITS LOCAUX",
+        "line2": "en vedette"
+      },
+      "latest": {
+        "line1": "LES DERNIÈRES",
+        "line2": "nouveautés"
+      },
+      "bestsellers": {
+        "line1": "FRUITS ET LÉGUMES",
+        "line2": "meilleures ventes"
+      }
+    },
+    "ctaSubtitle": "Pour les producteurs",
+    "ctaTitle": "Vendez directement aux consommateurs conscients",
+    "ctaDescription": "Rejoignez notre communauté de producteurs locaux. Sans intermédiaires, commissions équitables et accès à des milliers de clients qui valorisent la qualité et l'origine de leurs aliments.",
+    "ctaButton": "Rejoignez maintenant"
   },
   "nav": {
     "home": "Accueil",
@@ -118,6 +140,7 @@
     "units": "unités",
     "notFound": "Produit non trouvé",
     "backToProducts": "Retour aux produits",
+    "relatedProducts": "Produits Similaires",
     "viewProducer": "Voir le producteur",
     "errorLoading": "Erreur lors du chargement du produit",
     "productsFound": "produits trouvés",
@@ -794,7 +817,17 @@
     "contact": "Contact",
     "terms": "Conditions Générales",
     "privacy": "Politique de Confidentialité",
-    "rights": "Tous droits réservés"
+    "rights": "Tous droits réservés",
+    "newsletter": {
+      "title": "Inscrivez-vous à notre newsletter",
+      "description": "Recevez des offres exclusives, des actualités et des recettes directement dans votre boîte mail.",
+      "placeholder": "Votre email",
+      "subscribe": "S'inscrire",
+      "success": "Merci pour votre inscription!",
+      "subscribed": "Vous êtes inscrit!",
+      "error": "Erreur lors de l'inscription. Veuillez réessayer.",
+      "invalidEmail": "Veuillez entrer un email valide"
+    }
   },
   "blog": {
     "title": "Blog",

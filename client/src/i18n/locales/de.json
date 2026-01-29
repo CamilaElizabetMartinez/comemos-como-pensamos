@@ -22,7 +22,29 @@
       "slide3Subtitle": "Jeder Einkauf stärkt die Wirtschaft Ihrer Gemeinde",
       "slide4Title": "Qualität, die Man Schmeckt",
       "slide4Subtitle": "Authentischer Geschmack in jedem Produkt, das wir liefern"
-    }
+    },
+    "featuredProducts": "Empfohlene Produkte",
+    "latestProducts": "Neuheiten",
+    "bestsellers": "Bestseller",
+    "viewAll": "Alle anzeigen",
+    "sections": {
+      "featured": {
+        "line1": "LOKALE PRODUKTE",
+        "line2": "empfohlen"
+      },
+      "latest": {
+        "line1": "DAS NEUESTE",
+        "line2": "neuheiten"
+      },
+      "bestsellers": {
+        "line1": "OBST UND GEMÜSE",
+        "line2": "bestseller"
+      }
+    },
+    "ctaSubtitle": "Für Produzenten",
+    "ctaTitle": "Verkaufen Sie direkt an bewusste Verbraucher",
+    "ctaDescription": "Treten Sie unserer Gemeinschaft lokaler Produzenten bei. Keine Zwischenhändler, faire Provisionen und Zugang zu Tausenden von Kunden, die Qualität und Herkunft ihrer Lebensmittel schätzen.",
+    "ctaButton": "Jetzt beitreten"
   },
   "nav": {
     "home": "Startseite",
@@ -118,6 +140,7 @@
     "units": "Einheiten",
     "notFound": "Produkt nicht gefunden",
     "backToProducts": "Zurück zu Produkten",
+    "relatedProducts": "Ähnliche Produkte",
     "viewProducer": "Produzent ansehen",
     "errorLoading": "Fehler beim Laden des Produkts",
     "productsFound": "Produkte gefunden",
@@ -794,7 +817,17 @@
     "contact": "Kontakt",
     "terms": "AGB",
     "privacy": "Datenschutz",
-    "rights": "Alle Rechte vorbehalten"
+    "rights": "Alle Rechte vorbehalten",
+    "newsletter": {
+      "title": "Newsletter abonnieren",
+      "description": "Erhalten Sie exklusive Angebote, Neuigkeiten und Rezepte direkt in Ihrem Postfach.",
+      "placeholder": "Ihre E-Mail",
+      "subscribe": "Abonnieren",
+      "success": "Vielen Dank für Ihre Anmeldung!",
+      "subscribed": "Sie sind angemeldet!",
+      "error": "Fehler beim Anmelden. Bitte versuchen Sie es erneut.",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail ein"
+    }
   },
   "blog": {
     "title": "Blog",

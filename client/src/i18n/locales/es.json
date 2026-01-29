@@ -22,7 +22,29 @@
       "slide3Subtitle": "Cada compra fortalece la economía de tu comunidad",
       "slide4Title": "Calidad que se Nota",
       "slide4Subtitle": "Sabor auténtico en cada producto que llevamos a tu hogar"
-    }
+    },
+    "featuredProducts": "Productos Destacados",
+    "latestProducts": "Novedades",
+    "bestsellers": "Los Más Vendidos",
+    "viewAll": "Ver todos",
+    "sections": {
+      "featured": {
+        "line1": "PRODUCTOS LOCALES",
+        "line2": "destacados"
+      },
+      "latest": {
+        "line1": "LO ÚLTIMO EN",
+        "line2": "novedades"
+      },
+      "bestsellers": {
+        "line1": "FRUTAS Y VERDURAS",
+        "line2": "más vendidas"
+      }
+    },
+    "ctaSubtitle": "Para productores",
+    "ctaTitle": "Vende directo a consumidores conscientes",
+    "ctaDescription": "Únete a nuestra comunidad de productores locales. Sin intermediarios, comisiones justas y acceso a miles de clientes que valoran la calidad y el origen de sus alimentos.",
+    "ctaButton": "Únete ahora"
   },
   "nav": {
     "home": "Inicio",
@@ -123,6 +145,7 @@
     "units": "unidades",
     "notFound": "Producto no encontrado",
     "backToProducts": "Volver a productos",
+    "relatedProducts": "Productos Relacionados",
     "viewProducer": "Ver productor",
     "errorLoading": "Error al cargar el producto",
     "productsFound": "productos encontrados",
@@ -1062,7 +1085,17 @@
     "contact": "Contacto",
     "terms": "Términos y Condiciones",
     "privacy": "Política de Privacidad",
-    "rights": "Todos los derechos reservados"
+    "rights": "Todos los derechos reservados",
+    "newsletter": {
+      "title": "Suscríbete a nuestra newsletter",
+      "description": "Recibe ofertas exclusivas, novedades y recetas directamente en tu correo.",
+      "placeholder": "Tu email",
+      "subscribe": "Suscribirse",
+      "success": "¡Gracias por suscribirte!",
+      "subscribed": "¡Ya estás suscrito!",
+      "error": "Error al suscribirse. Inténtalo de nuevo.",
+      "invalidEmail": "Por favor, introduce un email válido"
+    }
   },
   "blog": {
     "title": "Blog",
