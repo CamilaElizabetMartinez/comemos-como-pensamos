@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import api from '../services/api';
 import ProductReviews from '../components/reviews/ProductReviews';
+import ProductCard from '../components/common/ProductCard';
 import { ProductDetailSkeleton } from '../components/common/Skeleton';
 import './ProductDetailPage.css';
 
@@ -20,6 +21,8 @@ const ProductDetailPage = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState(null);
   const [reviewStats, setReviewStats] = useState({ average: 0, count: 0 });
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [loadingRelated, setLoadingRelated] = useState(true);
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
   const { t, i18n } = useTranslation();
@@ -76,11 +79,24 @@ const ProductDetailPage = () => {
     }
   }, [id]);
 
+  const fetchRelatedProducts = useCallback(async () => {
+    setLoadingRelated(true);
+    try {
+      const response = await api.get(`/products/${id}/related?limit=4`);
+      setRelatedProducts(response.data.data.products || []);
+    } catch (error) {
+      console.error('Error fetching related products:', error);
+    } finally {
+      setLoadingRelated(false);
+    }
+  }, [id]);
+
   useEffect(() => {
     fetchProduct();
     checkFavorite();
     fetchReviewStats();
-  }, [fetchProduct, checkFavorite, fetchReviewStats]);
+    fetchRelatedProducts();
+  }, [fetchProduct, checkFavorite, fetchReviewStats, fetchRelatedProducts]);
 
   // Reset quantity when variant changes
   useEffect(() => {
@@ -514,6 +530,18 @@ const ProductDetailPage = () => {
         </div>
 
         <ProductReviews productId={id} description={getLocalizedText(product.description)} />
+
+        {/* Related Products Section */}
+        {!loadingRelated && relatedProducts.length > 0 && (
+          <section className="related-products-section">
+            <h2>{t('products.relatedProducts')}</h2>
+            <div className="related-products-grid">
+              {relatedProducts.map((relatedProduct) => (
+                <ProductCard key={relatedProduct._id} product={relatedProduct} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
 
       {/* Lightbox Modal */}
