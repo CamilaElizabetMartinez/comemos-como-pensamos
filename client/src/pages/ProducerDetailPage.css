@@ -466,9 +466,7 @@
 
 .review-product:hover {
   text-decoration: underline;
-}
-
-.review-comment {
+}.review-comment {
   margin: 0;
   color: #555;
   line-height: 1.5;

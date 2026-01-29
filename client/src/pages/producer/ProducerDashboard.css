@@ -709,9 +709,7 @@
   .producer-dashboard .stat-card {
     flex-direction: row;
     align-items: center;
-  }
-
-  .producer-dashboard .referral-share-buttons {
+  }  .producer-dashboard .referral-share-buttons {
     flex-direction: column;
   }
 }
