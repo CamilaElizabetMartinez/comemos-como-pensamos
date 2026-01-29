@@ -22,7 +22,29 @@
       "slide3Subtitle": "Every purchase strengthens your community's economy",
       "slide4Title": "Quality You Can Taste",
       "slide4Subtitle": "Authentic flavor in every product we bring to your home"
-    }
+    },
+    "featuredProducts": "Featured Products",
+    "latestProducts": "New Arrivals",
+    "bestsellers": "Bestsellers",
+    "viewAll": "View all",
+    "sections": {
+      "featured": {
+        "line1": "LOCAL PRODUCTS",
+        "line2": "featured"
+      },
+      "latest": {
+        "line1": "THE LATEST",
+        "line2": "new arrivals"
+      },
+      "bestsellers": {
+        "line1": "FRUITS & VEGETABLES",
+        "line2": "bestsellers"
+      }
+    },
+    "ctaSubtitle": "For producers",
+    "ctaTitle": "Sell directly to conscious consumers",
+    "ctaDescription": "Join our community of local producers. No middlemen, fair commissions and access to thousands of customers who value quality and the origin of their food.",
+    "ctaButton": "Join now"
   },
   "nav": {
     "home": "Home",
@@ -123,6 +145,7 @@
     "units": "units",
     "notFound": "Product not found",
     "backToProducts": "Back to products",
+    "relatedProducts": "Related Products",
     "viewProducer": "View producer",
     "errorLoading": "Error loading product",
     "productsFound": "products found",
@@ -1062,7 +1085,17 @@
     "contact": "Contact",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "description": "Get exclusive offers, news and recipes straight to your inbox.",
+      "placeholder": "Your email",
+      "subscribe": "Subscribe",
+      "success": "Thank you for subscribing!",
+      "subscribed": "You're subscribed!",
+      "error": "Error subscribing. Please try again.",
+      "invalidEmail": "Please enter a valid email"
+    }
   },
   "blog": {
     "title": "Blog",
