@@ -386,24 +386,222 @@ textarea.input-main {
   color: #333;
 }
 
-/* Variants Toggle */
-.variants-toggle {
-  background: var(--color-bg-cream, #f8f5f0);
-  padding: 1rem 1.25rem;
-  border-radius: 8px;
+/* Variants Toggle Card */
+.variants-toggle-card {
+  background: #f8f9fa;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  padding: 1.25rem;
   margin: 0.5rem 0 1.5rem 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.variants-toggle .checkbox-label {
-  margin: 0;
+.variants-toggle-card:hover {
+  border-color: #2D5A3D;
+  background: #f5faf6;
 }
 
-.variants-toggle .hint-text {
-  margin: 0.75rem 0 0 0;
-  padding-left: calc(18px + 0.75rem);
+.variants-toggle-card.active {
+  border-style: solid;
+  border-color: #2D5A3D;
+  background: #f0f7f2;
+}
+
+.variants-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.variants-toggle-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.variants-toggle-icon {
+  width: 40px;
+  height: 40px;
+  color: #2D5A3D;
+  flex-shrink: 0;
+}
+
+.variants-toggle-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.variants-toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.variants-toggle-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.variants-toggle-description {
   font-size: 0.85rem;
   color: #666;
-  line-height: 1.4;
+}
+
+/* Custom Switch */
+.variants-toggle-switch {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.variants-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.switch-slider {
+  display: block;
+  width: 52px;
+  height: 28px;
+  background: #ccc;
+  border-radius: 28px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.switch-slider::before {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.variants-toggle-switch input:checked + .switch-slider {
+  background: #2D5A3D;
+}
+
+.variants-toggle-switch input:checked + .switch-slider::before {
+  transform: translateX(24px);
+}
+
+/* Availability Toggle */
+.availability-toggle {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  margin-top: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.availability-toggle.available {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+}
+
+.availability-toggle.unavailable {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.availability-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.availability-toggle-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.availability-toggle-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.availability-toggle-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.availability-toggle.available .availability-toggle-icon {
+  color: #2e7d32;
+}
+
+.availability-toggle.unavailable .availability-toggle-icon {
+  color: #9e9e9e;
+}
+
+.availability-toggle-status {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.availability-toggle.available .availability-toggle-status {
+  color: #2e7d32;
+}
+
+.availability-toggle.unavailable .availability-toggle-status {
+  color: #757575;
+}
+
+.availability-toggle-switch {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.availability-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.availability-toggle-switch .switch-slider {
+  display: block;
+  width: 44px;
+  height: 24px;
+  background: #bdbdbd;
+  border-radius: 24px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.availability-toggle-switch .switch-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.availability-toggle-switch input:checked + .switch-slider {
+  background: #2e7d32;
+}
+
+.availability-toggle-switch input:checked + .switch-slider::before {
+  transform: translateX(20px);
 }
 
 /* Availability checkbox */
@@ -626,6 +824,23 @@ textarea.input-main {
 
 /* Tablet - 768px */
 @media (max-width: 768px) {
+  .variants-toggle-card {
+    padding: 1rem;
+  }
+
+  .variants-toggle-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .variants-toggle-title {
+    font-size: 0.95rem;
+  }
+
+  .variants-toggle-description {
+    font-size: 0.8rem;
+  }
+
   .producer-product-form {
     padding: 1.5rem;
   }
