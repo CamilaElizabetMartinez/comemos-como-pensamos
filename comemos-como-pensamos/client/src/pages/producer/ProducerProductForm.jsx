@@ -530,6 +530,8 @@ const ProducerProductForm = () => {
                         </div>
                       </div>
 
+                      <p className="field-hint">{t('producer.productForm.stockHint', 'Cantidad disponible para venta')}</p>
+
                       <div className={`availability-toggle ${formData.isAvailable ? 'available' : 'unavailable'}`}>
                         <label className="availability-toggle-label">
                           <div className="availability-toggle-content">

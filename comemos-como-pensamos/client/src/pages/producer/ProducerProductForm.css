@@ -189,6 +189,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  align-items: start;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row .form-group > label {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
 }
 
 /* Main inputs (Spanish) */
@@ -359,6 +372,12 @@ textarea.input-main {
 .section-hint {
   margin: -0.5rem 0 1rem 0;
   font-size: 0.85rem;
+  color: #888;
+}
+
+.field-hint {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.8rem;
   color: #888;
 }
 
