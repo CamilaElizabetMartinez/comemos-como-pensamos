@@ -403,6 +403,134 @@ export const getProductsByProducer = async (req, res) => {
   }
 };
 
+// @desc    Get featured products for homepage
+// @route   GET /api/products/featured
+// @access  Public
+export const getFeaturedProducts = async (req, res) => {
+  try {
+    const { limit = 8 } = req.query;
+
+    const products = await Product.find({ 
+      isAvailable: true, 
+      isFeatured: true 
+    })
+      .populate('producerId', 'businessName logo location')
+      .sort({ rating: -1 })
+      .limit(parseInt(limit));
+
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: { products }
+    });
+  } catch (error) {
+    console.error('Error fetching featured products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener productos destacados',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Get latest products for homepage
+// @route   GET /api/products/latest
+// @access  Public
+export const getLatestProducts = async (req, res) => {
+  try {
+    const { limit = 8 } = req.query;
+
+    const products = await Product.find({ isAvailable: true })
+      .populate('producerId', 'businessName logo location')
+      .sort({ createdAt: -1 })
+      .limit(parseInt(limit));
+
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: { products }
+    });
+  } catch (error) {
+    console.error('Error fetching latest products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener últimos productos',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Get bestseller products for homepage
+// @route   GET /api/products/bestsellers
+// @access  Public
+export const getBestsellerProducts = async (req, res) => {
+  try {
+    const { limit = 8 } = req.query;
+
+    const products = await Product.find({ isAvailable: true })
+      .populate('producerId', 'businessName logo location')
+      .sort({ salesCount: -1, rating: -1 })
+      .limit(parseInt(limit));
+
+    res.status(200).json({
+      success: true,
+      count: products.length,
+      data: { products }
+    });
+  } catch (error) {
+    console.error('Error fetching bestseller products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener productos más vendidos',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Get related products (same category or producer)
+// @route   GET /api/products/:id/related
+// @access  Public
+export const getRelatedProducts = async (req, res) => {
+  try {
+    const { limit = 4 } = req.query;
+    
+    const product = await Product.findById(req.params.id);
+    
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Producto no encontrado'
+      });
+    }
+
+    // Find products from same category or same producer, excluding current product
+    const relatedProducts = await Product.find({
+      _id: { $ne: product._id },
+      isAvailable: true,
+      $or: [
+        { category: product.category },
+        { producerId: product.producerId }
+      ]
+    })
+      .populate('producerId', 'businessName logo location')
+      .sort({ rating: -1, salesCount: -1 })
+      .limit(parseInt(limit));
+
+    res.status(200).json({
+      success: true,
+      count: relatedProducts.length,
+      data: { products: relatedProducts }
+    });
+  } catch (error) {
+    console.error('Error fetching related products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener productos relacionados',
+      error: error.message
+    });
+  }
+};
+
 // @desc    Verificar disponibilidad de stock para múltiples productos
 // @route   POST /api/products/check-stock
 // @access  Public

@@ -100,6 +100,14 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  isFeatured: {
+    type: Boolean,
+    default: false
+  },
+  salesCount: {
+    type: Number,
+    default: 0
+  },
   rating: {
     type: Number,
     default: 0,
