@@ -462,18 +462,34 @@ const ProducerProductForm = () => {
                 <section className="form-section">
                   <h2>{t('producer.productForm.pricingStock', 'Precio y Stock')}</h2>
 
-                  <div className="form-group checkbox-group variants-toggle">
-                    <label className="checkbox-label">
-                      <input
-                        type="checkbox"
-                        checked={formData.hasVariants}
-                        onChange={handleToggleVariants}
-                      />
-                      <span className="checkbox-text">
-                        {t('producer.productForm.useVariants', 'Usar variantes (ej: 500g, 1kg)')}
-                      </span>
+                  <div className={`variants-toggle-card ${formData.hasVariants ? 'active' : ''}`}>
+                    <label className="variants-toggle-label">
+                      <div className="variants-toggle-content">
+                        <div className="variants-toggle-icon">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                            <line x1="12" y1="22.08" x2="12" y2="12" />
+                          </svg>
+                        </div>
+                        <div className="variants-toggle-info">
+                          <span className="variants-toggle-title">
+                            {t('producer.productForm.useVariants', '¿Vendes este producto en diferentes formatos?')}
+                          </span>
+                          <span className="variants-toggle-description">
+                            {t('producer.productForm.variantsHint', 'Ej: Pack 500g, Caja 1kg, Formato familiar 2kg')}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="variants-toggle-switch">
+                        <input
+                          type="checkbox"
+                          checked={formData.hasVariants}
+                          onChange={handleToggleVariants}
+                        />
+                        <span className="switch-slider"></span>
+                      </div>
                     </label>
-                    <p className="hint-text">{t('producer.productForm.variantsHint', 'Activa esta opción si tu producto tiene diferentes presentaciones con distintos precios')}</p>
                   </div>
 
                   {!formData.hasVariants ? (
@@ -514,17 +530,39 @@ const ProducerProductForm = () => {
                         </div>
                       </div>
 
-                      <div className="form-group checkbox-group">
-                        <label className="checkbox-label">
-                          <input
-                            type="checkbox"
-                            name="isAvailable"
-                            checked={formData.isAvailable}
-                            onChange={handleChange}
-                          />
-                          <span className="checkbox-text">
-                            {t('producer.productForm.isAvailable', 'Producto disponible para venta')}
-                          </span>
+                      <div className={`availability-toggle ${formData.isAvailable ? 'available' : 'unavailable'}`}>
+                        <label className="availability-toggle-label">
+                          <div className="availability-toggle-content">
+                            <div className="availability-toggle-icon">
+                              {formData.isAvailable ? (
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                  <polyline points="22 4 12 14.01 9 11.01" />
+                                </svg>
+                              ) : (
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+                                </svg>
+                              )}
+                            </div>
+                            <div className="availability-toggle-info">
+                              <span className="availability-toggle-status">
+                                {formData.isAvailable 
+                                  ? t('producer.productForm.availableStatus', 'Disponible para venta')
+                                  : t('producer.productForm.unavailableStatus', 'No disponible')}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="availability-toggle-switch">
+                            <input
+                              type="checkbox"
+                              name="isAvailable"
+                              checked={formData.isAvailable}
+                              onChange={handleChange}
+                            />
+                            <span className="switch-slider"></span>
+                          </div>
                         </label>
                       </div>
                     </>
