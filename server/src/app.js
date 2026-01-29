@@ -81,6 +81,7 @@ import leadRoutes from './routes/leads.js';
 import couponRoutes from './routes/coupons.js';
 import referralRoutes from './routes/referrals.js';
 import articleRoutes from './routes/articles.js';
+import newsletterRoutes from './routes/newsletter.js';
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
@@ -103,6 +104,7 @@ app.use('/api/leads', leadRoutes);
 app.use('/api/coupons', couponRoutes);
 app.use('/api/referrals', referralRoutes);
 app.use('/api/articles', articleRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 
 // Manejador de errores 404
 app.use((req, res, next) => {

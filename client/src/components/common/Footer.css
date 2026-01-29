@@ -8,8 +8,11 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-lg) var(--space-lg);
+}
+
+.footer-main {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: var(--space-lg);
 }
 
@@ -62,6 +65,111 @@
   margin: 0.5rem 0;
 }
 
+/* Newsletter Section */
+.footer-newsletter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: var(--space-lg) 0;
+  margin-top: var(--space-lg);
+  border-top: 1px solid rgba(244, 241, 236, 0.15);
+}
+
+.newsletter-content h4 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-text-light);
+}
+
+.newsletter-content p {
+  font-size: 0.9rem;
+  color: rgba(244, 241, 236, 0.75);
+  margin: 0;
+}
+
+.newsletter-form {
+  flex-shrink: 0;
+}
+
+.newsletter-input-wrapper {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: border-color 0.2s;
+}
+
+.newsletter-input-wrapper:focus-within {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.newsletter-input-wrapper input {
+  flex: 1;
+  min-width: 250px;
+  padding: 0.875rem 1rem;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.newsletter-input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-input-wrapper button {
+  padding: 0 1.25rem;
+  background: #C4956A;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsletter-input-wrapper button:hover:not(:disabled) {
+  background: #B4855A;
+}
+
+.newsletter-input-wrapper button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.newsletter-input-wrapper button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.newsletter-input-wrapper button .spinner-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.newsletter-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(46, 125, 50, 0.3);
+  border-radius: 8px;
+  color: #B8D4B0;
+}
+
+.newsletter-success svg {
+  width: 20px;
+  height: 20px;
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(244, 241, 236, 0.15);
   padding: var(--space-md) var(--space-lg);
@@ -78,6 +186,9 @@
 @media (max-width: 1200px) {
   .footer-container {
     padding: var(--space-lg) var(--space-md);
+  }
+
+  .footer-main {
     gap: var(--space-md);
   }
 
@@ -88,12 +199,16 @@
   .footer-section ul li a {
     font-size: 0.8rem;
   }
+
+  .footer-newsletter {
+    gap: var(--space-lg);
+  }
 }
 
 /* Tablet */
 @media (max-width: 992px) {
-  .footer-container {
-    grid-template-columns: 2fr 1fr 1fr;
+  .footer-main {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: var(--space-md);
   }
 
@@ -103,11 +218,21 @@
     border-bottom: 1px solid rgba(244, 241, 236, 0.1);
     margin-bottom: var(--space-sm);
   }
+
+  .footer-newsletter {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+  }
+
+  .newsletter-input-wrapper input {
+    min-width: 200px;
+  }
 }
 
 /* Tablet pequeña */
 @media (max-width: 768px) {
-  .footer-container {
+  .footer-main {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -119,14 +244,28 @@
     max-width: 400px;
     margin: 0 auto;
   }
+
+  .newsletter-input-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .newsletter-input-wrapper input {
+    min-width: 0;
+    flex: 1;
+  }
 }
 
 /* Mobile */
 @media (max-width: 576px) {
   .footer-container {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .footer-main {
     grid-template-columns: 1fr;
     text-align: center;
-    padding: var(--space-md) var(--space-sm);
     gap: var(--space-sm);
   }
 
@@ -172,6 +311,24 @@
 
   .footer-section p {
     font-size: 0.75rem;
+  }
+
+  .footer-newsletter {
+    padding: var(--space-md) 0;
+    margin-top: var(--space-md);
+  }
+
+  .newsletter-content h4 {
+    font-size: 1rem;
+  }
+
+  .newsletter-content p {
+    font-size: 0.8rem;
+  }
+
+  .newsletter-input-wrapper input {
+    padding: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .footer-bottom {
