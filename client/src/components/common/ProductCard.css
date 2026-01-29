@@ -1,0 +1,252 @@
+/* Clean WooCommerce-style product card */
+.product-card {
+  position: relative;
+  background: transparent;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Badges */
+.product-card .badge-new,
+.product-card .badge-out-of-stock,
+.product-card .badge-low-stock {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 12px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.product-card .badge-new {
+  background: #2D5A3D;
+  color: white;
+}
+
+.product-card .badge-out-of-stock {
+  background: #666;
+  color: white;
+}
+
+.product-card .badge-low-stock {
+  background: #f5a623;
+  color: white;
+}
+
+/* Image container */
+.product-card .product-image-container {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.product-card .product-image-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-card .product-image-main,
+.product-card .product-image-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+.product-card .product-image-hover {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-main {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-hover {
+  opacity: 1;
+}
+
+.product-card .product-no-image {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card .product-no-image::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  background: #ddd;
+  border-radius: 4px;
+}
+
+/* Title */
+.product-card .product-title {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.product-card .product-title a {
+  color: #333;
+  text-decoration: none;
+}
+
+.product-card .product-title a:hover {
+  color: #2D5A3D;
+}
+
+/* Producer - hidden by default for cleaner look */
+.product-card .product-producer {
+  display: none;
+}
+
+/* Price block */
+.product-card .product-price-block {
+  margin-bottom: 8px;
+}
+
+.product-card .price-from {
+  font-size: 0.75rem;
+  color: #666;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.product-card .product-price-main {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card .product-price-main .currency {
+  font-size: 0.9rem;
+}
+
+.product-card .product-vat {
+  display: block;
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Weight badge */
+.product-card .product-weight-badge {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #555;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Rating - smaller and subtle */
+.product-card .product-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  margin-bottom: 8px;
+}
+
+.product-card .product-rating .stars {
+  color: #f5a623;
+  font-size: 0.8rem;
+}
+
+.product-card .product-rating .rating-count {
+  color: #999;
+}
+
+/* Add to cart button */
+.product-card .btn-add-to-cart {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #2D5A3D;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.product-card .btn-add-to-cart:hover {
+  background: #1E3D2A;
+}
+
+.product-card .btn-add-to-cart.btn-select-options {
+  background: transparent;
+  color: #2D5A3D;
+  border: 1px solid #2D5A3D;
+}
+
+.product-card .btn-add-to-cart.btn-select-options:hover {
+  background: #2D5A3D;
+  color: white;
+}
+
+.product-card .btn-add-to-cart.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-card .product-title {
+    font-size: 0.85rem;
+  }
+
+  .product-card .product-price-main {
+    font-size: 1rem;
+  }
+
+  .product-card .btn-add-to-cart {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card .badge-new,
+  .product-card .badge-out-of-stock,
+  .product-card .badge-low-stock {
+    padding: 3px 8px;
+    font-size: 0.6rem;
+  }
+
+  .product-card .product-title {
+    font-size: 0.8rem;
+  }
+
+  .product-card .product-price-main {
+    font-size: 0.95rem;
+  }
+
+  .product-card .product-weight-badge {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+
+  .product-card .btn-add-to-cart {
+    padding: 7px 12px;
+    font-size: 0.7rem;
+  }
+}
