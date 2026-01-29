@@ -6,6 +6,8 @@ import {
   approveProducer,
   rejectProducer,
   updateProducerCommission,
+  getAllProducts,
+  toggleProductFeatured,
   moderateProduct,
   getAllOrders,
   deleteUser,
@@ -33,6 +35,8 @@ router.put('/producers/:id/reject', rejectProducer);
 router.put('/producers/:id/commission', updateProducerCommission);
 
 // Productos
+router.get('/products', getAllProducts);
+router.put('/products/:id/featured', toggleProductFeatured);
 router.put('/products/:id/moderate', moderateProduct);
 
 // Órdenes

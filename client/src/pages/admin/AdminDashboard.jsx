@@ -161,6 +161,11 @@ const AdminDashboard = () => {
             <span className="action-title">{t('admin.dashboard.coupons')}</span>
             <span className="action-desc">{t('admin.dashboard.couponsDesc')}</span>
           </Link>
+          <Link to="/admin/products" className="action-card">
+            <span className="action-icon">⭐</span>
+            <span className="action-title">{t('admin.dashboard.products', 'Productos')}</span>
+            <span className="action-desc">{t('admin.dashboard.productsDesc', 'Gestionar productos destacados')}</span>
+          </Link>
           <Link to="/admin/blog" className="action-card">
             <span className="action-icon">📝</span>
             <span className="action-title">{t('admin.dashboard.blog')}</span>

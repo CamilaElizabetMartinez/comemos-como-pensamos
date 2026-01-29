@@ -91,10 +91,8 @@ const HomePage = () => {
 
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [latestProducts, setLatestProducts] = useState([]);
-  const [bestsellers, setBestsellers] = useState([]);
   const [loadingFeatured, setLoadingFeatured] = useState(true);
   const [loadingLatest, setLoadingLatest] = useState(true);
-  const [loadingBestsellers, setLoadingBestsellers] = useState(true);
 
   const goToSlide = useCallback((index) => {
     setCurrentSlide(index);
@@ -163,49 +161,29 @@ const HomePage = () => {
     }
   }, []);
 
-  const fetchBestsellers = useCallback(async () => {
-    try {
-      const response = await api.get('/products/bestsellers?limit=5');
-      setBestsellers(response.data.data.products || []);
-    } catch (error) {
-      console.error('Error fetching bestsellers:', error);
-    } finally {
-      setLoadingBestsellers(false);
-    }
-  }, []);
-
   useEffect(() => {
     fetchFeaturedProducts();
     fetchLatestProducts();
-    fetchBestsellers();
-  }, [fetchFeaturedProducts, fetchLatestProducts, fetchBestsellers]);
+  }, [fetchFeaturedProducts, fetchLatestProducts]);
 
   const productSections = useMemo(() => [
     {
       id: 'featured',
-      titleLine1: t('home.sections.featured.line1'),
-      titleLine2: t('home.sections.featured.line2'),
+      title: t('home.sections.featured.title', 'DESTACADOS'),
+      colorClass: 'title-accent-gold',
       products: featuredProducts,
       loading: loadingFeatured,
       show: featuredProducts.length > 0 || loadingFeatured
     },
     {
       id: 'latest',
-      titleLine1: t('home.sections.latest.line1'),
-      titleLine2: t('home.sections.latest.line2'),
+      title: t('home.sections.latest.title', 'NOVEDADES'),
+      colorClass: 'title-accent-green',
       products: latestProducts,
       loading: loadingLatest,
       show: latestProducts.length > 0 || loadingLatest
-    },
-    {
-      id: 'bestsellers',
-      titleLine1: t('home.sections.bestsellers.line1'),
-      titleLine2: t('home.sections.bestsellers.line2'),
-      products: bestsellers,
-      loading: loadingBestsellers,
-      show: bestsellers.length > 0 || loadingBestsellers
     }
-  ], [featuredProducts, latestProducts, bestsellers, loadingFeatured, loadingLatest, loadingBestsellers, t]);
+  ], [featuredProducts, latestProducts, loadingFeatured, loadingLatest, t]);
 
   return (
     <div className="home-page">
@@ -262,13 +240,9 @@ const HomePage = () => {
         <section key={section.id} className="products-section">
           <div className="container">
             <div className="section-header">
-              <h2 className="section-title-styled">
-                {section.titleLine1}<br />
-                <span><b>{section.titleLine2}</b></span>
-              </h2>
+              <h2 className={`section-title-minimal ${section.colorClass}`}>{section.title}</h2>
               <Link to="/products" className="view-all-link">
                 {t('home.viewAll')}
-                {ICONS.arrowRight}
               </Link>
             </div>
             
