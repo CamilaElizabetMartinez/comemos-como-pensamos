@@ -59,7 +59,7 @@
 
 .tab-panel {
   display: none;
-  padding: 2rem 0;
+  padding: 2rem;
 }
 
 .tab-panel.active {
@@ -469,7 +469,7 @@
   }
 
   .tab-panel {
-    padding: 1.5rem 0;
+    padding: 1.5rem;
   }
 }
 

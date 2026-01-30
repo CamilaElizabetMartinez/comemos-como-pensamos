@@ -205,6 +205,13 @@ const ProducerProductForm = () => {
   const validateForm = useCallback(() => {
     if (!formData.name.es) {
       toast.error(t('producer.productForm.nameRequired', 'El nombre es obligatorio'));
+      setActiveTab('general');
+      return false;
+    }
+
+    if (!formData.description.es) {
+      toast.error(t('producer.productForm.descriptionRequired', 'La descripción es obligatoria'));
+      setActiveTab('general');
       return false;
     }
 
@@ -360,7 +367,7 @@ const ProducerProductForm = () => {
                 </section>
 
                 <section className="form-section">
-                  <h2>{t('producer.productForm.descriptionSectionTitle', 'Descripción')}</h2>
+                  <h2>{t('producer.productForm.descriptionSectionTitle', 'Descripción')} *</h2>
                   <div className="form-group">
                     <textarea
                       value={formData.description.es}
@@ -368,6 +375,7 @@ const ProducerProductForm = () => {
                       placeholder={t('producer.productForm.descriptionPlaceholder', 'Describe tu producto...')}
                       rows="4"
                       className="input-main"
+                      required
                     />
                   </div>
                 </section>
