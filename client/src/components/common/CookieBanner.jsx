@@ -32,6 +32,10 @@ const CookieBanner = () => {
     }
   }, []);
 
+  const dispatchConsentEvent = () => {
+    window.dispatchEvent(new CustomEvent('cookieConsentChanged'));
+  };
+
   const handleAcceptAll = () => {
     const allAccepted = {
       necessary: true,
@@ -42,6 +46,7 @@ const CookieBanner = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(allAccepted));
     setPreferences(allAccepted);
     setShowBanner(false);
+    dispatchConsentEvent();
   };
 
   const handleRejectAll = () => {
@@ -54,6 +59,7 @@ const CookieBanner = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(onlyNecessary));
     setPreferences(onlyNecessary);
     setShowBanner(false);
+    dispatchConsentEvent();
   };
 
   const handleSavePreferences = () => {
@@ -64,6 +70,7 @@ const CookieBanner = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(savedPrefs));
     setShowBanner(false);
     setShowPreferences(false);
+    dispatchConsentEvent();
   };
 
   const togglePreference = (key) => {
