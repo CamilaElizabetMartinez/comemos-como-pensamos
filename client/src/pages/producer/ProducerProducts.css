@@ -277,6 +277,10 @@
     gap: 1rem;
   }
 
+  .page-header h1 {
+    font-size: 1.35rem;
+  }
+
   .filter-tabs {
     overflow-x: auto;
     flex-wrap: nowrap;
@@ -289,6 +293,56 @@
 
   .products-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .producer-products {
+    padding: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .btn-add-product {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .filter-tabs {
+    gap: 0.35rem;
+  }
+
+  .filter-tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .product-card {
+    padding: 1rem;
+  }
+
+  .product-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .product-name {
+    font-size: 0.95rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+  }
+
+  .product-stock {
+    font-size: 0.75rem;
+  }
+
+  .product-actions .btn-sm {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
   }
 }
 

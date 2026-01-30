@@ -393,3 +393,61 @@
     text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .producer-shipping-page {
+    padding: 0.75rem;
+  }
+
+  .shipping-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .btn-add-zone {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .zone-card {
+    padding: 1rem;
+  }
+
+  .zone-card h3 {
+    font-size: 1rem;
+  }
+
+  .zone-details {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .detail-item label {
+    font-size: 0.7rem;
+  }
+
+  .detail-item span {
+    font-size: 0.85rem;
+  }
+
+  .zone-actions .btn-sm {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+    min-width: 70px;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .form-actions .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+}

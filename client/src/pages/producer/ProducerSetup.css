@@ -214,7 +214,7 @@
   font-size: 1.125rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .producer-setup {
     padding: 1rem;
   }
@@ -247,6 +247,62 @@
   .certification-chip {
     padding: 0.5rem 0.875rem;
     font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .producer-setup {
+    padding: 0.75rem;
+  }
+
+  .setup-header {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .setup-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .setup-header p {
+    font-size: 0.85rem;
+  }
+
+  .setup-form {
+    padding: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .certification-chip {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .description-tabs {
+    gap: 0.35rem;
+  }
+
+  .desc-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-primary {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
 
