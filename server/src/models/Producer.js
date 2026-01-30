@@ -52,6 +52,16 @@ const producerSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  isSuspended: {
+    type: Boolean,
+    default: false
+  },
+  suspendedAt: {
+    type: Date
+  },
+  suspendReason: {
+    type: String
+  },
   commissionRate: {
     type: Number,
     default: 15,

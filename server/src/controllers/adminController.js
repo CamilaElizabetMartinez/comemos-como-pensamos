@@ -256,6 +256,82 @@ export const approveProducer = async (req, res) => {
   }
 };
 
+// @desc    Suspend/unsuspend producer
+// @route   PUT /api/admin/producers/:id/suspend
+// @access  Private (Admin only)
+export const suspendProducer = async (req, res) => {
+  try {
+    const { reason } = req.body;
+    const producer = await Producer.findById(req.params.id);
+
+    if (!producer) {
+      return res.status(404).json({
+        success: false,
+        message: 'Productor no encontrado'
+      });
+    }
+
+    if (producer.isSuspended) {
+      producer.isSuspended = false;
+      producer.suspendedAt = null;
+      producer.suspendReason = null;
+    } else {
+      producer.isSuspended = true;
+      producer.suspendedAt = new Date();
+      producer.suspendReason = reason || '';
+    }
+
+    await producer.save();
+
+    res.status(200).json({
+      success: true,
+      message: producer.isSuspended ? 'Productor suspendido' : 'Productor reactivado',
+      data: { producer }
+    });
+  } catch (error) {
+    console.error('Error al suspender productor:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al suspender productor',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Delete producer permanently
+// @route   DELETE /api/admin/producers/:id
+// @access  Private (Admin only)
+export const deleteProducer = async (req, res) => {
+  try {
+    const producer = await Producer.findById(req.params.id);
+
+    if (!producer) {
+      return res.status(404).json({
+        success: false,
+        message: 'Productor no encontrado'
+      });
+    }
+
+    // Delete associated products
+    await Product.deleteMany({ producerId: producer._id });
+
+    // Delete the producer
+    await Producer.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      message: 'Productor y sus productos eliminados permanentemente'
+    });
+  } catch (error) {
+    console.error('Error al eliminar productor:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error al eliminar productor',
+      error: error.message
+    });
+  }
+};
+
 // @desc    Rechazar productor
 // @route   PUT /api/admin/producers/:id/reject
 // @access  Private (Admin only)

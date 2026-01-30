@@ -5,8 +5,9 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
-import { IconCheckCircle, IconStar, IconStore, IconLocation, IconCheck, IconX } from '../../components/common/Icons';
+import { IconCheckCircle, IconStar, IconStore, IconLocation, IconCheck, IconX, IconTrash, IconPause, IconPlay } from '../../components/common/Icons';
 import InputModal from '../../components/common/InputModal';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminProducers.css';
 
 const INITIAL_COMMISSION_STATE = {
@@ -27,6 +28,8 @@ const AdminProducers = () => {
   const [commissionForm, setCommissionForm] = useState(INITIAL_COMMISSION_STATE);
   const [savingCommission, setSavingCommission] = useState(false);
   const [rejectModal, setRejectModal] = useState({ isOpen: false, producerId: null });
+  const [suspendModal, setSuspendModal] = useState({ isOpen: false, producer: null });
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, producer: null });
   const { user } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -92,6 +95,73 @@ const AdminProducers = () => {
       toast.error(t('admin.producers.rejectError'));
     }
   }, [rejectModal, closeRejectModal, t]);
+
+  const openSuspendModal = useCallback((producer) => {
+    setSuspendModal({ isOpen: true, producer });
+  }, []);
+
+  const closeSuspendModal = useCallback(() => {
+    setSuspendModal({ isOpen: false, producer: null });
+  }, []);
+
+  const handleSuspend = useCallback(async (reason) => {
+    const { producer } = suspendModal;
+    closeSuspendModal();
+
+    try {
+      const response = await api.put(`/admin/producers/${producer._id}/suspend`, { reason });
+      setProducers(prev => prev.map(producerItem => 
+        producerItem._id === producer._id 
+          ? { ...producerItem, isSuspended: response.data.data.producer.isSuspended }
+          : producerItem
+      ));
+      toast.success(response.data.message);
+    } catch (error) {
+      console.error('Error suspending producer:', error);
+      toast.error(t('admin.producers.suspendError', 'Error al suspender productor'));
+    }
+  }, [suspendModal, closeSuspendModal, t]);
+
+  const handleToggleSuspend = useCallback(async (producer) => {
+    if (producer.isSuspended) {
+      try {
+        const response = await api.put(`/admin/producers/${producer._id}/suspend`);
+        setProducers(prev => prev.map(producerItem => 
+          producerItem._id === producer._id 
+            ? { ...producerItem, isSuspended: false }
+            : producerItem
+        ));
+        toast.success(response.data.message);
+      } catch (error) {
+        console.error('Error reactivating producer:', error);
+        toast.error(t('admin.producers.reactivateError', 'Error al reactivar productor'));
+      }
+    } else {
+      openSuspendModal(producer);
+    }
+  }, [openSuspendModal, t]);
+
+  const openDeleteModal = useCallback((producer) => {
+    setDeleteModal({ isOpen: true, producer });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, producer: null });
+  }, []);
+
+  const handleDelete = useCallback(async () => {
+    const { producer } = deleteModal;
+    closeDeleteModal();
+
+    try {
+      await api.delete(`/admin/producers/${producer._id}`);
+      setProducers(prev => prev.filter(producerItem => producerItem._id !== producer._id));
+      toast.success(t('admin.producers.deleted', 'Productor eliminado permanentemente'));
+    } catch (error) {
+      console.error('Error deleting producer:', error);
+      toast.error(t('admin.producers.deleteError', 'Error al eliminar productor'));
+    }
+  }, [deleteModal, closeDeleteModal, t]);
 
   const openCommissionModal = useCallback((producer) => {
     setCommissionForm({
@@ -308,10 +378,12 @@ const AdminProducers = () => {
                           <IconLocation size={14} /> {producer.location?.city}
                         </p>
                       </div>
-                      <span className={`status-badge ${producer.isApproved ? 'approved' : 'pending'}`}>
-                        {producer.isApproved 
-                          ? t('admin.producers.statusApproved') 
-                          : t('admin.producers.statusPending')}
+                      <span className={`status-badge ${producer.isSuspended ? 'suspended' : producer.isApproved ? 'approved' : 'pending'}`}>
+                        {producer.isSuspended 
+                          ? t('admin.producers.statusSuspended', 'Suspendido')
+                          : producer.isApproved 
+                            ? t('admin.producers.statusApproved') 
+                            : t('admin.producers.statusPending')}
                       </span>
                     </div>
                     
@@ -334,8 +406,27 @@ const AdminProducers = () => {
                       <button
                         onClick={() => openCommissionModal(producer)}
                         className="btn btn-commission"
+                        type="button"
                       >
                         {t('admin.producers.editCommission')}
+                      </button>
+                      <button
+                        onClick={() => handleToggleSuspend(producer)}
+                        className={`btn btn-suspend ${producer.isSuspended ? 'reactivate' : ''}`}
+                        type="button"
+                        title={producer.isSuspended 
+                          ? t('admin.producers.reactivate', 'Reactivar') 
+                          : t('admin.producers.suspend', 'Suspender')}
+                      >
+                        {producer.isSuspended ? <IconPlay size={16} /> : <IconPause size={16} />}
+                      </button>
+                      <button
+                        onClick={() => openDeleteModal(producer)}
+                        className="btn btn-delete"
+                        type="button"
+                        title={t('admin.producers.delete', 'Eliminar')}
+                      >
+                        <IconTrash size={16} />
                       </button>
                       <Link 
                         to={`/producers/${producer._id}`} 
@@ -442,6 +533,29 @@ const AdminProducers = () => {
           placeholder={t('admin.producers.rejectReason', 'Motivo del rechazo...')}
           confirmText={t('common.reject', 'Rechazar')}
           cancelText={t('common.cancel', 'Cancelar')}
+        />
+
+        <InputModal
+          isOpen={suspendModal.isOpen}
+          onClose={closeSuspendModal}
+          onConfirm={handleSuspend}
+          title={t('admin.producers.suspendTitle', 'Suspender productor')}
+          message={t('admin.producers.suspendMessage', 'Indica el motivo de la suspensión (opcional)')}
+          placeholder={t('admin.producers.suspendReason', 'Motivo de la suspensión...')}
+          confirmText={t('admin.producers.suspend', 'Suspender')}
+          cancelText={t('common.cancel', 'Cancelar')}
+          required={false}
+        />
+
+        <ConfirmModal
+          isOpen={deleteModal.isOpen}
+          onClose={closeDeleteModal}
+          onConfirm={handleDelete}
+          title={t('admin.producers.deleteTitle', 'Eliminar productor')}
+          message={t('admin.producers.deleteMessage', `¿Estás seguro de eliminar a "${deleteModal.producer?.businessName}"? Esta acción eliminará también todos sus productos y es irreversible.`)}
+          confirmText={t('common.delete', 'Eliminar')}
+          cancelText={t('common.cancel', 'Cancelar')}
+          variant="danger"
         />
       </div>
     </div>

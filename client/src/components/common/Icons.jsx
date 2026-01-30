@@ -102,6 +102,19 @@ export const IconTrash = (props) => (
   </Icon>
 );
 
+export const IconPause = (props) => (
+  <Icon {...props}>
+    <rect x="6" y="4" width="4" height="16" />
+    <rect x="14" y="4" width="4" height="16" />
+  </Icon>
+);
+
+export const IconPlay = (props) => (
+  <Icon {...props}>
+    <polygon points="5 3 19 12 5 21 5 3" />
+  </Icon>
+);
+
 export const IconEye = (props) => (
   <Icon {...props}>
     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />

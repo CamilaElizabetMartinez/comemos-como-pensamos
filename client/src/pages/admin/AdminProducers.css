@@ -263,6 +263,11 @@
   color: #e65100;
 }
 
+.status-badge.suspended {
+  background: #ffebee;
+  color: #c62828;
+}
+
 .admin-producers .producer-stats {
   display: flex;
   gap: 2rem;
@@ -310,8 +315,63 @@
 
 .admin-producers .producer-card-actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  align-items: center;
+}
+
+.admin-producers .producer-card-actions .btn-commission {
+  flex: 1;
+  min-width: 120px;
+}
+
+.admin-producers .producer-card-actions .btn-suspend,
+.admin-producers .producer-card-actions .btn-delete {
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-producers .btn-suspend {
+  background: #fff3e0;
+  color: #e65100;
+  border: 1px solid #ffcc80;
+}
+
+.admin-producers .btn-suspend:hover {
+  background: #ffe0b2;
+  border-color: #e65100;
+}
+
+.admin-producers .btn-suspend.reactivate {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.admin-producers .btn-suspend.reactivate:hover {
+  background: #c8e6c9;
+  border-color: #2e7d32;
+}
+
+.admin-producers .btn-delete {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.admin-producers .btn-delete:hover {
+  background: #ffcdd2;
+  border-color: #c62828;
+}
+
+.admin-producers .producer-card-actions .view-profile-link {
+  width: 100%;
+  margin-top: 0.25rem;
 }
 
 .btn-commission {

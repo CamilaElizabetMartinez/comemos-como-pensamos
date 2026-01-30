@@ -5,6 +5,8 @@ import {
   getPendingProducers,
   approveProducer,
   rejectProducer,
+  suspendProducer,
+  deleteProducer,
   updateProducerCommission,
   getAllProducts,
   toggleProductFeatured,
@@ -32,7 +34,9 @@ router.delete('/users/:id', deleteUser);
 router.get('/producers/pending', getPendingProducers);
 router.put('/producers/:id/approve', approveProducer);
 router.put('/producers/:id/reject', rejectProducer);
+router.put('/producers/:id/suspend', suspendProducer);
 router.put('/producers/:id/commission', updateProducerCommission);
+router.delete('/producers/:id', deleteProducer);
 
 // Productos
 router.get('/products', getAllProducts);
