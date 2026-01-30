@@ -8,7 +8,7 @@
   align-items: center;
   background: white;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -18,33 +18,86 @@
   box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
 }
 
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+  color: #999;
+}
+
+.search-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
 .search-autocomplete-input {
   flex: 1;
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 0.75rem;
   border: none;
   font-size: 1rem;
   outline: none;
   background: transparent;
+  min-width: 0;
 }
 
-.search-loading {
+.search-autocomplete-input::placeholder {
+  color: #aaa;
+}
+
+.search-loader {
+  display: flex;
+  align-items: center;
   padding: 0 0.5rem;
-  animation: pulse 1s infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+.search-loader svg {
+  width: 20px;
+  height: 20px;
+  color: #2d5a27;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.search-clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.search-clear-btn:hover {
+  color: #666;
+}
+
+.search-clear-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .search-autocomplete-btn {
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1rem;
   background: #2d5a27;
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 1rem;
   transition: background 0.2s;
+}
+
+.search-autocomplete-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .search-autocomplete-btn:hover {
@@ -53,17 +106,28 @@
 
 .suggestions-dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
   background: white;
-  border: 1px solid #ddd;
-  border-top: none;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   z-index: 1000;
   max-height: 400px;
   overflow-y: auto;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .suggestions-section {
@@ -146,6 +210,13 @@
   display: block;
   font-size: 0.8rem;
   color: #888;
+}
+
+.suggestion-price {
+  font-weight: 600;
+  color: #2d5a27;
+  font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .suggestions-footer {

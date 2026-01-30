@@ -134,9 +134,21 @@ const SearchAutocomplete = ({
 
   const hasSuggestions = (suggestions.products?.length > 0 || suggestions.producers?.length > 0);
 
+  const handleClear = useCallback(() => {
+    onChange('');
+    setSuggestions({ products: [], producers: [] });
+    setShowSuggestions(false);
+  }, [onChange]);
+
   return (
     <div className={`search-autocomplete ${className}`} ref={wrapperRef}>
       <div className="search-input-wrapper">
+        <span className="search-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        </span>
         <input
           type="text"
           value={value}
@@ -147,6 +159,26 @@ const SearchAutocomplete = ({
           className="search-autocomplete-input"
           autoComplete="off"
         />
+        {loading && (
+          <span className="search-loader">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" strokeDasharray="32" strokeDashoffset="32" />
+            </svg>
+          </span>
+        )}
+        {value && !loading && (
+          <button 
+            type="button" 
+            className="search-clear-btn"
+            onClick={handleClear}
+            aria-label="Limpiar búsqueda"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        )}
         <button 
           type="submit" 
           className="search-autocomplete-btn"
@@ -154,10 +186,10 @@ const SearchAutocomplete = ({
             setShowSuggestions(false);
             onSubmit?.(e);
           }}
+          aria-label="Buscar"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
-            <circle cx="11" cy="11" r="8" />
-            <path d="M21 21l-4.35-4.35" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>
       </div>
@@ -187,6 +219,9 @@ const SearchAutocomplete = ({
                     <span className="suggestion-name">{getProductName(product)}</span>
                     <span className="suggestion-category">{t(`products.categories.${product.category}`)}</span>
                   </div>
+                  <span className="suggestion-price">
+                    {product.price?.toFixed(2).replace('.', ',')}€
+                  </span>
                 </div>
               ))}
             </div>
