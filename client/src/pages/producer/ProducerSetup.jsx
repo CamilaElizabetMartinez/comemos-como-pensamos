@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
-import { IconSmartphone, IconInfo, IconCheck } from '../../components/common/Icons';
+import { IconSmartphone, IconInfo, IconCheck, IconLeaf } from '../../components/common/Icons';
 import './ProducerSetup.css';
 
 const CERTIFICATIONS_OPTIONS = [
@@ -215,7 +215,7 @@ const ProducerSetup = () => {
       <div className="container">
         <div className="setup-card">
           <header className="setup-header">
-            <div className="setup-icon">🌾</div>
+            <div className="setup-icon"><IconLeaf size={48} /></div>
             <h1>{t('producer.setup.title')}</h1>
             <p className="setup-subtitle">{t('producer.setup.subtitle')}</p>
           </header>

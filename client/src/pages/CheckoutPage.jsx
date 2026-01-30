@@ -459,7 +459,6 @@ const CheckoutPage = () => {
       }
     } catch (error) {
       console.error('Error creating order:', error);
-      
       if (error.response?.data?.code === 'EMAIL_NOT_VERIFIED') {
         toast.error(t('checkout.emailNotVerified'), {
           autoClose: 8000

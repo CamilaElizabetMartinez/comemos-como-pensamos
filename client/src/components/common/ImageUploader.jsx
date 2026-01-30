@@ -103,7 +103,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 5, folder = 'p
       toast.success(t('imageUploader.removeSuccess'));
     } catch (error) {
       console.error('Error removing image:', error);
-      // Aún así removemos del estado local
+      // Still remove from local state
       const newImages = images.filter((_, i) => i !== index);
       onImagesChange(newImages);
     }
