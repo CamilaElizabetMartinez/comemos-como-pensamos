@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { ButtonSpinner } from '../../components/common/Spinner';
+import {
+  IconBarChart, IconDollar, IconPackage, IconUsers,
+  IconFileText, IconDownload, IconCalendar, IconInfo
+} from '../../components/common/Icons';
 import './AdminReports.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -72,7 +76,7 @@ const AdminReports = () => {
   const REPORT_CARDS = [
     {
       id: 'sales',
-      icon: '💰',
+      icon: IconDollar,
       title: t('reports.salesReport'),
       description: t('reports.salesDescription'),
       formats: ['pdf', 'excel'],
@@ -80,7 +84,7 @@ const AdminReports = () => {
     },
     {
       id: 'products',
-      icon: '📦',
+      icon: IconPackage,
       title: t('reports.productsReport'),
       description: t('reports.productsDescription'),
       formats: ['excel'],
@@ -88,7 +92,7 @@ const AdminReports = () => {
     },
     {
       id: 'users',
-      icon: '👥',
+      icon: IconUsers,
       title: t('reports.usersReport'),
       description: t('reports.usersDescription'),
       formats: ['excel'],
@@ -103,7 +107,7 @@ const AdminReports = () => {
           {t('admin.backToDashboard')}
         </Link>
         <div className="reports-header">
-          <h1>📊 {t('reports.title')}</h1>
+          <h1><IconBarChart size={28} /> {t('reports.title')}</h1>
           <p className="reports-subtitle">{t('reports.subtitle')}</p>
         </div>
 
@@ -143,57 +147,62 @@ const AdminReports = () => {
         </div>
 
         <div className="reports-grid">
-          {REPORT_CARDS.map((report) => (
-            <div key={report.id} className="report-card">
-              <div className="report-card-header">
-                <span className="report-icon">{report.icon}</span>
-                <h3>{report.title}</h3>
-              </div>
-              <p className="report-description">{report.description}</p>
-              
-              {report.useDateFilter && (dateRange.startDate || dateRange.endDate) && (
-                <div className="report-date-range">
-                  <span>📅 </span>
-                  {dateRange.startDate && <span>{dateRange.startDate}</span>}
-                  {dateRange.startDate && dateRange.endDate && <span> → </span>}
-                  {dateRange.endDate && <span>{dateRange.endDate}</span>}
+          {REPORT_CARDS.map((report) => {
+            const ReportIcon = report.icon;
+            return (
+              <div key={report.id} className="report-card">
+                <div className="report-card-header">
+                  <span className="report-icon"><ReportIcon size={24} /></span>
+                  <h3>{report.title}</h3>
                 </div>
-              )}
+                <p className="report-description">{report.description}</p>
+                
+                {report.useDateFilter && (dateRange.startDate || dateRange.endDate) && (
+                  <div className="report-date-range">
+                    <IconCalendar size={16} />
+                    {dateRange.startDate && <span>{dateRange.startDate}</span>}
+                    {dateRange.startDate && dateRange.endDate && <span> → </span>}
+                    {dateRange.endDate && <span>{dateRange.endDate}</span>}
+                  </div>
+                )}
 
-              <div className="report-actions">
-                {report.formats.includes('pdf') && (
-                  <button
-                    className="btn-download pdf"
-                    onClick={() => downloadReport(report.id, 'pdf')}
-                    disabled={loading[`${report.id}_pdf`]}
-                  >
-                    {loading[`${report.id}_pdf`] ? (
-                      <><ButtonSpinner /> PDF</>
-                    ) : (
-                      <>📄 PDF</>
-                    )}
-                  </button>
-                )}
-                {report.formats.includes('excel') && (
-                  <button
-                    className="btn-download excel"
-                    onClick={() => downloadReport(report.id, 'excel')}
-                    disabled={loading[`${report.id}_excel`]}
-                  >
-                    {loading[`${report.id}_excel`] ? (
-                      <><ButtonSpinner /> Excel</>
-                    ) : (
-                      <>📊 Excel</>
-                    )}
-                  </button>
-                )}
+                <div className="report-actions">
+                  {report.formats.includes('pdf') && (
+                    <button
+                      className="btn-download pdf"
+                      onClick={() => downloadReport(report.id, 'pdf')}
+                      disabled={loading[`${report.id}_pdf`]}
+                      aria-label={`Descargar ${report.title} en PDF`}
+                    >
+                      {loading[`${report.id}_pdf`] ? (
+                        <><ButtonSpinner /> PDF</>
+                      ) : (
+                        <><IconFileText size={16} /> PDF</>
+                      )}
+                    </button>
+                  )}
+                  {report.formats.includes('excel') && (
+                    <button
+                      className="btn-download excel"
+                      onClick={() => downloadReport(report.id, 'excel')}
+                      disabled={loading[`${report.id}_excel`]}
+                      aria-label={`Descargar ${report.title} en Excel`}
+                    >
+                      {loading[`${report.id}_excel`] ? (
+                        <><ButtonSpinner /> Excel</>
+                      ) : (
+                        <><IconDownload size={16} /> Excel</>
+                      )}
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="reports-info">
-          <h3>ℹ️ {t('reports.infoTitle')}</h3>
+          <h3><IconInfo size={20} /> {t('reports.infoTitle')}</h3>
           <ul>
             <li>{t('reports.infoSales')}</li>
             <li>{t('reports.infoProducts')}</li>

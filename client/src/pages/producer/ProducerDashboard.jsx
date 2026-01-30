@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { DashboardSkeleton } from '../../components/common/Skeleton';
+import { IconGift, IconSmartphone, IconLink, IconDollar, IconAward } from '../../components/common/Icons';
 import './ProducerDashboard.css';
 
 const ProducerDashboard = () => {
@@ -183,7 +184,7 @@ const ProducerDashboard = () => {
 
         {hasSpecialCommission && (
           <div className="commission-banner">
-            <span className="commission-banner-icon">🎉</span>
+            <span className="commission-banner-icon"><IconAward size={28} /></span>
             <div className="commission-banner-content">
               <div className="commission-banner-title">
                 {t('producer.dashboard.specialCommissionActive')}
@@ -378,7 +379,7 @@ const ProducerDashboard = () => {
             <div className="referral-content">
               <div className="referral-code-card">
                 <div className="referral-code-header">
-                  <span className="referral-icon">🎁</span>
+                  <span className="referral-icon"><IconGift size={24} /></span>
                   <span>{t('producer.referrals.yourCode')}</span>
                 </div>
                 <div className="referral-code-display">
@@ -386,6 +387,7 @@ const ProducerDashboard = () => {
                   <button 
                     className={`btn-copy ${codeCopied ? 'copied' : ''}`}
                     onClick={copyReferralCode}
+                    aria-label={t('producer.referrals.copy')}
                   >
                     {codeCopied ? '✓' : t('producer.referrals.copy')}
                   </button>
@@ -393,12 +395,12 @@ const ProducerDashboard = () => {
                 <p className="referral-hint">{t('producer.referrals.shareHint')}</p>
                 
                 <div className="referral-share-buttons">
-                  <button className="btn-share btn-whatsapp" onClick={shareViaWhatsApp}>
-                    <span className="share-icon">📱</span>
+                  <button className="btn-share btn-whatsapp" onClick={shareViaWhatsApp} aria-label={t('producer.referrals.shareWhatsApp')}>
+                    <span className="share-icon"><IconSmartphone size={18} /></span>
                     {t('producer.referrals.shareWhatsApp')}
                   </button>
-                  <button className="btn-share btn-link" onClick={shareReferralLink}>
-                    <span className="share-icon">🔗</span>
+                  <button className="btn-share btn-link" onClick={shareReferralLink} aria-label={t('producer.referrals.shareLink')}>
+                    <span className="share-icon"><IconLink size={18} /></span>
                     {t('producer.referrals.shareLink')}
                   </button>
                 </div>
@@ -410,7 +412,7 @@ const ProducerDashboard = () => {
                   <span className="referral-stat-label">{t('producer.referrals.referredCount')}</span>
                 </div>
                 <div className="referral-bonus-info">
-                  <span className="bonus-icon">💰</span>
+                  <span className="bonus-icon"><IconDollar size={20} /></span>
                   <span>{t('producer.referrals.bonusInfo')}</span>
                 </div>
               </div>

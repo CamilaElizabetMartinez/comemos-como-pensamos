@@ -4,13 +4,24 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import { ListSkeleton } from '../../components/common/Skeleton';
+import {
+  IconInbox, IconMail, IconFileText, IconCheckCircle, IconFolder,
+  IconTrash, IconSend, IconChevronLeft
+} from '../../components/common/Icons';
 import './AdminContact.css';
 
+const STATUS_ICONS = {
+  pending: IconInbox,
+  read: IconFileText,
+  replied: IconCheckCircle,
+  archived: IconFolder
+};
+
 const STATUS_CONFIG = {
-  pending: { label: 'Pendiente', color: '#ff9800', icon: '📬' },
-  read: { label: 'Leído', color: '#2196f3', icon: '📖' },
-  replied: { label: 'Respondido', color: '#4caf50', icon: '✅' },
-  archived: { label: 'Archivado', color: '#9e9e9e', icon: '📁' }
+  pending: { label: 'Pendiente', color: '#ff9800' },
+  read: { label: 'Leído', color: '#2196f3' },
+  replied: { label: 'Respondido', color: '#4caf50' },
+  archived: { label: 'Archivado', color: '#9e9e9e' }
 };
 
 const AdminContact = () => {
@@ -118,7 +129,7 @@ const AdminContact = () => {
       </Link>
       <div className="contact-header">
         <div className="header-title">
-          <h1>📬 {t('admin.contact.title')}</h1>
+          <h1><IconInbox size={28} /> {t('admin.contact.title')}</h1>
           {getUnreadCount() > 0 && (
             <span className="unread-badge">{getUnreadCount()} nuevos</span>
           )}
@@ -148,7 +159,7 @@ const AdminContact = () => {
             <ListSkeleton type="order" count={5} />
           ) : messages.length === 0 ? (
             <div className="no-messages">
-              <span className="no-messages-icon">📭</span>
+              <span className="no-messages-icon"><IconInbox size={48} /></span>
               <p>{t('admin.contact.noMessages')}</p>
             </div>
           ) : (
@@ -209,14 +220,15 @@ const AdminContact = () => {
                     className="status-badge"
                     style={{ backgroundColor: STATUS_CONFIG[selectedMessage.status]?.color }}
                   >
-                    {STATUS_CONFIG[selectedMessage.status]?.icon} {STATUS_CONFIG[selectedMessage.status]?.label}
+                    {React.createElement(STATUS_ICONS[selectedMessage.status], { size: 16 })} {STATUS_CONFIG[selectedMessage.status]?.label}
                   </span>
                 </div>
                 <button 
                   className="btn btn-delete"
                   onClick={() => handleDelete(selectedMessage._id)}
+                  aria-label="Eliminar mensaje"
                 >
-                  🗑️
+                  <IconTrash size={18} />
                 </button>
               </div>
 
@@ -267,20 +279,24 @@ const AdminContact = () => {
               <div className="detail-actions">
                 <h3>{t('admin.contact.changeStatus')}</h3>
                 <div className="status-buttons">
-                  {Object.entries(STATUS_CONFIG).map(([status, config]) => (
-                    <button
-                      key={status}
-                      className={`btn btn-status ${selectedMessage.status === status ? 'active' : ''}`}
-                      style={{ 
-                        borderColor: config.color,
-                        backgroundColor: selectedMessage.status === status ? config.color : 'transparent',
-                        color: selectedMessage.status === status ? 'white' : config.color
-                      }}
-                      onClick={() => handleUpdateStatus(selectedMessage._id, status)}
-                    >
-                      {config.icon} {config.label}
-                    </button>
-                  ))}
+                  {Object.entries(STATUS_CONFIG).map(([status, config]) => {
+                    const StatusIcon = STATUS_ICONS[status];
+                    return (
+                      <button
+                        key={status}
+                        className={`btn btn-status ${selectedMessage.status === status ? 'active' : ''}`}
+                        style={{ 
+                          borderColor: config.color,
+                          backgroundColor: selectedMessage.status === status ? config.color : 'transparent',
+                          color: selectedMessage.status === status ? 'white' : config.color
+                        }}
+                        onClick={() => handleUpdateStatus(selectedMessage._id, status)}
+                        aria-label={`Marcar como ${config.label}`}
+                      >
+                        <StatusIcon size={16} /> {config.label}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -289,13 +305,13 @@ const AdminContact = () => {
                   href={`mailto:${selectedMessage.email}?subject=Re: ${selectedMessage.subject}`}
                   className="btn btn-primary btn-reply"
                 >
-                  ✉️ {t('admin.contact.replyByEmail')}
+                  <IconSend size={18} /> {t('admin.contact.replyByEmail')}
                 </a>
               </div>
             </div>
           ) : (
             <div className="no-selection">
-              <span className="no-selection-icon">👈</span>
+              <span className="no-selection-icon"><IconChevronLeft size={48} /></span>
               <p>{t('admin.contact.selectMessage')}</p>
             </div>
           )}
