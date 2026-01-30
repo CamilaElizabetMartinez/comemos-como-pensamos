@@ -1,18 +1,19 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { IconLeaf, IconPackage } from '../components/common/Icons';
 import './ProducerCalculator.css';
 
 const PRODUCT_CATEGORIES = [
-  { id: 'fruits', avgPrice: 3.50, icon: '🍎' },
-  { id: 'vegetables', avgPrice: 2.80, icon: '🥬' },
-  { id: 'dairy', avgPrice: 4.50, icon: '🧀' },
-  { id: 'meat', avgPrice: 12.00, icon: '🥩' },
-  { id: 'bakery', avgPrice: 3.00, icon: '🥖' },
-  { id: 'eggs', avgPrice: 3.50, icon: '🥚' },
-  { id: 'honey', avgPrice: 8.00, icon: '🍯' },
-  { id: 'oil', avgPrice: 10.00, icon: '🫒' },
-  { id: 'wine', avgPrice: 9.00, icon: '🍷' }
+  { id: 'fruits', avgPrice: 3.50 },
+  { id: 'vegetables', avgPrice: 2.80 },
+  { id: 'dairy', avgPrice: 4.50 },
+  { id: 'meat', avgPrice: 12.00 },
+  { id: 'bakery', avgPrice: 3.00 },
+  { id: 'eggs', avgPrice: 3.50 },
+  { id: 'honey', avgPrice: 8.00 },
+  { id: 'oil', avgPrice: 10.00 },
+  { id: 'wine', avgPrice: 9.00 }
 ];
 
 const TRADITIONAL_COSTS = {
@@ -154,7 +155,7 @@ const ProducerCalculator = () => {
                       className={`category-btn ${formData.category === category.id ? 'active' : ''}`}
                       onClick={() => handleCategoryChange(category.id)}
                     >
-                      <span className="category-icon">{category.icon}</span>
+                      <span className="category-icon"><IconLeaf size={20} /></span>
                       <span className="category-name">{t(`categories.${category.id}`)}</span>
                     </button>
                   ))}
@@ -191,7 +192,7 @@ const ProducerCalculator = () => {
                       min="1"
                       step="10"
                     />
-                    <span className="input-icon">{selectedCategory?.icon}</span>
+                    <span className="input-icon"><IconPackage size={16} /></span>
                   </div>
                   <span className="form-hint">{t('calculator.weeklyUnitsHint')}</span>
                 </div>
