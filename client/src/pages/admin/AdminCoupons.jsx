@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ConfirmModal from '../../components/common/ConfirmModal';
+import { IconGift } from '../../components/common/Icons';
 import './AdminCoupons.css';
 
 const INITIAL_FORM_STATE = {
@@ -239,7 +240,7 @@ const AdminCoupons = () => {
             </Link>
             <h1>{t('admin.coupons.title')}</h1>
           </div>
-          <button className="btn btn-primary" onClick={() => handleOpenModal()}>
+          <button type="button" className="btn btn-primary" onClick={() => handleOpenModal()}>
             + {t('admin.coupons.addCoupon')}
           </button>
         </header>
@@ -267,10 +268,11 @@ const AdminCoupons = () => {
 
         <div className="coupons-section">
           {filteredCoupons.length === 0 ? (
-            <div className="no-coupons">
-              <span className="no-coupons-icon">🎟️</span>
+            <div className="empty-state">
+              <IconGift size={48} />
+              <h3>{t('admin.coupons.noCouponsTitle', 'No hay cupones')}</h3>
               <p>{t('admin.coupons.noCoupons')}</p>
-              <button className="btn btn-primary" onClick={() => handleOpenModal()}>
+              <button type="button" className="btn btn-primary" onClick={() => handleOpenModal()}>
                 {t('admin.coupons.createFirst')}
               </button>
             </div>
@@ -363,7 +365,7 @@ const AdminCoupons = () => {
             <div className="coupon-modal" onClick={e => e.stopPropagation()}>
               <div className="modal-header">
                 <h2>{selectedCoupon ? t('admin.coupons.editCoupon') : t('admin.coupons.addCoupon')}</h2>
-                <button className="modal-close" onClick={handleCloseModal}>×</button>
+                <button type="button" className="modal-close" onClick={handleCloseModal} aria-label="Cerrar">×</button>
               </div>
 
               <form onSubmit={handleSubmit} className="modal-body">

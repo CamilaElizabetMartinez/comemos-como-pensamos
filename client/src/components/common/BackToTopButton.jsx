@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import { IconChevronUp } from './Icons';
 import './BackToTopButton.css';
 
@@ -22,6 +22,7 @@ const BackToTopButton = () => {
 
   return (
     <button
+      type="button"
       className="back-to-top-btn"
       onClick={scrollToTop}
       aria-label="Volver arriba"
@@ -32,4 +33,4 @@ const BackToTopButton = () => {
   );
 };
 
-export default BackToTopButton;
+export default memo(BackToTopButton);

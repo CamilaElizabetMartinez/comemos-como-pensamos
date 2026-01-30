@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { PRODUCT_CATEGORIES } from '../../constants/products';
-import { IconSmartphone, IconMail, IconCalendar } from '../../components/common/Icons';
+import { IconSmartphone, IconMail, IconCalendar, IconLocation, IconStore, IconFlame } from '../../components/common/Icons';
 import ConfirmModal from '../../components/common/ConfirmModal';
 import InputModal from '../../components/common/InputModal';
 import './AdminLeads.css';
@@ -359,10 +359,10 @@ const AdminLeads = () => {
                   
                   <div className="lead-details">
                     {lead.location?.city && (
-                      <span className="detail-item">📍 {lead.location.city}</span>
+                      <span className="detail-item"><IconLocation size={14} /> {lead.location.city}</span>
                     )}
                     {lead.location?.market && (
-                      <span className="detail-item">🏪 {lead.location.market}</span>
+                      <span className="detail-item"><IconStore size={14} /> {lead.location.market}</span>
                     )}
                     {lead.phone && (
                       <span className="detail-item"><IconSmartphone size={14} /> {lead.phone}</span>
@@ -374,7 +374,7 @@ const AdminLeads = () => {
                       {t(`admin.leads.source${lead.source.charAt(0).toUpperCase() + lead.source.slice(1).replace('_', '')}`)}
                     </span>
                     {lead.priority === 'high' && (
-                      <span className="priority-tag high">🔥 {t('admin.leads.priorityHigh')}</span>
+                      <span className="priority-tag high"><IconFlame size={14} /> {t('admin.leads.priorityHigh')}</span>
                     )}
                     {lead.nextFollowUp && (
                       <span className={`followup-tag ${isOverdue(lead) ? 'overdue' : ''}`}>
@@ -624,7 +624,7 @@ const AdminLeads = () => {
                         rel="noopener noreferrer"
                         className="contact-link whatsapp"
                       >
-                        💬 WhatsApp
+                        <IconSmartphone size={16} /> WhatsApp
                       </a>
                     )}
                   </div>
@@ -634,8 +634,8 @@ const AdminLeads = () => {
                   <div className="detail-section">
                     <h3>{t('admin.leads.location')}</h3>
                     <p>
-                      {selectedLead.location.market && <span>🏪 {selectedLead.location.market}<br /></span>}
-                      {selectedLead.location.city && <span>📍 {selectedLead.location.city}</span>}
+                      {selectedLead.location.market && <span><IconStore size={14} /> {selectedLead.location.market}<br /></span>}
+                      {selectedLead.location.city && <span><IconLocation size={14} /> {selectedLead.location.city}</span>}
                     </p>
                   </div>
                 )}

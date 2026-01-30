@@ -599,7 +599,7 @@ const ProducerProductForm = () => {
                                   className="btn-remove-variant"
                                   onClick={() => handleRemoveVariant(index)}
                                 >
-                                  ✕
+                                  ×
                                 </button>
                               )}
                             </div>

@@ -190,8 +190,7 @@ const AdminUsers = () => {
                     </td>
                     <td className="date-cell">{formatDate(u.createdAt)}</td>
                     <td>
-                      <span className={`status-indicator ${u.isEmailVerified ? 'verified' : 'unverified'}`}>
-                        {u.isEmailVerified ? '✓' : '○'}
+                      <span className={`status-indicator ${u.isEmailVerified ? 'verified' : 'unverified'}`} aria-label={u.isEmailVerified ? 'Verificado' : 'No verificado'}>
                       </span>
                     </td>
                     <td>

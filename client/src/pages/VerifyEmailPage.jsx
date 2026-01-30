@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
-import { IconCheckCircle, IconLeaf } from '../components/common/Icons';
+import { IconCheckCircle, IconLeaf, IconX } from '../components/common/Icons';
 import './AuthPages.css';
 
 const VerifyEmailPage = () => {
@@ -61,7 +61,7 @@ const VerifyEmailPage = () => {
       case 'error':
         return (
           <div className="verify-status error">
-            <div className="verify-icon">❌</div>
+            <div className="verify-icon"><IconX size={48} /></div>
             <h2>{t('auth.verificationError')}</h2>
             <p>{message}</p>
             <div className="verify-actions">

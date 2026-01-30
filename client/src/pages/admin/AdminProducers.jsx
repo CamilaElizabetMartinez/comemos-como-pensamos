@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
-import { IconCheckCircle, IconStar } from '../../components/common/Icons';
+import { IconCheckCircle, IconStar, IconStore, IconLocation, IconCheck, IconX } from '../../components/common/Icons';
 import InputModal from '../../components/common/InputModal';
 import './AdminProducers.css';
 
@@ -228,13 +228,13 @@ const AdminProducers = () => {
                         {producer.logo ? (
                           <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                         ) : (
-                          <span>🏪</span>
+                          <IconStore size={40} />
                         )}
                       </div>
                       <div className="producer-info">
                         <h3>{producer.businessName}</h3>
                         <p className="producer-location">
-                          📍 {producer.location?.city}, {producer.location?.country}
+                          <IconLocation size={14} /> {producer.location?.city}, {producer.location?.country}
                         </p>
                         <p className="producer-date">
                           {t('admin.producers.requestedOn')} {formatDate(producer.createdAt)}
@@ -268,13 +268,13 @@ const AdminProducers = () => {
                         onClick={() => handleApprove(producer._id)}
                         className="btn btn-approve"
                       >
-                        ✓ {t('admin.producers.approve')}
+                        <IconCheck size={16} /> {t('admin.producers.approve')}
                       </button>
                       <button
                         onClick={() => openRejectModal(producer._id)}
                         className="btn btn-reject"
                       >
-                        ✕ {t('admin.producers.reject')}
+                        <IconX size={16} /> {t('admin.producers.reject')}
                       </button>
                     </div>
                   </div>
@@ -299,13 +299,13 @@ const AdminProducers = () => {
                         {producer.logo ? (
                           <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                         ) : (
-                          <span>🏪</span>
+                          <IconStore size={40} />
                         )}
                       </div>
                       <div className="producer-info">
                         <h3>{producer.businessName}</h3>
                         <p className="producer-location">
-                          📍 {producer.location?.city}
+                          <IconLocation size={14} /> {producer.location?.city}
                         </p>
                       </div>
                       <span className={`status-badge ${producer.isApproved ? 'approved' : 'pending'}`}>

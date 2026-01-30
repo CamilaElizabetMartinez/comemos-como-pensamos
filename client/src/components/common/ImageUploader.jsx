@@ -146,7 +146,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 5, folder = 'p
                 onClick={() => handleRemoveImage(index)}
                 title={t('imageUploader.remove')}
               >
-                ✕
+                ×
               </button>
               <span className="drag-hint">⋮⋮</span>
             </div>

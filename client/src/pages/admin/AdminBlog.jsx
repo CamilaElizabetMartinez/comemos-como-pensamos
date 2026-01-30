@@ -252,7 +252,7 @@ const AdminBlog = () => {
             </Link>
             <h1>{t('admin.blog.title')}</h1>
           </div>
-          <button className="btn btn-primary" onClick={() => handleOpenModal()}>
+          <button type="button" className="btn btn-primary" onClick={() => handleOpenModal()}>
             + {t('admin.blog.newArticle')}
           </button>
         </header>
@@ -281,7 +281,7 @@ const AdminBlog = () => {
         {articles.length === 0 ? (
           <div className="no-articles">
             <p>{t('admin.blog.noArticles')}</p>
-            <button className="btn btn-primary" onClick={() => handleOpenModal()}>
+            <button type="button" className="btn btn-primary" onClick={() => handleOpenModal()}>
               {t('admin.blog.createFirst')}
             </button>
           </div>
@@ -367,7 +367,7 @@ const AdminBlog = () => {
                 <h2>
                   {selectedArticle ? t('admin.blog.editArticle') : t('admin.blog.newArticle')}
                 </h2>
-                <button className="btn-close" onClick={handleCloseModal}>×</button>
+                <button type="button" className="btn-close" onClick={handleCloseModal} aria-label="Cerrar">×</button>
               </div>
               
               <form onSubmit={handleSubmit} className="article-form">

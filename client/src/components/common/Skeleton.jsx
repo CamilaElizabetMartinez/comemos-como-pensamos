@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './Skeleton.css';
 
 const Skeleton = ({ variant = 'rectangular', width, height, count = 1, className = '' }) => {
@@ -340,5 +340,5 @@ export const CartSkeleton = () => (
   </div>
 );
 
-export default Skeleton;
+export default memo(Skeleton);
 

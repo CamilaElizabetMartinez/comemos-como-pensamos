@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
-import { IconSmartphone, IconInfo } from '../../components/common/Icons';
+import { IconSmartphone, IconInfo, IconCheck } from '../../components/common/Icons';
 import './ProducerSetup.css';
 
 const CERTIFICATIONS_OPTIONS = [
@@ -384,7 +384,7 @@ const ProducerSetup = () => {
                 </div>
                 {referralValidated && (
                   <div className="referral-success">
-                    <span className="referral-icon">✓</span>
+                    <span className="referral-icon"><IconCheck size={18} /></span>
                     {t('producer.setup.referredBy', { name: referralValidated.businessName })}
                     <span className="referral-bonus">{t('producer.setup.referralBonus')}</span>
                   </div>

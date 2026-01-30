@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { DashboardSkeleton } from '../../components/common/Skeleton';
-import { IconGift, IconSmartphone, IconLink, IconDollar, IconAward } from '../../components/common/Icons';
+import { IconGift, IconSmartphone, IconLink, IconDollar, IconAward, IconCheck } from '../../components/common/Icons';
 import './ProducerDashboard.css';
 
 const ProducerDashboard = () => {
@@ -389,7 +389,7 @@ const ProducerDashboard = () => {
                     onClick={copyReferralCode}
                     aria-label={t('producer.referrals.copy')}
                   >
-                    {codeCopied ? '✓' : t('producer.referrals.copy')}
+                    {codeCopied ? <><IconCheck size={16} /> {t('common.copied', 'Copiado')}</> : t('producer.referrals.copy')}
                   </button>
                 </div>
                 <p className="referral-hint">{t('producer.referrals.shareHint')}</p>

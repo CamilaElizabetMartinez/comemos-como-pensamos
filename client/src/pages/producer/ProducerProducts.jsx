@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { ListSkeleton } from '../../components/common/Skeleton';
-import { IconPackage, IconTrash } from '../../components/common/Icons';
+import { IconPackage, IconTrash, IconAlertTriangle, IconEdit } from '../../components/common/Icons';
 import ConfirmModal from '../../components/common/ConfirmModal';
 import './ProducerProducts.css';
 
@@ -163,7 +163,7 @@ const ProducerProducts = () => {
               className={`filter-tab ${filter === 'lowStock' ? 'active' : ''}`}
               onClick={() => setFilter('lowStock')}
             >
-              ⚠️ {t('producer.products.filterLowStock')} (
+              <IconAlertTriangle size={16} /> {t('producer.products.filterLowStock')} (
               {products.filter(p => p.stock > 0 && p.stock <= 5).length})
             </button>
           </div>
@@ -207,7 +207,7 @@ const ProducerProducts = () => {
                     onClick={() => navigate(`/producer/products/edit/${product._id}`)}
                     className="btn btn-small btn-edit"
                   >
-                    ✏️ {t('common.edit')}
+                    <IconEdit size={16} /> {t('common.edit')}
                   </button>
                   <button
                     onClick={() => handleToggleAvailability(product)}
