@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import api from '../services/api';
 import { ListSkeleton } from '../components/common/Skeleton';
 import { IconLeaf } from '../components/common/Icons';
+import SEO from '../components/common/SEO';
 import './ProducersPage.css';
 
 const ProducersPage = () => {
@@ -45,6 +46,10 @@ const ProducersPage = () => {
 
   return (
     <div className="producers-page">
+      <SEO 
+        title={t('producers.seoTitle', 'Productores locales verificados')}
+        description={t('producers.seoDescription', 'Conoce a nuestros productores locales. Agricultores, ganaderos y artesanos comprometidos con la calidad y la sostenibilidad.')}
+      />
       <div className="producers-container">
         <div className="producers-header">
           <h1>{t('producers.title')}</h1>
@@ -92,7 +97,7 @@ const ProducersPage = () => {
                   <div className="producer-image">
                     <Link to={`/producers/${producer._id}`} title={producer.businessName}>
                       {producer.logo ? (
-                        <img src={producer.logo} alt={producer.businessName} />
+                        <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                       ) : (
                         <div className="image-placeholder">
                           {producer.businessName?.charAt(0)}

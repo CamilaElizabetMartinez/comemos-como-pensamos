@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import { ListSkeleton } from '../components/common/Skeleton';
 import SearchAutocomplete from '../components/common/SearchAutocomplete';
+import SEO from '../components/common/SEO';
 import { PRODUCT_CATEGORIES, SORT_OPTIONS } from '../constants/products';
 import './ProductsPage.css';
 
@@ -132,6 +133,10 @@ const ProductsPage = () => {
 
   return (
     <div className="products-page">
+      <SEO 
+        title={t('products.seoTitle', 'Productos frescos y locales')}
+        description={t('products.seoDescription', 'Descubre nuestra selección de productos frescos de productores locales. Frutas, verduras, lácteos, carnes y más.')}
+      />
       <div className="container">
         <div className="products-header">
           <h1>{t('products.title')}</h1>
@@ -286,12 +291,14 @@ const ProductsPage = () => {
                               src={product.images[0]} 
                               alt={productName}
                               className="product-image-main"
+                              loading="lazy"
                             />
                             {hasSecondImage && (
                               <img 
                                 src={product.images[1]} 
                                 alt={productName}
                                 className="product-image-hover"
+                                loading="lazy"
                               />
                             )}
                           </>

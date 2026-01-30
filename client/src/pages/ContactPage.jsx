@@ -2,6 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import useFormValidation from '../hooks/useFormValidation';
+import SEO from '../components/common/SEO';
 import './ContactPage.css';
 
 const ICONS = {
@@ -36,41 +38,48 @@ const ICONS = {
   ),
 };
 
+const VALIDATION_RULES = {
+  name: ['required', { type: 'minLength', value: 2 }],
+  email: ['required', 'email'],
+  subject: ['required', { type: 'minLength', value: 5 }],
+  message: ['required', { type: 'minLength', value: 20 }],
+};
+
 const ContactPage = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleChange = useCallback((e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  }, []);
+  const { values, getFieldProps, getFieldState, validateAll, reset } = useFormValidation(
+    { name: '', email: '', subject: '', message: '' },
+    VALIDATION_RULES
+  );
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
+    
+    if (!validateAll()) return;
+    
     setLoading(true);
 
     try {
-      await api.post('/contact', formData);
+      await api.post('/contact', values);
       setSubmitted(true);
       toast.success(t('contact.successMessage'));
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      reset();
     } catch (error) {
       toast.error(t('contact.errorMessage'));
     } finally {
       setLoading(false);
     }
-  }, [formData, t]);
+  }, [values, validateAll, reset, t]);
 
   return (
     <div className="contact-page">
+      <SEO 
+        title={t('contact.seoTitle', 'Contacto')}
+        description={t('contact.seoDescription', 'Contacta con nosotros. Estamos aquí para ayudarte con cualquier pregunta sobre productos, pedidos o productores.')}
+      />
       <div className="container">
         <div className="contact-header">
           <h1>{t('contact.title')}</h1>
@@ -118,45 +127,46 @@ const ContactPage = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="contact-form">
+              <form onSubmit={handleSubmit} className="contact-form" noValidate>
                 <h2>{t('contact.formTitle')}</h2>
                 
                 <div className="form-row">
-                  <div className="form-group">
+                  <div className={`form-group ${getFieldState('name').hasError ? 'has-error' : ''}`}>
                     <label htmlFor="name">{t('contact.name')}</label>
                     <input
                       type="text"
                       id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      {...getFieldProps('name')}
                       placeholder={t('contact.namePlaceholder')}
-                      required
                     />
+                    {getFieldState('name').hasError && (
+                      <span id="name-error" className="field-error" role="alert">
+                        {getFieldState('name').error}
+                      </span>
+                    )}
                   </div>
                   
-                  <div className="form-group">
+                  <div className={`form-group ${getFieldState('email').hasError ? 'has-error' : ''}`}>
                     <label htmlFor="email">{t('contact.emailField')}</label>
                     <input
                       type="email"
                       id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
+                      {...getFieldProps('email')}
                       placeholder={t('contact.emailPlaceholder')}
-                      required
                     />
+                    {getFieldState('email').hasError && (
+                      <span id="email-error" className="field-error" role="alert">
+                        {getFieldState('email').error}
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                <div className="form-group">
+                <div className={`form-group ${getFieldState('subject').hasError ? 'has-error' : ''}`}>
                   <label htmlFor="subject">{t('contact.subject')}</label>
                   <select
                     id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
+                    {...getFieldProps('subject')}
                   >
                     <option value="">{t('contact.selectSubject')}</option>
                     <option value="general">{t('contact.subjects.general')}</option>
@@ -166,19 +176,26 @@ const ContactPage = () => {
                     <option value="technical">{t('contact.subjects.technical')}</option>
                     <option value="other">{t('contact.subjects.other')}</option>
                   </select>
+                  {getFieldState('subject').hasError && (
+                    <span id="subject-error" className="field-error" role="alert">
+                      {getFieldState('subject').error}
+                    </span>
+                  )}
                 </div>
 
-                <div className="form-group">
+                <div className={`form-group ${getFieldState('message').hasError ? 'has-error' : ''}`}>
                   <label htmlFor="message">{t('contact.message')}</label>
                   <textarea
                     id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
+                    {...getFieldProps('message')}
                     placeholder={t('contact.messagePlaceholder')}
                     rows="6"
-                    required
                   ></textarea>
+                  {getFieldState('message').hasError && (
+                    <span id="message-error" className="field-error" role="alert">
+                      {getFieldState('message').error}
+                    </span>
+                  )}
                 </div>
 
                 <button 

@@ -159,7 +159,7 @@ const ProducerDetailPage = () => {
                 <div key={product._id} className="product-card">
                   <Link to={`/products/${product._id}`} className="product-image">
                     {product.images?.[0] ? (
-                      <img src={product.images[0]} alt={getProductName(product)} />
+                      <img src={product.images[0]} alt={getProductName(product)} loading="lazy" />
                     ) : (
                       <div className="image-placeholder"><IconPackage size={32} /></div>
                     )}

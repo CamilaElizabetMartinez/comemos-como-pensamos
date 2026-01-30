@@ -135,6 +135,7 @@ const BlogPage = () => {
                       <img 
                         src={featuredArticle.featuredImage} 
                         alt={getLocalizedContent(featuredArticle.title)}
+                        loading="lazy"
                       />
                     ) : (
                       <div className="image-placeholder">📰</div>

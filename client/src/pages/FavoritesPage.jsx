@@ -97,6 +97,7 @@ const FavoritesPage = () => {
                   <img
                     src={getProductImage(product)}
                     alt={getProductName(product)}
+                    loading="lazy"
                   />
                 </Link>
 

@@ -119,7 +119,8 @@ const CartPage = () => {
                       <img 
                         src={item.images?.[0]} 
                         alt={item.name?.es}
-                        className="item-image" 
+                        className="item-image"
+                        loading="lazy"
                       />
                       <div className="item-info">
                         <h4>{item.name?.es}</h4>

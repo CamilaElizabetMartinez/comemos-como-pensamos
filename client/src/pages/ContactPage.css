@@ -200,9 +200,24 @@
   }
 }
 
+/* Form validation styles */
+.contact-form .form-group.has-error input,
+.contact-form .form-group.has-error textarea,
+.contact-form .form-group.has-error select {
+  border-color: #d32f2f;
+  background-color: #fff5f5;
+}
 
+.contact-form .form-group.has-error label {
+  color: #d32f2f;
+}
 
-
+.contact-form .field-error {
+  display: block;
+  color: #d32f2f;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
 
 
 
