@@ -3,11 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { IconEye, IconEyeOff } from '../components/common/Icons';
 import './AuthPages.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { t } = useTranslation();
@@ -59,15 +61,26 @@ const LoginPage = () => {
 
           <div className="form-group">
             <label htmlFor="login-password">{t('auth.password')}</label>
-            <input
-              id="login-password"
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder={t('auth.passwordPlaceholder')}
-              autoComplete="current-password"
-              required
-            />
+            <div className="password-input-wrapper">
+              <input
+                id="login-password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder={t('auth.passwordPlaceholder')}
+                autoComplete="current-password"
+                required
+                aria-describedby="password-toggle-hint"
+              />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
+              >
+                {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+              </button>
+            </div>
           </div>
 
           <button type="submit" className="btn btn-primary" disabled={loading}>

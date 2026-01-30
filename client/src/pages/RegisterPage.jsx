@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import { IconEye, IconEyeOff, IconGift } from '../components/common/Icons';
 import './AuthPages.css';
 
 const RegisterPage = () => {
@@ -18,6 +19,7 @@ const RegisterPage = () => {
     role: referralCode ? 'producer' : 'customer'
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [referrerInfo, setReferrerInfo] = useState(null);
   const { register } = useAuth();
   const { t } = useTranslation();
@@ -68,7 +70,7 @@ const RegisterPage = () => {
         
         {referrerInfo && (
           <div className="referral-banner">
-            <span className="referral-banner-icon">🎁</span>
+            <span className="referral-banner-icon"><IconGift size={24} /></span>
             <div className="referral-banner-text">
               <strong>{t('auth.referredBy', { name: referrerInfo.businessName })}</strong>
               <span>{t('auth.referralBonusInfo')}</span>
@@ -122,17 +124,35 @@ const RegisterPage = () => {
 
           <div className="form-group">
             <label htmlFor="register-password">{t('auth.password')}</label>
-            <input
-              id="register-password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder={t('auth.newPasswordPlaceholder')}
-              autoComplete="new-password"
-              required
-              minLength="6"
-            />
+            <div className="password-input-wrapper">
+              <input
+                id="register-password"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder={t('auth.newPasswordPlaceholder')}
+                autoComplete="new-password"
+                required
+                minLength="6"
+              />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
+              >
+                {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+              </button>
+            </div>
+            {formData.password && (
+              <div className="password-strength">
+                <div className={`strength-bar ${formData.password.length >= 8 ? 'strong' : formData.password.length >= 6 ? 'medium' : 'weak'}`} />
+                <span className="strength-text">
+                  {formData.password.length >= 8 ? t('auth.passwordStrong') : formData.password.length >= 6 ? t('auth.passwordMedium') : t('auth.passwordWeak')}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="form-group">

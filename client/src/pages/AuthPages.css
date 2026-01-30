@@ -263,3 +263,88 @@
   color: #2D5A3D;
   font-size: 0.8rem;
 }
+
+.referral-banner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2D5A3D;
+}
+
+/* Password Toggle */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  flex: 1;
+  padding-right: 3rem;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.password-toggle-btn:hover {
+  color: #333;
+}
+
+/* Password Strength */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s, background 0.3s;
+}
+
+.strength-bar.weak::after {
+  width: 33%;
+  background: #ef5350;
+}
+
+.strength-bar.medium::after {
+  width: 66%;
+  background: #ffb74d;
+}
+
+.strength-bar.strong::after {
+  width: 100%;
+  background: #66bb6a;
+}
+
+.strength-text {
+  font-size: 0.75rem;
+  color: #666;
+  white-space: nowrap;
+}
