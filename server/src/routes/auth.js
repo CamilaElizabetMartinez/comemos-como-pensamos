@@ -4,19 +4,27 @@ import {
   login,
   getMe,
   updateProfile,
-  logout
+  logout,
+  verifyEmail,
+  resendVerification,
+  forgotPassword,
+  resetPassword
 } from '../controllers/authController.js';
 import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Rutas públicas
+// Public routes
 router.post('/register', register);
 router.post('/login', login);
+router.get('/verify-email/:token', verifyEmail);
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password/:token', resetPassword);
 
-// Rutas protegidas
+// Protected routes
 router.get('/me', protect, getMe);
 router.put('/update-profile', protect, updateProfile);
 router.post('/logout', protect, logout);
+router.post('/resend-verification', protect, resendVerification);
 
 export default router;
