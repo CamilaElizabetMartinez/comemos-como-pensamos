@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="80" fill="#2D5A3D"/>
-  <!-- Leaf -->
-  <path d="M360 100 C256 128, 180 230, 205 335 C216 285, 256 230, 360 180 C335 256, 280 310, 230 360 C285 370, 360 335, 410 230 C435 155, 385 92, 360 100 Z" fill="#ffffff" opacity="0.3"/>
+  <rect width="512" height="512" rx="80" fill="#ffffff"/>
+  <rect x="16" y="16" width="480" height="480" rx="72" fill="none" stroke="#2D5A3D" stroke-width="12"/>
   <!-- Letter C -->
-  <text x="256" y="345" font-family="Georgia, serif" font-size="265" font-weight="bold" fill="#ffffff" text-anchor="middle">C</text>
+  <text x="256" y="360" font-family="Georgia, serif" font-size="300" font-weight="bold" fill="#2D5A3D" text-anchor="middle">C</text>
+  <!-- Small leaf accent -->
+  <path d="M320 112 C300 120, 280 155, 290 188 C295 165, 310 145, 345 133 C330 155, 305 178, 285 200 C305 205, 345 188, 365 145 C378 112, 340 100, 320 112 Z" fill="#2D5A3D"/>
 </svg>
