@@ -492,7 +492,24 @@
       "recentOrders": "Letzte Bestellungen",
       "viewAll": "Alle ansehen",
       "noOrders": "Noch keine Bestellungen",
-      "errorLoading": "Fehler beim Laden der Dashboard-Daten"
+      "errorLoading": "Fehler beim Laden der Dashboard-Daten",
+      "shippingZones": "Lieferzonen",
+      "shippingZonesDesc": "Lieferkosten konfigurieren",
+      "editProfile": "Profil Bearbeiten",
+      "editProfileDesc": "Logo, Beschreibung und Daten aktualisieren",
+      "reports": "Berichte",
+      "reportsDesc": "Verkaufsberichte herunterladen"
+    },
+    "profile": {
+      "title": "Profil Bearbeiten",
+      "subtitle": "Aktualisieren Sie Ihre Geschäftsinformationen",
+      "updateSuccess": "Profil erfolgreich aktualisiert",
+      "updateError": "Fehler beim Aktualisieren des Profils",
+      "saveChanges": "Speichern",
+      "translationHint": "Optional: Übersetzung für internationale Kunden"
+    },
+    "common": {
+      "backToPanel": "Zurück zum Dashboard"
     },
     "products": {
       "title": "Meine Produkte",
@@ -538,6 +555,7 @@
       "saveChanges": "Änderungen Speichern",
       "createProduct": "Produkt Erstellen",
       "nameRequired": "Der spanische Name ist erforderlich",
+      "descriptionRequired": "Die spanische Beschreibung ist erforderlich",
       "priceRequired": "Der Preis muss größer als 0 sein",
       "stockRequired": "Der Bestand darf nicht negativ sein",
       "created": "Produkt erfolgreich erstellt",

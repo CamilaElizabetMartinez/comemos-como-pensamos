@@ -531,10 +531,23 @@
       "reportsDesc": "Descargar informes de ventas y productos",
       "shippingZones": "Zonas de Envío",
       "shippingZonesDesc": "Configurar costos de entrega",
+      "editProfile": "Editar Perfil",
+      "editProfileDesc": "Actualizar logo, descripción y datos",
       "recentOrders": "Pedidos Recientes",
       "viewAll": "Ver todos",
       "noOrders": "Aún no tienes pedidos",
       "errorLoading": "Error al cargar datos del panel"
+    },
+    "profile": {
+      "title": "Editar Perfil",
+      "subtitle": "Actualiza la información de tu negocio",
+      "updateSuccess": "Perfil actualizado correctamente",
+      "updateError": "Error al actualizar el perfil",
+      "saveChanges": "Guardar Cambios",
+      "translationHint": "Opcional: traducción para clientes internacionales"
+    },
+    "common": {
+      "backToPanel": "Volver al panel"
     },
     "products": {
       "title": "Mis Productos",
@@ -585,6 +598,7 @@
       "saveChanges": "Guardar Cambios",
       "createProduct": "Crear Producto",
       "nameRequired": "El nombre en español es obligatorio",
+      "descriptionRequired": "La descripción en español es obligatoria",
       "priceRequired": "El precio debe ser mayor que 0",
       "stockRequired": "El stock no puede ser negativo",
       "created": "Producto creado correctamente",

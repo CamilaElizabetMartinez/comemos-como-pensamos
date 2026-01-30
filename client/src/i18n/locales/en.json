@@ -531,10 +531,23 @@
       "reportsDesc": "Download sales and product reports",
       "shippingZones": "Shipping Zones",
       "shippingZonesDesc": "Configure delivery costs",
+      "editProfile": "Edit Profile",
+      "editProfileDesc": "Update logo, description and info",
       "recentOrders": "Recent Orders",
       "viewAll": "View all",
       "noOrders": "No orders yet",
       "errorLoading": "Error loading dashboard data"
+    },
+    "profile": {
+      "title": "Edit Profile",
+      "subtitle": "Update your business information",
+      "updateSuccess": "Profile updated successfully",
+      "updateError": "Error updating profile",
+      "saveChanges": "Save Changes",
+      "translationHint": "Optional: translation for international customers"
+    },
+    "common": {
+      "backToPanel": "Back to dashboard"
     },
     "products": {
       "title": "My Products",
@@ -585,6 +598,7 @@
       "saveChanges": "Save Changes",
       "createProduct": "Create Product",
       "nameRequired": "Spanish name is required",
+      "descriptionRequired": "Spanish description is required",
       "priceRequired": "Price must be greater than 0",
       "stockRequired": "Stock cannot be negative",
       "created": "Product created successfully",
