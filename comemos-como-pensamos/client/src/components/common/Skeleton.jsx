@@ -309,5 +309,36 @@ export const ArticleDetailSkeleton = () => (
   </div>
 );
 
+export const CartSkeleton = () => (
+  <div className="skeleton-cart">
+    <div className="skeleton-cart-header">
+      <Skeleton variant="text" width="120px" height="2rem" />
+      <Skeleton variant="text" width="80px" height="1rem" />
+    </div>
+    <div className="skeleton-cart-content">
+      <div className="skeleton-cart-items">
+        {Array(3).fill(null).map((_, index) => (
+          <div key={index} className="skeleton-cart-item">
+            <Skeleton variant="rectangular" width="80px" height="80px" />
+            <div className="skeleton-cart-item-info">
+              <Skeleton variant="text" width="70%" height="1rem" />
+              <Skeleton variant="text" width="40%" height="0.85rem" />
+            </div>
+            <Skeleton variant="rectangular" width="100px" height="36px" />
+            <Skeleton variant="text" width="60px" height="1rem" />
+          </div>
+        ))}
+      </div>
+      <div className="skeleton-cart-summary">
+        <Skeleton variant="text" width="100px" height="1.25rem" />
+        <Skeleton variant="text" width="100%" height="1rem" />
+        <Skeleton variant="text" width="100%" height="1rem" />
+        <Skeleton variant="text" width="100%" height="1.5rem" />
+        <Skeleton variant="rectangular" height="48px" className="skeleton-button" />
+      </div>
+    </div>
+  </div>
+);
+
 export default Skeleton;
 

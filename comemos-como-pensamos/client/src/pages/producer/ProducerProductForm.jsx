@@ -5,11 +5,8 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
+import { PRODUCT_CATEGORIES, PRODUCT_UNITS, WEIGHT_UNITS } from '../../constants/products';
 import './ProducerProductForm.css';
-
-const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'eggs', 'honey', 'oil', 'wine', 'other'];
-const UNITS = ['kg', 'unit', 'liter', 'gram', 'dozen'];
-const WEIGHT_UNITS = ['g', 'kg', 'ml', 'l'];
 
 const EMPTY_VARIANT = {
   name: { es: '', en: '', fr: '', de: '' },
@@ -379,7 +376,7 @@ const ProducerProductForm = () => {
                   <h2>{t('producer.productForm.category', 'Categoría')}</h2>
                   <div className="form-group">
                     <select name="category" value={formData.category} onChange={handleChange}>
-                      {CATEGORIES.map(cat => (
+                      {PRODUCT_CATEGORIES.map(cat => (
                         <option key={cat} value={cat}>
                           {t(`categories.${cat}`, cat)}
                         </option>
@@ -511,7 +508,7 @@ const ProducerProductForm = () => {
                         <div className="form-group">
                           <label>{t('producer.productForm.unit', 'Unidad')} *</label>
                           <select name="unit" value={formData.unit} onChange={handleChange}>
-                            {UNITS.map(unit => (
+                            {PRODUCT_UNITS.map(unit => (
                               <option key={unit} value={unit}>{t(`units.${unit}`, unit)}</option>
                             ))}
                           </select>

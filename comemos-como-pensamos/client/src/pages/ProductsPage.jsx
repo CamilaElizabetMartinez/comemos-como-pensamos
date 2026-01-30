@@ -7,10 +7,8 @@ import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import { ListSkeleton } from '../components/common/Skeleton';
 import SearchAutocomplete from '../components/common/SearchAutocomplete';
+import { PRODUCT_CATEGORIES, SORT_OPTIONS } from '../constants/products';
 import './ProductsPage.css';
-
-const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'other'];
-const SORT_OPTIONS = ['newest', 'price_asc', 'price_desc', 'rating', 'name'];
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -175,7 +173,7 @@ const ProductsPage = () => {
                 onChange={(e) => handleFilterChange('category', e.target.value)}
               >
                 <option value="">{t('products.allCategories')}</option>
-                {CATEGORIES.map(cat => (
+                {PRODUCT_CATEGORIES.map(cat => (
                   <option key={cat} value={cat}>{t(`categories.${cat}`)}</option>
                 ))}
               </select>
