@@ -217,20 +217,20 @@ const BlogPage = () => {
                       <span className="featured-label">{t('blog.featured')}</span>
                       <h2>{getLocalizedContent(featuredArticle.title)}</h2>
                       <p className="excerpt">{getLocalizedContent(featuredArticle.excerpt)}</p>
-                      <div className="article-footer">
-                        <div className="article-meta">
-                          <span className="date">{formatDate(featuredArticle.publishedAt)}</span>
-                          <span className="reading-time">
-                            {t('blog.readingTime', { minutes: featuredArticle.readingTime })}
-                          </span>
-                        </div>
-                        <ShareButtons 
-                          url={getArticleUrl(featuredArticle.slug)} 
-                          title={getLocalizedContent(featuredArticle.title)} 
-                        />
+                      <div className="article-meta">
+                        <span className="date">{formatDate(featuredArticle.publishedAt)}</span>
+                        <span className="reading-time">
+                          {t('blog.readingTime', { minutes: featuredArticle.readingTime })}
+                        </span>
                       </div>
                     </div>
                   </Link>
+                  <div className="featured-share">
+                    <ShareButtons 
+                      url={getArticleUrl(featuredArticle.slug)} 
+                      title={getLocalizedContent(featuredArticle.title)} 
+                    />
+                  </div>
                 </div>
               )}
 
@@ -255,15 +255,15 @@ const BlogPage = () => {
                       <div className="article-content">
                         <h3>{getLocalizedContent(article.title)}</h3>
                         <p className="excerpt">{getLocalizedContent(article.excerpt)}</p>
+                        <div className="article-meta">
+                          <span className="date">{formatDate(article.publishedAt)}</span>
+                          <span className="reading-time">
+                            {t('blog.readingTime', { minutes: article.readingTime })}
+                          </span>
+                        </div>
                       </div>
                     </Link>
-                    <div className="article-footer">
-                      <div className="article-meta">
-                        <span className="date">{formatDate(article.publishedAt)}</span>
-                        <span className="reading-time">
-                          {t('blog.readingTime', { minutes: article.readingTime })}
-                        </span>
-                      </div>
+                    <div className="article-share">
                       <ShareButtons 
                         url={getArticleUrl(article.slug)} 
                         title={getLocalizedContent(article.title)} 
