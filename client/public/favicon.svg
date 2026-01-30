@@ -1,8 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <rect width="100" height="100" rx="16" fill="#ffffff"/>
   <rect x="4" y="4" width="92" height="92" rx="14" fill="none" stroke="#2D5A3D" stroke-width="3"/>
-  <!-- Letter C -->
-  <text x="50" y="70" font-family="Georgia, serif" font-size="58" font-weight="bold" fill="#2D5A3D" text-anchor="middle">C</text>
-  <!-- Small leaf accent -->
-  <path d="M62 22 C58 24, 54 30, 56 36 C57 32, 60 28, 66 26 C64 30, 60 34, 56 38 C60 39, 66 36, 70 28 C72 22, 66 20, 62 22 Z" fill="#2D5A3D"/>
+  
+  <!-- Fork handle (vertical line) -->
+  <rect x="38" y="30" width="4" height="55" rx="2" fill="#2D5A3D"/>
+  
+  <!-- Fork prongs -->
+  <rect x="30" y="30" width="3" height="20" rx="1.5" fill="#2D5A3D"/>
+  <rect x="38" y="30" width="3" height="20" rx="1.5" fill="#2D5A3D"/>
+  <rect x="46" y="30" width="3" height="20" rx="1.5" fill="#2D5A3D"/>
+  
+  <!-- Fork base connecting prongs -->
+  <path d="M30 48 Q40 55, 49 48" stroke="#2D5A3D" stroke-width="3" fill="none"/>
+  
+  <!-- Leaf growing from fork -->
+  <path d="M52 35 C60 30, 75 25, 78 15 C70 20, 60 28, 52 35 Z" fill="#2D5A3D"/>
+  <path d="M52 35 C58 38, 70 35, 80 28 C68 32, 58 36, 52 35 Z" fill="#2D5A3D"/>
+  <line x1="52" y1="35" x2="78" y2="18" stroke="#2D5A3D" stroke-width="1.5"/>
 </svg>

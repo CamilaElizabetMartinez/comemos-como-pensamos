@@ -1,8 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" rx="80" fill="#ffffff"/>
   <rect x="16" y="16" width="480" height="480" rx="72" fill="none" stroke="#2D5A3D" stroke-width="12"/>
-  <!-- Letter C -->
-  <text x="256" y="360" font-family="Georgia, serif" font-size="300" font-weight="bold" fill="#2D5A3D" text-anchor="middle">C</text>
-  <!-- Small leaf accent -->
-  <path d="M320 112 C300 120, 280 155, 290 188 C295 165, 310 145, 345 133 C330 155, 305 178, 285 200 C305 205, 345 188, 365 145 C378 112, 340 100, 320 112 Z" fill="#2D5A3D"/>
+  
+  <!-- Fork handle -->
+  <rect x="194" y="154" width="20" height="280" rx="10" fill="#2D5A3D"/>
+  
+  <!-- Fork prongs -->
+  <rect x="154" y="154" width="15" height="100" rx="7" fill="#2D5A3D"/>
+  <rect x="194" y="154" width="15" height="100" rx="7" fill="#2D5A3D"/>
+  <rect x="234" y="154" width="15" height="100" rx="7" fill="#2D5A3D"/>
+  
+  <!-- Fork base -->
+  <path d="M154 245 Q204 280, 249 245" stroke="#2D5A3D" stroke-width="15" fill="none"/>
+  
+  <!-- Leaf -->
+  <path d="M266 180 C310 155, 385 125, 405 75 C360 100, 310 145, 266 180 Z" fill="#2D5A3D"/>
+  <path d="M266 180 C298 195, 360 180, 415 145 C352 165, 298 185, 266 180 Z" fill="#2D5A3D"/>
+  <line x1="266" y1="180" x2="400" y2="90" stroke="#2D5A3D" stroke-width="8"/>
 </svg>

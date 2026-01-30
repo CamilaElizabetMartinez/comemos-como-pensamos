@@ -1,8 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
   <rect width="72" height="72" rx="12" fill="#ffffff"/>
   <rect x="3" y="3" width="66" height="66" rx="10" fill="none" stroke="#2D5A3D" stroke-width="2"/>
-  <!-- Letter C -->
-  <text x="36" y="51" font-family="Georgia, serif" font-size="42" font-weight="bold" fill="#2D5A3D" text-anchor="middle">C</text>
-  <!-- Small leaf accent -->
-  <path d="M45 16 C42 17, 39 21, 40 26 C41 23, 43 20, 48 19 C46 22, 43 25, 40 28 C43 28, 48 26, 51 20 C52 16, 47 15, 45 16 Z" fill="#2D5A3D"/>
+  
+  <!-- Fork handle -->
+  <rect x="27" y="22" width="3" height="40" rx="1.5" fill="#2D5A3D"/>
+  
+  <!-- Fork prongs -->
+  <rect x="22" y="22" width="2" height="14" rx="1" fill="#2D5A3D"/>
+  <rect x="27" y="22" width="2" height="14" rx="1" fill="#2D5A3D"/>
+  <rect x="33" y="22" width="2" height="14" rx="1" fill="#2D5A3D"/>
+  
+  <!-- Fork base -->
+  <path d="M22 35 Q29 40, 35 35" stroke="#2D5A3D" stroke-width="2" fill="none"/>
+  
+  <!-- Leaf -->
+  <path d="M37 25 C43 22, 54 18, 56 11 C50 14, 43 20, 37 25 Z" fill="#2D5A3D"/>
+  <line x1="37" y1="25" x2="55" y2="13" stroke="#2D5A3D" stroke-width="1"/>
 </svg>
