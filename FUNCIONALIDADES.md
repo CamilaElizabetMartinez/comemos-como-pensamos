@@ -83,6 +83,22 @@
 - ❌ Pedido cancelado
 - 💰 Pago recibido (Stripe)
 
+### Blog
+- **Listado de artículos**: Ver todos los artículos publicados
+- **Detalle de artículo**: Leer contenido completo
+- **Compartir**: Redes sociales (Facebook, Twitter, WhatsApp)
+- **Categorías**: Filtrar por tipo de contenido
+
+### Newsletter
+- **Suscripción**: Formulario en footer
+- **Email de bienvenida**: Automático al suscribirse
+- **Darse de baja**: Enlace en cada email
+
+### Cupones de Descuento
+- **Aplicar cupón**: Introducir código en checkout
+- **Validación**: Verificación automática de condiciones
+- **Descuento**: Aplicado al total del pedido
+
 ---
 
 ## Productor (Producer)
@@ -146,6 +162,22 @@
 - 🎉 Cuenta de productor aprobada
 - ❌ Solicitud de productor rechazada
 
+### Zonas de Envío
+- **Configurar zonas**: Crear zonas con regiones, precios y tiempos de entrega
+- **Envío gratis**: Definir mínimo de pedido para envío gratuito
+- **Cálculo automático**: El sistema calcula el envío según dirección del cliente
+
+### Variantes de Producto
+- **Crear variantes**: Diferentes presentaciones (peso, tamaño, etc.)
+- **Precio por variante**: Cada variante tiene su propio precio
+- **Stock independiente**: Control de stock por variante
+- **SKU opcional**: Código único por variante
+
+### Código de Referido
+- **Código único**: Cada productor tiene un código para compartir
+- **Tracking**: Ver productores registrados con tu código
+- **Estadísticas**: Panel de referidos en el dashboard
+
 ---
 
 ## Administrador (Admin)
@@ -198,6 +230,37 @@
 
 ### Notificaciones Push
 - 👤 Nuevo productor pendiente de aprobación
+
+### Gestión de Blog
+- **Crear artículos**: Contenido multiidioma (ES, EN, FR, DE)
+- **Imagen destacada**: Subida a Cloudinary
+- **Categorías**: Noticias, recetas, productores, sostenibilidad, consejos
+- **Estados**: Borrador y publicado
+- **Slug automático**: Generado desde el título
+- **Editar/Eliminar**: Gestión completa de artículos
+
+### Gestión de Cupones
+- **Crear cupones**: Código, tipo (porcentaje/fijo), valor
+- **Condiciones**: Mínimo de compra, fechas de validez
+- **Límites**: Número máximo de usos, solo primer pedido
+- **Activar/Desactivar**: Control de disponibilidad
+- **Estadísticas**: Ver usos por cupón
+
+### Gestión de Leads (CRM)
+- **Captar leads**: Registro de productores potenciales
+- **Información completa**: Nombre, negocio, teléfono, email, ubicación
+- **WhatsApp**: Enlace directo para contactar
+- **Estados**: Nuevo, contactado, interesado, negociando, registrado, perdido
+- **Notas**: Historial de interacciones
+- **Seguimiento**: Programar próxima acción
+- **Prioridades**: Alta, media, baja
+- **Origen**: Mercado, referido, evento, web, etc.
+
+### Newsletter
+- **Ver suscriptores**: Lista de emails suscritos
+- **Estado**: Activo/inactivo
+- **Origen**: Footer, popup, etc.
+- **Exportar**: Lista de suscriptores
 
 ---
 
@@ -278,13 +341,20 @@
 |---------------|:--------:|:--------:|:-----:|
 | Ver productos | ✅ | ✅ | ✅ |
 | Crear productos | ❌ | ✅ | ✅ |
+| Crear variantes | ❌ | ✅ | ✅ |
 | Comprar productos | ✅ | ✅ | ✅ |
+| Aplicar cupones | ✅ | ✅ | ✅ |
 | Ver mis pedidos | ✅ | ✅ | ✅ |
 | Ver pedidos de productor | ❌ | ✅ | ✅ |
 | Ver todos los pedidos | ❌ | ❌ | ✅ |
 | Actualizar estado pedido | ❌ | ✅ | ✅ |
+| Configurar zonas de envío | ❌ | ✅ | ✅ |
 | Gestionar usuarios | ❌ | ❌ | ✅ |
 | Aprobar productores | ❌ | ❌ | ✅ |
+| Gestionar blog | ❌ | ❌ | ✅ |
+| Gestionar cupones | ❌ | ❌ | ✅ |
+| Gestionar leads | ❌ | ❌ | ✅ |
+| Ver newsletter | ❌ | ❌ | ✅ |
 | Exportar reportes | ❌ | ✅* | ✅ |
 | Descargar facturas | ✅ | ❌ | ✅ |
 

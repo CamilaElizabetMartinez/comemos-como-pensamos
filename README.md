@@ -33,11 +33,18 @@ Una aplicación web completa que conecta productores locales con consumidores co
 ### Características principales:
 - 🌍 Multiidioma (ES, EN, FR, DE)
 - 💳 Múltiples métodos de pago (Stripe, transferencia, contra reembolso)
-- 📱 Diseño responsive
+- 📱 Diseño responsive completo (desktop, tablet, móvil)
 - 🔔 Notificaciones push en tiempo real
 - 📧 Emails transaccionales automáticos
 - 📄 Generación de facturas PDF
 - 📊 Exportación de reportes (PDF/Excel)
+- 📝 Blog integrado con artículos multiidioma
+- 🎟️ Sistema de cupones de descuento
+- 📰 Newsletter con email de bienvenida
+- 👥 CRM de leads para captación de productores
+- 🚚 Zonas de envío configurables por productor
+- 🔄 Variantes de producto (peso, tamaño, etc.)
+- 🎁 Sistema de códigos de referido
 
 ---
 
@@ -721,7 +728,55 @@ Al marcar como "shipped":
 
 ---
 
-### 7. Notificaciones Push (Productor)
+### 7. Zonas de Envío
+
+- **Ruta:** `/producer/shipping`
+
+#### 7.1 Configurar zonas
+| Campo | Descripción |
+|-------|-------------|
+| Nombre de zona | Ej: "Local", "Provincial", "Nacional" |
+| Regiones | Lista de regiones/provincias cubiertas |
+| Precio de envío | Coste del envío |
+| Envío gratis desde | Pedido mínimo para envío gratuito |
+| Tiempo de entrega | Días estimados |
+
+#### 7.2 Cálculo automático
+- El checkout calcula el envío según la dirección del cliente
+- Muestra opciones disponibles por productor
+
+---
+
+### 8. Variantes de Producto
+
+#### 8.1 Crear variantes
+| Campo | Descripción |
+|-------|-------------|
+| Nombre | Ej: "500g", "1kg", "2kg" |
+| Precio | Precio específico de la variante |
+| Stock | Stock independiente |
+| SKU | Código único (opcional) |
+
+#### 8.2 Funcionamiento
+- Producto base con múltiples variantes
+- Cada variante tiene su precio y stock
+- Cliente selecciona variante en detalle de producto
+- Carrito muestra variante seleccionada
+
+---
+
+### 9. Código de Referido
+
+- **Ubicación:** Dashboard del productor
+
+#### 9.1 Funcionamiento
+- Cada productor tiene un código único
+- Nuevos productores pueden introducir código al registrarse
+- Sistema de tracking de referidos
+
+---
+
+### 10. Notificaciones Push (Productor)
 
 | Evento | Notificación |
 |--------|--------------|
@@ -888,6 +943,99 @@ Al marcar como "shipped":
 | Evento | Notificación |
 |--------|--------------|
 | Nuevo productor | 👤 Nuevo productor pendiente: [Nombre] solicita aprobación |
+
+---
+
+### 8. Gestión de Blog
+
+- **Ruta:** `/admin/blog`
+
+#### 8.1 Artículos
+- Crear, editar y eliminar artículos
+- Contenido multiidioma (ES, EN, FR, DE)
+- Imagen destacada
+- Categorías: noticias, recetas, productores, sostenibilidad, consejos
+- Estados: borrador, publicado
+- Slug automático desde el título
+- Contador de visitas
+
+#### 8.2 Vista pública
+- **Ruta:** `/blog` - Listado de artículos
+- **Ruta:** `/blog/:slug` - Detalle del artículo
+- Compartir en redes sociales
+
+---
+
+### 9. Gestión de Cupones
+
+- **Ruta:** `/admin/coupons`
+
+#### 9.1 Crear cupón
+| Campo | Descripción |
+|-------|-------------|
+| Código | Código único (ej: WELCOME10) |
+| Tipo | Porcentaje o cantidad fija |
+| Valor | Descuento a aplicar |
+| Mínimo de compra | Pedido mínimo requerido |
+| Fecha inicio | Desde cuándo es válido |
+| Fecha fin | Hasta cuándo es válido |
+| Límite de usos | Máximo de veces que se puede usar |
+| Solo primer pedido | Exclusivo para nuevos clientes |
+
+#### 9.2 Aplicación
+- Cliente introduce código en checkout
+- Validación automática de condiciones
+- Descuento aplicado al total
+
+---
+
+### 10. Gestión de Leads (CRM)
+
+- **Ruta:** `/admin/leads`
+
+#### 10.1 Información del lead
+| Campo | Descripción |
+|-------|-------------|
+| Nombre | Nombre del contacto |
+| Negocio | Nombre del negocio |
+| Teléfono | Con enlace a WhatsApp |
+| Email | Email de contacto |
+| Ciudad/Mercado | Ubicación |
+| Categorías | Tipo de productos |
+| Origen | Mercado, referido, evento, web, etc. |
+| Prioridad | Baja, media, alta |
+
+#### 10.2 Estados del lead
+| Estado | Descripción |
+|--------|-------------|
+| new | Nuevo contacto |
+| contacted | Contactado |
+| interested | Interesado |
+| negotiating | En negociación |
+| registered | Registrado como productor |
+| lost | Perdido |
+
+#### 10.3 Seguimiento
+- Sistema de notas por lead
+- Fecha de próximo seguimiento
+- Historial de interacciones
+- Razón de pérdida (si aplica)
+
+---
+
+### 11. Newsletter
+
+- **Ruta:** `/admin/newsletter` (listado de suscriptores)
+
+#### 11.1 Suscripción
+- Formulario en footer
+- Email de bienvenida automático
+- Soporte multiidioma
+
+#### 11.2 Gestión
+- Ver suscriptores activos/inactivos
+- Exportar lista
+- Estadísticas de suscripción
 
 ---
 
@@ -1110,6 +1258,58 @@ GET    /api/reports/products/excel Productos en Excel
 GET    /api/reports/users/excel    Usuarios en Excel
 ```
 
+### Blog
+```
+GET    /api/articles               Listar artículos publicados
+GET    /api/articles/:slug         Detalle de artículo
+POST   /api/articles               Crear artículo (admin)
+PUT    /api/articles/:id           Actualizar artículo (admin)
+DELETE /api/articles/:id           Eliminar artículo (admin)
+```
+
+### Cupones
+```
+GET    /api/coupons                Listar cupones (admin)
+POST   /api/coupons                Crear cupón (admin)
+PUT    /api/coupons/:id            Actualizar cupón (admin)
+DELETE /api/coupons/:id            Eliminar cupón (admin)
+POST   /api/coupons/validate       Validar cupón (checkout)
+```
+
+### Leads (CRM)
+```
+GET    /api/leads                  Listar leads (admin)
+GET    /api/leads/stats            Estadísticas de leads (admin)
+POST   /api/leads                  Crear lead (admin)
+PUT    /api/leads/:id              Actualizar lead (admin)
+PUT    /api/leads/:id/status       Cambiar estado (admin)
+POST   /api/leads/:id/notes        Añadir nota (admin)
+DELETE /api/leads/:id              Eliminar lead (admin)
+```
+
+### Newsletter
+```
+POST   /api/newsletter/subscribe   Suscribirse
+POST   /api/newsletter/unsubscribe Darse de baja
+GET    /api/newsletter             Listar suscriptores (admin)
+```
+
+### Zonas de Envío
+```
+GET    /api/shipping/zones         Listar zonas del productor
+POST   /api/shipping/zones         Crear zona
+PUT    /api/shipping/zones/:id     Actualizar zona
+DELETE /api/shipping/zones/:id     Eliminar zona
+POST   /api/shipping/calculate     Calcular envío para pedido
+```
+
+### Referidos
+```
+GET    /api/referrals/code         Obtener mi código de referido
+POST   /api/referrals/validate     Validar código de referido
+GET    /api/referrals/stats        Estadísticas de referidos
+```
+
 ---
 
 ## Estructura del Proyecto
@@ -1121,8 +1321,9 @@ comemos-como-pensamos/
 │   │   └── sw.js              # Service Worker
 │   ├── src/
 │   │   ├── components/        # Componentes reutilizables
-│   │   │   ├── common/        # Navbar, Footer, CookieBanner...
+│   │   │   ├── common/        # Navbar, Footer, CookieBanner, Icons...
 │   │   │   └── reviews/       # ProductReviews
+│   │   ├── constants/         # Constantes (categorías, etc.)
 │   │   ├── context/           # Context API
 │   │   │   ├── AuthContext.jsx
 │   │   │   ├── CartContext.jsx
@@ -1130,32 +1331,43 @@ comemos-como-pensamos/
 │   │   ├── i18n/              # Internacionalización
 │   │   │   └── locales/       # es.json, en.json, fr.json, de.json
 │   │   ├── pages/             # Páginas
-│   │   │   ├── admin/         # Panel de admin
-│   │   │   └── producer/      # Panel de productor
+│   │   │   ├── admin/         # Panel de admin (users, orders, producers, blog, coupons, leads...)
+│   │   │   └── producer/      # Panel de productor (products, orders, shipping, reports...)
 │   │   ├── services/          # Servicios API
-│   │   └── App.jsx            # Componente principal
+│   │   └── App.jsx            # Componente principal con rutas
 │   └── package.json
 │
 ├── server/                     # Backend Node.js
 │   ├── src/
 │   │   ├── config/            # Configuraciones
-│   │   │   ├── db.js          # MongoDB
+│   │   │   ├── database.js    # MongoDB
 │   │   │   ├── cloudinary.js  # Cloudinary
 │   │   │   ├── email.js       # Nodemailer
 │   │   │   ├── stripe.js      # Stripe
 │   │   │   └── webpush.js     # Web Push
-│   │   ├── controllers/       # Controladores
+│   │   ├── controllers/       # Controladores (auth, products, orders, articles, coupons, leads...)
 │   │   ├── middleware/        # Middlewares
 │   │   │   ├── auth.js        # Autenticación JWT
 │   │   │   └── upload.js      # Multer
 │   │   ├── models/            # Modelos Mongoose
-│   │   ├── routes/            # Rutas Express
+│   │   │   ├── User.js
+│   │   │   ├── Producer.js
+│   │   │   ├── Product.js
+│   │   │   ├── Order.js
+│   │   │   ├── Article.js
+│   │   │   ├── Coupon.js
+│   │   │   ├── ProducerLead.js
+│   │   │   ├── ShippingZone.js
+│   │   │   ├── NewsletterSubscription.js
+│   │   │   └── ...
+│   │   ├── routes/            # Rutas Express (21 archivos)
 │   │   ├── services/          # Servicios
 │   │   │   ├── invoiceService.js
 │   │   │   ├── notificationService.js
 │   │   │   └── reportService.js
 │   │   ├── utils/             # Utilidades
-│   │   │   └── emailSender.js
+│   │   │   ├── emailSender.js
+│   │   │   └── generateToken.js
 │   │   └── app.js             # App Express
 │   ├── .env                   # Variables de entorno
 │   └── package.json
