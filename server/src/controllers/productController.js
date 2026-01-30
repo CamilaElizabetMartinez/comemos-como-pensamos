@@ -2,6 +2,15 @@ import Product from '../models/Product.js';
 import Producer from '../models/Producer.js';
 import { deleteImage } from '../config/cloudinary.js';
 
+// Helper: Get IDs of active (non-suspended, approved) producers
+const getActiveProducerIds = async () => {
+  const activeProducers = await Producer.find(
+    { isApproved: true, isSuspended: { $ne: true } },
+    { _id: 1 }
+  );
+  return activeProducers.map(producer => producer._id);
+};
+
 // @desc    Obtener todos los productos con filtros y paginación
 // @route   GET /api/products
 // @access  Public
@@ -19,11 +28,31 @@ export const getProducts = async (req, res) => {
       limit = 20
     } = req.query;
 
+    // Get active producer IDs to filter out suspended producers
+    const activeProducerIds = await getActiveProducerIds();
+
     // Construir filtros
-    const filters = {};
+    const filters = {
+      producerId: { $in: activeProducerIds }
+    };
 
     if (category) filters.category = category;
-    if (producerId) filters.producerId = producerId;
+    if (producerId) {
+      // Override with specific producer if requested (and they're active)
+      if (activeProducerIds.some(id => id.toString() === producerId)) {
+        filters.producerId = producerId;
+      } else {
+        // Producer is suspended, return empty results
+        return res.status(200).json({
+          success: true,
+          count: 0,
+          total: 0,
+          totalPages: 0,
+          currentPage: parseInt(page),
+          data: { products: [] }
+        });
+      }
+    }
     if (isAvailable !== undefined) filters.isAvailable = isAvailable === 'true';
 
     if (minPrice || maxPrice) {
@@ -80,12 +109,20 @@ export const getProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
-      .populate('producerId', 'businessName description logo location certifications rating totalReviews');
+      .populate('producerId', 'businessName description logo location certifications rating totalReviews isSuspended isApproved');
 
     if (!product) {
       return res.status(404).json({
         success: false,
         message: 'Producto no encontrado'
+      });
+    }
+
+    // Check if producer is suspended or not approved
+    if (product.producerId?.isSuspended || !product.producerId?.isApproved) {
+      return res.status(404).json({
+        success: false,
+        message: 'Producto no disponible'
       });
     }
 
@@ -378,6 +415,19 @@ export const getProductsByProducer = async (req, res) => {
     const { page = 1, limit = 20 } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
+    // Check if producer is active
+    const producer = await Producer.findById(req.params.producerId);
+    if (!producer || producer.isSuspended || !producer.isApproved) {
+      return res.status(200).json({
+        success: true,
+        count: 0,
+        total: 0,
+        totalPages: 0,
+        currentPage: parseInt(page),
+        data: { products: [] }
+      });
+    }
+
     const products = await Product.find({ producerId: req.params.producerId })
       .sort({ createdAt: -1 })
       .limit(parseInt(limit))
@@ -409,10 +459,12 @@ export const getProductsByProducer = async (req, res) => {
 export const getFeaturedProducts = async (req, res) => {
   try {
     const { limit = 8 } = req.query;
+    const activeProducerIds = await getActiveProducerIds();
 
     const products = await Product.find({ 
       isAvailable: true, 
-      isFeatured: true 
+      isFeatured: true,
+      producerId: { $in: activeProducerIds }
     })
       .populate('producerId', 'businessName logo location')
       .sort({ rating: -1 })
@@ -439,8 +491,12 @@ export const getFeaturedProducts = async (req, res) => {
 export const getLatestProducts = async (req, res) => {
   try {
     const { limit = 8 } = req.query;
+    const activeProducerIds = await getActiveProducerIds();
 
-    const products = await Product.find({ isAvailable: true })
+    const products = await Product.find({ 
+      isAvailable: true,
+      producerId: { $in: activeProducerIds }
+    })
       .populate('producerId', 'businessName logo location')
       .sort({ createdAt: -1 })
       .limit(parseInt(limit));
@@ -466,8 +522,12 @@ export const getLatestProducts = async (req, res) => {
 export const getBestsellerProducts = async (req, res) => {
   try {
     const { limit = 8 } = req.query;
+    const activeProducerIds = await getActiveProducerIds();
 
-    const products = await Product.find({ isAvailable: true })
+    const products = await Product.find({ 
+      isAvailable: true,
+      producerId: { $in: activeProducerIds }
+    })
       .populate('producerId', 'businessName logo location')
       .sort({ salesCount: -1, rating: -1 })
       .limit(parseInt(limit));
@@ -493,6 +553,7 @@ export const getBestsellerProducts = async (req, res) => {
 export const getRelatedProducts = async (req, res) => {
   try {
     const { limit = 4 } = req.query;
+    const activeProducerIds = await getActiveProducerIds();
     
     const product = await Product.findById(req.params.id);
     
@@ -507,6 +568,7 @@ export const getRelatedProducts = async (req, res) => {
     const relatedProducts = await Product.find({
       _id: { $ne: product._id },
       isAvailable: true,
+      producerId: { $in: activeProducerIds },
       $or: [
         { category: product.category },
         { producerId: product.producerId }

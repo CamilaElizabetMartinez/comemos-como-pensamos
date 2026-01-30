@@ -52,14 +52,15 @@ export const searchProducts = async (req, res) => {
 
     pipeline.push({ $unwind: '$producer' });
 
-    // Filtros del productor
-    const producerFilters = {};
+    // Filtros del productor (exclude suspended)
+    const producerFilters = {
+      'producer.isApproved': true,
+      'producer.isSuspended': { $ne: true }
+    };
     if (city) producerFilters['producer.location.city'] = new RegExp(city, 'i');
     if (certification) producerFilters['producer.certifications'] = certification;
 
-    if (Object.keys(producerFilters).length > 0) {
-      pipeline.push({ $match: producerFilters });
-    }
+    pipeline.push({ $match: producerFilters });
 
     // Ordenamiento
     let sortOption = { createdAt: -1 };
@@ -117,21 +118,31 @@ export const getSearchSuggestions = async (req, res) => {
       });
     }
 
-    // Buscar productos que coincidan
+    // Get active producer IDs
+    const activeProducers = await Producer.find(
+      { isApproved: true, isSuspended: { $ne: true } },
+      { _id: 1 }
+    );
+    const activeProducerIds = activeProducers.map(producer => producer._id);
+
+    // Buscar productos que coincidan (only from active producers)
     const products = await Product.find({
       $or: [
         { 'name.es': new RegExp(query, 'i') },
         { 'name.en': new RegExp(query, 'i') }
       ],
-      isAvailable: true
+      isAvailable: true,
+      producerId: { $in: activeProducerIds }
     })
-    .select('name images category')
+    .populate('producerId', 'businessName')
+    .select('name images category price producerId')
     .limit(5);
 
-    // Buscar productores que coincidan
+    // Buscar productores que coincidan (exclude suspended)
     const producers = await Producer.find({
       businessName: new RegExp(query, 'i'),
-      isApproved: true
+      isApproved: true,
+      isSuspended: { $ne: true }
     })
     .select('businessName logo')
     .limit(3);
@@ -170,7 +181,10 @@ export const searchProducers = async (req, res) => {
   try {
     const { query, city, certification, page = 1, limit = 20 } = req.query;
 
-    const filters = { isApproved: true };
+    const filters = { 
+      isApproved: true,
+      isSuspended: { $ne: true }
+    };
 
     if (query) {
       filters.$text = { $search: query };

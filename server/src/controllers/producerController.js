@@ -19,8 +19,11 @@ export const getProducers = async (req, res) => {
       limit = 20
     } = req.query;
 
-    // Construir filtros
-    const filters = { isApproved: true }; // Solo productores aprobados para público
+    // Only approved and non-suspended producers for public
+    const filters = { 
+      isApproved: true,
+      isSuspended: { $ne: true }
+    };
 
     if (city) filters['location.city'] = new RegExp(city, 'i');
     if (region) filters['location.region'] = new RegExp(region, 'i');
@@ -72,6 +75,14 @@ export const getProducerById = async (req, res) => {
       return res.status(404).json({
         success: false,
         message: 'Productor no encontrado'
+      });
+    }
+
+    // Check if producer is suspended or not approved
+    if (producer.isSuspended || !producer.isApproved) {
+      return res.status(404).json({
+        success: false,
+        message: 'Productor no disponible'
       });
     }
 
