@@ -75,6 +75,15 @@ const Navbar = () => {
           <img src={logoSrc} alt="Comemos Como Pensamos" className="logo-icon" />
         </Link>
 
+        {/* Mobile overlay */}
+        {mobileMenuOpen && (
+          <div 
+            className="mobile-overlay" 
+            onClick={closeMobileMenu}
+            aria-hidden="true"
+          />
+        )}
+
         <div id="mobile-menu" className={`navbar-menu ${mobileMenuOpen ? 'open' : ''}`} role="menubar">
           <Link to="/" className="navbar-link" onClick={closeMobileMenu}>{t('nav.home')}</Link>
           <Link to="/products" className="navbar-link" onClick={closeMobileMenu}>{t('nav.products')}</Link>

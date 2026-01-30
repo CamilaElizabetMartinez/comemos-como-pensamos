@@ -458,16 +458,9 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile Menu Overlay */
+/* Mobile Menu Overlay - Hidden on desktop */
 .mobile-overlay {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
 }
 
 /* ==========================================
@@ -565,6 +558,24 @@
 
   .hamburger-btn {
     display: flex;
+  }
+
+  /* Mobile overlay */
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .navbar-logo {
@@ -749,6 +760,36 @@
     height: 40px;
   }
 
+  .navbar-mobile-actions {
+    gap: 0.25rem;
+  }
+
+  .mobile-cart-btn,
+  .mobile-user-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mobile-cart-btn svg,
+  .mobile-user-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-user-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+
+  .mobile-cart-badge {
+    top: 0;
+    right: 0;
+    min-width: 14px;
+    height: 14px;
+    font-size: 0.6rem;
+  }
+
   .hamburger-btn {
     width: 36px;
     height: 36px;
@@ -772,5 +813,101 @@
   .navbar-actions {
     width: 100%;
     padding: 150px 1.5rem 1.5rem;
+  }
+
+  .language-trigger {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .globe-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .current-lang {
+    font-size: 0.7rem;
+  }
+
+  .dropdown-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Mobile muy pequeño (< 400px) */
+@media (max-width: 400px) {
+  .navbar-container {
+    padding: 0 0.5rem;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-mobile-actions {
+    gap: 0.15rem;
+  }
+
+  .mobile-cart-btn,
+  .mobile-user-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mobile-cart-btn svg,
+  .mobile-user-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mobile-user-avatar {
+    width: 22px;
+    height: 22px;
+    font-size: 0.55rem;
+  }
+
+  .hamburger-btn {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+  }
+
+  .hamburger-line {
+    width: 18px;
+    height: 2px;
+    gap: 4px;
+  }
+
+  .navbar-menu {
+    padding: 60px 1rem 1rem;
+  }
+
+  .navbar-link {
+    font-size: 0.95rem;
+    padding: 0.75rem 0;
+  }
+
+  .navbar-actions {
+    padding: 130px 1rem 1rem;
+  }
+
+  .auth-nav-link {
+    font-size: 0.9rem;
+  }
+
+  .user-menu-trigger {
+    padding: 0.5rem 0;
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
+  .user-name {
+    font-size: 0.85rem;
   }
 }
