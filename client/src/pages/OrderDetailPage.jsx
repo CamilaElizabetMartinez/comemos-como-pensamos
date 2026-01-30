@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { OrderDetailSkeleton } from '../components/common/Skeleton';
 import { IconStarFilled } from '../components/common/Icons';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import './OrderDetailPage.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -287,10 +288,11 @@ const OrderDetailPage = () => {
   return (
     <div className={`order-detail-page ${isFromAdmin ? 'admin-view' : ''}`}>
       <div className="order-detail-container">
+        <Breadcrumbs 
+          items={[{ label: isFromAdmin ? t('admin.orders', 'Pedidos') : t('orders.title', 'Mis pedidos'), path: backUrl }]}
+          currentPage={`#${order.orderNumber}`}
+        />
         <div className="order-detail-header">
-          <Link to={backUrl} className="back-link">
-            {backText}
-          </Link>
           <h1>{t('orderDetail.title')} #{order.orderNumber}</h1>
           <p className="order-date">{formatDate(order.createdAt)}</p>
         </div>

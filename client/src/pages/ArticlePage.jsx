@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import useSEO from '../hooks/useSEO';
 import { ArticleDetailSkeleton } from '../components/common/Skeleton';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import './ArticlePage.css';
 
 const ArticlePage = () => {
@@ -147,9 +148,10 @@ const ArticlePage = () => {
       <article className="article-container">
         <header className="article-header">
           <div className="container">
-            <Link to="/blog" className="back-link">
-              {t('blog.backToBlog')}
-            </Link>
+            <Breadcrumbs 
+              items={[{ label: t('blog.title', 'Blog'), path: '/blog' }]}
+              currentPage={getLocalizedContent(article.title)}
+            />
             
             <span className="category-badge">
               {t(`blog.categories.${article.category}`)}

@@ -15,6 +15,7 @@ import WhatsAppButton from './components/common/WhatsAppButton';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import PageLoader from './components/common/PageLoader';
 import Analytics from './components/common/Analytics';
+import ScrollToTop from './components/common/ScrollToTop';
 
 // Public Pages (lazy loaded)
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -68,6 +69,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
+        <ScrollToTop />
         <Analytics />
         <AuthProvider>
           <CartProvider>

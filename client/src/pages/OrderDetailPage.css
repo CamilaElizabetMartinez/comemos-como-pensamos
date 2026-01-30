@@ -676,3 +676,71 @@
   color: white;
 }
 
+/* Print styles */
+@media print {
+  .order-detail-page {
+    background: white !important;
+    padding: 0;
+  }
+
+  .order-detail-page.admin-view {
+    background: white !important;
+  }
+
+  .order-detail-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .order-detail-header h1,
+  .order-detail-header .order-date,
+  .order-detail-page.admin-view .order-detail-header h1 {
+    color: black !important;
+  }
+
+  .order-status-timeline,
+  .order-actions,
+  .btn-track-package,
+  .review-modal-overlay,
+  .back-link {
+    display: none !important;
+  }
+
+  .order-sections {
+    display: block;
+  }
+
+  .order-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .order-items-list .order-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .order-item-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .order-summary-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .shipping-info-card,
+  .order-summary-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+}

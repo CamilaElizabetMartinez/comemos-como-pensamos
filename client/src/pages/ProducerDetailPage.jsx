@@ -7,6 +7,7 @@ import api from '../services/api';
 import { ProducerDetailSkeleton } from '../components/common/Skeleton';
 import { IconPackage } from '../components/common/Icons';
 import StarRating from '../components/common/StarRating';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import './ProducerDetailPage.css';
 
 const ProducerDetailPage = () => {
@@ -92,9 +93,10 @@ const ProducerDetailPage = () => {
   return (
     <div className="producer-detail-page">
       <div className="producer-detail-container">
-        <Link to="/producers" className="back-link">
-          {t('producerDetail.backToProducers')}
-        </Link>
+        <Breadcrumbs 
+          items={[{ label: t('producers.title', 'Productores'), path: '/producers' }]}
+          currentPage={producer.businessName}
+        />
 
         <div className="producer-hero">
           <div className="producer-hero-logo">
