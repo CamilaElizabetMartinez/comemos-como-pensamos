@@ -704,9 +704,7 @@
 @media (max-width: 480px) {
   .producer-dashboard .stats-grid {
     grid-template-columns: 1fr;
-  }
-
-  .producer-dashboard .stat-card {
+  }  .producer-dashboard .stat-card {
     flex-direction: row;
     align-items: center;
   }  .producer-dashboard .referral-share-buttons {

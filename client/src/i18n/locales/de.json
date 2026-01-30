@@ -845,7 +845,19 @@
       "success": "Vielen Dank für Ihre Anmeldung!",
       "subscribed": "Sie sind angemeldet!",
       "error": "Fehler beim Anmelden. Bitte versuchen Sie es erneut.",
-      "invalidEmail": "Bitte geben Sie eine gültige E-Mail ein"
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail ein",
+      "processing": "Ihre Anfrage wird bearbeitet...",
+      "unsubscribeTitle": "Abmelden",
+      "unsubscribeDesc": "Geben Sie Ihre E-Mail ein, um sich von unserem Newsletter abzumelden.",
+      "unsubscribeButton": "Abmelden",
+      "unsubscribeSuccess": "Sie wurden abgemeldet",
+      "unsubscribeSuccessDesc": "Sie erhalten keine weiteren E-Mails von unserem Newsletter.",
+      "unsubscribeError": "Fehler bei der Verarbeitung",
+      "unsubscribeErrorTitle": "Etwas ist schief gelaufen",
+      "unsubscribeErrorDesc": "Wir konnten Ihre Anfrage nicht bearbeiten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.",
+      "emailNotFound": "E-Mail nicht gefunden",
+      "emailNotFoundDesc": "Diese E-Mail ist nicht in unserem Newsletter registriert.",
+      "emailPlaceholder": "ihre@email.de"
     }
   },
   "blog": {

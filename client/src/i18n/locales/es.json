@@ -1111,7 +1111,19 @@
       "success": "¡Gracias por suscribirte!",
       "subscribed": "¡Ya estás suscrito!",
       "error": "Error al suscribirse. Inténtalo de nuevo.",
-      "invalidEmail": "Por favor, introduce un email válido"
+      "invalidEmail": "Por favor, introduce un email válido",
+      "processing": "Procesando tu solicitud...",
+      "unsubscribeTitle": "Darse de baja",
+      "unsubscribeDesc": "Introduce tu email para cancelar tu suscripción a nuestra newsletter.",
+      "unsubscribeButton": "Cancelar suscripción",
+      "unsubscribeSuccess": "Te has dado de baja correctamente",
+      "unsubscribeSuccessDesc": "Ya no recibirás más emails de nuestra newsletter.",
+      "unsubscribeError": "Error al procesar la solicitud",
+      "unsubscribeErrorTitle": "Algo salió mal",
+      "unsubscribeErrorDesc": "No hemos podido procesar tu solicitud. Por favor, inténtalo de nuevo o contáctanos.",
+      "emailNotFound": "Email no encontrado",
+      "emailNotFoundDesc": "Este email no está registrado en nuestra newsletter.",
+      "emailPlaceholder": "tu@email.com"
     }
   },
   "blog": {

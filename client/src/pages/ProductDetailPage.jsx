@@ -9,6 +9,7 @@ import api from '../services/api';
 import ProductReviews from '../components/reviews/ProductReviews';
 import ProductCard from '../components/common/ProductCard';
 import { ProductDetailSkeleton } from '../components/common/Skeleton';
+import SEO from '../components/common/SEO';
 import './ProductDetailPage.css';
 
 const ProductDetailPage = () => {
@@ -290,24 +291,39 @@ const ProductDetailPage = () => {
     : '';
 
   return (
-    <div className="product-detail-page">
-      <div className="container">
-        {/* Breadcrumbs */}
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link to="/">{t('nav.home')}</Link>
-          <span className="breadcrumb-separator">/</span>
-          <Link to="/products">{t('nav.products')}</Link>
-          {product.category && (
-            <>
-              <span className="breadcrumb-separator">/</span>
-              <Link to={`/products?category=${product.category}`}>{categoryName}</Link>
-            </>
-          )}
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">{getLocalizedText(product.name)}</span>
-        </nav>
+    <>
+      <SEO
+        title={getLocalizedText(product.name)}
+        description={getLocalizedText(product.description)?.substring(0, 160)}
+        image={product.images?.[0]?.url}
+        url={`/products/${product._id}`}
+        type="product"
+        product={{
+          name: getLocalizedText(product.name),
+          price: selectedVariant?.price || product.price,
+          stock: selectedVariant?.stock ?? product.stock,
+          rating: reviewStats.average,
+          reviewCount: reviewStats.count
+        }}
+      />
+      <div className="product-detail-page">
+        <div className="container">
+          {/* Breadcrumbs */}
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
+            <Link to="/">{t('nav.home')}</Link>
+            <span className="breadcrumb-separator">/</span>
+            <Link to="/products">{t('nav.products')}</Link>
+            {product.category && (
+              <>
+                <span className="breadcrumb-separator">/</span>
+                <Link to={`/products?category=${product.category}`}>{categoryName}</Link>
+              </>
+            )}
+            <span className="breadcrumb-separator">/</span>
+            <span className="breadcrumb-current">{getLocalizedText(product.name)}</span>
+          </nav>
 
-        <div className="product-detail">
+          <div className="product-detail">
           <div className="product-gallery">
             <div className="main-image-container">
               {product.images?.length > 0 ? (
@@ -598,7 +614,8 @@ const ProductDetailPage = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

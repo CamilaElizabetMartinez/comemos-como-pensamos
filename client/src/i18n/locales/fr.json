@@ -845,7 +845,19 @@
       "success": "Merci pour votre inscription!",
       "subscribed": "Vous êtes inscrit!",
       "error": "Erreur lors de l'inscription. Veuillez réessayer.",
-      "invalidEmail": "Veuillez entrer un email valide"
+      "invalidEmail": "Veuillez entrer un email valide",
+      "processing": "Traitement de votre demande...",
+      "unsubscribeTitle": "Se désabonner",
+      "unsubscribeDesc": "Entrez votre email pour vous désabonner de notre newsletter.",
+      "unsubscribeButton": "Se désabonner",
+      "unsubscribeSuccess": "Vous avez été désabonné",
+      "unsubscribeSuccessDesc": "Vous ne recevrez plus d'emails de notre newsletter.",
+      "unsubscribeError": "Erreur lors du traitement",
+      "unsubscribeErrorTitle": "Une erreur s'est produite",
+      "unsubscribeErrorDesc": "Nous n'avons pas pu traiter votre demande. Veuillez réessayer ou nous contacter.",
+      "emailNotFound": "Email non trouvé",
+      "emailNotFoundDesc": "Cet email n'est pas inscrit à notre newsletter.",
+      "emailPlaceholder": "votre@email.com"
     }
   },
   "blog": {

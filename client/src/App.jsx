@@ -44,6 +44,7 @@ const ProducerCalculator = lazy(() => import('./pages/ProducerCalculator'));
 const JoinAsProducerPage = lazy(() => import('./pages/JoinAsProducerPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const ArticlePage = lazy(() => import('./pages/ArticlePage'));
+const NewsletterUnsubscribePage = lazy(() => import('./pages/NewsletterUnsubscribePage'));
 
 // Producer Pages (lazy loaded)
 const ProducerSetup = lazy(() => import('./pages/producer/ProducerSetup'));
@@ -106,6 +107,7 @@ function App() {
                   <Route path="/blog/:slug" element={<ArticlePage />} />
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/privacy" element={<PrivacyPage />} />
+                  <Route path="/newsletter/unsubscribe" element={<NewsletterUnsubscribePage />} />
                   
                   {/* Producer Panel */}
                   <Route path="/producer/setup" element={<ProducerSetup />} />
