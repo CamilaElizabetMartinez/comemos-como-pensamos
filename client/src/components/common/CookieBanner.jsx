@@ -138,22 +138,22 @@ const CookieBanner = () => {
         <div className="cookie-actions">
           {!showPreferences ? (
             <>
-              <button className="btn-cookie secondary" onClick={() => setShowPreferences(true)}>
+              <button type="button" className="btn-cookie secondary" onClick={() => setShowPreferences(true)}>
                 {t('cookies.customize')}
               </button>
-              <button className="btn-cookie secondary" onClick={handleRejectAll}>
+              <button type="button" className="btn-cookie secondary" onClick={handleRejectAll}>
                 {t('cookies.rejectAll')}
               </button>
-              <button className="btn-cookie primary" onClick={handleAcceptAll}>
+              <button type="button" className="btn-cookie primary" onClick={handleAcceptAll}>
                 {t('cookies.acceptAll')}
               </button>
             </>
           ) : (
             <>
-              <button className="btn-cookie secondary" onClick={() => setShowPreferences(false)}>
+              <button type="button" className="btn-cookie secondary" onClick={() => setShowPreferences(false)}>
                 {t('common.back')}
               </button>
-              <button className="btn-cookie primary" onClick={handleSavePreferences}>
+              <button type="button" className="btn-cookie primary" onClick={handleSavePreferences}>
                 {t('cookies.savePreferences')}
               </button>
             </>

@@ -70,6 +70,7 @@ const ResetPasswordPage = () => {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder={t('auth.newPasswordPlaceholder')}
+              autoComplete="new-password"
               minLength={6}
               required
             />
@@ -81,6 +82,7 @@ const ResetPasswordPage = () => {
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
               placeholder={t('auth.confirmPasswordPlaceholder')}
+              autoComplete="new-password"
               minLength={6}
               required
             />

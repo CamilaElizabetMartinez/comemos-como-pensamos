@@ -85,7 +85,7 @@ const OrderConfirmationPage = () => {
         <div className="container">
           <div className="no-order">
             <h2>{t('orderConfirmation.noOrder')}</h2>
-            <button onClick={() => navigate('/products')} className="btn btn-primary">
+            <button type="button" onClick={() => navigate('/products')} className="btn btn-primary">
               {t('cart.continueShopping')}
             </button>
           </div>

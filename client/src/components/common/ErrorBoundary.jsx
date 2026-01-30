@@ -38,10 +38,10 @@ class ErrorBoundary extends Component {
             <h1>Algo salió mal</h1>
             <p>Lo sentimos, ha ocurrido un error inesperado.</p>
             <div className="error-actions">
-              <button onClick={this.handleReload} className="btn-primary">
+              <button type="button" onClick={this.handleReload} className="btn-primary">
                 Recargar página
               </button>
-              <button onClick={this.handleGoHome} className="btn-secondary">
+              <button type="button" onClick={this.handleGoHome} className="btn-secondary">
                 Ir al inicio
               </button>
             </div>

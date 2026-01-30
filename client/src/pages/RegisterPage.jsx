@@ -78,7 +78,7 @@ const RegisterPage = () => {
           </div>
         )}
         
-        <form onSubmit={handleSubmit} className="auth-form">
+        <form onSubmit={handleSubmit} className="auth-form" noValidate>
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="register-firstName">{t('auth.firstName')}</label>

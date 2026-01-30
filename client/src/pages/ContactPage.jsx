@@ -120,6 +120,7 @@ const ContactPage = () => {
                 <h2>{t('contact.thankYou')}</h2>
                 <p>{t('contact.responseTime')}</p>
                 <button 
+                  type="button"
                   className="btn btn-primary"
                   onClick={() => setSubmitted(false)}
                 >

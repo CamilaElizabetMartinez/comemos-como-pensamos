@@ -203,7 +203,7 @@ const CartPage = () => {
               </p>
             )}
 
-            <button onClick={handleCheckout} className="btn btn-primary btn-block">
+            <button type="button" onClick={handleCheckout} className="btn btn-primary btn-block">
               {t('cart.checkout')}
             </button>
 

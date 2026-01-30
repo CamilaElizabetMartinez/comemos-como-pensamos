@@ -156,6 +156,7 @@ const ProductsPage = () => {
           </form>
           
           <button 
+            type="button"
             className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
             onClick={() => setShowFilters(!showFilters)}
           >

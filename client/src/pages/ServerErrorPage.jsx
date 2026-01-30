@@ -31,7 +31,7 @@ const ServerErrorPage = () => {
         </p>
         
         <div className="error-actions">
-          <button onClick={handleRefresh} className="btn btn-secondary">
+          <button type="button" onClick={handleRefresh} className="btn btn-secondary">
             <IconRefresh size={18} />
             {t('errors.tryAgain', 'Intentar de nuevo')}
           </button>

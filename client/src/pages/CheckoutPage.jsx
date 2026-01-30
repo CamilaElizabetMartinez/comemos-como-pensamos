@@ -480,7 +480,7 @@ const CheckoutPage = () => {
           <div className="empty-cart-message" role="status" aria-live="polite">
             <span className="empty-icon" aria-hidden="true">{ICONS.cart}</span>
             <h2>{t('cart.empty')}</h2>
-            <button onClick={() => navigate('/products')} className="btn btn-primary">
+            <button type="button" onClick={() => navigate('/products')} className="btn btn-primary">
               {t('cart.continueShopping')}
             </button>
           </div>
