@@ -409,18 +409,96 @@
   }
 
   .articles-table {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: visible;
   }
 
-  .articles-table table {
-    min-width: 600px;
-  }
-
+  .articles-table table,
+  .articles-table thead,
+  .articles-table tbody,
   .articles-table th,
+  .articles-table td,
+  .articles-table tr {
+    display: block;
+  }
+
+  .articles-table thead {
+    display: none;
+  }
+
+  .articles-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .articles-table tbody tr {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    border: 1px solid #eee;
+  }
+
+  .articles-table tbody tr:hover {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
   .articles-table td {
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+  }
+
+  .articles-table td:last-child {
+    border-bottom: none;
+    padding-top: 0.75rem;
+    justify-content: flex-start;
+  }
+
+  .articles-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #666;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-right: 1rem;
+  }
+
+  .articles-table td.title-cell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .articles-table td.title-cell::before {
+    display: none;
+  }
+
+  .articles-table .title-cell strong {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .articles-table .title-cell .slug {
+    font-size: 0.75rem;
+  }
+
+  .articles-table td.actions-cell::before {
+    display: none;
+  }
+
+  .articles-table .actions-cell {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-action {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 0.5rem;
   }
 
   .modal-overlay {
@@ -483,6 +561,38 @@
 
   .page-header h1 {
     font-size: 1.2rem;
+  }
+
+  .articles-table tbody tr {
+    padding: 0.875rem;
+  }
+
+  .articles-table td {
+    font-size: 0.85rem;
+    padding: 0.4rem 0;
+  }
+
+  .articles-table .title-cell strong {
+    font-size: 0.95rem;
+  }
+
+  .articles-table td::before {
+    font-size: 0.75rem;
+  }
+
+  .btn-action {
+    padding: 0.45rem;
+  }
+
+  .btn-action svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .category-badge,
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .lang-tabs {

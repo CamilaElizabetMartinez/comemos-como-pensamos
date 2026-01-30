@@ -144,8 +144,8 @@ const AdminOrders = () => {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order._id}>
-                    <td className="order-id">#{order._id.slice(-6)}</td>
-                    <td>
+                    <td className="order-id" data-label={t('admin.orders.orderId')}>#{order._id.slice(-6)}</td>
+                    <td data-label={t('admin.orders.customer')}>
                       <div className="customer-cell">
                         <span className="customer-name">
                           {order.customerId?.firstName} {order.customerId?.lastName}
@@ -153,9 +153,9 @@ const AdminOrders = () => {
                         <span className="customer-email">{order.customerId?.email}</span>
                       </div>
                     </td>
-                    <td>{order.items?.length || 0} {t('admin.orders.products')}</td>
-                    <td className="total-cell">€{order.total?.toFixed(2)}</td>
-                    <td>
+                    <td data-label={t('admin.orders.items')}>{order.items?.length || 0} {t('admin.orders.products')}</td>
+                    <td className="total-cell" data-label={t('admin.orders.total')}>€{order.total?.toFixed(2)}</td>
+                    <td data-label={t('admin.orders.status')}>
                       <select
                         value={order.status}
                         onChange={(e) => handleStatusChange(order._id, e.target.value)}
@@ -169,8 +169,8 @@ const AdminOrders = () => {
                         <option value="cancelled">{t('orders.statusCancelled')}</option>
                       </select>
                     </td>
-                    <td className="date-cell">{formatDate(order.createdAt)}</td>
-                    <td>
+                    <td className="date-cell" data-label={t('admin.orders.date')}>{formatDate(order.createdAt)}</td>
+                    <td data-label={t('admin.orders.actions')}>
                       <Link to={`/orders/${order._id}`} state={{ from: 'admin' }} className="btn-view" aria-label="Ver pedido">
                         <IconEye size={18} />
                       </Link>

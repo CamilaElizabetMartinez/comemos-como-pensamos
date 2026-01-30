@@ -301,23 +301,23 @@ const AdminBlog = () => {
               <tbody>
                 {articles.map((article) => (
                   <tr key={article._id}>
-                    <td className="title-cell">
+                    <td className="title-cell" data-label={t('admin.blog.titleColumn')}>
                       <strong>{article.title?.es || '-'}</strong>
                       <span className="slug">/{article.slug}</span>
                     </td>
-                    <td>
+                    <td data-label={t('admin.blog.category')}>
                       <span className="category-badge">
                         {t(`blog.categories.${article.category}`)}
                       </span>
                     </td>
-                    <td>
+                    <td data-label={t('admin.blog.status')}>
                       <span className={`status-badge ${article.status}`}>
                         {t(`admin.blog.${article.status}`)}
                       </span>
                     </td>
-                    <td>{formatDate(article.publishedAt || article.createdAt)}</td>
-                    <td>{article.views || 0}</td>
-                    <td className="actions-cell">
+                    <td data-label={t('admin.blog.date')}>{formatDate(article.publishedAt || article.createdAt)}</td>
+                    <td data-label={t('admin.blog.views')}>{article.views || 0}</td>
+                    <td className="actions-cell" data-label={t('admin.blog.actions')}>
                       <button
                         className="btn-action edit"
                         onClick={() => handleOpenModal(article)}

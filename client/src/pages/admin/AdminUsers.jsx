@@ -174,7 +174,7 @@ const AdminUsers = () => {
               <tbody>
                 {filteredUsers.map((u) => (
                   <tr key={u._id}>
-                    <td>
+                    <td data-label={t('admin.users.user')}>
                       <div className="user-cell">
                         <div className="user-avatar">
                           {u.firstName?.charAt(0)}{u.lastName?.charAt(0)}
@@ -182,18 +182,18 @@ const AdminUsers = () => {
                         <span className="user-name">{u.firstName} {u.lastName}</span>
                       </div>
                     </td>
-                    <td className="email-cell">{u.email}</td>
-                    <td>
+                    <td className="email-cell" data-label={t('admin.users.email')}>{u.email}</td>
+                    <td data-label={t('admin.users.role')}>
                       <span className={`role-badge ${getRoleBadgeClass(u.role)}`}>
                         {t(`profile.role.${u.role}`)}
                       </span>
                     </td>
-                    <td className="date-cell">{formatDate(u.createdAt)}</td>
-                    <td>
+                    <td className="date-cell" data-label={t('admin.users.registered')}>{formatDate(u.createdAt)}</td>
+                    <td data-label={t('admin.users.status')}>
                       <span className={`status-indicator ${u.isEmailVerified ? 'verified' : 'unverified'}`} aria-label={u.isEmailVerified ? 'Verificado' : 'No verificado'}>
                       </span>
                     </td>
-                    <td>
+                    <td data-label={t('admin.users.actions')}>
                       <div className="action-buttons">
                         {u._id !== user._id && u.role !== 'admin' && (
                           <button
