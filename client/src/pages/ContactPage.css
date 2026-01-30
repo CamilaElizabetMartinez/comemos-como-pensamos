@@ -219,6 +219,18 @@
   margin-top: 0.35rem;
 }
 
+/* Contact info links */
+.info-card a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.info-card a:hover {
+  color: #2d5a27;
+  text-decoration: underline;
+}
+
 
 
 

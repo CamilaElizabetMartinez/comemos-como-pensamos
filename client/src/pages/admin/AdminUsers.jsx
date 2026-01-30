@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
 import { IconTrash } from '../../components/common/Icons';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminUsers.css';
 
 const AdminUsers = () => {
@@ -15,6 +16,7 @@ const AdminUsers = () => {
   const [roleFilter, setRoleFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, userId: null, userName: '' });
   const { user } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -46,8 +48,17 @@ const AdminUsers = () => {
     }
   };
 
-  const handleDeleteUser = async (userId, userName) => {
-    if (!window.confirm(t('admin.users.confirmDelete', { name: userName }))) return;
+  const openDeleteModal = useCallback((userId, userName) => {
+    setDeleteModal({ isOpen: true, userId, userName });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, userId: null, userName: '' });
+  }, []);
+
+  const handleDeleteUser = async () => {
+    const { userId } = deleteModal;
+    closeDeleteModal();
 
     try {
       await api.delete(`/admin/users/${userId}`);
@@ -185,7 +196,7 @@ const AdminUsers = () => {
                       <div className="action-buttons">
                         {u._id !== user._id && u.role !== 'admin' && (
                           <button
-                            onClick={() => handleDeleteUser(u._id, `${u.firstName} ${u.lastName}`)}
+                            onClick={() => openDeleteModal(u._id, `${u.firstName} ${u.lastName}`)}
                             className="btn-delete"
                             title={t('common.delete')}
                             aria-label={t('common.delete')}
@@ -224,6 +235,17 @@ const AdminUsers = () => {
           </div>
         )}
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleDeleteUser}
+        title={t('admin.users.confirmDeleteTitle', '¿Eliminar usuario?')}
+        message={t('admin.users.confirmDelete', { name: deleteModal.userName })}
+        confirmText={t('common.delete', 'Eliminar')}
+        cancelText={t('common.cancel', 'Cancelar')}
+        variant="danger"
+      />
     </div>
   );
 };

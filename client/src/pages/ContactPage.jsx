@@ -97,13 +97,13 @@ const ContactPage = () => {
             <div className="info-card">
               <span className="info-icon">{ICONS.email}</span>
               <h3>{t('contact.email')}</h3>
-              <p>info@comemoscomopensamos.es</p>
+              <p><a href="mailto:info@comemoscomopensamos.es">info@comemoscomopensamos.es</a></p>
             </div>
             
             <div className="info-card">
               <span className="info-icon">{ICONS.phone}</span>
               <h3>{t('contact.phone')}</h3>
-              <p>+34 900 123 456</p>
+              <p><a href="tel:+34900123456">+34 900 123 456</a></p>
             </div>
             
             <div className="info-card">

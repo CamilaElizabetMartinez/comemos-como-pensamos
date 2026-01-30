@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
 import { IconEye, IconTrash, IconUpload, IconDownload, IconEdit } from '../../components/common/Icons';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminBlog.css';
 
 const CATEGORIES = [
@@ -42,6 +43,7 @@ const AdminBlog = () => {
   const [saving, setSaving] = useState(false);
   const [activeLang, setActiveLang] = useState('es');
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, articleId: null });
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -199,8 +201,17 @@ const AdminBlog = () => {
     }
   }, [fetchArticles, t]);
 
-  const handleDelete = useCallback(async (articleId) => {
-    if (!window.confirm(t('admin.blog.confirmDelete'))) return;
+  const openDeleteModal = useCallback((articleId) => {
+    setDeleteModal({ isOpen: true, articleId });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, articleId: null });
+  }, []);
+
+  const handleDelete = useCallback(async () => {
+    const { articleId } = deleteModal;
+    closeDeleteModal();
 
     try {
       await api.delete(`/articles/${articleId}`);
@@ -210,7 +221,7 @@ const AdminBlog = () => {
       console.error('Error deleting article:', error);
       toast.error(t('admin.blog.errorDeleting'));
     }
-  }, [fetchArticles, t]);
+  }, [deleteModal, closeDeleteModal, fetchArticles, t]);
 
   const formatDate = useCallback((dateString) => {
     if (!dateString) return '-';
@@ -335,7 +346,7 @@ const AdminBlog = () => {
                       </a>
                       <button
                         className="btn-action delete"
-                        onClick={() => handleDelete(article._id)}
+                        onClick={() => openDeleteModal(article._id)}
                         title={t('common.delete')}
                         aria-label={t('common.delete')}
                       >
@@ -473,6 +484,17 @@ const AdminBlog = () => {
             </div>
           </div>
         )}
+
+        <ConfirmModal
+          isOpen={deleteModal.isOpen}
+          onClose={closeDeleteModal}
+          onConfirm={handleDelete}
+          title={t('admin.blog.confirmDeleteTitle', '¿Eliminar artículo?')}
+          message={t('admin.blog.confirmDelete', 'Esta acción no se puede deshacer.')}
+          confirmText={t('common.delete', 'Eliminar')}
+          cancelText={t('common.cancel', 'Cancelar')}
+          variant="danger"
+        />
       </div>
     </div>
   );

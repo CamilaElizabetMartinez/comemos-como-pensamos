@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { ListSkeleton } from '../../components/common/Skeleton';
 import { IconPackage, IconTrash } from '../../components/common/Icons';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './ProducerProducts.css';
 
 const ProducerProducts = () => {
@@ -14,6 +15,7 @@ const ProducerProducts = () => {
   const [producer, setProducer] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, productId: null });
   const { user } = useAuth();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -42,8 +44,17 @@ const ProducerProducts = () => {
     }
   };
 
-  const handleDeleteProduct = async (productId) => {
-    if (!window.confirm(t('producer.products.confirmDelete'))) return;
+  const openDeleteModal = useCallback((productId) => {
+    setDeleteModal({ isOpen: true, productId });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, productId: null });
+  }, []);
+
+  const handleDeleteProduct = async () => {
+    const productId = deleteModal.productId;
+    closeDeleteModal();
 
     try {
       await api.delete(`/products/${productId}`);
@@ -205,7 +216,7 @@ const ProducerProducts = () => {
                     {product.isAvailable ? '⏸️' : '▶️'}
                   </button>
                   <button
-                    onClick={() => handleDeleteProduct(product._id)}
+                    onClick={() => openDeleteModal(product._id)}
                     className="btn btn-small btn-delete"
                     aria-label={t('common.delete')}
                   >
@@ -217,6 +228,17 @@ const ProducerProducts = () => {
           </div>
         )}
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleDeleteProduct}
+        title={t('producer.products.confirmDeleteTitle', '¿Eliminar producto?')}
+        message={t('producer.products.confirmDelete', 'Esta acción no se puede deshacer.')}
+        confirmText={t('common.delete', 'Eliminar')}
+        cancelText={t('common.cancel', 'Cancelar')}
+        variant="danger"
+      />
     </div>
   );
 };

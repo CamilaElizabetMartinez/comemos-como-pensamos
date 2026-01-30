@@ -12,6 +12,7 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import CookieBanner from './components/common/CookieBanner';
 import WhatsAppButton from './components/common/WhatsAppButton';
+import BackToTopButton from './components/common/BackToTopButton';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import PageLoader from './components/common/PageLoader';
 import Analytics from './components/common/Analytics';
@@ -135,6 +136,7 @@ function App() {
               <Footer />
               <CookieBanner />
               <WhatsAppButton />
+              <BackToTopButton />
               <ToastContainer position="bottom-right" autoClose={3000} />
             </div>
             </LanguageProvider>
