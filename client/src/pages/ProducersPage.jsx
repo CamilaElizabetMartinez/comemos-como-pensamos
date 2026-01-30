@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
 import { ListSkeleton } from '../components/common/Skeleton';
+import { IconLeaf } from '../components/common/Icons';
 import './ProducersPage.css';
 
 const ProducersPage = () => {
@@ -79,7 +80,7 @@ const ProducersPage = () => {
           <ListSkeleton type="producer" count={6} />
         ) : producers.length === 0 ? (
           <div className="no-producers">
-            <div className="no-producers-icon">🌱</div>
+            <div className="no-producers-icon"><IconLeaf size={48} /></div>
             <h2>{t('producers.noProducers')}</h2>
             <p>{t('producers.noProducersDescription')}</p>
           </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { pushService } from '../../services/pushService';
+import { IconPackage, IconCart, IconAward } from './Icons';
 import './NotificationSettings.css';
 
 const NotificationSettings = () => {
@@ -132,9 +133,9 @@ const NotificationSettings = () => {
       <div className="notification-info">
         <p>{t('notifications.infoText')}</p>
         <ul>
-          <li>📦 {t('notifications.orderUpdates')}</li>
-          <li>🛒 {t('notifications.newProducts')}</li>
-          <li>🎉 {t('notifications.promotions')}</li>
+          <li><IconPackage size={16} /> {t('notifications.orderUpdates')}</li>
+          <li><IconCart size={16} /> {t('notifications.newProducts')}</li>
+          <li><IconAward size={16} /> {t('notifications.promotions')}</li>
         </ul>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import { IconCheckCircle } from '../components/common/Icons';
 import './AuthPages.css';
 
 const ResetPasswordPage = () => {
@@ -45,7 +46,7 @@ const ResetPasswordPage = () => {
       <div className="auth-page">
         <div className="auth-container">
           <div className="email-sent-message">
-            <h2>✅ {t('auth.passwordChanged')}</h2>
+            <h2><IconCheckCircle size={24} /> {t('auth.passwordChanged')}</h2>
             <p>{t('auth.passwordChangedDescription')}</p>
             <Link to="/login" className="btn btn-primary">
               {t('auth.loginButton')}

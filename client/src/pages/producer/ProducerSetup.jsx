@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
+import { IconSmartphone, IconInfo } from '../../components/common/Icons';
 import './ProducerSetup.css';
 
 const CERTIFICATIONS_OPTIONS = [
@@ -323,7 +324,7 @@ const ProducerSetup = () => {
               
               <div className="form-group">
                 <label htmlFor="whatsapp">
-                  <span className="whatsapp-label-icon">📱</span>
+                  <span className="whatsapp-label-icon"><IconSmartphone size={16} /></span>
                   {t('producer.setup.whatsapp')}
                 </label>
                 <input
@@ -393,7 +394,7 @@ const ProducerSetup = () => {
 
             <div className="form-actions">
               <p className="approval-notice">
-                <span className="notice-icon">ℹ️</span>
+                <span className="notice-icon"><IconInfo size={18} /></span>
                 {t('producer.setup.approvalNotice')}
               </p>
               <button

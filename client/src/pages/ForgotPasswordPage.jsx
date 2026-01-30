@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import { IconMail } from '../components/common/Icons';
 import './AuthPages.css';
 
 const ForgotPasswordPage = () => {
@@ -31,7 +32,7 @@ const ForgotPasswordPage = () => {
       <div className="auth-page">
         <div className="auth-container">
           <div className="email-sent-message">
-            <h2>✉️ {t('auth.checkYourEmail')}</h2>
+            <h2><IconMail size={24} /> {t('auth.checkYourEmail')}</h2>
             <p>{t('auth.resetEmailInstructions')}</p>
             <Link to="/login" className="btn btn-primary">
               {t('auth.backToLogin')}

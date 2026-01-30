@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../services/api';
+import { IconCheckCircle, IconLeaf } from '../components/common/Icons';
 import './AuthPages.css';
 
 const VerifyEmailPage = () => {
@@ -48,7 +49,7 @@ const VerifyEmailPage = () => {
       case 'success':
         return (
           <div className="verify-status success">
-            <div className="verify-icon">✅</div>
+            <div className="verify-icon"><IconCheckCircle size={48} /></div>
             <h2>{t('auth.verificationSuccess')}</h2>
             <p>{message}</p>
             <p className="redirect-message">{t('auth.redirectingToLogin')}</p>
@@ -81,7 +82,7 @@ const VerifyEmailPage = () => {
   return (
     <div className="auth-page">
       <div className="auth-container verify-container">
-        <div className="auth-logo">🥬</div>
+        <div className="auth-logo"><IconLeaf size={48} /></div>
         <h1>{t('auth.emailVerification')}</h1>
         {renderContent()}
       </div>

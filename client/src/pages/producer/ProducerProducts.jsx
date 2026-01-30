@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { ListSkeleton } from '../../components/common/Skeleton';
+import { IconPackage, IconTrash } from '../../components/common/Icons';
 import './ProducerProducts.css';
 
 const ProducerProducts = () => {
@@ -172,7 +173,7 @@ const ProducerProducts = () => {
                   {product.images?.[0] ? (
                     <img src={product.images[0]} alt={getLocalizedText(product.name)} />
                   ) : (
-                    <div className="no-image">📦</div>
+                    <div className="no-image"><IconPackage size={32} /></div>
                   )}
                   <span className={`availability-badge ${product.isAvailable && product.stock > 0 ? 'available' : 'unavailable'}`}>
                     {product.isAvailable && product.stock > 0 
@@ -206,8 +207,9 @@ const ProducerProducts = () => {
                   <button
                     onClick={() => handleDeleteProduct(product._id)}
                     className="btn btn-small btn-delete"
+                    aria-label={t('common.delete')}
                   >
-                    🗑️
+                    <IconTrash size={16} />
                   </button>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import { ProducerDetailSkeleton } from '../components/common/Skeleton';
+import { IconPackage, IconStar, IconStarOutline, IconStarFilled } from '../components/common/Icons';
 import './ProducerDetailPage.css';
 
 const ProducerDetailPage = () => {
@@ -175,7 +176,7 @@ const ProducerDetailPage = () => {
                     {product.images?.[0] ? (
                       <img src={product.images[0]} alt={getProductName(product)} />
                     ) : (
-                      <div className="image-placeholder">📦</div>
+                      <div className="image-placeholder"><IconPackage size={32} /></div>
                     )}
                   </Link>
                   <div className="product-info">
