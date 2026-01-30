@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import { IconPackage, IconX } from '../components/common/Icons';
 import './CartPage.css';
 
 const CartPage = () => {
@@ -153,14 +154,14 @@ const CartPage = () => {
                         className="btn-remove"
                         aria-label={t('cart.remove')}
                       >
-                        ✕
+                        <IconX size={16} />
                       </button>
                     </div>
                   ))}
                 </div>
 
                 <div className="producer-shipping-hint">
-                  <span className="shipping-icon">📦</span>
+                  <span className="shipping-icon"><IconPackage size={16} /></span>
                   <span>{t('cart.shippingCalculatedAtCheckout')}</span>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { IconCookie } from './Icons';
 import './CookieBanner.css';
 
 const COOKIE_CONSENT_KEY = 'cookie_consent';
@@ -79,7 +80,7 @@ const CookieBanner = () => {
     <div className="cookie-banner-overlay">
       <div className={`cookie-banner ${showPreferences ? 'expanded' : ''}`}>
         <div className="cookie-banner-content">
-          <div className="cookie-icon">🍪</div>
+          <div className="cookie-icon"><IconCookie size={32} /></div>
           <div className="cookie-text">
             <h3>{t('cookies.title')}</h3>
             <p>

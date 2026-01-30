@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
+import { IconSearch, IconStar, IconStarOutline, IconEye } from '../../components/common/Icons';
 import './AdminProducts.css';
 
 const AdminProducts = () => {
@@ -120,7 +121,9 @@ const AdminProducts = () => {
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
             />
-            <button type="submit" className="btn-search">🔍</button>
+            <button type="submit" className="btn-search" aria-label="Buscar">
+              <IconSearch size={18} />
+            </button>
           </form>
           <div className="featured-filters">
             <button
@@ -133,7 +136,7 @@ const AdminProducts = () => {
               className={`filter-btn ${featuredFilter === 'true' ? 'active' : ''}`}
               onClick={() => { setFeaturedFilter('true'); setCurrentPage(1); }}
             >
-              ⭐ {t('admin.products.featuredOnly', 'Destacados')}
+              <IconStar size={16} /> {t('admin.products.featuredOnly', 'Destacados')}
             </button>
             <button
               className={`filter-btn ${featuredFilter === 'false' ? 'active' : ''}`}
@@ -191,8 +194,9 @@ const AdminProducts = () => {
                         onClick={() => handleToggleFeatured(product._id)}
                         className={`featured-toggle ${product.isFeatured ? 'is-featured' : ''}`}
                         title={product.isFeatured ? 'Quitar de destacados' : 'Marcar como destacado'}
+                        aria-label={product.isFeatured ? 'Quitar de destacados' : 'Marcar como destacado'}
                       >
-                        {product.isFeatured ? '⭐' : '☆'}
+                        {product.isFeatured ? <IconStar size={20} /> : <IconStarOutline size={20} />}
                       </button>
                     </td>
                     <td>
@@ -201,8 +205,9 @@ const AdminProducts = () => {
                           to={`/products/${product._id}`} 
                           className="btn-view"
                           title={t('common.view', 'Ver')}
+                          aria-label={t('common.view', 'Ver')}
                         >
-                          👁️
+                          <IconEye size={18} />
                         </Link>
                       </div>
                     </td>

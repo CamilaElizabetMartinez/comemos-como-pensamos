@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import { ListSkeleton } from '../components/common/Skeleton';
+import { IconX, IconHeart } from '../components/common/Icons';
 import './FavoritesPage.css';
 
 const FavoritesPage = () => {
@@ -87,8 +88,9 @@ const FavoritesPage = () => {
                   className="remove-favorite-btn"
                   onClick={() => handleRemoveFavorite(product._id)}
                   title={t('favorites.remove')}
+                  aria-label={t('favorites.remove')}
                 >
-                  ✕
+                  <IconX size={14} />
                 </button>
                 
                 <Link to={`/products/${product._id}`} className="favorite-image">
