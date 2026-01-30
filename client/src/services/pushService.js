@@ -1,15 +1,7 @@
 import api from './api';
 
 const isPushSupported = () => {
-  const supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
-  console.log('Push support check:', {
-    serviceWorker: 'serviceWorker' in navigator,
-    PushManager: 'PushManager' in window,
-    Notification: 'Notification' in window,
-    isSecureContext: window.isSecureContext,
-    protocol: window.location.protocol
-  });
-  return supported;
+  return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 };
 
 const registerServiceWorker = async () => {
@@ -17,14 +9,8 @@ const registerServiceWorker = async () => {
     throw new Error('Push notifications not supported');
   }
 
-  try {
-    const registration = await navigator.serviceWorker.register('/sw.js');
-    console.log('Service Worker registered:', registration);
-    return registration;
-  } catch (error) {
-    console.error('Service Worker registration failed:', error);
-    throw error;
-  }
+  const registration = await navigator.serviceWorker.register('/sw.js');
+  return registration;
 };
 
 const getVapidPublicKey = async () => {
@@ -98,12 +84,10 @@ const unsubscribeFromPush = async () => {
 const getSubscriptionStatus = async () => {
   try {
     if (!isPushSupported()) {
-      console.log('Push not supported: serviceWorker or PushManager not available');
       return { supported: false, subscribed: false, permission: 'unsupported' };
     }
 
     if (!('Notification' in window)) {
-      console.log('Notification API not available');
       return { supported: false, subscribed: false, permission: 'unsupported' };
     }
 
@@ -114,9 +98,7 @@ const getSubscriptionStatus = async () => {
     if (!registration) {
       try {
         registration = await navigator.serviceWorker.register('/sw.js');
-        console.log('Service Worker registered during status check');
-      } catch (swError) {
-        console.error('Could not register Service Worker:', swError);
+      } catch {
         return { supported: true, subscribed: false, permission };
       }
     }
@@ -129,8 +111,7 @@ const getSubscriptionStatus = async () => {
       subscribed: !!subscription,
       permission
     };
-  } catch (error) {
-    console.error('Error getting subscription status:', error);
+  } catch {
     return { supported: false, subscribed: false, permission: 'error' };
   }
 };

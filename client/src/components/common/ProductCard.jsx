@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../context/CartContext';
@@ -135,6 +135,7 @@ const ProductCard = ({ product, showAddToCart = true }) => {
             <button
               onClick={handleAddToCart}
               className="btn-add-to-cart"
+              aria-label={`${t('products.addToCart')}: ${productName}`}
             >
               {t('products.addToCart')}
             </button>
@@ -149,4 +150,4 @@ const ProductCard = ({ product, showAddToCart = true }) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

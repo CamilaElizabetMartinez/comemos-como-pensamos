@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
-import { IconSearch, IconStar, IconStarOutline, IconEye } from '../../components/common/Icons';
+import { IconSearch, IconStar, IconStarOutline, IconEye, IconPackage } from '../../components/common/Icons';
 import './AdminProducts.css';
 
 const AdminProducts = () => {
@@ -148,8 +148,10 @@ const AdminProducts = () => {
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className="no-products">
-            <p>{t('admin.products.noProducts', 'No hay productos')}</p>
+          <div className="empty-state">
+            <IconPackage size={48} />
+            <h3>{t('admin.products.noProductsTitle', 'No hay productos')}</h3>
+            <p>{t('admin.products.noProducts', 'No se encontraron productos con los filtros actuales')}</p>
           </div>
         ) : (
           <div className="products-table-container">

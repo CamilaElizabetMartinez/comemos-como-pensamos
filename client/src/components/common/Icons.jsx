@@ -11,6 +11,7 @@ const Icon = ({ children, size = 24, className = '', ...props }) => (
     width={size}
     height={size}
     className={className}
+    aria-hidden="true"
     {...props}
   >
     {children}

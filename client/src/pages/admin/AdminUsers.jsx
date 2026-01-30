@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
-import { IconTrash } from '../../components/common/Icons';
+import { IconTrash, IconUsers } from '../../components/common/Icons';
 import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminUsers.css';
 
@@ -153,8 +153,10 @@ const AdminUsers = () => {
         </div>
 
         {filteredUsers.length === 0 ? (
-          <div className="no-users">
-            <p>{t('admin.users.noUsers')}</p>
+          <div className="empty-state">
+            <IconUsers size={48} />
+            <h3>{t('admin.users.noUsersTitle', 'No hay usuarios')}</h3>
+            <p>{t('admin.users.noUsers', 'No se encontraron usuarios con los filtros actuales')}</p>
           </div>
         ) : (
           <div className="users-table-container">

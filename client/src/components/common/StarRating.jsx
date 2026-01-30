@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import { IconStarFilled, IconStarOutline } from './Icons';
 
 const StarRating = ({ rating = 0, size = 16, showEmpty = true, maxStars = 5 }) => {
@@ -37,4 +37,4 @@ const StarRating = ({ rating = 0, size = 16, showEmpty = true, maxStars = 5 }) =
   );
 };
 
-export default StarRating;
+export default memo(StarRating);

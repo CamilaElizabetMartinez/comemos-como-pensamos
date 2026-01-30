@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
-import { IconEye } from '../../components/common/Icons';
+import { IconEye, IconCart } from '../../components/common/Icons';
 import './AdminOrders.css';
 
 const AdminOrders = () => {
@@ -122,8 +122,10 @@ const AdminOrders = () => {
         </div>
 
         {orders.length === 0 ? (
-          <div className="no-orders">
-            <p>{t('admin.orders.noOrders')}</p>
+          <div className="empty-state">
+            <IconCart size={48} />
+            <h3>{t('admin.orders.noOrdersTitle', 'No hay pedidos')}</h3>
+            <p>{t('admin.orders.noOrders', 'No se encontraron pedidos con los filtros actuales')}</p>
           </div>
         ) : (
           <div className="orders-table-container">

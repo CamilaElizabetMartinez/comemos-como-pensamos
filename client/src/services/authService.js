@@ -22,8 +22,8 @@ export const authService = {
   logout: async () => {
     try {
       await api.post('/auth/logout');
-    } catch (error) {
-      console.log('Logout request failed, clearing local session');
+    } catch {
+      // Silent fail - just clear local session
     } finally {
       localStorage.removeItem('token');
       localStorage.removeItem('user');

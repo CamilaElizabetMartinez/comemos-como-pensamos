@@ -239,8 +239,13 @@ const ProductsPage = () => {
           </div>
 
           {activeFiltersCount > 0 && (
-            <button className="clear-filters-btn" onClick={clearFilters}>
-              ✕ {t('products.clearFilters')}
+            <button 
+              type="button"
+              className="clear-filters-btn" 
+              onClick={clearFilters}
+              aria-label={t('products.clearFilters')}
+            >
+              × {t('products.clearFilters')}
             </button>
           )}
         </div>
