@@ -1122,7 +1122,16 @@
     "articleNotFound": "Artículo no encontrado",
     "articleNotFoundDesc": "El artículo que buscas no existe o ha sido eliminado.",
     "tags": "Etiquetas",
-    "share": "Compartir"
+    "share": "Compartir",
+    "featured": "Destacado",
+    "newsletter": {
+      "title": "No te pierdas ninguna historia",
+      "subtitle": "Recibe las últimas noticias de productores locales y consejos de alimentación sostenible.",
+      "placeholder": "tu@email.com",
+      "subscribe": "Suscribirse",
+      "success": "¡Gracias por suscribirte!",
+      "error": "Error al suscribirse. Inténtalo de nuevo."
+    }
   },
   "legal": {
     "lastUpdated": "Última actualización",

@@ -1122,7 +1122,16 @@
     "articleNotFound": "Article not found",
     "articleNotFoundDesc": "The article you're looking for doesn't exist or has been removed.",
     "tags": "Tags",
-    "share": "Share"
+    "share": "Share",
+    "featured": "Featured",
+    "newsletter": {
+      "title": "Never miss a story",
+      "subtitle": "Get the latest news from local producers and sustainable food tips.",
+      "placeholder": "your@email.com",
+      "subscribe": "Subscribe",
+      "success": "Thanks for subscribing!",
+      "error": "Error subscribing. Please try again."
+    }
   },
   "legal": {
     "lastUpdated": "Last updated",
