@@ -31,6 +31,11 @@ const ProductCard = ({ product, showAddToCart = true }) => {
     [product.hasVariants, product.variants]
   );
 
+  const isLowStock = useMemo(() => 
+    product.isAvailable && product.stock > 0 && product.stock <= 5,
+    [product.isAvailable, product.stock]
+  );
+
   const displayPrice = useMemo(() => {
     if (hasVariants) {
       return Math.min(...product.variants.map(variant => variant.price));
@@ -63,6 +68,9 @@ const ProductCard = ({ product, showAddToCart = true }) => {
     <article className="product-card">
       {isNew && (
         <span className="badge-new">{t('products.new')}</span>
+      )}
+      {isLowStock && (
+        <span className="badge-low-stock">{t('products.lowStock', 'Últimas unidades')}</span>
       )}
       {!product.isAvailable && (
         <span className="badge-out-of-stock">{t('products.outOfStock')}</span>

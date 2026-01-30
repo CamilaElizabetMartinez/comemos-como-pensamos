@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { PRODUCT_CATEGORIES } from '../../constants/products';
 import './AdminLeads.css';
 
 const STATUSES = ['new', 'contacted', 'interested', 'negotiating', 'registered', 'lost'];
 const SOURCES = ['market', 'referral', 'event', 'social_media', 'website', 'association', 'other'];
-const CATEGORIES = ['fruits', 'vegetables', 'dairy', 'meat', 'bakery', 'eggs', 'honey', 'oil', 'wine', 'other'];
 const PRIORITIES = ['low', 'medium', 'high'];
 
 const INITIAL_FORM_STATE = {
@@ -483,7 +483,7 @@ const AdminLeads = () => {
                 <div className="form-group">
                   <label>{t('admin.leads.categories')}</label>
                   <div className="categories-grid">
-                    {CATEGORIES.map(category => (
+                    {PRODUCT_CATEGORIES.map(category => (
                       <label key={category} className="category-checkbox">
                         <input
                           type="checkbox"

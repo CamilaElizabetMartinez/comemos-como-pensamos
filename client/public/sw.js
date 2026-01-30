@@ -1,16 +1,64 @@
-// Service Worker for Push Notifications
-const CACHE_NAME = 'comemos-v1';
+// Service Worker for PWA + Push Notifications
+const CACHE_NAME = 'comemos-v2';
+const STATIC_ASSETS = [
+  '/',
+  '/manifest.json',
+  '/favicon.svg',
+  '/icons/icon-192x192.svg',
+  '/icons/icon-512x512.svg'
+];
 
-// Install event
+// Install event - cache static assets
 self.addEventListener('install', (event) => {
   console.log('Service Worker installing...');
-  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
+      })
+      .then(() => self.skipWaiting())
+  );
 });
 
-// Activate event
+// Activate event - clean old caches
 self.addEventListener('activate', (event) => {
   console.log('Service Worker activated');
-  event.waitUntil(clients.claim());
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames
+          .filter((name) => name !== CACHE_NAME)
+          .map((name) => caches.delete(name))
+      );
+    }).then(() => clients.claim())
+  );
+});
+
+// Fetch event - network first, fallback to cache
+self.addEventListener('fetch', (event) => {
+  // Skip non-GET requests and API calls
+  if (event.request.method !== 'GET' || event.request.url.includes('/api/')) {
+    return;
+  }
+
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        // Clone and cache successful responses
+        if (response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        }
+        return response;
+      })
+      .catch(() => {
+        // Fallback to cache when offline
+        return caches.match(event.request);
+      })
+  );
 });
 
 // Push event - Handle incoming push notifications

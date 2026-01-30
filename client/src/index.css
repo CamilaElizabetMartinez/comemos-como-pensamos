@@ -110,6 +110,8 @@ code {
   text-decoration: none;
   border: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   font-size: 1rem;
   font-weight: 600;
   font-family: var(--font-heading);
@@ -162,6 +164,50 @@ code {
 
 .btn-block {
   width: 100%;
+}
+
+/* Button feedback - ripple effect */
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.btn:active:not(:disabled)::after {
+  opacity: 1;
+  transform: scale(2);
+  transition: transform 0s, opacity 0s;
+}
+
+/* Loading state for buttons */
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn.loading::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: btn-spinner 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes btn-spinner {
+  to { transform: rotate(360deg); }
 }
 
 /* Formularios */

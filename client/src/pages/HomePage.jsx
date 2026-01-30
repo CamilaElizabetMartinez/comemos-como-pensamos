@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import ProductCard from '../components/common/ProductCard';
 import { ListSkeleton } from '../components/common/Skeleton';
+import SEO from '../components/common/SEO';
 import './HomePage.css';
 
 const CAROUSEL_SLIDES = [
@@ -187,6 +188,10 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
+      <SEO 
+        title={t('home.seoTitle', 'Productos locales frescos')}
+        description={t('home.seoDescription', 'Compra productos frescos directamente de productores locales verificados. Frutas, verduras, lácteos y más.')}
+      />
       <section 
         className="hero-carousel"
         onMouseEnter={handleMouseEnter}
@@ -218,10 +223,14 @@ const HomePage = () => {
         ))}
 
         <button className="carousel-arrow carousel-prev" onClick={goToPrevSlide} aria-label="Previous">
-          ‹
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
         </button>
         <button className="carousel-arrow carousel-next" onClick={goToNextSlide} aria-label="Next">
-          ›
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 6 15 12 9 18" />
+          </svg>
         </button>
 
         <div className="carousel-dots">
@@ -235,29 +244,6 @@ const HomePage = () => {
           ))}
         </div>
       </section>
-
-      {productSections.map((section) => section.show && (
-        <section key={section.id} className="products-section">
-          <div className="container">
-            <div className="section-header">
-              <h2 className={`section-title-minimal ${section.colorClass}`}>{section.title}</h2>
-              <Link to="/products" className="view-all-link">
-                {t('home.viewAll')}
-              </Link>
-            </div>
-            
-            {section.loading ? (
-              <ListSkeleton type="product" count={5} />
-            ) : (
-              <div className="products-grid home-products-grid">
-                {section.products.map((product) => (
-                  <ProductCard key={product._id} product={product} />
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      ))}
 
       <section className="features">
         <div className="container">
@@ -294,6 +280,29 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {productSections.map((section) => section.show && (
+        <section key={section.id} className="products-section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className={`section-title-minimal ${section.colorClass}`}>{section.title}</h2>
+              <Link to="/products" className="view-all-link">
+                {t('home.viewAll')}
+              </Link>
+            </div>
+            
+            {section.loading ? (
+              <ListSkeleton type="product" count={5} />
+            ) : (
+              <div className="products-grid home-products-grid">
+                {section.products.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
 
       <section className="cta-section">
         <div className="container">

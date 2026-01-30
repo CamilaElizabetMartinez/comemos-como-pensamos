@@ -12,6 +12,7 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import CookieBanner from './components/common/CookieBanner';
 import WhatsAppButton from './components/common/WhatsAppButton';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -63,13 +64,14 @@ import ArticlePage from './pages/ArticlePage';
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <CartProvider>
-          <LanguageProvider>
-            <div className="app">
-              <Navbar />
-              <main className="main-content">
+    <ErrorBoundary>
+      <Router>
+        <AuthProvider>
+          <CartProvider>
+            <LanguageProvider>
+              <div className="app">
+                <Navbar />
+                <main className="main-content">
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/login" element={<LoginPage />} />
@@ -127,10 +129,11 @@ function App() {
               <WhatsAppButton />
               <ToastContainer position="bottom-right" autoClose={3000} />
             </div>
-          </LanguageProvider>
-        </CartProvider>
-      </AuthProvider>
-    </Router>
+            </LanguageProvider>
+          </CartProvider>
+        </AuthProvider>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

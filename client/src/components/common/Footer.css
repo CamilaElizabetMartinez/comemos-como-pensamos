@@ -65,6 +65,35 @@
   margin: 0.5rem 0;
 }
 
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(244, 241, 236, 0.8);
+  transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.social-links svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* Newsletter Section */
 .footer-newsletter {
   display: flex;
@@ -311,6 +340,21 @@
 
   .footer-section p {
     font-size: 0.75rem;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin-top: 0.75rem;
+  }
+
+  .social-links a {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-links svg {
+    width: 16px;
+    height: 16px;
   }
 
   .footer-newsletter {
