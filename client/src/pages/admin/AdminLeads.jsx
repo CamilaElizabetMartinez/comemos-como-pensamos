@@ -14,6 +14,41 @@ const STATUSES = ['new', 'contacted', 'interested', 'negotiating', 'registered',
 const SOURCES = ['market', 'referral', 'event', 'social_media', 'website', 'association', 'other'];
 const PRIORITIES = ['low', 'medium', 'high'];
 
+// Format phone number for WhatsApp (adds country code if missing)
+const formatPhoneForWhatsApp = (phone) => {
+  if (!phone) return '';
+  
+  // Remove all non-numeric characters except +
+  let cleaned = phone.replace(/[^0-9+]/g, '');
+  
+  // If already has + and country code, just remove the +
+  if (cleaned.startsWith('+')) {
+    return cleaned.substring(1);
+  }
+  
+  // If starts with 00 (international format), replace with nothing
+  if (cleaned.startsWith('00')) {
+    return cleaned.substring(2);
+  }
+  
+  // If starts with 34 already, return as is
+  if (cleaned.startsWith('34')) {
+    return cleaned;
+  }
+  
+  // Spanish numbers: if starts with 6, 7, or 9 and has 8-9 digits, add 34
+  if (/^[679]\d{7,8}$/.test(cleaned)) {
+    return '34' + cleaned;
+  }
+  
+  // Default: assume Spain if no country code and reasonable length
+  if (cleaned.length >= 6 && cleaned.length <= 9 && !cleaned.startsWith('34')) {
+    return '34' + cleaned;
+  }
+  
+  return cleaned;
+};
+
 const INITIAL_FORM_STATE = {
   name: '',
   businessName: '',
@@ -619,7 +654,7 @@ const AdminLeads = () => {
                     )}
                     {selectedLead.phone && (
                       <a 
-                        href={`https://wa.me/${selectedLead.phone.replace(/[^0-9]/g, '')}`} 
+                        href={`https://wa.me/${formatPhoneForWhatsApp(selectedLead.phone)}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="contact-link whatsapp"
