@@ -69,7 +69,7 @@ const Navbar = () => {
   }, [getCartCount]);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" role="navigation" aria-label="Navegación principal">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           <img src={logoSrc} alt="Comemos Como Pensamos" className="logo-icon" />
@@ -78,14 +78,16 @@ const Navbar = () => {
         <button 
           className={`hamburger-btn ${mobileMenuOpen ? 'active' : ''}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Menu"
+          aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-menu"
         >
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
         </button>
 
-        <div className={`navbar-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <div id="mobile-menu" className={`navbar-menu ${mobileMenuOpen ? 'open' : ''}`} role="menubar">
           <Link to="/" className="navbar-link" onClick={closeMobileMenu}>{t('nav.home')}</Link>
           <Link to="/products" className="navbar-link" onClick={closeMobileMenu}>{t('nav.products')}</Link>
           <Link to="/producers" className="navbar-link" onClick={closeMobileMenu}>{t('nav.producers')}</Link>
@@ -97,6 +99,8 @@ const Navbar = () => {
               className="language-trigger"
               onClick={() => setShowLangMenu(!showLangMenu)}
               aria-label={t('nav.changeLanguage')}
+              aria-expanded={showLangMenu}
+              aria-haspopup="true"
             >
               <svg className="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="12" cy="12" r="10" />
@@ -131,7 +135,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <Link to="/cart" className="navbar-cart" onClick={closeMobileMenu}>
+          <Link to="/cart" className="navbar-cart" onClick={closeMobileMenu} aria-label={`Carrito de compras, ${getCartCount()} productos`}>
             <svg className="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="9" cy="21" r="1" />
               <circle cx="20" cy="21" r="1" />
@@ -145,6 +149,9 @@ const Navbar = () => {
               <button 
                 className="user-menu-trigger"
                 onClick={() => setShowUserMenu(!showUserMenu)}
+                aria-expanded={showUserMenu}
+                aria-haspopup="true"
+                aria-label={`Menú de usuario, ${user?.firstName}`}
               >
                 <span className="user-avatar">
                   {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
