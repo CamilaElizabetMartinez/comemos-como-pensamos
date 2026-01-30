@@ -1,4 +1,5 @@
 import NewsletterSubscription from '../models/NewsletterSubscription.js';
+import { sendNewsletterWelcomeEmail } from '../utils/emailSender.js';
 
 // @desc    Subscribe to newsletter
 // @route   POST /api/newsletter/subscribe
@@ -31,6 +32,13 @@ export const subscribeNewsletter = async (req, res) => {
       existingSubscription.subscribedAt = new Date();
       await existingSubscription.save();
 
+      // Send welcome email on reactivation
+      try {
+        await sendNewsletterWelcomeEmail(email.toLowerCase(), language);
+      } catch (emailError) {
+        console.error('Error sending welcome email:', emailError);
+      }
+
       return res.status(200).json({
         success: true,
         message: 'Suscripción reactivada correctamente'
@@ -43,6 +51,14 @@ export const subscribeNewsletter = async (req, res) => {
       source,
       language
     });
+
+    // Send welcome email
+    try {
+      await sendNewsletterWelcomeEmail(email.toLowerCase(), language);
+    } catch (emailError) {
+      console.error('Error sending welcome email:', emailError);
+      // Don't fail the subscription if email fails
+    }
 
     res.status(201).json({
       success: true,

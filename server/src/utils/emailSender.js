@@ -287,6 +287,89 @@ export const sendReviewRequestEmail = async (order, user) => {
   await sendEmail(user.email, `⭐ ¿Qué te pareció tu pedido #${order.orderNumber}?`, html);
 };
 
+export const sendNewsletterWelcomeEmail = async (email, language = 'es') => {
+  const unsubscribeUrl = `${process.env.CLIENT_URL}/newsletter/unsubscribe?email=${encodeURIComponent(email)}`;
+
+  const content = {
+    es: {
+      subject: '¡Bienvenido al newsletter de Comemos Como Pensamos!',
+      title: '¡Gracias por suscribirte!',
+      greeting: 'Hola,',
+      intro: 'Te damos la bienvenida a nuestra comunidad de amantes de los productos locales y sostenibles.',
+      whatYouGet: 'Qué recibirás:',
+      benefits: [
+        '🌱 Novedades de nuestros productores locales',
+        '🎁 Ofertas y descuentos exclusivos',
+        '📚 Recetas y consejos de alimentación consciente',
+        '🆕 Nuevos productos antes que nadie'
+      ],
+      cta: 'Explorar productos',
+      unsubscribe: 'Si no deseas recibir nuestros emails, puedes',
+      unsubscribeLink: 'darte de baja aquí'
+    },
+    en: {
+      subject: 'Welcome to Comemos Como Pensamos newsletter!',
+      title: 'Thanks for subscribing!',
+      greeting: 'Hello,',
+      intro: 'Welcome to our community of local and sustainable product lovers.',
+      whatYouGet: 'What you\'ll receive:',
+      benefits: [
+        '🌱 News from our local producers',
+        '🎁 Exclusive offers and discounts',
+        '📚 Recipes and conscious eating tips',
+        '🆕 New products before anyone else'
+      ],
+      cta: 'Explore products',
+      unsubscribe: 'If you don\'t want to receive our emails, you can',
+      unsubscribeLink: 'unsubscribe here'
+    }
+  };
+
+  const texts = content[language] || content.es;
+
+  const benefitsHtml = texts.benefits
+    .map(benefit => `<li style="margin-bottom: 8px;">${benefit}</li>`)
+    .join('');
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+      <div style="background: linear-gradient(135deg, #2D5A3D 0%, #3E7A4E 100%); padding: 40px 20px; text-align: center;">
+        <h1 style="color: white; margin: 0; font-size: 24px;">${texts.title}</h1>
+      </div>
+      
+      <div style="padding: 30px 20px;">
+        <p style="font-size: 16px; color: #333;">${texts.greeting}</p>
+        <p style="font-size: 16px; color: #333; line-height: 1.6;">${texts.intro}</p>
+        
+        <div style="background: #f8f9f7; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #2D5A3D;">
+          <h3 style="color: #2D5A3D; margin: 0 0 15px 0;">${texts.whatYouGet}</h3>
+          <ul style="margin: 0; padding-left: 20px; color: #555; line-height: 1.8;">
+            ${benefitsHtml}
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${process.env.CLIENT_URL}/products"
+             style="background-color: #2D5A3D; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 600;">
+            ${texts.cta}
+          </a>
+        </div>
+      </div>
+
+      <div style="background: #f5f5f5; padding: 20px; text-align: center; border-top: 1px solid #eee;">
+        <p style="color: #888; font-size: 12px; margin: 0;">
+          ${texts.unsubscribe} <a href="${unsubscribeUrl}" style="color: #2D5A3D;">${texts.unsubscribeLink}</a>
+        </p>
+        <p style="color: #aaa; font-size: 11px; margin: 10px 0 0 0;">
+          © 2026 Comemos Como Pensamos
+        </p>
+      </div>
+    </div>
+  `;
+
+  await sendEmail(email, texts.subject, html);
+};
+
 export const sendContactNotificationEmail = async (contact) => {
   const subjectLabels = {
     general: 'Consulta General',
