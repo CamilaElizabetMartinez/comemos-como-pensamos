@@ -59,7 +59,8 @@
     "orders": "Meine Bestellungen",
     "dashboard": "Dashboard",
     "adminPanel": "Administration",
-    "changeLanguage": "Sprache ändern"
+    "changeLanguage": "Sprache ändern",
+    "blog": "Blog"
   },
   "auth": {
     "email": "E-Mail",

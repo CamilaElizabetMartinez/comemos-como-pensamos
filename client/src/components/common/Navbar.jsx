@@ -91,6 +91,7 @@ const Navbar = () => {
           <Link to="/" className="navbar-link" onClick={closeMobileMenu}>{t('nav.home')}</Link>
           <Link to="/products" className="navbar-link" onClick={closeMobileMenu}>{t('nav.products')}</Link>
           <Link to="/producers" className="navbar-link" onClick={closeMobileMenu}>{t('nav.producers')}</Link>
+          <Link to="/blog" className="navbar-link" onClick={closeMobileMenu}>{t('nav.blog')}</Link>
         </div>
 
         <div className={`navbar-actions ${mobileMenuOpen ? 'open' : ''}`}>
