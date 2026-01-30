@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
 import { IconCheckCircle, IconStar } from '../../components/common/Icons';
+import InputModal from '../../components/common/InputModal';
 import './AdminProducers.css';
 
 const INITIAL_COMMISSION_STATE = {
@@ -25,6 +26,7 @@ const AdminProducers = () => {
   });
   const [commissionForm, setCommissionForm] = useState(INITIAL_COMMISSION_STATE);
   const [savingCommission, setSavingCommission] = useState(false);
+  const [rejectModal, setRejectModal] = useState({ isOpen: false, producerId: null });
   const { user } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -70,18 +72,26 @@ const AdminProducers = () => {
     }
   };
 
-  const handleReject = async (producerId) => {
-    const reason = window.prompt(t('admin.producers.rejectReason'));
-    if (reason === null) return;
+  const openRejectModal = useCallback((producerId) => {
+    setRejectModal({ isOpen: true, producerId });
+  }, []);
+
+  const closeRejectModal = useCallback(() => {
+    setRejectModal({ isOpen: false, producerId: null });
+  }, []);
+
+  const handleReject = useCallback(async (reason) => {
+    const { producerId } = rejectModal;
+    closeRejectModal();
 
     try {
       await api.put(`/admin/producers/${producerId}/reject`, { reason });
-      setPendingProducers(pendingProducers.filter(producerItem => producerItem._id !== producerId));
+      setPendingProducers(prev => prev.filter(producerItem => producerItem._id !== producerId));
       toast.success(t('admin.producers.rejected'));
     } catch (error) {
       toast.error(t('admin.producers.rejectError'));
     }
-  };
+  }, [rejectModal, closeRejectModal, t]);
 
   const openCommissionModal = useCallback((producer) => {
     setCommissionForm({
@@ -261,7 +271,7 @@ const AdminProducers = () => {
                         ✓ {t('admin.producers.approve')}
                       </button>
                       <button
-                        onClick={() => handleReject(producer._id, producer.businessName)}
+                        onClick={() => openRejectModal(producer._id)}
                         className="btn btn-reject"
                       >
                         ✕ {t('admin.producers.reject')}
@@ -422,6 +432,17 @@ const AdminProducers = () => {
             </div>
           </div>
         )}
+
+        <InputModal
+          isOpen={rejectModal.isOpen}
+          onClose={closeRejectModal}
+          onConfirm={handleReject}
+          title={t('admin.producers.rejectTitle', 'Rechazar productor')}
+          message={t('admin.producers.rejectMessage', 'Indica el motivo del rechazo')}
+          placeholder={t('admin.producers.rejectReason', 'Motivo del rechazo...')}
+          confirmText={t('common.reject', 'Rechazar')}
+          cancelText={t('common.cancel', 'Cancelar')}
+        />
       </div>
     </div>
   );

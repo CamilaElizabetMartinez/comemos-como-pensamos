@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { PRODUCT_CATEGORIES } from '../../constants/products';
 import { IconSmartphone, IconMail, IconCalendar } from '../../components/common/Icons';
 import ConfirmModal from '../../components/common/ConfirmModal';
+import InputModal from '../../components/common/InputModal';
 import './AdminLeads.css';
 
 const STATUSES = ['new', 'contacted', 'interested', 'negotiating', 'registered', 'lost'];
@@ -39,6 +40,7 @@ const AdminLeads = () => {
   const [newNote, setNewNote] = useState('');
   const [saving, setSaving] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, leadId: null });
+  const [lostReasonModal, setLostReasonModal] = useState({ isOpen: false, leadId: null });
   
   const { user } = useAuth();
   const { t } = useTranslation();
@@ -221,6 +223,16 @@ const AdminLeads = () => {
   const closeDeleteModal = useCallback(() => {
     setDeleteModal({ isOpen: false, leadId: null });
   }, []);
+
+  const closeLostReasonModal = useCallback(() => {
+    setLostReasonModal({ isOpen: false, leadId: null });
+  }, []);
+
+  const handleLostWithReason = useCallback((reason) => {
+    const { leadId } = lostReasonModal;
+    closeLostReasonModal();
+    handleStatusChange(leadId, 'lost', reason);
+  }, [lostReasonModal, closeLostReasonModal, handleStatusChange]);
 
   const handleDelete = useCallback(async () => {
     const { leadId } = deleteModal;
@@ -580,8 +592,7 @@ const AdminLeads = () => {
                         className={`status-btn ${selectedLead.status === status ? 'active' : ''}`}
                         onClick={() => {
                           if (status === 'lost') {
-                            const reason = window.prompt(t('admin.leads.lostReasonPrompt'));
-                            if (reason !== null) handleStatusChange(selectedLead._id, status, reason);
+                            setLostReasonModal({ isOpen: true, leadId: selectedLead._id });
                           } else {
                             handleStatusChange(selectedLead._id, status);
                           }
@@ -701,6 +712,17 @@ const AdminLeads = () => {
         confirmText={t('common.delete', 'Eliminar')}
         cancelText={t('common.cancel', 'Cancelar')}
         variant="danger"
+      />
+
+      <InputModal
+        isOpen={lostReasonModal.isOpen}
+        onClose={closeLostReasonModal}
+        onConfirm={handleLostWithReason}
+        title={t('admin.leads.lostReasonTitle', 'Marcar como perdido')}
+        message={t('admin.leads.lostReasonMessage', '¿Por qué se perdió este lead?')}
+        placeholder={t('admin.leads.lostReasonPrompt', 'Motivo de la pérdida...')}
+        confirmText={t('common.confirm', 'Confirmar')}
+        cancelText={t('common.cancel', 'Cancelar')}
       />
     </div>
   );
