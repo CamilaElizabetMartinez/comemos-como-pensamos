@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import { ProducerDetailSkeleton } from '../components/common/Skeleton';
-import { IconPackage, IconStar, IconStarOutline, IconStarFilled } from '../components/common/Icons';
+import { IconPackage } from '../components/common/Icons';
+import StarRating from '../components/common/StarRating';
 import './ProducerDetailPage.css';
 
 const ProducerDetailPage = () => {
@@ -64,22 +65,6 @@ const ProducerDetailPage = () => {
     window.open(`https://wa.me/${cleanNumber}?text=${message}`, '_blank');
   }, [producer, t]);
 
-  const renderStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating || 0);
-    const hasHalfStar = (rating || 0) % 1 >= 0.5;
-
-    for (let i = 0; i < 5; i++) {
-      if (i < fullStars) {
-        stars.push(<span key={i} className="star filled">★</span>);
-      } else if (i === fullStars && hasHalfStar) {
-        stars.push(<span key={i} className="star half">★</span>);
-      } else {
-        stars.push(<span key={i} className="star">★</span>);
-      }
-    }
-    return stars;
-  };
 
   if (loading) {
     return (
@@ -133,7 +118,7 @@ const ProducerDetailPage = () => {
             )}
 
             <div className="hero-rating">
-              {renderStars(producer.rating)}
+              <StarRating rating={producer.rating || 0} size={18} />
               <span className="rating-value">
                 {producer.rating?.toFixed(1) || '0.0'}
               </span>
@@ -215,8 +200,7 @@ const ProducerDetailPage = () => {
                   {(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)}
                 </span>
                 <span className="rating-stars">
-                  {'★'.repeat(Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length))}
-                  {'☆'.repeat(5 - Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length))}
+                  <StarRating rating={reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length} size={16} />
                 </span>
               </div>
             </div>
@@ -230,7 +214,7 @@ const ProducerDetailPage = () => {
                           {review.userId?.firstName || t('common.anonymous')}
                         </span>
                         <span className="review-rating">
-                          {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                          <StarRating rating={review.rating} size={14} />
                         </span>
                       </div>
                       <span className="review-date">
