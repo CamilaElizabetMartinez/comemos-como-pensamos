@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
+import { IconStarFilled } from '../common/Icons';
 import './ProductReviews.css';
 
 const ProductReviews = ({ productId, description }) => {
@@ -77,8 +78,10 @@ const ProductReviews = ({ productId, description }) => {
           key={i}
           className={`star ${i <= rating ? 'filled' : ''} ${interactive ? 'interactive' : ''}`}
           onClick={() => interactive && onSelect && onSelect(i)}
+          role={interactive ? 'button' : undefined}
+          aria-label={interactive ? `${i} estrellas` : undefined}
         >
-          ★
+          <IconStarFilled size={18} />
         </span>
       );
     }
@@ -193,7 +196,7 @@ const ProductReviews = ({ productId, description }) => {
                 <div className="rating-breakdown">
                   {[5, 4, 3, 2, 1].map((rating) => (
                     <div key={rating} className="rating-bar-row">
-                      <span className="rating-label">{rating} ★</span>
+                      <span className="rating-label">{rating} <IconStarFilled size={12} /></span>
                       <div className="rating-bar">
                         <div
                           className="rating-bar-fill"

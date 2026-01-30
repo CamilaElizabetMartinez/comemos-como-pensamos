@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { OrderDetailSkeleton } from '../components/common/Skeleton';
+import { IconStarFilled } from '../components/common/Icons';
 import './OrderDetailPage.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -62,8 +63,10 @@ const ReviewModal = ({ isOpen, onClose, product, orderId, onReviewSubmitted, t }
           key={starIndex}
           className={`star interactive ${starIndex <= rating ? 'filled' : ''}`}
           onClick={() => setRating(starIndex)}
+          role="button"
+          aria-label={`${starIndex} estrellas`}
         >
-          ★
+          <IconStarFilled size={24} />
         </span>
       );
     }
