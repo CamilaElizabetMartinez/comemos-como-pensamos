@@ -369,6 +369,89 @@
   }
 }
 
+@media (max-width: 480px) {
+  .producer-detail-page {
+    padding: 1rem 0;
+  }
+
+  .producer-detail-page .container {
+    padding: 0 0.75rem;
+  }
+
+  .producer-hero {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .hero-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .hero-name {
+    font-size: 1.25rem;
+  }
+
+  .hero-location {
+    font-size: 0.85rem;
+  }
+
+  .hero-description {
+    font-size: 0.85rem;
+  }
+
+  .hero-certifications {
+    gap: 0.35rem;
+  }
+
+  .certification-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .products-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .product-info {
+    padding: 0.6rem;
+  }
+
+  .product-name {
+    font-size: 0.8rem;
+  }
+
+  .product-price {
+    font-size: 0.85rem;
+  }
+
+  .producer-reviews-section {
+    padding: 1.25rem;
+  }
+
+  .producer-reviews-section h2 {
+    font-size: 1.1rem;
+  }
+
+  .review-card {
+    padding: 1rem;
+  }
+
+  .review-rating {
+    font-size: 0.85rem;
+  }
+
+  .review-comment {
+    font-size: 0.85rem;
+  }
+}
+
 /* Producer Reviews Section */
 .producer-reviews-section {
   background: white;

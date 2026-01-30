@@ -243,6 +243,17 @@
   color: white;
 }
 
+@media (max-width: 768px) {
+  .search-autocomplete {
+    width: 100%;
+    max-width: none;
+  }
+
+  .suggestions-dropdown {
+    max-height: 350px;
+  }
+}
+
 @media (max-width: 600px) {
   .suggestions-dropdown {
     max-height: 300px;
@@ -255,6 +266,39 @@
   .suggestion-image {
     width: 36px;
     height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestions-dropdown {
+    max-height: 250px;
+  }
+
+  .suggestion-item {
+    padding: 0.5rem 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .suggestion-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .suggestion-info h4 {
+    font-size: 0.85rem;
+  }
+
+  .suggestion-info p {
+    font-size: 0.75rem;
+  }
+
+  .suggestion-price {
+    font-size: 0.8rem;
+  }
+
+  .view-all-btn {
+    padding: 0.6rem;
+    font-size: 0.8rem;
   }
 }
 
