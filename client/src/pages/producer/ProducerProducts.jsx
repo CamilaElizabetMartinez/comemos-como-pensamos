@@ -182,7 +182,7 @@ const ProducerProducts = () => {
               <div key={product._id} className="product-card">
                 <div className="product-image">
                   {product.images?.[0] ? (
-                    <img src={product.images[0]} alt={getLocalizedText(product.name)} />
+                    <img src={product.images[0]} alt={getLocalizedText(product.name)} loading="lazy" />
                   ) : (
                     <div className="no-image"><IconPackage size={32} /></div>
                   )}

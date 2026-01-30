@@ -101,7 +101,7 @@ const ProducerDetailPage = () => {
         <div className="producer-hero">
           <div className="producer-hero-logo">
             {producer.logo ? (
-              <img src={producer.logo} alt={producer.businessName} />
+              <img src={producer.logo} alt={producer.businessName} loading="lazy" />
             ) : (
               <div className="hero-logo-placeholder">
                 {producer.businessName?.charAt(0)}

@@ -335,7 +335,7 @@ const OrderDetailPage = () => {
                   <div key={itemKey} className="order-item-card">
                     <div className="item-image">
                       {item.productId?.images?.[0] ? (
-                        <img src={item.productId.images[0]} alt={item.productName} />
+                        <img src={item.productId.images[0]} alt={item.productName} loading="lazy" />
                       ) : (
                         <div className="image-placeholder"></div>
                       )}

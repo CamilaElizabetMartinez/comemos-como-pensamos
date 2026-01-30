@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { PRODUCT_CATEGORIES } from '../../constants/products';
 import { IconSmartphone, IconMail, IconCalendar } from '../../components/common/Icons';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminLeads.css';
 
 const STATUSES = ['new', 'contacted', 'interested', 'negotiating', 'registered', 'lost'];
@@ -37,6 +38,7 @@ const AdminLeads = () => {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [newNote, setNewNote] = useState('');
   const [saving, setSaving] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, leadId: null });
   
   const { user } = useAuth();
   const { t } = useTranslation();
@@ -212,8 +214,17 @@ const AdminLeads = () => {
     }
   }, [newNote, selectedLead, t]);
 
-  const handleDelete = useCallback(async (leadId) => {
-    if (!window.confirm(t('admin.leads.confirmDelete'))) return;
+  const openDeleteModal = useCallback((leadId) => {
+    setDeleteModal({ isOpen: true, leadId });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, leadId: null });
+  }, []);
+
+  const handleDelete = useCallback(async () => {
+    const { leadId } = deleteModal;
+    closeDeleteModal();
 
     try {
       await api.delete(`/leads/${leadId}`);
@@ -671,7 +682,7 @@ const AdminLeads = () => {
                   </button>
                   <button 
                     className="btn btn-danger"
-                    onClick={() => handleDelete(selectedLead._id)}
+                    onClick={() => openDeleteModal(selectedLead._id)}
                   >
                     {t('common.delete')}
                   </button>
@@ -681,6 +692,16 @@ const AdminLeads = () => {
           </div>
         )}
       </div>
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleDelete}
+        title={t('admin.leads.confirmDeleteTitle', '¿Eliminar lead?')}
+        message={t('admin.leads.confirmDelete', 'Esta acción no se puede deshacer.')}
+        confirmText={t('common.delete', 'Eliminar')}
+        cancelText={t('common.cancel', 'Cancelar')}
+        variant="danger"
+      />
     </div>
   );
 };

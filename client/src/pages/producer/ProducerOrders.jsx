@@ -192,7 +192,7 @@ const ProducerOrders = () => {
                         <div key={itemKey} className="order-item">
                           <div className="item-image">
                             {item.productId?.images?.[0] ? (
-                              <img src={item.productId.images[0]} alt={item.productName} />
+                              <img src={item.productId.images[0]} alt={item.productName} loading="lazy" />
                             ) : (
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                                 <rect x="3" y="3" width="18" height="18" rx="2" />

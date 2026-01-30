@@ -216,7 +216,7 @@ const AdminProducers = () => {
                     <div className="producer-header">
                       <div className="producer-logo">
                         {producer.logo ? (
-                          <img src={producer.logo} alt={producer.businessName} />
+                          <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                         ) : (
                           <span>🏪</span>
                         )}
@@ -287,7 +287,7 @@ const AdminProducers = () => {
                     <div className="producer-header">
                       <div className="producer-logo">
                         {producer.logo ? (
-                          <img src={producer.logo} alt={producer.businessName} />
+                          <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                         ) : (
                           <span>🏪</span>
                         )}

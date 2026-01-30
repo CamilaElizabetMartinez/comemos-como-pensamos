@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import { ListSkeleton } from '../../components/common/Skeleton';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './ProducerShipping.css';
 
 const ProducerShipping = () => {
@@ -12,6 +13,7 @@ const ProducerShipping = () => {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingZone, setEditingZone] = useState(null);
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, zoneId: null });
   const [formData, setFormData] = useState({
     name: '',
     postalCodes: '',
@@ -90,8 +92,17 @@ const ProducerShipping = () => {
     }
   };
 
-  const handleDelete = async (zoneId) => {
-    if (!window.confirm(t('producer.shipping.confirmDelete'))) return;
+  const openDeleteModal = useCallback((zoneId) => {
+    setDeleteModal({ isOpen: true, zoneId });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, zoneId: null });
+  }, []);
+
+  const handleDelete = async () => {
+    const { zoneId } = deleteModal;
+    closeDeleteModal();
 
     try {
       await api.delete(`/shipping/zones/${zoneId}`);
@@ -304,7 +315,7 @@ const ProducerShipping = () => {
                     </button>
                     <button 
                       className="btn-sm btn-danger"
-                      onClick={() => handleDelete(zone._id)}
+                      onClick={() => openDeleteModal(zone._id)}
                     >
                       {t('common.delete')}
                     </button>
@@ -315,6 +326,17 @@ const ProducerShipping = () => {
           )}
         </div>
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleDelete}
+        title={t('producer.shipping.confirmDeleteTitle', '¿Eliminar zona?')}
+        message={t('producer.shipping.confirmDelete', 'Esta acción no se puede deshacer.')}
+        confirmText={t('common.delete', 'Eliminar')}
+        cancelText={t('common.cancel', 'Cancelar')}
+        variant="danger"
+      />
     </div>
   );
 };

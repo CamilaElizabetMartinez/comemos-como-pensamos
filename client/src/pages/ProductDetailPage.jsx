@@ -363,7 +363,7 @@ const ProductDetailPage = () => {
                     className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
                     onClick={() => setSelectedImage(index)}
                   >
-                    <img src={img} alt={`${getLocalizedText(product.name)} ${index + 1}`} />
+                    <img src={img} alt={`${getLocalizedText(product.name)} ${index + 1}`} loading="lazy" />
                   </button>
                 ))}
               </div>
@@ -586,7 +586,7 @@ const ProductDetailPage = () => {
                     className={`lightbox-thumb ${selectedImage === index ? 'active' : ''}`}
                     onClick={() => setSelectedImage(index)}
                   >
-                    <img src={img} alt={`${getLocalizedText(product.name)} ${index + 1}`} />
+                    <img src={img} alt={`${getLocalizedText(product.name)} ${index + 1}`} loading="lazy" />
                   </button>
                 ))}
               </div>

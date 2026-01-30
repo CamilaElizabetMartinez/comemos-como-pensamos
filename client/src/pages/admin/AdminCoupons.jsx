@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminCoupons.css';
 
 const INITIAL_FORM_STATE = {
@@ -28,6 +29,7 @@ const AdminCoupons = () => {
   const [selectedCoupon, setSelectedCoupon] = useState(null);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
   const [saving, setSaving] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, couponId: null });
   
   const { user } = useAuth();
   const { t } = useTranslation();
@@ -175,8 +177,17 @@ const AdminCoupons = () => {
     }
   }, [t]);
 
-  const handleDelete = useCallback(async (couponId) => {
-    if (!window.confirm(t('admin.coupons.confirmDelete'))) return;
+  const openDeleteModal = useCallback((couponId) => {
+    setDeleteModal({ isOpen: true, couponId });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, couponId: null });
+  }, []);
+
+  const handleDelete = useCallback(async () => {
+    const { couponId } = deleteModal;
+    closeDeleteModal();
 
     try {
       await api.delete(`/coupons/${couponId}`);
@@ -185,7 +196,7 @@ const AdminCoupons = () => {
     } catch (error) {
       toast.error(t('admin.coupons.deleteError'));
     }
-  }, [t]);
+  }, [deleteModal, closeDeleteModal, t]);
 
   const formatDate = useCallback((dateString) => {
     if (!dateString) return '-';
@@ -336,7 +347,7 @@ const AdminCoupons = () => {
                     </button>
                     <button
                       className="btn btn-sm btn-danger"
-                      onClick={() => handleDelete(coupon._id)}
+                      onClick={() => openDeleteModal(coupon._id)}
                     >
                       {t('common.delete')}
                     </button>
@@ -517,6 +528,17 @@ const AdminCoupons = () => {
             </div>
           </div>
         )}
+
+        <ConfirmModal
+          isOpen={deleteModal.isOpen}
+          onClose={closeDeleteModal}
+          onConfirm={handleDelete}
+          title={t('admin.coupons.confirmDeleteTitle', '¿Eliminar cupón?')}
+          message={t('admin.coupons.confirmDelete', 'Esta acción no se puede deshacer.')}
+          confirmText={t('common.delete', 'Eliminar')}
+          cancelText={t('common.cancel', 'Cancelar')}
+          variant="danger"
+        />
       </div>
     </div>
   );

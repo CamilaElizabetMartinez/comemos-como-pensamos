@@ -848,7 +848,7 @@ const CheckoutPage = () => {
                   <li key={itemKey} className={`summary-item ${hasStockIssue ? 'stock-issue' : ''}`}>
                     <div className="item-image" aria-hidden="true">
                       {item.images?.[0] ? (
-                        <img src={item.images[0]} alt="" />
+                        <img src={item.images[0]} alt="" loading="lazy" />
                       ) : (
                         <span className="item-placeholder">{ICONS.package}</span>
                       )}

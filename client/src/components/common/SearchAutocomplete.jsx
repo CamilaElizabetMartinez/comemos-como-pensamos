@@ -211,7 +211,7 @@ const SearchAutocomplete = ({
                 >
                   <div className="suggestion-image">
                     {product.images?.[0] ? (
-                      <img src={product.images[0]} alt={getProductName(product)} />
+                      <img src={product.images[0]} alt={getProductName(product)} loading="lazy" />
                     ) : (
                       <span className="no-image"><IconPackage size={20} /></span>
                     )}
@@ -244,7 +244,7 @@ const SearchAutocomplete = ({
                   >
                     <div className="suggestion-image producer-logo">
                       {producer.logo ? (
-                        <img src={producer.logo} alt={producer.businessName} />
+                        <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                       ) : (
                         <span className="no-image">🏪</span>
                       )}

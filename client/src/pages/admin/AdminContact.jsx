@@ -8,6 +8,7 @@ import {
   IconInbox, IconMail, IconFileText, IconCheckCircle, IconFolder,
   IconTrash, IconSend, IconChevronLeft
 } from '../../components/common/Icons';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './AdminContact.css';
 
 const STATUS_ICONS = {
@@ -33,6 +34,7 @@ const AdminContact = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [adminNotes, setAdminNotes] = useState('');
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, messageId: null });
 
   const fetchMessages = useCallback(async () => {
     setLoading(true);
@@ -95,8 +97,17 @@ const AdminContact = () => {
     }
   };
 
-  const handleDelete = async (messageId) => {
-    if (!window.confirm(t('admin.contact.confirmDelete'))) return;
+  const openDeleteModal = useCallback((messageId) => {
+    setDeleteModal({ isOpen: true, messageId });
+  }, []);
+
+  const closeDeleteModal = useCallback(() => {
+    setDeleteModal({ isOpen: false, messageId: null });
+  }, []);
+
+  const handleDelete = async () => {
+    const { messageId } = deleteModal;
+    closeDeleteModal();
     
     try {
       await api.delete(`/contact/${messageId}`);
@@ -225,7 +236,7 @@ const AdminContact = () => {
                 </div>
                 <button 
                   className="btn btn-delete"
-                  onClick={() => handleDelete(selectedMessage._id)}
+                  onClick={() => openDeleteModal(selectedMessage._id)}
                   aria-label="Eliminar mensaje"
                 >
                   <IconTrash size={18} />
@@ -317,6 +328,17 @@ const AdminContact = () => {
           )}
         </div>
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={closeDeleteModal}
+        onConfirm={handleDelete}
+        title={t('admin.contact.confirmDeleteTitle', '¿Eliminar mensaje?')}
+        message={t('admin.contact.confirmDelete', 'Esta acción no se puede deshacer.')}
+        confirmText={t('common.delete', 'Eliminar')}
+        cancelText={t('common.cancel', 'Cancelar')}
+        variant="danger"
+      />
     </div>
   );
 };
