@@ -1137,7 +1137,71 @@ Al marcar como "shipped":
 
 ---
 
-### 7. Página 404
+### 7. Google Analytics
+
+- **Integración:** Google Analytics 4 (GA4)
+- **GDPR Compliance:** Solo se carga si el usuario acepta cookies analíticas
+- **Funcionalidades:**
+  - Tracking de páginas vistas
+  - Eventos de e-commerce (view_item, add_to_cart, purchase)
+  - IP anonimizado
+  - Escucha cambios de consentimiento en tiempo real
+
+#### Eventos trackeados
+| Evento | Descripción |
+|--------|-------------|
+| page_view | Vista de página |
+| view_item | Ver detalle de producto |
+| add_to_cart | Añadir al carrito |
+| purchase | Compra completada |
+| search | Búsqueda de productos |
+
+---
+
+### 8. SEO Dinámico
+
+- **Librería:** react-helmet-async
+- **Funcionalidades:**
+  - Meta tags dinámicos por página
+  - Open Graph tags (Facebook, LinkedIn)
+  - Twitter Cards
+  - JSON-LD structured data (Product, Article)
+  - Canonical URLs
+
+#### Páginas con SEO optimizado
+- HomePage
+- ProductsPage
+- ProductDetailPage (con schema Product)
+- BlogPage
+- ArticlePage (con schema Article)
+- ProducersPage
+
+---
+
+### 9. Emails Transaccionales
+
+#### Tipos de emails
+| Email | Destinatario | Trigger |
+|-------|--------------|---------|
+| Verificación de email | Cliente | Registro |
+| Recuperar contraseña | Cliente | Solicitud |
+| Confirmación de pedido | Cliente | Nuevo pedido |
+| Actualización de estado | Cliente | Cambio de estado |
+| Solicitud de reseña | Cliente | Pedido entregado |
+| Nueva orden | Productor | Pedido recibido |
+| Bienvenida newsletter | Suscriptor | Nueva suscripción |
+| Notificación contacto | Admin | Mensaje de contacto |
+
+#### Características
+- Templates HTML responsive
+- Branding consistente
+- Compatible con Gmail, Outlook, Apple Mail
+- Botones de acción claros
+- Información de tracking en emails de envío
+
+---
+
+### 10. Página 404
 
 - **Ruta:** `/*` (cualquier ruta no existente)
 - **Contenido:**

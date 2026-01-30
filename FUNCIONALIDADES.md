@@ -290,6 +290,32 @@
   - Cookies de marketing (opcionales)
 - **Guardar preferencias**: Almacenamiento local
 
+### Google Analytics
+- **GDPR Compliance**: Solo carga si el usuario acepta cookies analíticas
+- **Tracking**: Páginas vistas, eventos e-commerce
+- **Eventos**: view_item, add_to_cart, purchase, search
+- **Privacidad**: IP anonimizado automáticamente
+
+### SEO Dinámico
+- **Meta tags**: Título, descripción, keywords por página
+- **Open Graph**: Compartir en redes sociales
+- **Twitter Cards**: Preview en Twitter
+- **JSON-LD**: Structured data para productos y artículos
+- **Canonical URLs**: Evitar contenido duplicado
+
+### Emails Transaccionales
+- **Templates responsive**: Compatible con todos los clientes de email
+- **Branding consistente**: Colores y estilos de la marca
+- **Tipos de emails**:
+  - Verificación de cuenta
+  - Recuperación de contraseña
+  - Confirmación de pedido
+  - Actualización de estado
+  - Solicitud de reseña
+  - Nueva orden (productores)
+  - Bienvenida newsletter
+  - Notificación de contacto
+
 ### Notificaciones
 - **Toast notifications**: Mensajes de feedback en pantalla
 - **Push notifications**: Notificaciones del navegador (opcional)
