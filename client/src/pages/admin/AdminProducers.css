@@ -574,17 +574,30 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .admin-producers {
     padding: 1rem;
   }
 
-  .tabs {
+  .page-header {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .tabs {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.5rem;
   }
 
   .tab {
-    border-radius: 8px;
+    flex-shrink: 0;
   }
 
   .producers-section {
@@ -597,6 +610,12 @@
 
   .producer-actions {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .producer-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .producer-stats {
@@ -609,9 +628,76 @@
     min-width: 80px;
   }
 
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
   .commission-modal {
     max-width: 100%;
-    margin: 0.5rem;
+    border-radius: 16px 16px 0 0;
+    max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-producers {
+    padding: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .tabs {
+    gap: 0.35rem;
+  }
+
+  .tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .producer-card {
+    padding: 1rem;
+  }
+
+  .producer-header h3 {
+    font-size: 1rem;
+  }
+
+  .producer-meta span {
+    font-size: 0.75rem;
+  }
+
+  .producer-stats .stat {
+    min-width: 70px;
+  }
+
+  .producer-stats .stat-value {
+    font-size: 1rem;
+  }
+
+  .producer-stats .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .producer-actions .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .commission-modal .modal-body {
+    padding: 1rem;
+  }
+
+  .commission-modal .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .commission-modal .form-group input {
+    padding: 0.6rem;
+    font-size: 0.9rem;
   }
 }
 

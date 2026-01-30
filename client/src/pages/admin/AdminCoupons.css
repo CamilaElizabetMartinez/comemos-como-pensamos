@@ -413,27 +413,40 @@
 }
 
 .checkbox-group {
-  background: #F4F1EC;
-  padding: 1rem;
+  background: #f9f9f9;
+  padding: 1rem 1.25rem;
   border-radius: 8px;
+  border: 1px solid #eee;
+  margin-top: 0.5rem;
 }
 
 .checkbox-label {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   cursor: pointer;
   font-weight: 500;
+  line-height: 1.4;
 }
 
 .checkbox-label input {
-  width: auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #2D5A3D;
+  flex-shrink: 0;
+}
+
+.checkbox-label span {
+  color: #333;
 }
 
 .form-hint {
   font-size: 0.8rem;
-  color: #7A7A72;
-  margin: 0.5rem 0 0;
+  color: #666;
+  margin: 0.5rem 0 0 1.75rem;
+  line-height: 1.4;
 }
 
 .modal-footer {
@@ -457,6 +470,14 @@
   cursor: not-allowed;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .coupons-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .admin-coupons {
     padding: 1rem;
@@ -475,13 +496,75 @@
     grid-template-columns: 1fr;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
   }
 
   .coupon-modal {
-    max-height: 100vh;
-    border-radius: 0;
+    max-height: 95vh;
+    border-radius: 16px 16px 0 0;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1rem;
+  }
+
+  .modal-body {
+    padding: 1rem 1.25rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-group {
+    margin-bottom: 0.875rem;
+  }
+
+  .form-group label {
+    font-size: 0.8rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.7rem 0.75rem;
+    font-size: 16px;
+  }
+
+  .checkbox-group {
+    padding: 0.875rem 1rem;
+  }
+
+  .checkbox-label {
+    font-size: 0.9rem;
+  }
+
+  .form-hint {
+    font-size: 0.75rem;
+    margin-left: 1.6rem;
+  }
+
+  .modal-footer {
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .coupon-actions {
@@ -490,5 +573,48 @@
 
   .coupon-actions .btn {
     flex: 1 1 45%;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .admin-coupons {
+    padding: 0.75rem;
+  }
+
+  .coupon-card {
+    padding: 1rem;
+  }
+
+  .coupon-code {
+    font-size: 1.1rem;
+  }
+
+  .coupon-discount {
+    font-size: 1.5rem;
+  }
+
+  .coupon-actions .btn {
+    flex: 1 1 100%;
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.65rem 0.7rem;
+  }
+
+  .checkbox-group {
+    padding: 0.75rem;
+  }
+
+  .checkbox-label input {
+    width: 16px;
+    height: 16px;
   }
 }

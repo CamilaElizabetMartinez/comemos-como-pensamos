@@ -284,6 +284,64 @@
   }
 }
 
+@media (max-width: 480px) {
+  .admin-reports {
+    padding: 0.75rem;
+  }
+
+  .reports-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .reports-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .date-filter {
+    width: 100%;
+  }
+
+  .date-input-group label {
+    font-size: 0.8rem;
+  }
+
+  .date-input-group input {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .report-card {
+    padding: 1rem;
+  }
+
+  .report-card h3 {
+    font-size: 1rem;
+  }
+
+  .report-card p {
+    font-size: 0.8rem;
+  }
+
+  .btn-download {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .reports-info {
+    padding: 1rem;
+  }
+
+  .reports-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .reports-info li {
+    font-size: 0.85rem;
+  }
+}
+
 
 
 

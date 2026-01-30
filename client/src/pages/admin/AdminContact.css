@@ -395,6 +395,62 @@
   }
 }
 
+@media (max-width: 480px) {
+  .admin-contact-page {
+    padding: 0.75rem;
+  }
+
+  .contact-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .btn-status {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .messages-list-panel {
+    max-height: 300px;
+  }
+
+  .message-item {
+    padding: 0.75rem;
+  }
+
+  .message-item-header h3 {
+    font-size: 0.9rem;
+  }
+
+  .message-preview {
+    font-size: 0.8rem;
+  }
+
+  .message-meta span {
+    font-size: 0.7rem;
+  }
+
+  .message-detail-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .message-detail-meta span {
+    font-size: 0.75rem;
+  }
+
+  .message-detail-content p {
+    font-size: 0.9rem;
+  }
+
+  .reply-section textarea {
+    font-size: 0.9rem;
+  }
+
+  .reply-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
 
 
 
