@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
+import { IconEye } from '../../components/common/Icons';
 import './AdminOrders.css';
 
 const AdminOrders = () => {
@@ -168,8 +169,8 @@ const AdminOrders = () => {
                     </td>
                     <td className="date-cell">{formatDate(order.createdAt)}</td>
                     <td>
-                      <Link to={`/orders/${order._id}`} state={{ from: 'admin' }} className="btn-view">
-                        👁️
+                      <Link to={`/orders/${order._id}`} state={{ from: 'admin' }} className="btn-view" aria-label="Ver pedido">
+                        <IconEye size={18} />
                       </Link>
                     </td>
                   </tr>

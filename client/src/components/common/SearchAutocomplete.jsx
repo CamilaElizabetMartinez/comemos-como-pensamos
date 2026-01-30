@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../../services/api';
+import { IconCart, IconPackage, IconLeaf } from './Icons';
 import './SearchAutocomplete.css';
 
 const SearchAutocomplete = ({ 
@@ -199,7 +200,7 @@ const SearchAutocomplete = ({
           {suggestions.products?.length > 0 && (
             <div className="suggestions-section">
               <div className="suggestions-header">
-                <span>🛒 {t('search.products')}</span>
+                <span><IconCart size={16} /> {t('search.products')}</span>
               </div>
               {suggestions.products.map((product, index) => (
                 <div
@@ -212,7 +213,7 @@ const SearchAutocomplete = ({
                     {product.images?.[0] ? (
                       <img src={product.images[0]} alt={getProductName(product)} />
                     ) : (
-                      <span className="no-image">📦</span>
+                      <span className="no-image"><IconPackage size={20} /></span>
                     )}
                   </div>
                   <div className="suggestion-info">
@@ -230,7 +231,7 @@ const SearchAutocomplete = ({
           {suggestions.producers?.length > 0 && (
             <div className="suggestions-section">
               <div className="suggestions-header">
-                <span>🌱 {t('search.producers')}</span>
+                <span><IconLeaf size={16} /> {t('search.producers')}</span>
               </div>
               {suggestions.producers.map((producer, index) => {
                 const adjustedIndex = (suggestions.products?.length || 0) + index;

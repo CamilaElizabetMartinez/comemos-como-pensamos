@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
+import { IconCheckCircle, IconStar } from '../../components/common/Icons';
 import './AdminProducers.css';
 
 const INITIAL_COMMISSION_STATE = {
@@ -205,7 +206,7 @@ const AdminProducers = () => {
           <div className="producers-section">
             {pendingProducers.length === 0 ? (
               <div className="no-producers">
-                <span className="check-icon">✅</span>
+                <span className="check-icon"><IconCheckCircle size={48} /></span>
                 <p>{t('admin.producers.noPending')}</p>
               </div>
             ) : (
@@ -310,7 +311,7 @@ const AdminProducers = () => {
                         <span className="stat-label">{t('admin.producers.products')}</span>
                       </div>
                       <div className="stat">
-                        <span className="stat-value">⭐ {producer.rating?.toFixed(1) || '-'}</span>
+                        <span className="stat-value"><IconStar size={14} /> {producer.rating?.toFixed(1) || '-'}</span>
                         <span className="stat-label">{t('admin.producers.rating')}</span>
                       </div>
                       <div className="stat commission-stat">

@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { TableSkeleton } from '../../components/common/Skeleton';
+import { IconTrash } from '../../components/common/Icons';
 import './AdminUsers.css';
 
 const AdminUsers = () => {
@@ -187,8 +188,9 @@ const AdminUsers = () => {
                             onClick={() => handleDeleteUser(u._id, `${u.firstName} ${u.lastName}`)}
                             className="btn-delete"
                             title={t('common.delete')}
+                            aria-label={t('common.delete')}
                           >
-                            🗑️
+                            <IconTrash size={16} />
                           </button>
                         )}
                       </div>

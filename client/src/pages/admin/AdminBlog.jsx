@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import ImageUploader from '../../components/common/ImageUploader';
+import { IconEye, IconTrash, IconUpload, IconDownload, IconEdit } from '../../components/common/Icons';
 import './AdminBlog.css';
 
 const CATEGORIES = [
@@ -310,15 +311,17 @@ const AdminBlog = () => {
                         className="btn-action edit"
                         onClick={() => handleOpenModal(article)}
                         title={t('common.edit')}
+                        aria-label={t('common.edit')}
                       >
-                        ✏️
+                        <IconEdit size={16} />
                       </button>
                       <button
                         className={`btn-action ${article.status === 'published' ? 'unpublish' : 'publish'}`}
                         onClick={() => handleToggleStatus(article)}
                         title={article.status === 'published' ? t('admin.blog.unpublish') : t('admin.blog.publish')}
+                        aria-label={article.status === 'published' ? t('admin.blog.unpublish') : t('admin.blog.publish')}
                       >
-                        {article.status === 'published' ? '📤' : '📥'}
+                        {article.status === 'published' ? <IconUpload size={16} /> : <IconDownload size={16} />}
                       </button>
                       <a
                         href={`/blog/${article.slug}`}
@@ -326,15 +329,17 @@ const AdminBlog = () => {
                         rel="noopener noreferrer"
                         className="btn-action view"
                         title={t('common.view')}
+                        aria-label={t('common.view')}
                       >
-                        👁️
+                        <IconEye size={16} />
                       </a>
                       <button
                         className="btn-action delete"
                         onClick={() => handleDelete(article._id)}
                         title={t('common.delete')}
+                        aria-label={t('common.delete')}
                       >
-                        🗑️
+                        <IconTrash size={16} />
                       </button>
                     </td>
                   </tr>

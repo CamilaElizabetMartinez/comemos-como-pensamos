@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { PRODUCT_CATEGORIES } from '../../constants/products';
+import { IconSmartphone, IconMail, IconCalendar } from '../../components/common/Icons';
 import './AdminLeads.css';
 
 const STATUSES = ['new', 'contacted', 'interested', 'negotiating', 'registered', 'lost'];
@@ -341,7 +342,7 @@ const AdminLeads = () => {
                       <span className="detail-item">🏪 {lead.location.market}</span>
                     )}
                     {lead.phone && (
-                      <span className="detail-item">📱 {lead.phone}</span>
+                      <span className="detail-item"><IconSmartphone size={14} /> {lead.phone}</span>
                     )}
                   </div>
 
@@ -354,7 +355,7 @@ const AdminLeads = () => {
                     )}
                     {lead.nextFollowUp && (
                       <span className={`followup-tag ${isOverdue(lead) ? 'overdue' : ''}`}>
-                        📅 {formatDate(lead.nextFollowUp)}
+                        <IconCalendar size={14} /> {formatDate(lead.nextFollowUp)}
                       </span>
                     )}
                   </div>
@@ -586,12 +587,12 @@ const AdminLeads = () => {
                   <div className="contact-info">
                     {selectedLead.phone && (
                       <a href={`tel:${selectedLead.phone}`} className="contact-link">
-                        📱 {selectedLead.phone}
+                        <IconSmartphone size={16} /> {selectedLead.phone}
                       </a>
                     )}
                     {selectedLead.email && (
                       <a href={`mailto:${selectedLead.email}`} className="contact-link">
-                        ✉️ {selectedLead.email}
+                        <IconMail size={16} /> {selectedLead.email}
                       </a>
                     )}
                     {selectedLead.phone && (
