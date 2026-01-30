@@ -75,23 +75,52 @@ const Navbar = () => {
           <img src={logoSrc} alt="Comemos Como Pensamos" className="logo-icon" />
         </Link>
 
-        <button 
-          className={`hamburger-btn ${mobileMenuOpen ? 'active' : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-        </button>
-
         <div id="mobile-menu" className={`navbar-menu ${mobileMenuOpen ? 'open' : ''}`} role="menubar">
           <Link to="/" className="navbar-link" onClick={closeMobileMenu}>{t('nav.home')}</Link>
           <Link to="/products" className="navbar-link" onClick={closeMobileMenu}>{t('nav.products')}</Link>
           <Link to="/producers" className="navbar-link" onClick={closeMobileMenu}>{t('nav.producers')}</Link>
           <Link to="/blog" className="navbar-link" onClick={closeMobileMenu}>{t('nav.blog')}</Link>
+        </div>
+
+        {/* Mobile quick actions - always visible */}
+        <div className="navbar-mobile-actions">
+          <Link to="/cart" className="mobile-cart-btn" aria-label={`Carrito, ${getCartCount()} productos`}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+            {getCartCount() > 0 && (
+              <span className={`mobile-cart-badge ${badgeAnimate ? 'animate' : ''}`}>{getCartCount()}</span>
+            )}
+          </Link>
+
+          {isAuthenticated ? (
+            <Link to="/profile" className="mobile-user-btn" aria-label="Mi cuenta">
+              <span className="mobile-user-avatar">
+                {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
+              </span>
+            </Link>
+          ) : (
+            <Link to="/login" className="mobile-user-btn" aria-label="Iniciar sesión">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </Link>
+          )}
+
+          <button 
+            className={`hamburger-btn ${mobileMenuOpen ? 'active' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+          </button>
         </div>
 
         <div className={`navbar-actions ${mobileMenuOpen ? 'open' : ''}`}>

@@ -355,6 +355,72 @@
   background: #ffebee;
 }
 
+/* Mobile Quick Actions - Hidden on desktop */
+.navbar-mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-cart-btn,
+.mobile-user-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #F4F1EC;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.mobile-cart-btn:hover,
+.mobile-user-btn:hover {
+  color: #B8D4B0;
+}
+
+.mobile-cart-btn svg,
+.mobile-user-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #C4956A;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-cart-badge.animate {
+  animation: badgePop 0.4s ease;
+}
+
+.mobile-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #C4956A;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
 /* Hamburger Button */
 .hamburger-btn {
   display: none;
@@ -491,9 +557,14 @@
     gap: 0.5rem;
   }
 
+  /* Show mobile quick actions */
+  .navbar-mobile-actions {
+    display: flex;
+    order: 2;
+  }
+
   .hamburger-btn {
     display: flex;
-    order: 3;
   }
 
   .navbar-logo {
@@ -505,10 +576,9 @@
     height: 45px;
   }
 
+  /* Hide desktop cart in mobile actions panel - using mobile quick actions */
   .navbar-actions .navbar-cart {
-    margin-right: 0;
-    padding-right: 0;
-    border-right: none;
+    display: none;
   }
 
   /* Mobile Menu */
@@ -592,21 +662,6 @@
 
   .language-dropdown .check-icon {
     color: #B8D4B0;
-  }
-
-  .navbar-cart {
-    padding: 0.75rem 0;
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .cart-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .cart-badge {
-    font-size: 0.75rem;
   }
 
   .auth-nav {
