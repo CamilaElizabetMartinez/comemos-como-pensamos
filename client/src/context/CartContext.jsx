@@ -20,6 +20,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [stockIssues, setStockIssues] = useState([]);
 
+  // Load cart from localStorage on mount
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
@@ -32,9 +33,21 @@ export const CartProvider = ({ children }) => {
     }
   }, []);
 
+  // Save cart to localStorage when it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
+
+  // Listen for logout event to clear cart
+  useEffect(() => {
+    const handleLogout = () => {
+      setCartItems([]);
+      setStockIssues([]);
+    };
+
+    window.addEventListener('userLogout', handleLogout);
+    return () => window.removeEventListener('userLogout', handleLogout);
+  }, []);
 
   const addToCart = useCallback((product, quantity = 1) => {
     const itemKey = getCartItemKey(product._id, product.variantId);

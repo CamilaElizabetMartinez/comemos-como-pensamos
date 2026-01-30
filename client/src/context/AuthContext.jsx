@@ -45,6 +45,9 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      // Dispatch event to notify CartContext
+      window.dispatchEvent(new CustomEvent('userLogout'));
     }
   };
 
