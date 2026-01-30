@@ -1,6 +1,5 @@
-import crypto from 'crypto';
 import User from '../models/User.js';
-import { generateToken } from '../utils/generateToken.js';
+import { generateToken, generateVerificationToken } from '../utils/generateToken.js';
 import { sendVerificationEmail } from '../utils/emailSender.js';
 
 // @desc    Registrar nuevo usuario
@@ -20,8 +19,8 @@ export const register = async (req, res) => {
       });
     }
 
-    // Generate email verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
+    // Generate email verification token (JWT)
+    const verificationToken = generateVerificationToken();
 
     // Crear usuario
     const user = await User.create({
@@ -34,7 +33,7 @@ export const register = async (req, res) => {
       emailVerificationToken: verificationToken
     });
 
-    // Generar token JWT
+    // Generar token JWT para autenticación
     const token = generateToken(user._id);
 
     // Send verification email (non-blocking)
@@ -211,163 +210,6 @@ export const logout = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error al cerrar sesión',
-      error: error.message
-    });
-  }
-};
-
-// @desc    Verify email
-// @route   GET /api/auth/verify-email/:token
-// @access  Public
-export const verifyEmail = async (req, res) => {
-  try {
-    const { token } = req.params;
-
-    const user = await User.findOne({ emailVerificationToken: token });
-
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: 'Token de verificación inválido o expirado'
-      });
-    }
-
-    user.isEmailVerified = true;
-    user.emailVerificationToken = undefined;
-    await user.save();
-
-    res.status(200).json({
-      success: true,
-      message: 'Email verificado exitosamente'
-    });
-  } catch (error) {
-    console.error('Error verifying email:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error al verificar email',
-      error: error.message
-    });
-  }
-};
-
-// @desc    Resend verification email
-// @route   POST /api/auth/resend-verification
-// @access  Private
-export const resendVerification = async (req, res) => {
-  try {
-    const user = await User.findById(req.user._id);
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      });
-    }
-
-    if (user.isEmailVerified) {
-      return res.status(400).json({
-        success: false,
-        message: 'El email ya está verificado'
-      });
-    }
-
-    // Generate new token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
-    user.emailVerificationToken = verificationToken;
-    await user.save();
-
-    // Send email
-    await sendVerificationEmail(user, verificationToken);
-
-    res.status(200).json({
-      success: true,
-      message: 'Email de verificación enviado'
-    });
-  } catch (error) {
-    console.error('Error resending verification:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error al reenviar email de verificación',
-      error: error.message
-    });
-  }
-};
-
-// @desc    Forgot password
-// @route   POST /api/auth/forgot-password
-// @access  Public
-export const forgotPassword = async (req, res) => {
-  try {
-    const { email } = req.body;
-
-    const user = await User.findOne({ email: email.toLowerCase() });
-
-    if (!user) {
-      // Don't reveal if user exists
-      return res.status(200).json({
-        success: true,
-        message: 'Si el email existe, recibirás un enlace para restablecer tu contraseña'
-      });
-    }
-
-    // Generate reset token
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-    await user.save();
-
-    // Send email
-    const { sendPasswordResetEmail } = await import('../utils/emailSender.js');
-    await sendPasswordResetEmail(user, resetToken);
-
-    res.status(200).json({
-      success: true,
-      message: 'Si el email existe, recibirás un enlace para restablecer tu contraseña'
-    });
-  } catch (error) {
-    console.error('Error in forgot password:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error al procesar solicitud',
-      error: error.message
-    });
-  }
-};
-
-// @desc    Reset password
-// @route   POST /api/auth/reset-password/:token
-// @access  Public
-export const resetPassword = async (req, res) => {
-  try {
-    const { token } = req.params;
-    const { password } = req.body;
-
-    const user = await User.findOne({
-      resetPasswordToken: token,
-      resetPasswordExpires: { $gt: Date.now() }
-    });
-
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: 'Token inválido o expirado'
-      });
-    }
-
-    user.password = password;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpires = undefined;
-    await user.save();
-
-    res.status(200).json({
-      success: true,
-      message: 'Contraseña actualizada exitosamente'
-    });
-  } catch (error) {
-    console.error('Error resetting password:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error al restablecer contraseña',
       error: error.message
     });
   }
