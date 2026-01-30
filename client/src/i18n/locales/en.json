@@ -175,7 +175,8 @@
   },
   "cart": {
     "title": "Shopping Cart",
-    "empty": "Your cart is empty",
+    "emptyTitle": "Your cart is empty",
+    "empty": "Add products to start shopping",
     "items": "{{count}} item",
     "items_plural": "{{count}} items",
     "producers": "producers",
@@ -307,7 +308,8 @@
   "orders": {
     "title": "My Orders",
     "allOrders": "All orders",
-    "noOrders": "You don't have any orders yet",
+    "noOrdersTitle": "No orders yet",
+    "noOrders": "When you make your first purchase, it will appear here",
     "startShopping": "Start shopping",
     "moreItems": "more items",
     "total": "Total",

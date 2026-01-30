@@ -1,7 +1,7 @@
 .profile-page {
   min-height: 80vh;
-  padding: 2rem;
-  background-color: #f5f5f5;
+  padding: var(--space-lg);
+  background-color: var(--color-bg-cream);
 }
 
 .profile-container {
@@ -10,43 +10,48 @@
 }
 
 .profile-container h1 {
-  color: #2e7d32;
-  margin-bottom: 2rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-heading);
 }
 
 .profile-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg-white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border-light);
 }
 
 .profile-avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2e7d32, #4caf50);
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: var(--color-text-light);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(45, 90, 61, 0.25);
+  flex-shrink: 0;
 }
 
 .profile-user-info h2 {
   margin: 0 0 0.25rem 0;
-  color: #333;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
 }
 
 .profile-user-info p {
   margin: 0 0 0.5rem 0;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 .role-badge {
@@ -64,8 +69,8 @@
 }
 
 .role-producer {
-  background-color: #e8f5e9;
-  color: #2e7d32;
+  background-color: var(--color-primary-muted);
+  color: var(--color-primary-dark);
 }
 
 .role-admin {
@@ -77,10 +82,11 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
-  background: white;
+  background: var(--color-bg-white);
   padding: 0.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-border-light);
 }
 
 .tab-button {
@@ -88,28 +94,31 @@
   padding: 0.75rem 1rem;
   border: none;
   background: transparent;
-  color: #666;
-  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
 }
 
 .tab-button:hover {
-  background-color: #f5f5f5;
+  background-color: var(--color-bg-cream);
+  color: var(--color-text-body);
 }
 
 .tab-button.active {
-  background-color: #2e7d32;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  box-shadow: 0 2px 8px rgba(45, 90, 61, 0.2);
 }
 
 .profile-form {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg-white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-border-light);
 }
 
 .form-section {
@@ -132,30 +141,85 @@
 
 .form-group label {
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select {
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 1rem;
+  background: var(--color-bg-white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: var(--color-primary-light);
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #2e7d32;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+}
+
+.form-group input::placeholder {
+  color: var(--color-text-muted);
 }
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: var(--space-lg);
   padding-top: 1.5rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.form-actions .btn {
+  min-width: 120px;
+}
+
+.form-actions .btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-page {
+    padding: var(--space-sm);
+  }
+
+  .profile-header {
+    padding: 1.5rem;
+  }
+
+  .profile-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.25rem;
+  }
+
+  .profile-tabs {
+    overflow-x: auto;
+    gap: 0.35rem;
+    padding: 0.35rem;
+  }
+
+  .tab-button {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .profile-form {
+    padding: 1.25rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -181,3 +245,45 @@
   }
 }
 
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 0.75rem;
+  }
+
+  .profile-container h1 {
+    font-size: 1.35rem;
+  }
+
+  .profile-header {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 1.1rem;
+  }
+
+  .profile-user-info h2 {
+    font-size: 1.1rem;
+  }
+
+  .profile-user-info p {
+    font-size: 0.85rem;
+  }
+
+  .profile-form {
+    padding: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.65rem;
+    font-size: 16px;
+  }
+}

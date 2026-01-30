@@ -74,6 +74,9 @@ const FavoritesPage = () => {
 
         {favorites.length === 0 ? (
           <div className="no-favorites">
+            <div className="no-favorites-icon">
+              <IconHeart size={50} />
+            </div>
             <h2>{t('favorites.empty')}</h2>
             <p>{t('favorites.emptyDescription')}</p>
             <Link to="/products" className="btn btn-primary">
