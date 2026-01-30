@@ -53,6 +53,7 @@ const ProducerProductForm = lazy(() => import('./pages/producer/ProducerProductF
 const ProducerOrders = lazy(() => import('./pages/producer/ProducerOrders'));
 const ProducerReports = lazy(() => import('./pages/producer/ProducerReports'));
 const ProducerShipping = lazy(() => import('./pages/producer/ProducerShipping'));
+const ProducerProfile = lazy(() => import('./pages/producer/ProducerProfile'));
 
 // Admin Pages (lazy loaded)
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
@@ -115,6 +116,7 @@ function App() {
                   <Route path="/producer/orders" element={<ProducerOrders />} />
                   <Route path="/producer/reports" element={<ProducerReports />} />
                   <Route path="/producer/shipping" element={<ProducerShipping />} />
+                  <Route path="/producer/profile" element={<ProducerProfile />} />
                   
                   {/* Admin Panel */}
                   <Route path="/admin" element={<AdminDashboard />} />
