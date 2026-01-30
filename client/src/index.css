@@ -334,13 +334,25 @@ a:hover {
 
 /* Focus visible - keyboard navigation */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-primary) !important;
   outline-offset: 2px;
 }
 
-/* Remove default outline for mouse users */
+/* Remove default outline for mouse users but keep box-shadow */
 :focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Ensure buttons and interactive elements have visible focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-primary) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(45, 90, 61, 0.15);
 }
 
 /* Skip to main content link */

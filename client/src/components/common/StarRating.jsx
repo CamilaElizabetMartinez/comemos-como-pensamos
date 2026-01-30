@@ -1,4 +1,5 @@
 import React, { useMemo, memo } from 'react';
+import PropTypes from 'prop-types';
 import { IconStarFilled, IconStarOutline } from './Icons';
 
 const StarRating = ({ rating = 0, size = 16, showEmpty = true, maxStars = 5 }) => {
@@ -35,6 +36,13 @@ const StarRating = ({ rating = 0, size = 16, showEmpty = true, maxStars = 5 }) =
       {stars}
     </span>
   );
+};
+
+StarRating.propTypes = {
+  rating: PropTypes.number,
+  size: PropTypes.number,
+  showEmpty: PropTypes.bool,
+  maxStars: PropTypes.number,
 };
 
 export default memo(StarRating);

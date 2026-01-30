@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import PropTypes from 'prop-types';
 import './ConfirmModal.css';
 
 const InputModal = ({
@@ -79,6 +80,18 @@ const InputModal = ({
       </div>
     </div>
   );
+};
+
+InputModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  message: PropTypes.string,
+  placeholder: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 export default InputModal;

@@ -109,7 +109,7 @@ const TESTIMONIALS = [
     name: 'María García',
     business: 'Huerta La Esperanza',
     location: 'Vélez-Málaga',
-    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150&h=150&fit=crop',
+    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150&h=150&fit=crop&auto=format',
     quote: 'testimonial1'
   },
   {
@@ -117,7 +117,7 @@ const TESTIMONIALS = [
     name: 'Antonio Ruiz',
     business: 'Aceites del Valle',
     location: 'Antequera',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&auto=format',
     quote: 'testimonial2'
   },
   {
@@ -125,7 +125,7 @@ const TESTIMONIALS = [
     name: 'Carmen López',
     business: 'Quesos Artesanos Sierra',
     location: 'Ronda',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&auto=format',
     quote: 'testimonial3'
   }
 ];
@@ -163,7 +163,7 @@ const JoinAsProducerPage = () => {
       title: t('join.seo.title'),
       description: t('join.seo.description'),
       type: 'website',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&h=630&fit=crop'
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&h=630&fit=crop&auto=format'
     },
     jsonLd: faqJsonLd
   });
@@ -195,7 +195,7 @@ const JoinAsProducerPage = () => {
       <section className="join-hero">
         <div className="join-hero-bg">
           <img 
-            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80" 
+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80&auto=format&fit=crop" 
             alt="" 
             aria-hidden="true"
           />

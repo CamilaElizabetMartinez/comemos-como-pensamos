@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, memo } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../context/CartContext';
@@ -148,6 +149,22 @@ const ProductCard = ({ product, showAddToCart = true }) => {
       )}
     </article>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.object.isRequired,
+    price: PropTypes.number,
+    images: PropTypes.arrayOf(PropTypes.string),
+    isAvailable: PropTypes.bool,
+    stock: PropTypes.number,
+    unit: PropTypes.string,
+    hasVariants: PropTypes.bool,
+    variants: PropTypes.array,
+    createdAt: PropTypes.string,
+  }).isRequired,
+  showAddToCart: PropTypes.bool,
 };
 
 export default memo(ProductCard);

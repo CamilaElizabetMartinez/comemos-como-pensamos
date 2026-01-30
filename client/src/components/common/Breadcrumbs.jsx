@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { IconHome, IconChevronRight } from './Icons';
@@ -52,6 +53,14 @@ const Breadcrumbs = ({ items = [], currentPage }) => {
       </ol>
     </nav>
   );
+};
+
+Breadcrumbs.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    path: PropTypes.string,
+  })),
+  currentPage: PropTypes.string,
 };
 
 export default Breadcrumbs;

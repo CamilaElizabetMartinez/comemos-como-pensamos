@@ -9,22 +9,22 @@ import './HomePage.css';
 
 const CAROUSEL_SLIDES = [
   {
-    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&q=80&auto=format&fit=crop',
     titleKey: 'home.carousel.slide1Title',
     subtitleKey: 'home.carousel.slide1Subtitle'
   },
   {
-    image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1920&q=80&auto=format&fit=crop',
     titleKey: 'home.carousel.slide2Title',
     subtitleKey: 'home.carousel.slide2Subtitle'
   },
   {
-    image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1920&q=80&auto=format&fit=crop',
     titleKey: 'home.carousel.slide3Title',
     subtitleKey: 'home.carousel.slide3Subtitle'
   },
   {
-    image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=80&auto=format&fit=crop',
     titleKey: 'home.carousel.slide4Title',
     subtitleKey: 'home.carousel.slide4Subtitle'
   }

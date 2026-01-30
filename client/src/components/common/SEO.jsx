@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const SEO = ({ 
   title, 
@@ -45,6 +46,14 @@ const SEO = ({
   }, [fullTitle, metaDescription, metaImage, metaUrl, type]);
 
   return null;
+};
+
+SEO.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  url: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default SEO;
