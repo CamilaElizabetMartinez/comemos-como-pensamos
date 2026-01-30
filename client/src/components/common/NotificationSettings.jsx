@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { pushService } from '../../services/pushService';
-import { IconPackage, IconCart, IconAward } from './Icons';
+import { IconPackage, IconCart, IconAward, IconBell, IconAlertTriangle } from './Icons';
 import './NotificationSettings.css';
 
 const NotificationSettings = () => {
@@ -66,7 +66,7 @@ const NotificationSettings = () => {
     return (
       <div className="notification-settings">
         <div className="notification-header">
-          <span className="notification-icon">🔔</span>
+          <span className="notification-icon"><IconBell size={20} /></span>
           <h3>{t('notifications.title')}</h3>
         </div>
         <p className="notification-unsupported">
@@ -84,7 +84,7 @@ const NotificationSettings = () => {
   return (
     <div className="notification-settings">
       <div className="notification-header">
-        <span className="notification-icon">🔔</span>
+        <span className="notification-icon"><IconBell size={20} /></span>
         <div>
           <h3>{t('notifications.title')}</h3>
           <p>{t('notifications.description')}</p>
@@ -98,7 +98,7 @@ const NotificationSettings = () => {
           </span>
           {status.permission === 'denied' && (
             <span className="permission-warning">
-              ⚠️ {t('notifications.blockedInBrowser')}
+              <IconAlertTriangle size={16} /> {t('notifications.blockedInBrowser')}
             </span>
           )}
         </div>

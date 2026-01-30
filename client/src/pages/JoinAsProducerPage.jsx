@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useSEO from '../hooks/useSEO';
+import { IconLocation } from '../components/common/Icons';
 import './JoinAsProducerPage.css';
 
 const ICONS = {
@@ -341,7 +342,7 @@ const JoinAsProducerPage = () => {
                   <div className="author-info">
                     <strong>{testimonial.name}</strong>
                     <span>{testimonial.business}</span>
-                    <span className="author-location">📍 {testimonial.location}</span>
+                    <span className="author-location"><IconLocation size={14} /> {testimonial.location}</span>
                   </div>
                 </div>
               </div>

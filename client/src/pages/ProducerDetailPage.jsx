@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import api from '../services/api';
 import { ProducerDetailSkeleton } from '../components/common/Skeleton';
-import { IconPackage } from '../components/common/Icons';
+import { IconPackage, IconCheck } from '../components/common/Icons';
 import StarRating from '../components/common/StarRating';
 import Breadcrumbs from '../components/common/Breadcrumbs';
 import './ProducerDetailPage.css';
@@ -133,7 +133,7 @@ const ProducerDetailPage = () => {
               <div className="hero-certifications">
                 {producer.certifications.map((cert, index) => (
                   <span key={index} className="certification-badge">
-                    ✓ {cert}
+                    <IconCheck size={14} /> {cert}
                   </span>
                 ))}
               </div>

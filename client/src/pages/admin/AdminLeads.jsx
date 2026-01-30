@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 import { PRODUCT_CATEGORIES } from '../../constants/products';
-import { IconSmartphone, IconMail, IconCalendar, IconLocation, IconStore, IconFlame } from '../../components/common/Icons';
+import { IconSmartphone, IconMail, IconCalendar, IconLocation, IconStore, IconFlame, IconAlertTriangle } from '../../components/common/Icons';
 import ConfirmModal from '../../components/common/ConfirmModal';
 import InputModal from '../../components/common/InputModal';
 import './AdminLeads.css';
@@ -308,7 +308,7 @@ const AdminLeads = () => {
 
         {stats.overdueCount > 0 && (
           <div className="overdue-alert">
-            <span className="alert-icon">⚠️</span>
+            <span className="alert-icon"><IconAlertTriangle size={18} /></span>
             <span>{t('admin.leads.overdueAlert', { count: stats.overdueCount })}</span>
           </div>
         )}

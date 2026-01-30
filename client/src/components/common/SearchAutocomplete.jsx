@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../../services/api';
-import { IconCart, IconPackage, IconLeaf } from './Icons';
+import { IconCart, IconPackage, IconLeaf, IconStore } from './Icons';
 import './SearchAutocomplete.css';
 
 const SearchAutocomplete = ({ 
@@ -246,7 +246,7 @@ const SearchAutocomplete = ({
                       {producer.logo ? (
                         <img src={producer.logo} alt={producer.businessName} loading="lazy" />
                       ) : (
-                        <span className="no-image">🏪</span>
+                        <span className="no-image"><IconStore size={24} /></span>
                       )}
                     </div>
                     <div className="suggestion-info">

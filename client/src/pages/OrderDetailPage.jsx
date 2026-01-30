@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { OrderDetailSkeleton } from '../components/common/Skeleton';
-import { IconStarFilled } from '../components/common/Icons';
+import { IconStarFilled, IconCheck } from '../components/common/Icons';
 import Breadcrumbs from '../components/common/Breadcrumbs';
 import './OrderDetailPage.css';
 
@@ -306,7 +306,7 @@ const OrderDetailPage = () => {
                   className={`progress-step ${index <= getCurrentStep() ? 'completed' : ''} ${index === getCurrentStep() ? 'current' : ''}`}
                 >
                   <div className="step-indicator">
-                    {index < getCurrentStep() ? '✓' : index + 1}
+                    {index < getCurrentStep() ? <IconCheck size={16} /> : index + 1}
                   </div>
                   <span className="step-label">{getStatusLabel(step)}</span>
                 </div>

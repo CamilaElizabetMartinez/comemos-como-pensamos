@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { IconLeaf, IconPackage } from '../components/common/Icons';
+import { IconLeaf, IconPackage, IconCheck, IconStore } from '../components/common/Icons';
 import './ProducerCalculator.css';
 
 const PRODUCT_CATEGORIES = [
@@ -261,16 +261,16 @@ const ProducerCalculator = () => {
                       {formatCurrency(calculations.monthly.net)}
                     </div>
                     <ul className="comparison-benefits">
-                      <li>✓ {t('calculator.noStallCost')}</li>
-                      <li>✓ {t('calculator.noTransport')}</li>
-                      <li>✓ {t('calculator.sellFromHome')}</li>
-                      <li>✓ {t('calculator.reachMoreCustomers')}</li>
+                      <li><IconCheck size={14} /> {t('calculator.noStallCost')}</li>
+                      <li><IconCheck size={14} /> {t('calculator.noTransport')}</li>
+                      <li><IconCheck size={14} /> {t('calculator.sellFromHome')}</li>
+                      <li><IconCheck size={14} /> {t('calculator.reachMoreCustomers')}</li>
                     </ul>
                   </div>
 
                   <div className="comparison-card traditional">
                     <div className="comparison-header">
-                      <span className="comparison-icon">🏪</span>
+                      <span className="comparison-icon"><IconStore size={24} /></span>
                       <span className="comparison-title">{t('calculator.traditionalMarket')}</span>
                     </div>
                     <div className={`comparison-amount ${calculations.traditional.netProfit >= 0 ? 'neutral' : 'negative'}`}>

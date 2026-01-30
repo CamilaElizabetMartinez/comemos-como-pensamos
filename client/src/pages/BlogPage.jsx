@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../services/api';
 import useSEO from '../hooks/useSEO';
 import { ListSkeleton } from '../components/common/Skeleton';
+import { IconFile } from '../components/common/Icons';
 import './BlogPage.css';
 
 const CATEGORIES = [
@@ -138,7 +139,7 @@ const BlogPage = () => {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="image-placeholder">📰</div>
+                      <div className="image-placeholder"><IconFile size={32} /></div>
                     )}
                     <span className="category-badge">
                       {t(`blog.categories.${featuredArticle.category}`)}
@@ -172,7 +173,7 @@ const BlogPage = () => {
                           loading="lazy"
                         />
                       ) : (
-                        <div className="image-placeholder">📰</div>
+                        <div className="image-placeholder"><IconFile size={24} /></div>
                       )}
                       <span className="category-badge">
                         {t(`blog.categories.${article.category}`)}
