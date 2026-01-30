@@ -1,6 +1,7 @@
 import React, { useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
 import { IconStarFilled, IconStarOutline } from './Icons';
+import './StarRating.css';
 
 const StarRating = ({ rating = 0, size = 16, showEmpty = true, maxStars = 5 }) => {
   const stars = useMemo(() => {
@@ -15,9 +16,9 @@ const StarRating = ({ rating = 0, size = 16, showEmpty = true, maxStars = 5 }) =
         );
       } else if (i === fullStars && hasHalfStar) {
         result.push(
-          <span key={i} className="star-icon half" style={{ position: 'relative', display: 'inline-block' }}>
-            <IconStarOutline size={size} style={{ position: 'absolute', left: 0 }} />
-            <span style={{ overflow: 'hidden', width: '50%', display: 'inline-block' }}>
+          <span key={i} className="star-icon half">
+            <IconStarOutline size={size} className="star-outline" />
+            <span className="star-half-fill">
               <IconStarFilled size={size} />
             </span>
           </span>

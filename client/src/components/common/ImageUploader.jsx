@@ -169,7 +169,7 @@ const ImageUploader = ({ images = [], onImagesChange, maxImages = 5, folder = 'p
             accept="image/*"
             multiple
             onChange={handleFileInput}
-            style={{ display: 'none' }}
+            className="hidden-input"
           />
           
           {uploading ? (

@@ -72,7 +72,7 @@ const NotificationSettings = () => {
         <p className="notification-unsupported">
           {t('notifications.notSupported')}
         </p>
-        <p className="notification-debug" style={{ fontSize: '0.75rem', color: '#999', marginTop: '0.5rem' }}>
+        <p className="notification-debug">
           Debug: {status.permission || 'unknown'} | 
           Secure: {window.isSecureContext ? 'yes' : 'no'} | 
           Protocol: {window.location.protocol}
