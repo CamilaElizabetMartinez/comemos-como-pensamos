@@ -54,9 +54,14 @@
 }
 
 .info-icon {
-  font-size: 2rem;
   display: block;
   margin-bottom: 0.75rem;
+  color: #2d5a27;
+}
+
+.info-icon svg {
+  width: 32px;
+  height: 32px;
 }
 
 .info-card h3 {
@@ -141,9 +146,14 @@
 }
 
 .success-icon {
-  font-size: 4rem;
   display: block;
-  margin-bottom: 1rem;
+  margin: 0 auto 1.5rem;
+  color: #2d5a27;
+}
+
+.success-icon svg {
+  width: 64px;
+  height: 64px;
 }
 
 .success-message h2 {
