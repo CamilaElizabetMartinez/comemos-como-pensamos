@@ -11,6 +11,7 @@ Una aplicación web completa que conecta productores locales con consumidores co
 - [Descripción General](#descripción-general)
 - [Tecnologías](#tecnologías)
 - [Instalación](#instalación)
+- [Testing](#testing)
 - [Configuración](#configuración)
 - [Funcionalidades por Rol](#funcionalidades-por-rol)
   - [Cliente](#-cliente-customer)
@@ -129,6 +130,21 @@ npm run dev
 cd client
 npm run dev
 ```
+
+---
+
+## Testing
+
+Tests automatizados con **Vitest** y **React Testing Library** (frontend). Cubren autenticación (login, registro, recuperar/reset contraseña, logout), carrito al cerrar sesión, Navbar (enlaces, carrito, menú móvil, idioma) y Footer (enlaces, newsletter, redes).
+
+```bash
+cd client
+npm run test -- --run
+```
+
+- **UI interactiva:** `npm run test:ui`
+- **Cobertura:** `npm run test:coverage`
+- **Checklist manual completo:** ver [TESTS_MANUALES.md](./TESTS_MANUALES.md)
 
 ---
 

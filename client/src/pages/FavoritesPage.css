@@ -261,9 +261,7 @@
 
   .no-favorites h2 {
     font-size: 1.1rem;
-  }
-
-  .no-favorites p {
+  }  .no-favorites p {
     font-size: 0.9rem;
   }
 }

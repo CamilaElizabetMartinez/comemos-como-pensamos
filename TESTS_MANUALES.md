@@ -4,10 +4,36 @@ Checklist completo para probar todas las funcionalidades de la plataforma.
 
 ---
 
+## Tests automatizados
+
+Parte de los casos de las secciones **1 (Autenticación)** y **2 (Navegación)** están cubiertos por tests automatizados con **Vitest** y **React Testing Library**.
+
+### Cobertura actual
+
+- **Login**: formulario, enlaces (olvidar contraseña, registrarse), submit con credenciales, validación (email vacío, contraseña corta), toggle ver contraseña.
+- **Registro**: formulario, enlace a login, submit con datos, banner de referido.
+- **Recuperar contraseña**: formulario, enlace a login, submit y mensaje de éxito.
+- **Reset contraseña**: formulario, submit con token, estado de éxito.
+- **Logout**: limpia user, localStorage (token, user, cart) y dispara evento para vaciar carrito.
+- **Carrito**: se vacía al recibir evento `userLogout`.
+- **Navbar**: logo a home, enlaces (Inicio, Productos, Productores, Blog), carrito, login/registro, hamburger, menú móvil (abrir/overlay/cerrar), selector de idioma.
+- **Footer**: marca, enlaces (Productos, Productores, Blog, Contacto, Términos, Privacidad), newsletter (form + submit), redes con `target="_blank"`.
+
+### Cómo ejecutar
+
+```bash
+cd client && npm run test -- --run
+```
+
+Tests con UI: `npm run test:ui`  
+Cobertura: `npm run test:coverage`
+
+---
+
 ## 1. AUTENTICACIÓN Y USUARIOS
 
 ### Registro
-- [ ] Registrar nuevo usuario con datos válidos
+- [  ] Registrar nuevo usuario con datos válidos
 - [ ] Verificar que llega email de verificación
 - [ ] Hacer clic en enlace de verificación y confirmar cuenta
 - [ ] Intentar registrar con email ya existente → error

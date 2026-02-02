@@ -230,8 +230,8 @@ describe('CartContext', () => {
 
       act(() => {
         result.current.addToCart(mockProduct, 2);
-        result.current.addToCart({ 
-          ...mockProduct, 
+        result.current.addToCart({
+          ...mockProduct,
           _id: 'prod-2',
           producerId: 'producer-2',
           producerName: 'Huerta Verde'
@@ -241,9 +241,25 @@ describe('CartContext', () => {
 
       const grouped = result.current.getItemsGroupedByProducer;
       expect(grouped).toHaveLength(2);
-      
+
       const producer1 = grouped.find(g => g.producerId === 'producer-1');
       expect(producer1.items).toHaveLength(2);
+    });
+  });
+
+  describe('userLogout event', () => {
+    it('clears cart when userLogout event is dispatched', () => {
+      const { result } = renderHook(() => useCart(), { wrapper });
+
+      act(() => {
+        result.current.addToCart(mockProduct, 2);
+      });
+      expect(result.current.cartItems).toHaveLength(1);
+
+      act(() => {
+        window.dispatchEvent(new CustomEvent('userLogout'));
+      });
+      expect(result.current.cartItems).toHaveLength(0);
     });
   });
 });

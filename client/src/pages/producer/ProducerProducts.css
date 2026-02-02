@@ -338,9 +338,7 @@
 
   .product-stock {
     font-size: 0.75rem;
-  }
-
-  .product-actions .btn-sm {
+  }  .product-actions .btn-sm {
     padding: 0.4rem 0.6rem;
     font-size: 0.75rem;
   }

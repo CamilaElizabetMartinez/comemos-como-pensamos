@@ -311,9 +311,7 @@
   .no-orders-icon {
     width: 60px;
     height: 60px;
-  }
-
-  .no-orders-icon svg {
+  }  .no-orders-icon svg {
     width: 30px;
     height: 30px;
   }
