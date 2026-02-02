@@ -6,7 +6,7 @@ Checklist completo para probar todas las funcionalidades de la plataforma.
 
 ## Tests automatizados
 
-Parte de los casos de las secciones **1 (Autenticación)** y **2 (Navegación)** están cubiertos por tests automatizados con **Vitest** y **React Testing Library**.
+Los casos de las secciones **1 (Autenticación)**, **2 (Navegación)**, **3 (Página de inicio)**, **4 (Catálogo)**, **5 (Detalle producto)** y **6 (Productores)** tienen tests automatizados con **Vitest** y **React Testing Library**.
 
 ### Cobertura actual
 
@@ -18,6 +18,11 @@ Parte de los casos de las secciones **1 (Autenticación)** y **2 (Navegación)**
 - **Carrito**: se vacía al recibir evento `userLogout`.
 - **Navbar**: logo a home, enlaces (Inicio, Productos, Productores, Blog), carrito, login/registro, hamburger, menú móvil (abrir/overlay/cerrar), selector de idioma.
 - **Footer**: marca, enlaces (Productos, Productores, Blog, Contacto, Términos, Privacidad), newsletter (form + submit), redes con `target="_blank"`.
+- **Página de inicio**: carrusel (slides, flechas, dots, navegación), CTA "Vende con nosotros" a registro productor, sección features, secciones de productos (featured/latest) y enlace "Ver todos".
+- **Catálogo (ProductsPage)**: listado tras carga, skeleton loading, controles de filtro y orden, cambio de orden rellama API, botón añadir al carrito en tarjetas.
+- **Detalle de producto**: nombre, precio, descripción, breadcrumbs, selector de cantidad, botón añadir al carrito, tabs descripción/valoraciones, enlace al productor, skeleton loading.
+- **Productores (ProducersPage)**: listado tras carga, nombre y ubicación en cards, enlace al perfil, skeleton, controles de búsqueda/filtro.
+- **Perfil productor (ProducerDetailPage)**: información del productor, ubicación, certificaciones, listado de productos, skeleton loading.
 
 ### Cómo ejecutar
 
