@@ -52,15 +52,25 @@ Los casos de las secciones **1 (Autenticación)** a **15 (Páginas legales)** ti
 - **Panel de administrador**: Dashboard (métricas, pendientes, toast error al fallar API), Usuarios, Productores, Pedidos, Reportes, Contacto, Blog, Cupones, Leads, **Productos (AdminProducts)**: listado, búsqueda/filtros, skeleton.
 - **Multiidioma**: Selector de idioma en Navbar (opciones ES, EN, FR, DE).
 - **Seguridad (security.test.jsx)**: rutas admin solo para admin (redirect a /), rutas productor sin token → /login, usuario/producer no accede al panel del otro.
+- **Backend (Vitest + Supertest)**: health, raíz, 404; auth (login validación, /me con/sin token); productos (GET con mocks).
+- **E2E (Playwright)**: home (navegación), login (formulario y validación), 404.
 
 ### Cómo ejecutar
 
+Desde la **raíz del proyecto** (recomendado):
+```bash
+npm run test              # Tests frontend (Vitest)
+npm run test:server       # Tests backend (API auth, products, health)
+npm run test:e2e          # Tests E2E (Playwright; requiere backend en marcha)
+```
+
+Desde la carpeta `client`:
 ```bash
 cd client && npm run test -- --run
 ```
 
-Tests con UI: `npm run test:ui`  
-Cobertura: `npm run test:coverage`
+Tests con UI: `npm run test:ui --prefix client`  
+Cobertura: `npm run test:coverage --prefix client`
 
 ---
 
@@ -534,7 +544,7 @@ Verificar que llegan y se ven correctamente:
 | Seguridad | 5 | 4 automatizados (security.test.jsx) |
 | **TOTAL** | **~200** | |
 
-**Suite actual:** 282 tests en 53 archivos. Incluyen `client/src/test/security.test.jsx` (protección por rol), `VerifyEmailPage.test.jsx`, `JoinAsProducerPage.test.jsx`, `ProducerCalculator.test.jsx`, `NewsletterUnsubscribePage.test.jsx`, `AdminProducts.test.jsx`, `NotFoundPage.test.jsx` (404), `CookieBanner.test.jsx`, `ErrorBoundary.test.jsx`, `ArticlePage.test.jsx`, `AdminDashboard.test.jsx` y `OrdersPage.test.jsx` (toast error y skeleton en fallo de API).
+**Suite actual:** Frontend: 282 tests en 53 archivos (Vitest + React Testing Library). Incluyen `client/src/test/security.test.jsx` (protección por rol), `VerifyEmailPage.test.jsx`, `JoinAsProducerPage.test.jsx`, `ProducerCalculator.test.jsx`, `NewsletterUnsubscribePage.test.jsx`, `AdminProducts.test.jsx`, `NotFoundPage.test.jsx` (404), `CookieBanner.test.jsx`, `ErrorBoundary.test.jsx`, `ArticlePage.test.jsx`, `AdminDashboard.test.jsx` y `OrdersPage.test.jsx` (toast error y skeleton en fallo de API). Backend: 12 tests (Vitest + Supertest en `server/src`: app, auth, products con mocks). E2E: 5 tests (Playwright en `e2e/`: home, auth, 404).
 
 ---
 

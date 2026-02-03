@@ -19,6 +19,7 @@ Una aplicación web completa que conecta productores locales con consumidores co
   - [Administrador](#-administrador-admin)
 - [Funcionalidades Comunes](#funcionalidades-comunes)
 - [API Endpoints](#api-endpoints)
+- [Despliegue](#despliegue)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
 ---
@@ -105,46 +106,82 @@ cd comemos-como-pensamos
 
 ### Instalar dependencias
 
-**Backend:**
+**Desde la raíz (recomendado):**
 ```bash
-cd server
-npm install
+npm install --prefix client
+npm install --prefix server
 ```
 
-**Frontend:**
+**O por carpeta:**
 ```bash
-cd client
-npm install
+cd server && npm install && cd ..
+cd client && npm install && cd ..
 ```
 
 ### Iniciar aplicación
 
-**Backend (puerto 5000):**
+**Desde la raíz:**
 ```bash
-cd server
-npm run dev
+npm run dev:server   # Backend en puerto 5000
+npm run dev:client   # Frontend en puerto 3000
 ```
 
-**Frontend (puerto 3000):**
+**O por carpeta:**
 ```bash
-cd client
-npm run dev
+cd server && npm run dev   # Backend (puerto 5000)
+cd client && npm run dev   # Frontend (puerto 3000)
 ```
 
 ---
 
 ## Testing
 
-Tests automatizados con **Vitest** y **React Testing Library** (frontend). Cubren autenticación (login, registro, recuperar/reset contraseña, logout), carrito al cerrar sesión, Navbar (enlaces, carrito, menú móvil, idioma) y Footer (enlaces, newsletter, redes).
+### Frontend (Vitest + React Testing Library)
 
+**282 tests** en 53 archivos: autenticación, navegación, catálogo, carrito, checkout, pedidos, favoritos, perfil, blog, paneles productor y admin, cookies, 404, protección de rutas por rol, etc.
+
+**Desde la raíz:**
+```bash
+npm run test
+```
+
+**Desde client:**
 ```bash
 cd client
 npm run test -- --run
 ```
 
-- **UI interactiva:** `npm run test:ui`
-- **Cobertura:** `npm run test:coverage`
-- **Checklist manual completo:** ver [TESTS_MANUALES.md](./TESTS_MANUALES.md)
+- **UI interactiva:** `npm run test:ui --prefix client`
+- **Cobertura:** `npm run test:coverage --prefix client`
+- **Checklist manual:** [TESTS_MANUALES.md](./TESTS_MANUALES.md)
+
+### Backend (Vitest + Supertest)
+
+Tests de rutas API: health, raíz, auth (login/me con mocks), productos (GET con mocks). Desde la raíz:
+
+```bash
+npm run test:server
+```
+
+### E2E (Playwright)
+
+Tests de extremo a extremo en `e2e/`: home, navegación, login, 404. Requieren el backend en marcha (y MongoDB) para datos completos.
+
+**Todos los comandos desde la raíz del proyecto** (carpeta `comemos-como-pensamos`, donde está el `package.json` raíz).
+
+**Primera vez:** instalar navegadores de Playwright:
+```bash
+cd comemos-como-pensamos
+npx playwright install
+```
+(o solo `npx playwright install` si ya estás en la raíz)
+
+**Ejecutar E2E:** tener el servidor en marcha en otro terminal (`npm run dev:server` desde la raíz), luego en la raíz:
+```bash
+npm run test:e2e
+```
+
+Playwright arranca el cliente desde la raíz del proyecto si no está corriendo. Para depuración: `npm run test:e2e:ui`.
 
 ---
 
@@ -1392,11 +1429,55 @@ GET    /api/referrals/stats        Estadísticas de referidos
 
 ---
 
+## Despliegue
+
+### Requisitos en producción
+
+- **Node.js** >= 18
+- **MongoDB** (Atlas recomendado)
+- **Variables de entorno** según `server/.env.example` y `client/.env.example`
+- **Dominio/URL** para `CLIENT_URL` y CORS
+
+### Opciones habituales
+
+| Entorno        | Frontend (client)     | Backend (server)      |
+|----------------|------------------------|------------------------|
+| **Vercel**     | Deploy con `npm run build` (Vite), raíz `client` | No (requiere Node server) |
+| **Railway / Render / Fly.io** | Build estático o servicio Node que sirva `client/dist` | Servicio Node con `npm start` (server) |
+| **VPS (Ubuntu)** | Nginx sirviendo `client/dist` o build en CI | PM2 o systemd con `node server/src/app.js` |
+| **Docker**     | Imagen con `node` + `client` build; servir con nginx o estático | Imagen con `node` + `server`, variable `MONGODB_URI` |
+
+### Pasos genéricos
+
+1. **Backend**
+   - Clonar repo, `npm install --prefix server`.
+   - Crear `server/.env` con `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL` (URL pública del frontend), Stripe, Cloudinary, email y VAPID si aplica.
+   - En producción: `NODE_ENV=production`, `PORT` según plataforma.
+   - Arrancar: `node server/src/app.js` o `npm start --prefix server`.
+
+2. **Frontend**
+   - `npm install --prefix client` y `npm run build --prefix client`.
+   - Configurar `client/.env` (o variables de build) con `VITE_API_URL` apuntando a la API pública y `VITE_VAPID_PUBLIC_KEY`.
+   - Servir la carpeta `client/dist` con un servidor estático (Nginx, Vercel, etc.) o desde el mismo backend si se configura.
+
+3. **CORS**
+   - En el servidor, `CLIENT_URL` debe coincidir con el origen del frontend en producción (ej. `https://tu-dominio.com`).
+
+4. **Stripe**
+   - En producción usar claves live y configurar el webhook con la URL pública `https://tu-api.com/api/stripe/webhook`.
+
+No se incluye `Dockerfile` ni scripts de despliegue específicos en el repo; se pueden añadir según la plataforma elegida.
+
+---
+
 ## Estructura del Proyecto
 
 ```
 comemos-como-pensamos/
-├── client/                     # Frontend React
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # CI (tests client + server, build client)
+├── client/                    # Frontend React
 │   ├── public/
 │   │   └── sw.js              # Service Worker
 │   ├── src/
@@ -1416,8 +1497,11 @@ comemos-como-pensamos/
 │   │   ├── services/          # Servicios API
 │   │   └── App.jsx            # Componente principal con rutas
 │   └── package.json
-│
-├── server/                     # Backend Node.js
+├── e2e/                       # Tests E2E (Playwright)
+│   ├── auth.spec.js
+│   ├── home.spec.js
+│   └── not-found.spec.js
+├── server/                    # Backend Node.js
 │   ├── src/
 │   │   ├── config/            # Configuraciones
 │   │   │   ├── database.js    # MongoDB
@@ -1449,11 +1533,14 @@ comemos-como-pensamos/
 │   │   │   ├── emailSender.js
 │   │   │   └── generateToken.js
 │   │   └── app.js             # App Express
-│   ├── .env                   # Variables de entorno
+│   ├── .env.example
+│   ├── vitest.config.js
 │   └── package.json
-│
 ├── FUNCIONALIDADES.md         # Documentación de funcionalidades
-└── README.md                  # Este archivo
+├── package.json               # Scripts raíz (dev:client, dev:server, test, test:e2e...)
+├── playwright.config.js       # Config E2E
+├── README.md                  # Este archivo
+└── TESTS_MANUALES.md          # Checklist de tests manuales
 ```
 
 ---

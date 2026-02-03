@@ -388,6 +388,8 @@
 
 ---
 
+Para instalación, testing (unitarios, API, E2E) y despliegue, ver [README.md](README.md).
+
 *Última actualización: Enero 2026*
 
 
