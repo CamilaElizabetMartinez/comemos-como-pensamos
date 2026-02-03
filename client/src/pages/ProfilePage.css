@@ -275,9 +275,7 @@
 
   .profile-form {
     padding: 1rem;
-  }
-
-  .form-group label {
+  }  .form-group label {
     font-size: 0.85rem;
   }  .form-group input,
   .form-group select {

@@ -306,9 +306,7 @@
 
   .no-orders {
     padding: var(--space-xl) var(--space-sm);
-  }
-
-  .no-orders-icon {
+  }  .no-orders-icon {
     width: 60px;
     height: 60px;
   }  .no-orders-icon svg {
