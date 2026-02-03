@@ -1,0 +1,109 @@
+/* Spinner Container */
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner-centered {
+  justify-content: center;
+}
+
+/* Spinner Circle */
+.spinner-circle {
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sizes */
+.spinner-small .spinner-circle {
+  width: 20px;
+  height: 20px;
+}
+
+.spinner-medium .spinner-circle {
+  width: 36px;
+  height: 36px;
+}
+
+.spinner-large .spinner-circle {
+  width: 48px;
+  height: 48px;
+}
+
+/* Colors - Using design system variables */
+.spinner-primary .spinner-circle {
+  border: 3px solid var(--color-bg-sand, #E8E4DC);
+  border-top-color: var(--color-primary, #2D5A3D);
+}
+
+.spinner-white .spinner-circle {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+}
+
+.spinner-secondary .spinner-circle {
+  border: 3px solid var(--color-border, #DDD9D2);
+  border-top-color: var(--color-text-muted, #7A7A72);
+}
+
+/* Spinner Text */
+.spinner-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #7A7A72);
+  font-weight: 500;
+  font-family: var(--font-body);
+}
+
+/* Page Spinner */
+.page-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  width: 100%;
+}
+
+/* Button Spinner (inline) */
+.button-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* For buttons with loading state */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn-loading .button-spinner {
+  margin-right: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+

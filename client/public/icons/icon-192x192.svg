@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="32" fill="#ffffff"/>
+  <rect x="8" y="8" width="176" height="176" rx="28" fill="none" stroke="#2D5A3D" stroke-width="6"/>
+  
+  <!-- Fork handle -->
+  <rect x="73" y="58" width="8" height="105" rx="4" fill="#2D5A3D"/>
+  
+  <!-- Fork prongs -->
+  <rect x="58" y="58" width="6" height="38" rx="3" fill="#2D5A3D"/>
+  <rect x="73" y="58" width="6" height="38" rx="3" fill="#2D5A3D"/>
+  <rect x="88" y="58" width="6" height="38" rx="3" fill="#2D5A3D"/>
+  
+  <!-- Fork base -->
+  <path d="M58 92 Q77 105, 94 92" stroke="#2D5A3D" stroke-width="6" fill="none"/>
+  
+  <!-- Leaf -->
+  <path d="M100 68 C116 58, 145 48, 152 28 C136 38, 116 54, 100 68 Z" fill="#2D5A3D"/>
+  <path d="M100 68 C112 74, 136 68, 155 54 C132 62, 112 70, 100 68 Z" fill="#2D5A3D"/>
+  <line x1="100" y1="68" x2="150" y2="34" stroke="#2D5A3D" stroke-width="3"/>
+</svg>

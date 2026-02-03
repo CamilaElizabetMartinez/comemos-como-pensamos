@@ -1,0 +1,30 @@
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-icon {
+  color: #fbbf24;
+}
+
+.star-icon.empty {
+  color: #d1d5db;
+}
+
+.star-icon.half {
+  position: relative;
+  display: inline-block;
+}
+
+.star-icon.half .star-outline {
+  position: absolute;
+  left: 0;
+  color: #d1d5db;
+}
+
+.star-half-fill {
+  overflow: hidden;
+  width: 50%;
+  display: inline-block;
+}

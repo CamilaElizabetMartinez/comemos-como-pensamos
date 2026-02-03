@@ -1,0 +1,703 @@
+.admin-producers {
+  padding: 2rem;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.admin-producers .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-producers .back-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.admin-producers .back-link::before {
+  content: '←';
+  transition: transform 0.15s ease;
+}
+
+.admin-producers .back-link:hover {
+  color: white;
+}
+
+.admin-producers .back-link:hover::before {
+  transform: translateX(-3px);
+}
+
+.page-header h1 {
+  margin: 0;
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.tab.active {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+}
+
+.tab-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff6d00;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+}
+
+.producers-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0 12px 12px 12px;
+  padding: 1.5rem;
+  min-height: 300px;
+}
+
+.no-producers {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-producers .check-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.pending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-producers .producer-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.admin-producers .producer-card.pending {
+  border-left: 4px solid #ff9800;
+}
+
+.admin-producers .producer-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-producers .producer-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 1.5rem;
+}
+
+.admin-producers .producer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-producers .producer-info {
+  flex: 1;
+}
+
+.admin-producers .producer-info h3 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+  font-size: 1.15rem;
+}
+
+.admin-producers .producer-location {
+  margin: 0 0 0.25rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.admin-producers .producer-date {
+  margin: 0;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.admin-producers .producer-description {
+  color: #555;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.admin-producers .producer-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-label {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-producers .producer-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-approve {
+  flex: 1;
+  padding: 0.75rem;
+  background: #00c853;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-approve:hover {
+  background: #00a344;
+}
+
+.btn-reject {
+  flex: 1;
+  padding: 0.75rem;
+  background: white;
+  color: #c62828;
+  border: 2px solid #c62828;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-reject:hover {
+  background: #ffebee;
+}
+
+.producers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge.approved {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.pending {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-badge.suspended {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.admin-producers .producer-stats {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.admin-producers .producer-stats .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-producers .producer-stats .stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.admin-producers .producer-stats .stat-label {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.view-profile-link {
+  display: block;
+  text-align: center;
+  color: #1a1a2e;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.view-profile-link:hover {
+  background: #f5f5f5;
+}
+
+.admin-producers .producer-stats .commission-stat .stat-value {
+  color: #2D5A3D;
+}
+
+.admin-producers .producer-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.admin-producers .producer-card-actions .btn-commission {
+  flex: 1;
+  min-width: 120px;
+}
+
+.admin-producers .producer-card-actions .btn-suspend,
+.admin-producers .producer-card-actions .btn-delete {
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-producers .btn-suspend {
+  background: #fff3e0;
+  color: #e65100;
+  border: 1px solid #ffcc80;
+}
+
+.admin-producers .btn-suspend:hover {
+  background: #ffe0b2;
+  border-color: #e65100;
+}
+
+.admin-producers .btn-suspend.reactivate {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.admin-producers .btn-suspend.reactivate:hover {
+  background: #c8e6c9;
+  border-color: #2e7d32;
+}
+
+.admin-producers .btn-delete {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.admin-producers .btn-delete:hover {
+  background: #ffcdd2;
+  border-color: #c62828;
+}
+
+.admin-producers .producer-card-actions .view-profile-link {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.btn-commission {
+  padding: 0.6rem 1rem;
+  background: #F4F1EC;
+  color: #2D5A3D;
+  border: 1px solid #8AAB7F;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.btn-commission:hover {
+  background: #E8E4DC;
+  border-color: #2D5A3D;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.commission-modal {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  background: #f5f5f5;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-producer-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #ddd;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2D5A3D;
+}
+
+.input-with-suffix {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input-with-suffix input {
+  padding-right: 3rem;
+}
+
+.input-suffix {
+  position: absolute;
+  right: 1rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0.5rem 0 0;
+}
+
+.form-divider {
+  text-align: center;
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.form-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+}
+
+.form-divider span {
+  position: relative;
+  background: white;
+  padding: 0 1rem;
+  color: #888;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.modal-footer .btn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+
+.modal-footer .btn-secondary {
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.modal-footer .btn-secondary:hover {
+  background: #f5f5f5;
+}
+
+.modal-footer .btn-primary {
+  background: #2D5A3D;
+  color: white;
+  border: none;
+}
+
+.modal-footer .btn-primary:hover {
+  background: #1E3D2A;
+}
+
+.modal-footer .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .admin-producers {
+    padding: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .tabs {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.5rem;
+  }
+
+  .tab {
+    flex-shrink: 0;
+  }
+
+  .producers-section {
+    border-radius: 12px;
+  }
+
+  .producer-header {
+    flex-wrap: wrap;
+  }
+
+  .producer-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .producer-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .producer-stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .producer-stats .stat {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .commission-modal {
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-producers {
+    padding: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .tabs {
+    gap: 0.35rem;
+  }
+
+  .tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .producer-card {
+    padding: 1rem;
+  }
+
+  .producer-header h3 {
+    font-size: 1rem;
+  }
+
+  .producer-meta span {
+    font-size: 0.75rem;
+  }
+
+  .producer-stats .stat {
+    min-width: 70px;
+  }
+
+  .producer-stats .stat-value {
+    font-size: 1rem;
+  }
+
+  .producer-stats .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .producer-actions .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .commission-modal .modal-body {
+    padding: 1rem;
+  }
+
+  .commission-modal .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .commission-modal .form-group input {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+}
+
