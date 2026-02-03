@@ -1,0 +1,12 @@
+# Large files and dev folders
+_dev/
+*.ptv
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
