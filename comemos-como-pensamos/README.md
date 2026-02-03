@@ -11,6 +11,7 @@ Una aplicación web completa que conecta productores locales con consumidores co
 - [Descripción General](#descripción-general)
 - [Tecnologías](#tecnologías)
 - [Instalación](#instalación)
+- [Testing](#testing)
 - [Configuración](#configuración)
 - [Funcionalidades por Rol](#funcionalidades-por-rol)
   - [Cliente](#-cliente-customer)
@@ -18,6 +19,7 @@ Una aplicación web completa que conecta productores locales con consumidores co
   - [Administrador](#-administrador-admin)
 - [Funcionalidades Comunes](#funcionalidades-comunes)
 - [API Endpoints](#api-endpoints)
+- [Despliegue](#despliegue)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
 ---
@@ -33,11 +35,18 @@ Una aplicación web completa que conecta productores locales con consumidores co
 ### Características principales:
 - 🌍 Multiidioma (ES, EN, FR, DE)
 - 💳 Múltiples métodos de pago (Stripe, transferencia, contra reembolso)
-- 📱 Diseño responsive
+- 📱 Diseño responsive completo (desktop, tablet, móvil)
 - 🔔 Notificaciones push en tiempo real
 - 📧 Emails transaccionales automáticos
 - 📄 Generación de facturas PDF
 - 📊 Exportación de reportes (PDF/Excel)
+- 📝 Blog integrado con artículos multiidioma
+- 🎟️ Sistema de cupones de descuento
+- 📰 Newsletter con email de bienvenida
+- 👥 CRM de leads para captación de productores
+- 🚚 Zonas de envío configurables por productor
+- 🔄 Variantes de producto (peso, tamaño, etc.)
+- 🎁 Sistema de códigos de referido
 
 ---
 
@@ -97,31 +106,82 @@ cd comemos-como-pensamos
 
 ### Instalar dependencias
 
-**Backend:**
+**Desde la raíz (recomendado):**
 ```bash
-cd server
-npm install
+npm install --prefix client
+npm install --prefix server
 ```
 
-**Frontend:**
+**O por carpeta:**
 ```bash
-cd client
-npm install
+cd server && npm install && cd ..
+cd client && npm install && cd ..
 ```
 
 ### Iniciar aplicación
 
-**Backend (puerto 5000):**
+**Desde la raíz:**
 ```bash
-cd server
-npm run dev
+npm run dev:server   # Backend en puerto 5000
+npm run dev:client   # Frontend en puerto 3000
 ```
 
-**Frontend (puerto 3000):**
+**O por carpeta:**
+```bash
+cd server && npm run dev   # Backend (puerto 5000)
+cd client && npm run dev   # Frontend (puerto 3000)
+```
+
+---
+
+## Testing
+
+### Frontend (Vitest + React Testing Library)
+
+**282 tests** en 53 archivos: autenticación, navegación, catálogo, carrito, checkout, pedidos, favoritos, perfil, blog, paneles productor y admin, cookies, 404, protección de rutas por rol, etc.
+
+**Desde la raíz:**
+```bash
+npm run test
+```
+
+**Desde client:**
 ```bash
 cd client
-npm run dev
+npm run test -- --run
 ```
+
+- **UI interactiva:** `npm run test:ui --prefix client`
+- **Cobertura:** `npm run test:coverage --prefix client`
+- **Checklist manual:** [TESTS_MANUALES.md](./TESTS_MANUALES.md)
+
+### Backend (Vitest + Supertest)
+
+Tests de rutas API: health, raíz, auth (login/me con mocks), productos (GET con mocks). Desde la raíz:
+
+```bash
+npm run test:server
+```
+
+### E2E (Playwright)
+
+Tests de extremo a extremo en `e2e/`: home, navegación, login, 404. Requieren el backend en marcha (y MongoDB) para datos completos.
+
+**Todos los comandos desde la raíz del proyecto** (carpeta `comemos-como-pensamos`, donde está el `package.json` raíz).
+
+**Primera vez:** instalar navegadores de Playwright:
+```bash
+cd comemos-como-pensamos
+npx playwright install
+```
+(o solo `npx playwright install` si ya estás en la raíz)
+
+**Ejecutar E2E:** tener el servidor en marcha en otro terminal (`npm run dev:server` desde la raíz), luego en la raíz:
+```bash
+npm run test:e2e
+```
+
+Playwright arranca el cliente desde la raíz del proyecto si no está corriendo. Para depuración: `npm run test:e2e:ui`.
 
 ---
 
@@ -721,7 +781,55 @@ Al marcar como "shipped":
 
 ---
 
-### 7. Notificaciones Push (Productor)
+### 7. Zonas de Envío
+
+- **Ruta:** `/producer/shipping`
+
+#### 7.1 Configurar zonas
+| Campo | Descripción |
+|-------|-------------|
+| Nombre de zona | Ej: "Local", "Provincial", "Nacional" |
+| Regiones | Lista de regiones/provincias cubiertas |
+| Precio de envío | Coste del envío |
+| Envío gratis desde | Pedido mínimo para envío gratuito |
+| Tiempo de entrega | Días estimados |
+
+#### 7.2 Cálculo automático
+- El checkout calcula el envío según la dirección del cliente
+- Muestra opciones disponibles por productor
+
+---
+
+### 8. Variantes de Producto
+
+#### 8.1 Crear variantes
+| Campo | Descripción |
+|-------|-------------|
+| Nombre | Ej: "500g", "1kg", "2kg" |
+| Precio | Precio específico de la variante |
+| Stock | Stock independiente |
+| SKU | Código único (opcional) |
+
+#### 8.2 Funcionamiento
+- Producto base con múltiples variantes
+- Cada variante tiene su precio y stock
+- Cliente selecciona variante en detalle de producto
+- Carrito muestra variante seleccionada
+
+---
+
+### 9. Código de Referido
+
+- **Ubicación:** Dashboard del productor
+
+#### 9.1 Funcionamiento
+- Cada productor tiene un código único
+- Nuevos productores pueden introducir código al registrarse
+- Sistema de tracking de referidos
+
+---
+
+### 10. Notificaciones Push (Productor)
 
 | Evento | Notificación |
 |--------|--------------|
@@ -891,6 +999,99 @@ Al marcar como "shipped":
 
 ---
 
+### 8. Gestión de Blog
+
+- **Ruta:** `/admin/blog`
+
+#### 8.1 Artículos
+- Crear, editar y eliminar artículos
+- Contenido multiidioma (ES, EN, FR, DE)
+- Imagen destacada
+- Categorías: noticias, recetas, productores, sostenibilidad, consejos
+- Estados: borrador, publicado
+- Slug automático desde el título
+- Contador de visitas
+
+#### 8.2 Vista pública
+- **Ruta:** `/blog` - Listado de artículos
+- **Ruta:** `/blog/:slug` - Detalle del artículo
+- Compartir en redes sociales
+
+---
+
+### 9. Gestión de Cupones
+
+- **Ruta:** `/admin/coupons`
+
+#### 9.1 Crear cupón
+| Campo | Descripción |
+|-------|-------------|
+| Código | Código único (ej: WELCOME10) |
+| Tipo | Porcentaje o cantidad fija |
+| Valor | Descuento a aplicar |
+| Mínimo de compra | Pedido mínimo requerido |
+| Fecha inicio | Desde cuándo es válido |
+| Fecha fin | Hasta cuándo es válido |
+| Límite de usos | Máximo de veces que se puede usar |
+| Solo primer pedido | Exclusivo para nuevos clientes |
+
+#### 9.2 Aplicación
+- Cliente introduce código en checkout
+- Validación automática de condiciones
+- Descuento aplicado al total
+
+---
+
+### 10. Gestión de Leads (CRM)
+
+- **Ruta:** `/admin/leads`
+
+#### 10.1 Información del lead
+| Campo | Descripción |
+|-------|-------------|
+| Nombre | Nombre del contacto |
+| Negocio | Nombre del negocio |
+| Teléfono | Con enlace a WhatsApp |
+| Email | Email de contacto |
+| Ciudad/Mercado | Ubicación |
+| Categorías | Tipo de productos |
+| Origen | Mercado, referido, evento, web, etc. |
+| Prioridad | Baja, media, alta |
+
+#### 10.2 Estados del lead
+| Estado | Descripción |
+|--------|-------------|
+| new | Nuevo contacto |
+| contacted | Contactado |
+| interested | Interesado |
+| negotiating | En negociación |
+| registered | Registrado como productor |
+| lost | Perdido |
+
+#### 10.3 Seguimiento
+- Sistema de notas por lead
+- Fecha de próximo seguimiento
+- Historial de interacciones
+- Razón de pérdida (si aplica)
+
+---
+
+### 11. Newsletter
+
+- **Ruta:** `/admin/newsletter` (listado de suscriptores)
+
+#### 11.1 Suscripción
+- Formulario en footer
+- Email de bienvenida automático
+- Soporte multiidioma
+
+#### 11.2 Gestión
+- Ver suscriptores activos/inactivos
+- Exportar lista
+- Estadísticas de suscripción
+
+---
+
 ## Funcionalidades Comunes
 
 ### 1. Multiidioma
@@ -989,7 +1190,71 @@ Al marcar como "shipped":
 
 ---
 
-### 7. Página 404
+### 7. Google Analytics
+
+- **Integración:** Google Analytics 4 (GA4)
+- **GDPR Compliance:** Solo se carga si el usuario acepta cookies analíticas
+- **Funcionalidades:**
+  - Tracking de páginas vistas
+  - Eventos de e-commerce (view_item, add_to_cart, purchase)
+  - IP anonimizado
+  - Escucha cambios de consentimiento en tiempo real
+
+#### Eventos trackeados
+| Evento | Descripción |
+|--------|-------------|
+| page_view | Vista de página |
+| view_item | Ver detalle de producto |
+| add_to_cart | Añadir al carrito |
+| purchase | Compra completada |
+| search | Búsqueda de productos |
+
+---
+
+### 8. SEO Dinámico
+
+- **Librería:** react-helmet-async
+- **Funcionalidades:**
+  - Meta tags dinámicos por página
+  - Open Graph tags (Facebook, LinkedIn)
+  - Twitter Cards
+  - JSON-LD structured data (Product, Article)
+  - Canonical URLs
+
+#### Páginas con SEO optimizado
+- HomePage
+- ProductsPage
+- ProductDetailPage (con schema Product)
+- BlogPage
+- ArticlePage (con schema Article)
+- ProducersPage
+
+---
+
+### 9. Emails Transaccionales
+
+#### Tipos de emails
+| Email | Destinatario | Trigger |
+|-------|--------------|---------|
+| Verificación de email | Cliente | Registro |
+| Recuperar contraseña | Cliente | Solicitud |
+| Confirmación de pedido | Cliente | Nuevo pedido |
+| Actualización de estado | Cliente | Cambio de estado |
+| Solicitud de reseña | Cliente | Pedido entregado |
+| Nueva orden | Productor | Pedido recibido |
+| Bienvenida newsletter | Suscriptor | Nueva suscripción |
+| Notificación contacto | Admin | Mensaje de contacto |
+
+#### Características
+- Templates HTML responsive
+- Branding consistente
+- Compatible con Gmail, Outlook, Apple Mail
+- Botones de acción claros
+- Información de tracking en emails de envío
+
+---
+
+### 10. Página 404
 
 - **Ruta:** `/*` (cualquier ruta no existente)
 - **Contenido:**
@@ -1110,19 +1375,116 @@ GET    /api/reports/products/excel Productos en Excel
 GET    /api/reports/users/excel    Usuarios en Excel
 ```
 
+### Blog
+```
+GET    /api/articles               Listar artículos publicados
+GET    /api/articles/:slug         Detalle de artículo
+POST   /api/articles               Crear artículo (admin)
+PUT    /api/articles/:id           Actualizar artículo (admin)
+DELETE /api/articles/:id           Eliminar artículo (admin)
+```
+
+### Cupones
+```
+GET    /api/coupons                Listar cupones (admin)
+POST   /api/coupons                Crear cupón (admin)
+PUT    /api/coupons/:id            Actualizar cupón (admin)
+DELETE /api/coupons/:id            Eliminar cupón (admin)
+POST   /api/coupons/validate       Validar cupón (checkout)
+```
+
+### Leads (CRM)
+```
+GET    /api/leads                  Listar leads (admin)
+GET    /api/leads/stats            Estadísticas de leads (admin)
+POST   /api/leads                  Crear lead (admin)
+PUT    /api/leads/:id              Actualizar lead (admin)
+PUT    /api/leads/:id/status       Cambiar estado (admin)
+POST   /api/leads/:id/notes        Añadir nota (admin)
+DELETE /api/leads/:id              Eliminar lead (admin)
+```
+
+### Newsletter
+```
+POST   /api/newsletter/subscribe   Suscribirse
+POST   /api/newsletter/unsubscribe Darse de baja
+GET    /api/newsletter             Listar suscriptores (admin)
+```
+
+### Zonas de Envío
+```
+GET    /api/shipping/zones         Listar zonas del productor
+POST   /api/shipping/zones         Crear zona
+PUT    /api/shipping/zones/:id     Actualizar zona
+DELETE /api/shipping/zones/:id     Eliminar zona
+POST   /api/shipping/calculate     Calcular envío para pedido
+```
+
+### Referidos
+```
+GET    /api/referrals/code         Obtener mi código de referido
+POST   /api/referrals/validate     Validar código de referido
+GET    /api/referrals/stats        Estadísticas de referidos
+```
+
+---
+
+## Despliegue
+
+### Requisitos en producción
+
+- **Node.js** >= 18
+- **MongoDB** (Atlas recomendado)
+- **Variables de entorno** según `server/.env.example` y `client/.env.example`
+- **Dominio/URL** para `CLIENT_URL` y CORS
+
+### Opciones habituales
+
+| Entorno        | Frontend (client)     | Backend (server)      |
+|----------------|------------------------|------------------------|
+| **Vercel**     | Deploy con `npm run build` (Vite), raíz `client` | No (requiere Node server) |
+| **Railway / Render / Fly.io** | Build estático o servicio Node que sirva `client/dist` | Servicio Node con `npm start` (server) |
+| **VPS (Ubuntu)** | Nginx sirviendo `client/dist` o build en CI | PM2 o systemd con `node server/src/app.js` |
+| **Docker**     | Imagen con `node` + `client` build; servir con nginx o estático | Imagen con `node` + `server`, variable `MONGODB_URI` |
+
+### Pasos genéricos
+
+1. **Backend**
+   - Clonar repo, `npm install --prefix server`.
+   - Crear `server/.env` con `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL` (URL pública del frontend), Stripe, Cloudinary, email y VAPID si aplica.
+   - En producción: `NODE_ENV=production`, `PORT` según plataforma.
+   - Arrancar: `node server/src/app.js` o `npm start --prefix server`.
+
+2. **Frontend**
+   - `npm install --prefix client` y `npm run build --prefix client`.
+   - Configurar `client/.env` (o variables de build) con `VITE_API_URL` apuntando a la API pública y `VITE_VAPID_PUBLIC_KEY`.
+   - Servir la carpeta `client/dist` con un servidor estático (Nginx, Vercel, etc.) o desde el mismo backend si se configura.
+
+3. **CORS**
+   - En el servidor, `CLIENT_URL` debe coincidir con el origen del frontend en producción (ej. `https://tu-dominio.com`).
+
+4. **Stripe**
+   - En producción usar claves live y configurar el webhook con la URL pública `https://tu-api.com/api/stripe/webhook`.
+
+No se incluye `Dockerfile` ni scripts de despliegue específicos en el repo; se pueden añadir según la plataforma elegida.
+
 ---
 
 ## Estructura del Proyecto
 
 ```
 comemos-como-pensamos/
-├── client/                     # Frontend React
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # CI (tests client + server, build client)
+├── client/                    # Frontend React
 │   ├── public/
 │   │   └── sw.js              # Service Worker
 │   ├── src/
 │   │   ├── components/        # Componentes reutilizables
-│   │   │   ├── common/        # Navbar, Footer, CookieBanner...
+│   │   │   ├── common/        # Navbar, Footer, CookieBanner, Icons...
 │   │   │   └── reviews/       # ProductReviews
+│   │   ├── constants/         # Constantes (categorías, etc.)
 │   │   ├── context/           # Context API
 │   │   │   ├── AuthContext.jsx
 │   │   │   ├── CartContext.jsx
@@ -1130,38 +1492,55 @@ comemos-como-pensamos/
 │   │   ├── i18n/              # Internacionalización
 │   │   │   └── locales/       # es.json, en.json, fr.json, de.json
 │   │   ├── pages/             # Páginas
-│   │   │   ├── admin/         # Panel de admin
-│   │   │   └── producer/      # Panel de productor
+│   │   │   ├── admin/         # Panel de admin (users, orders, producers, blog, coupons, leads...)
+│   │   │   └── producer/      # Panel de productor (products, orders, shipping, reports...)
 │   │   ├── services/          # Servicios API
-│   │   └── App.jsx            # Componente principal
+│   │   └── App.jsx            # Componente principal con rutas
 │   └── package.json
-│
-├── server/                     # Backend Node.js
+├── e2e/                       # Tests E2E (Playwright)
+│   ├── auth.spec.js
+│   ├── home.spec.js
+│   └── not-found.spec.js
+├── server/                    # Backend Node.js
 │   ├── src/
 │   │   ├── config/            # Configuraciones
-│   │   │   ├── db.js          # MongoDB
+│   │   │   ├── database.js    # MongoDB
 │   │   │   ├── cloudinary.js  # Cloudinary
 │   │   │   ├── email.js       # Nodemailer
 │   │   │   ├── stripe.js      # Stripe
 │   │   │   └── webpush.js     # Web Push
-│   │   ├── controllers/       # Controladores
+│   │   ├── controllers/       # Controladores (auth, products, orders, articles, coupons, leads...)
 │   │   ├── middleware/        # Middlewares
 │   │   │   ├── auth.js        # Autenticación JWT
 │   │   │   └── upload.js      # Multer
 │   │   ├── models/            # Modelos Mongoose
-│   │   ├── routes/            # Rutas Express
+│   │   │   ├── User.js
+│   │   │   ├── Producer.js
+│   │   │   ├── Product.js
+│   │   │   ├── Order.js
+│   │   │   ├── Article.js
+│   │   │   ├── Coupon.js
+│   │   │   ├── ProducerLead.js
+│   │   │   ├── ShippingZone.js
+│   │   │   ├── NewsletterSubscription.js
+│   │   │   └── ...
+│   │   ├── routes/            # Rutas Express (21 archivos)
 │   │   ├── services/          # Servicios
 │   │   │   ├── invoiceService.js
 │   │   │   ├── notificationService.js
 │   │   │   └── reportService.js
 │   │   ├── utils/             # Utilidades
-│   │   │   └── emailSender.js
+│   │   │   ├── emailSender.js
+│   │   │   └── generateToken.js
 │   │   └── app.js             # App Express
-│   ├── .env                   # Variables de entorno
+│   ├── .env.example
+│   ├── vitest.config.js
 │   └── package.json
-│
 ├── FUNCIONALIDADES.md         # Documentación de funcionalidades
-└── README.md                  # Este archivo
+├── package.json               # Scripts raíz (dev:client, dev:server, test, test:e2e...)
+├── playwright.config.js       # Config E2E
+├── README.md                  # Este archivo
+└── TESTS_MANUALES.md          # Checklist de tests manuales
 ```
 
 ---

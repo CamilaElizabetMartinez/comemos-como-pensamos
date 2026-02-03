@@ -8,24 +8,34 @@ Checklist completo para probar todas las funcionalidades de la plataforma.
 
 Los casos de las secciones **1 (Autenticación)** a **15 (Páginas legales)** tienen tests automatizados con **Vitest** y **React Testing Library** donde la lógica es automatizable (UI, formularios, mocks de API).
 
-### Cobertura actual
+### Automated vs manual
+
+| Tipo | Qué incluye |
+|------|-------------|
+| **Automatizado** | UI, formularios, enlaces, listados con mocks de API, skeleton, toast en error, protección de rutas por rol, 404. |
+| **Manual** | Emails transaccionales (envío real), responsive por dispositivo, flujo Stripe completo con tarjeta, expiración de token, verificación “en vivo” de enlaces externos. |
+
+### Cobertura actual (tests que existen y pasan)
 
 - **Login**: formulario, enlaces (olvidar contraseña, registrarse), submit con credenciales, validación (email vacío, contraseña corta), toggle ver contraseña.
 - **Registro**: formulario, enlace a login, submit con datos, banner de referido.
 - **Recuperar contraseña**: formulario, enlace a login, submit y mensaje de éxito.
 - **Reset contraseña**: formulario, submit con token, estado de éxito.
+- **Verificación de email (VerifyEmailPage)**: título, estado “verificando”, éxito con enlace a login, error con enlace a login.
 - **Logout**: limpia user, localStorage (token, user, cart) y dispara evento para vaciar carrito.
 - **Carrito (context)**: se vacía al recibir evento `userLogout`.
 - **Navbar**: logo a home, enlaces (Inicio, Productos, Productores, Blog), carrito, login/registro, hamburger, menú móvil (abrir/overlay/cerrar), selector de idioma.
 - **Footer**: marca, enlaces (Productos, Productores, Blog, Contacto, Términos, Privacidad), newsletter (form + submit), redes con `target="_blank"`.
 - **Página de inicio**: carrusel (slides, flechas, dots, navegación), CTA "Vende con nosotros" a registro productor, sección features, secciones de productos (featured/latest) y enlace "Ver todos".
+- **Únete como productor (JoinAsProducerPage)**: heading, enlaces a registro y a calculadora, sección beneficios/pasos.
+- **Calculadora productor (ProducerCalculator)**: heading, controles de categoría/formulario, enlace volver al inicio.
 - **Catálogo (ProductsPage)**: listado tras carga, skeleton loading, controles de filtro y orden, cambio de orden rellama API, botón añadir al carrito en tarjetas.
 - **Detalle de producto**: nombre, precio, descripción, breadcrumbs, selector de cantidad, botón añadir al carrito, tabs descripción/valoraciones, enlace al productor, skeleton loading.
 - **Productores (ProducersPage)**: listado tras carga, nombre y ubicación en cards, enlace al perfil, skeleton, controles de búsqueda/filtro.
 - **Perfil productor (ProducerDetailPage)**: información del productor, ubicación, certificaciones, listado de productos, skeleton loading.
 - **Carrito (CartPage)**: mensaje vacío y enlace a productos, listado con subtotal por productor y total, controles de cantidad y eliminar, botón proceder al checkout.
 - **Checkout (CheckoutPage)**: mensaje carrito vacío y continuar comprando, con items: formulario de dirección, métodos de pago, campo cupón.
-- **Pedidos (OrdersPage)**: listado tras carga, filtro por estado, enlace al detalle, estado vacío, skeleton.
+- **Pedidos (OrdersPage)**: listado tras carga, filtro por estado, enlace al detalle, estado vacío, skeleton, toast error al fallar API.
 - **Detalle pedido (OrderDetailPage)**: número de pedido, items, enlace volver a pedidos, skeleton.
 - **Confirmación pedido (OrderConfirmationPage)**: resumen con número, items y total, enlace ver pedido.
 - **Favoritos (FavoritesPage)**: listado tras carga, estado vacío, botones quitar y añadir al carrito, llamada a API al quitar, skeleton.
@@ -33,17 +43,34 @@ Los casos de las secciones **1 (Autenticación)** a **15 (Páginas legales)** ti
 - **Perfil usuario (ProfilePage)**: título, pestañas (personal, dirección, preferencias, notificaciones), botón guardar, llamada a API al actualizar.
 - **Blog (BlogPage)**: listado de artículos, filtro por categoría, estado vacío, enlaces compartir.
 - **Términos y Privacidad**: título y secciones legales.
+- **Baja newsletter (NewsletterUnsubscribePage)**: formulario manual sin email en URL, llamada API y éxito con email en URL, campo email y submit.
 - **404 (NotFoundPage)**: código 404, título, enlaces a inicio, productos y contacto.
+- **Banner de cookies (CookieBanner)**: se muestra si no hay consentimiento, botones aceptar todas / rechazar / personalizar, panel de preferencias (necesarias, analíticas, marketing), enlace a privacidad, guardado en localStorage.
+- **ErrorBoundary**: renderiza hijos si no hay error; si un hijo lanza, muestra fallback con título, mensaje y botones recargar / ir al inicio.
+- **Artículo del blog (ArticlePage)**: skeleton mientras carga, título y contenido al cargar, autor y fecha, estado “no encontrado” y enlace volver al blog.
 - **Panel de productor**: Setup (formulario, logo, ubicación, submit), Dashboard (estadísticas, enlaces), Productos (listado, enlace nuevo, eliminar, skeleton), ProductoForm (crear/editar, pestañas General/Imágenes/Precio, nombre y descripción, traducciones, variantes, disponibilidad, POST/PUT), Pedidos (listado, filtros, avanzar estado, enlace al panel), Envíos (zonas, formulario nueva zona), Perfil (datos, logo, certificaciones, PUT), Reportes (filtro fechas, exportar ventas Excel/PDF, exportar productos Excel).
+- **Panel de administrador**: Dashboard (métricas, pendientes, toast error al fallar API), Usuarios, Productores, Pedidos, Reportes, Contacto, Blog, Cupones, Leads, **Productos (AdminProducts)**: listado, búsqueda/filtros, skeleton.
+- **Multiidioma**: Selector de idioma en Navbar (opciones ES, EN, FR, DE).
+- **Seguridad (security.test.jsx)**: rutas admin solo para admin (redirect a /), rutas productor sin token → /login, usuario/producer no accede al panel del otro.
+- **Backend (Vitest + Supertest)**: health, raíz, 404; auth (login validación, /me con/sin token); productos (GET con mocks).
+- **E2E (Playwright)**: home (navegación), login (formulario y validación), 404.
 
 ### Cómo ejecutar
 
+Desde la **raíz del proyecto** (recomendado):
+```bash
+npm run test              # Tests frontend (Vitest)
+npm run test:server       # Tests backend (API auth, products, health)
+npm run test:e2e          # Tests E2E (Playwright; requiere backend en marcha)
+```
+
+Desde la carpeta `client`:
 ```bash
 cd client && npm run test -- --run
 ```
 
-Tests con UI: `npm run test:ui`  
-Cobertura: `npm run test:coverage`
+Tests con UI: `npm run test:ui --prefix client`  
+Cobertura: `npm run test:coverage --prefix client`
 
 ---
 
@@ -283,12 +310,12 @@ Cobertura: `npm run test:coverage`
 
 ## 16. COOKIES (GDPR)
 
-- [ ] Banner aparece en primera visita
-- [ ] Aceptar todas → cierra banner
-- [ ] Rechazar todas → cierra banner
-- [ ] Configurar → muestra opciones
-- [ ] Guardar preferencias funciona
-- [ ] Google Analytics solo carga si se aceptan analíticas
+- [ ] Banner aparece en primera visita — *cubierto (CookieBanner.test.jsx)*
+- [ ] Aceptar todas → cierra banner — *cubierto*
+- [ ] Rechazar todas → cierra banner — *cubierto*
+- [ ] Configurar → muestra opciones — *cubierto (panel preferencias)*
+- [ ] Guardar preferencias funciona — *cubierto (localStorage)*
+- [ ] Google Analytics solo carga si se aceptan analíticas — *manual*
 
 ---
 
@@ -342,6 +369,8 @@ Cobertura: `npm run test:coverage`
 ---
 
 ## 👑 PANEL DE ADMINISTRADOR
+
+*(Tests automatizados: `AdminDashboard`, `AdminUsers`, `AdminProducers`, `AdminOrders`, `AdminReports`, `AdminContact`, `AdminBlog`, `AdminCoupons`, `AdminLeads` — 35 tests.)*
 
 ### Dashboard
 - [ ] Ver métricas generales
@@ -408,6 +437,8 @@ Cobertura: `npm run test:coverage`
 
 ## 🌐 MULTIIDIOMA
 
+*(Tests automatizados: selector de idioma en Navbar con opciones ES, EN, FR, DE — en `Navbar.test.jsx`.)*
+
 Para cada idioma (ES, EN, FR, DE):
 - [ ] Cambiar idioma en navbar
 - [ ] Textos de interfaz traducidos
@@ -418,6 +449,8 @@ Para cada idioma (ES, EN, FR, DE):
 ---
 
 ## 📧 EMAILS TRANSACCIONALES
+
+*Pruebas manuales o de integración (backend/envío real). No cubiertas por tests unitarios del cliente.*
 
 Verificar que llegan y se ven correctamente:
 - [ ] Verificación de cuenta
@@ -433,22 +466,22 @@ Verificar que llegan y se ven correctamente:
 
 ## ⚡ PERFORMANCE Y ERRORES
 
-- [ ] Skeleton loading en listados
-- [ ] Spinner durante cargas
-- [ ] Mensajes toast de éxito/error
-- [ ] Manejo de errores de red
-- [ ] 404 para rutas inexistentes
-- [ ] Protección de rutas por rol
+- [ ] Skeleton loading en listados — *cubierto en tests (OrdersPage, AdminDashboard, etc.)*
+- [ ] Spinner durante cargas — *manual*
+- [ ] Mensajes toast de éxito/error — *toast de error cubierto (AdminDashboard, OrdersPage al fallar API)*
+- [ ] Manejo de errores de red — *cubierto (toast.error al rechazar API)*
+- [ ] 404 para rutas inexistentes — *cubierto (NotFoundPage.test.jsx)*
+- [ ] Protección de rutas por rol — *cubierto (security.test.jsx)*
 
 ---
 
 ## 🔐 SEGURIDAD
 
-- [ ] Rutas protegidas redirigen a login
-- [ ] Usuario no puede acceder a panel admin
-- [ ] Usuario no puede acceder a panel productor
-- [ ] Productor no puede acceder a panel admin
-- [ ] Token expira correctamente
+- [ ] Rutas protegidas redirigen a login — *cubierto (security.test.jsx: producer sin token → /login)*
+- [ ] Usuario no puede acceder a panel admin — *cubierto (security.test.jsx)*
+- [ ] Usuario no puede acceder a panel productor — *cubierto (security.test.jsx)*
+- [ ] Productor no puede acceder a panel admin — *cubierto (security.test.jsx)*
+- [ ] Token expira correctamente — *manual / backend*
 
 ---
 
@@ -506,10 +539,12 @@ Verificar que llegan y se ven correctamente:
 | Panel Productor | 25 | |
 | Panel Admin | 30 | |
 | Multiidioma | 5 | |
-| Emails | 8 | |
-| Performance | 6 | |
-| Seguridad | 5 | |
+| Emails | 8 | Manual/integración |
+| Performance | 6 | Parcial (skeleton, toast, 404, errores red) |
+| Seguridad | 5 | 4 automatizados (security.test.jsx) |
 | **TOTAL** | **~200** | |
+
+**Suite actual:** Frontend: 282 tests en 53 archivos (Vitest + React Testing Library). Incluyen `client/src/test/security.test.jsx` (protección por rol), `VerifyEmailPage.test.jsx`, `JoinAsProducerPage.test.jsx`, `ProducerCalculator.test.jsx`, `NewsletterUnsubscribePage.test.jsx`, `AdminProducts.test.jsx`, `NotFoundPage.test.jsx` (404), `CookieBanner.test.jsx`, `ErrorBoundary.test.jsx`, `ArticlePage.test.jsx`, `AdminDashboard.test.jsx` y `OrdersPage.test.jsx` (toast error y skeleton en fallo de API). Backend: 12 tests (Vitest + Supertest en `server/src`: app, auth, products con mocks). E2E: 5 tests (Playwright en `e2e/`: home, auth, 404).
 
 ---
 
