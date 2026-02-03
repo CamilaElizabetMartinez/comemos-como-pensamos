@@ -2,6 +2,9 @@
 _dev/
 *.ptv
 
+# Independent repos (each has its own .git and remote)
+comemos-como-pensamos/
+
 # OS files
 .DS_Store
 Thumbs.db
