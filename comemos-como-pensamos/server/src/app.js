@@ -14,8 +14,10 @@ import connectDB from './config/database.js';
 // Crear aplicación Express
 const app = express();
 
-// Conectar a MongoDB
-connectDB();
+// Conectar a MongoDB (skip in test env for API tests)
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 // Middleware de seguridad
 app.use(helmet());
@@ -128,9 +130,11 @@ app.use((err, req, res, next) => {
 // Puerto
 const PORT = process.env.PORT || 5000;
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en puerto ${PORT} en modo ${process.env.NODE_ENV}`);
-});
+// Iniciar servidor (skip in test env so supertest can use app)
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en puerto ${PORT} en modo ${process.env.NODE_ENV}`);
+  });
+}
 
 export default app;
