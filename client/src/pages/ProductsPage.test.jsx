@@ -82,9 +82,12 @@ describe('ProductsPage', () => {
     });
   });
 
-  it('shows skeleton while loading', () => {
+  it('shows skeleton while loading', async () => {
     productService.getProducts.mockImplementation(() => new Promise(() => {}));
     renderProductsPage();
+    await waitFor(() => {
+      expect(productService.getProducts).toHaveBeenCalled();
+    });
     const skeleton = document.querySelector('.skeleton');
     expect(skeleton || document.querySelector('[class*="skeleton"]')).toBeTruthy();
   });

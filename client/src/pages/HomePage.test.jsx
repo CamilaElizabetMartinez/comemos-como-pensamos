@@ -48,43 +48,60 @@ describe('HomePage', () => {
     });
   });
 
-  it('renders carousel with slides', () => {
+  const waitForHomePageLoaded = async () => {
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith('/products/featured?limit=5');
+      expect(api.get).toHaveBeenCalledWith('/products/latest?limit=5');
+    });
+    await waitFor(() => {
+      const viewAllLinks = screen.getAllByRole('link', { name: /ver todos|view all/i });
+      expect(viewAllLinks.length).toBeGreaterThanOrEqual(1);
+    });
+  };
+
+  it('renders carousel with slides', async () => {
     renderHomePage();
+    await waitForHomePageLoaded();
     const carousel = document.querySelector('.hero-carousel');
     expect(carousel).toBeInTheDocument();
     const slides = document.querySelectorAll('.carousel-slide');
     expect(slides.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders carousel arrows', () => {
+  it('renders carousel arrows', async () => {
     renderHomePage();
+    await waitForHomePageLoaded();
     expect(screen.getByRole('button', { name: /previous/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /next/i })).toBeInTheDocument();
   });
 
-  it('renders carousel dots', () => {
+  it('renders carousel dots', async () => {
     renderHomePage();
+    await waitForHomePageLoaded();
     const dots = document.querySelectorAll('.carousel-dot');
     expect(dots.length).toBeGreaterThanOrEqual(1);
   });
 
   it('navigates to next slide when next arrow is clicked', async () => {
     renderHomePage();
+    await waitForHomePageLoaded();
     const nextBtn = screen.getByRole('button', { name: /next/i });
     await userEvent.click(nextBtn);
     const slides = document.querySelectorAll('.carousel-slide');
     expect(slides.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders CTA section with link to producer registration', () => {
+  it('renders CTA section with link to producer registration', async () => {
     renderHomePage();
+    await waitForHomePageLoaded();
     const ctaLink = screen.getByRole('link', { name: /únete ahora|ctaButton/i });
     expect(ctaLink).toBeInTheDocument();
     expect(ctaLink).toHaveAttribute('href', '/unete');
   });
 
-  it('renders features section with icons and text', () => {
+  it('renders features section with icons and text', async () => {
     renderHomePage();
+    await waitForHomePageLoaded();
     const featuresSection = document.querySelector('.features');
     expect(featuresSection).toBeInTheDocument();
     expect(featuresSection).toHaveTextContent(/por qué elegirnos|whyChooseUs|productos locales|local/i);

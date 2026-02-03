@@ -97,4 +97,16 @@ describe('Navbar', () => {
     const langButton = screen.getByRole('button', { name: /cambiar idioma/i });
     expect(langButton).toBeInTheDocument();
   });
+
+  it('language selector shows ES, EN, FR, DE options when opened', async () => {
+    renderNavbar();
+    const langButton = screen.getByRole('button', { name: /cambiar idioma/i });
+    await userEvent.click(langButton);
+    const dropdown = document.querySelector('.language-dropdown');
+    expect(dropdown).toBeInTheDocument();
+    expect(screen.getByText('Español')).toBeInTheDocument();
+    expect(screen.getByText('English')).toBeInTheDocument();
+    expect(screen.getByText('Français')).toBeInTheDocument();
+    expect(screen.getByText('Deutsch')).toBeInTheDocument();
+  });
 });

@@ -72,6 +72,9 @@ describe('ProductDetailPage', () => {
     await waitFor(() => {
       expect(screen.getAllByText('Aceite de Oliva').length).toBeGreaterThanOrEqual(1);
     });
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith(expect.stringContaining('/related'));
+    });
     expect(screen.getAllByText(/8\.00|8,00/).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/aceite virgen extra/i)).toBeInTheDocument();
   });
@@ -79,7 +82,10 @@ describe('ProductDetailPage', () => {
   it('renders breadcrumbs', async () => {
     renderProductDetail();
     await waitFor(() => {
-      expect(productService.getProductById).toHaveBeenCalledWith('prod-1');
+      expect(screen.getAllByText('Aceite de Oliva').length).toBeGreaterThanOrEqual(1);
+    });
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith(expect.stringContaining('/related'));
     });
     const breadcrumbs = document.querySelector('.breadcrumbs') || document.querySelector('[class*="breadcrumb"]');
     expect(breadcrumbs || screen.getByRole('navigation')).toBeTruthy();
@@ -90,6 +96,9 @@ describe('ProductDetailPage', () => {
     await waitFor(() => {
       expect(screen.getAllByText('Aceite de Oliva').length).toBeGreaterThanOrEqual(1);
     });
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith(expect.stringContaining('/related'));
+    });
     const quantityInput = document.querySelector('input[type="number"]') || screen.getByRole('spinbutton');
     expect(quantityInput).toBeInTheDocument();
   });
@@ -99,6 +108,9 @@ describe('ProductDetailPage', () => {
     await waitFor(() => {
       expect(screen.getAllByText('Aceite de Oliva').length).toBeGreaterThanOrEqual(1);
     });
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith(expect.stringContaining('/related'));
+    });
     expect(screen.getByRole('button', { name: /añadir al carrito/i })).toBeInTheDocument();
   });
 
@@ -106,6 +118,9 @@ describe('ProductDetailPage', () => {
     renderProductDetail();
     await waitFor(() => {
       expect(screen.getAllByText('Aceite de Oliva').length).toBeGreaterThanOrEqual(1);
+    });
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith(expect.stringContaining('/related'));
     });
     const descTab = screen.queryByRole('tab', { name: /descripción|description/i });
     const reviewsTab = screen.queryByRole('tab', { name: /reseñas|reviews|valoraciones/i });
@@ -118,13 +133,19 @@ describe('ProductDetailPage', () => {
     await waitFor(() => {
       expect(screen.getAllByText('Aceite de Oliva').length).toBeGreaterThanOrEqual(1);
     });
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalledWith(expect.stringContaining('/related'));
+    });
     const producerLink = screen.queryByRole('link', { name: /finca sol|ver productor/i });
     expect(producerLink || document.querySelector('a[href*="producer"]')).toBeTruthy();
   });
 
-  it('shows skeleton while loading', () => {
+  it('shows skeleton while loading', async () => {
     productService.getProductById.mockImplementation(() => new Promise(() => {}));
     renderProductDetail();
+    await waitFor(() => {
+      expect(api.get).toHaveBeenCalled();
+    });
     const skeleton = document.querySelector('.skeleton') || document.querySelector('[class*="skeleton"]');
     expect(skeleton).toBeTruthy();
   });
