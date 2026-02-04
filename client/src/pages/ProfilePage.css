@@ -271,9 +271,7 @@
 
   .profile-user-info p {
     font-size: 0.85rem;
-  }
-
-  .profile-form {
+  }  .profile-form {
     padding: 1rem;
   }  .form-group label {
     font-size: 0.85rem;

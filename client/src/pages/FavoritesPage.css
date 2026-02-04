@@ -252,9 +252,7 @@
   .no-favorites-icon {
     width: 70px;
     height: 70px;
-  }
-
-  .no-favorites-icon svg {
+  }  .no-favorites-icon svg {
     width: 35px;
     height: 35px;
   }  .no-favorites h2 {

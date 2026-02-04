@@ -317,9 +317,7 @@
   .filter-tab {
     padding: 0.5rem 0.75rem;
     font-size: 0.8rem;
-  }
-
-  .product-card {
+  }  .product-card {
     padding: 1rem;
   }
 
@@ -330,9 +328,7 @@
 
   .product-name {
     font-size: 0.95rem;
-  }
-
-  .product-price {
+  }  .product-price {
     font-size: 1rem;
   }
 
