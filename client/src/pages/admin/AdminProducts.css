@@ -20,6 +20,9 @@
 }
 
 .admin-products .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.9rem;

@@ -30,15 +30,10 @@
 
 .admin-producers .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .admin-producers .back-link:hover {
   color: white;
-}
-
-.admin-producers .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .page-header h1 {

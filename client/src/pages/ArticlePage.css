@@ -28,17 +28,11 @@
 
 .article-header .back-link::before {
   content: '←';
-  transition: transform var(--transition-fast);
 }
 
 .article-header .back-link:hover {
   color: var(--color-primary);
 }
-
-.article-header .back-link:hover::before {
-  transform: translateX(-3px);
-}
-
 .article-header .category-badge {
   display: inline-block;
   background: var(--color-primary);

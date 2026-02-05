@@ -27,15 +27,10 @@
 
 .producer-reports .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .producer-reports .back-link:hover {
   color: #1E3D2A;
-}
-
-.producer-reports .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .reports-header h1 {

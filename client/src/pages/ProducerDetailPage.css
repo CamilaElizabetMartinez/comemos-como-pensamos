@@ -10,7 +10,9 @@
 }
 
 .producer-detail-page .back-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   color: #2D5A3D;
   text-decoration: none;
   margin-bottom: 1.5rem;
@@ -20,7 +22,9 @@
 .producer-detail-page .back-link:hover {
   color: #1E3D2A;
 }
-
+.producer-detail-page .back-link::before {
+  content: '←';
+}
 .producer-hero {
   display: flex;
   gap: 2rem;

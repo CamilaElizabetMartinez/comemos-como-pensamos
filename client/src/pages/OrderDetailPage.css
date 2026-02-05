@@ -27,15 +27,10 @@
 
 .order-detail-page .back-link::before {
   content: '←';
-  transition: transform var(--transition-fast);
 }
 
 .order-detail-page .back-link:hover {
   color: var(--color-primary-dark);
-}
-
-.order-detail-page .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .order-detail-header h1 {

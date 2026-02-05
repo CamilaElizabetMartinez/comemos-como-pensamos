@@ -33,15 +33,10 @@
 
 .admin-leads .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .admin-leads .back-link:hover {
   color: white;
-}
-
-.admin-leads .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .admin-leads .page-header h1 {

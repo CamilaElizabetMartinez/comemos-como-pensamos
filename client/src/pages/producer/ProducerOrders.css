@@ -32,15 +32,10 @@
 
 .producer-orders .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .producer-orders .back-link:hover {
   color: #1E3D2A;
-}
-
-.producer-orders .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .producer-orders .page-header h1 {

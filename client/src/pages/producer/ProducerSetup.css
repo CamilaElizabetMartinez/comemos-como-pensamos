@@ -411,6 +411,10 @@
   transition: color 0.2s;
 }
 
+.producer-profile .header-left .back-link::before {
+  content: '←';
+}
+
 .producer-profile .back-link:hover {
   color: white;
 }

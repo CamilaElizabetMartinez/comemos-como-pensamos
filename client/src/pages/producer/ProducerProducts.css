@@ -45,15 +45,10 @@
 
 .producer-products .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .producer-products .back-link:hover {
   color: #1E3D2A;
-}
-
-.producer-products .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .producer-products .page-header h1 {

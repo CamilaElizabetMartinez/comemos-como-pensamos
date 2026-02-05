@@ -33,15 +33,10 @@
 
 .admin-coupons .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .admin-coupons .back-link:hover {
   color: white;
-}
-
-.admin-coupons .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .admin-coupons .page-header h1 {

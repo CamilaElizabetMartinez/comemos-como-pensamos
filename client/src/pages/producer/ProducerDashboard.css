@@ -29,15 +29,10 @@
 
 .producer-dashboard .back-link::before {
   content: '←';
-  transition: transform 0.15s ease;
 }
 
 .producer-dashboard .back-link:hover {
   color: #1E3D2A;
-}
-
-.producer-dashboard .back-link:hover::before {
-  transform: translateX(-3px);
 }
 
 .producer-dashboard .dashboard-header {
