@@ -194,6 +194,7 @@
 .btn-view-products:hover {
   background: var(--color-primary-dark, #1E3D2A);
   transform: translateY(-1px);
+  color: #fff;
 }
 
 /* No producers */
