@@ -25,10 +25,6 @@
   transition: color 0.15s ease;
 }
 
-.producer-product-form .back-link::before {
-  content: '←';
-}
-
 .producer-product-form .back-link:hover {
   color: #1E3D2A;
 }
