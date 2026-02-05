@@ -271,10 +271,11 @@ const AdminLeads = () => {
 
   const handleDelete = useCallback(async () => {
     const { leadId } = deleteModal;
-    closeDeleteModal();
-
+    if (!leadId) return;
+  
     try {
       await api.delete(`/leads/${leadId}`);
+      closeDeleteModal();
       setLeads(prev => prev.filter(lead => lead._id !== leadId));
       if (selectedLead?._id === leadId) {
         handleCloseDetail();
@@ -284,7 +285,7 @@ const AdminLeads = () => {
       console.error('Error deleting lead:', error);
       toast.error(t('admin.leads.deleteError'));
     }
-  }, [selectedLead, handleCloseDetail, t]);
+  }, [deleteModal, closeDeleteModal, selectedLead, handleCloseDetail, t]);
 
   const formatDate = useCallback((dateString) => {
     if (!dateString) return '-';
