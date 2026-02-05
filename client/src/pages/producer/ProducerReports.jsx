@@ -138,7 +138,7 @@ const ProducerReports = () => {
 
             <div className="report-actions">
               <button
-                className="btn-download pdf"
+                className="btn-producer-download pdf"
                 onClick={() => downloadReport('sales', 'pdf')}
                 disabled={loading['sales_pdf']}
               >
@@ -155,7 +155,7 @@ const ProducerReports = () => {
                 )}
               </button>
               <button
-                className="btn-download excel"
+                className="btn-producer-download excel"
                 onClick={() => downloadReport('sales', 'excel')}
                 disabled={loading['sales_excel']}
               >
@@ -192,7 +192,7 @@ const ProducerReports = () => {
 
             <div className="report-actions">
               <button
-                className="btn-download excel full-width"
+                className="btn-producer-download excel full-width"
                 onClick={() => downloadReport('products', 'excel')}
                 disabled={loading['products_excel']}
               >

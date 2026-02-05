@@ -204,7 +204,7 @@
   flex-wrap: wrap;
 }
 
-.btn-download {
+.btn-producer-download {
   flex: 1;
   min-width: 100px;
   padding: 0.6rem 1rem;
@@ -221,36 +221,36 @@
   background: transparent;
 }
 
-.btn-download.full-width {
+.btn-producer-download.full-width {
   width: 100%;
 }
 
-.btn-download.pdf {
+.btn-producer-download.pdf {
   color: var(--color-accent);
   border-color: var(--color-accent);
 }
 
-.btn-download.pdf:hover:not(:disabled) {
+.btn-producer-download.pdf:hover:not(:disabled) {
   background: var(--color-accent);
   color: var(--color-bg-white);
 }
 
-.btn-download.excel {
+.btn-producer-download.excel {
   color: var(--color-primary);
   border-color: var(--color-primary);
 }
 
-.btn-download.excel:hover:not(:disabled) {
+.btn-producer-download.excel:hover:not(:disabled) {
   background: var(--color-primary);
   color: var(--color-bg-white);
 }
 
-.btn-download:disabled {
+.btn-producer-download:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.btn-download svg {
+.btn-producer-download svg {
   width: 16px;
   height: 16px;
 }
@@ -313,7 +313,7 @@
     flex-direction: column;
   }
 
-  .btn-download {
+  .btn-producer-download {
     width: 100%;
   }
 }
@@ -358,7 +358,7 @@
     font-size: 0.8rem;
   }
 
-  .btn-download {
+  .btn-producer-download {
     padding: 0.5rem 0.75rem;
     font-size: 0.85rem;
   }
