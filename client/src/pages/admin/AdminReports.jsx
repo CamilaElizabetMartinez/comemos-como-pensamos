@@ -169,7 +169,7 @@ const AdminReports = () => {
                 <div className="report-actions">
                   {report.formats.includes('pdf') && (
                     <button
-                      className="btn-download pdf"
+                      className="btn-admin-download pdf"
                       onClick={() => downloadReport(report.id, 'pdf')}
                       disabled={loading[`${report.id}_pdf`]}
                       aria-label={`Descargar ${report.title} en PDF`}
@@ -183,7 +183,7 @@ const AdminReports = () => {
                   )}
                   {report.formats.includes('excel') && (
                     <button
-                      className="btn-download excel"
+                      className="btn-admin-download excel"
                       onClick={() => downloadReport(report.id, 'excel')}
                       disabled={loading[`${report.id}_excel`]}
                       aria-label={`Descargar ${report.title} en Excel`}
