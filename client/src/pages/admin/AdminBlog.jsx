@@ -473,7 +473,7 @@ const AdminBlog = () => {
                 </div>
 
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
+                  <button type="button" className="btn btn-primary" onClick={handleCloseModal}>
                     {t('common.cancel')}
                   </button>
                   <button type="submit" className="btn btn-primary" disabled={saving}>
