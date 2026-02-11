@@ -3,6 +3,7 @@ import User from '../models/User.js';
 import Product from '../models/Product.js';
 import Order from '../models/Order.js';
 import { notifyAdminNewProducer } from '../services/notificationService.js';
+import { applyReferralBonus } from './referralController.js';
 
 // @desc    Obtener todos los productores
 // @route   GET /api/producers
@@ -147,18 +148,18 @@ export const createProducer = async (req, res) => {
       isApproved: false
     };
 
+    const producer = await Producer.create(producerData);
+
+    // Apply referral bonus if referral code provided
     if (referralCode) {
-      const referrer = await Producer.findOne({ 
-        referralCode: referralCode.toUpperCase(),
-        isApproved: true
-      });
-      
-      if (referrer) {
-        producerData.referredBy = referrer._id;
+      const bonusResult = await applyReferralBonus(producer._id, referralCode);
+
+      if (bonusResult.success) {
+        console.log(`Referral bonus applied: ${bonusResult.bonusCommission}% commission until ${bonusResult.bonusEndDate}`);
+      } else {
+        console.log(`Referral bonus not applied: ${bonusResult.message}`);
       }
     }
-
-    const producer = await Producer.create(producerData);
 
     try {
       await notifyAdminNewProducer(producer);
@@ -166,9 +167,13 @@ export const createProducer = async (req, res) => {
       console.error('Error al enviar notificación push a admins:', pushError);
     }
 
+    const responseMessage = referralCode
+      ? 'Perfil de productor creado exitosamente con bono de referido. Pendiente de aprobación por administrador.'
+      : 'Perfil de productor creado exitosamente. Pendiente de aprobación por administrador.';
+
     res.status(201).json({
       success: true,
-      message: 'Perfil de productor creado exitosamente. Pendiente de aprobación por administrador.',
+      message: responseMessage,
       data: { producer }
     });
   } catch (error) {
