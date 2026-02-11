@@ -355,7 +355,7 @@
 }
 
 .form-group label {
-  display: block;
+  display: flex;
   font-size: 0.8rem;
   font-weight: 600;
   color: #555;
