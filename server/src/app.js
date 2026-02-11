@@ -8,15 +8,17 @@ import rateLimit from 'express-rate-limit';
 // Cargar variables de entorno
 dotenv.config();
 
-// Importar configuración de base de datos
+// Importar configuración de base de datos y caché
 import connectDB from './config/database.js';
+import { initRedis } from './config/cache.js';
 
 // Crear aplicación Express
 const app = express();
 
-// Conectar a MongoDB (skip in test env for API tests)
+// Conectar a MongoDB y Redis (skip in test env for API tests)
 if (process.env.NODE_ENV !== 'test') {
   connectDB();
+  initRedis().catch(err => console.warn('⚠️  Continuando sin Redis:', err.message));
 }
 
 // Middleware de seguridad
