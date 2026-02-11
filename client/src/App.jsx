@@ -45,6 +45,8 @@ const JoinAsProducerPage = lazy(() => import('./pages/JoinAsProducerPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const ArticlePage = lazy(() => import('./pages/ArticlePage'));
 const NewsletterUnsubscribePage = lazy(() => import('./pages/NewsletterUnsubscribePage'));
+const MaintenancePage = lazy(() => import('./pages/MaintenancePage'));
+const ServerErrorPage = lazy(() => import('./pages/ServerErrorPage'));
 
 // Producer Pages (lazy loaded)
 const ProducerSetup = lazy(() => import('./pages/producer/ProducerSetup'));
@@ -108,7 +110,11 @@ function App() {
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/privacy" element={<PrivacyPage />} />
                   <Route path="/newsletter/unsubscribe" element={<NewsletterUnsubscribePage />} />
-                  
+
+                  {/* Error Pages */}
+                  <Route path="/maintenance" element={<MaintenancePage />} />
+                  <Route path="/error" element={<ServerErrorPage />} />
+
                   {/* Producer Panel */}
                   <Route path="/producer/setup" element={<ProducerSetup />} />
                   <Route path="/producer" element={<ProducerDashboard />} />
