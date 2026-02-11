@@ -5,6 +5,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }
 
 /* Badges */
@@ -146,7 +148,7 @@
   display: inline-block;
   background: #f0f0f0;
   color: #555;
-  padding: 4px 12px;
+  padding: 0.3rem 0.75rem;
   border-radius: 3px;
   font-size: 0.75rem;
   font-weight: 500;
