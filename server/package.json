@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "setup:dev": "./setup-dev.sh",
+    "db:indexes": "node src/scripts/createIndexes.js",
+    "db:seed": "node src/scripts/seedDatabase.js",
+    "cache:clear": "redis-cli FLUSHALL"
   },
   "keywords": [
     "ecommerce",
