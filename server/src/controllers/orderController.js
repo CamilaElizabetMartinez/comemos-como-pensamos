@@ -6,6 +6,7 @@ import Coupon from '../models/Coupon.js';
 import { generateInvoicePDF } from '../services/invoiceService.js';
 import { sendOrderStatusUpdateEmail, sendOrderConfirmationEmail, sendNewOrderToProducerEmail, sendReviewRequestEmail } from '../utils/emailSender.js';
 import { notifyOrderConfirmation, notifyProducerNewOrder, notifyOrderStatusChange } from '../services/notificationService.js';
+import { applyCouponToOrder } from './couponController.js';
 
 // @desc    Crear nueva orden
 // @route   POST /api/orders
@@ -99,32 +100,22 @@ export const createOrder = async (req, res) => {
       });
     }
 
+    // Apply coupon if provided
     let discount = 0;
     let appliedCoupon = null;
     let appliedCouponId = null;
 
     if (couponCode) {
-      const coupon = await Coupon.findOne({ 
-        code: couponCode.toUpperCase().trim() 
-      });
+      const couponResult = await applyCouponToOrder(
+        couponCode,
+        req.user._id,
+        subtotal
+      );
 
-      if (coupon && coupon.isValid() && coupon.canBeUsedByUser(req.user._id)) {
-        if (coupon.isFirstOrderOnly) {
-          const previousOrders = await Order.countDocuments({ 
-            customerId: req.user._id,
-            status: { $ne: 'cancelled' }
-          });
-          
-          if (previousOrders === 0 && subtotal >= coupon.minOrderAmount) {
-            discount = coupon.calculateDiscount(subtotal);
-            appliedCoupon = coupon.code;
-            appliedCouponId = coupon._id;
-          }
-        } else if (subtotal >= coupon.minOrderAmount) {
-          discount = coupon.calculateDiscount(subtotal);
-          appliedCoupon = coupon.code;
-          appliedCouponId = coupon._id;
-        }
+      if (couponResult.success) {
+        discount = couponResult.discount;
+        appliedCoupon = couponResult.couponCode;
+        appliedCouponId = couponResult.couponId;
       }
     }
 
@@ -152,19 +143,6 @@ export const createOrder = async (req, res) => {
       status: initialStatus,
       paymentStatus: initialPaymentStatus
     });
-
-    if (appliedCouponId) {
-      await Coupon.findByIdAndUpdate(appliedCouponId, {
-        $inc: { usedCount: 1 },
-        $push: { 
-          usedBy: { 
-            userId: req.user._id, 
-            orderId: order._id, 
-            usedAt: new Date() 
-          } 
-        }
-      });
-    }
 
     // Para contra entrega, reducir stock inmediatamente
     if (paymentMethod === 'cash_on_delivery') {

@@ -314,38 +314,54 @@ export const validateCoupon = async (req, res) => {
 };
 
 // @desc    Apply coupon to order (internal use)
-export const applyCouponToOrder = async (couponCode, userId, orderId, orderSubtotal) => {
-  const coupon = await Coupon.findOne({ 
-    code: couponCode.toUpperCase().trim() 
+// @param   {string} couponCode - The coupon code to apply
+// @param   {string} userId - The user ID
+// @param   {number} orderSubtotal - The order subtotal before discount
+// @param   {string} [orderId] - Optional order ID (if already created)
+export const applyCouponToOrder = async (couponCode, userId, orderSubtotal, orderId = null) => {
+  const coupon = await Coupon.findOne({
+    code: couponCode.toUpperCase().trim()
   });
-  
+
   if (!coupon || !coupon.isValid() || !coupon.canBeUsedByUser(userId)) {
     return { success: false, discount: 0 };
   }
-  
+
   if (coupon.isFirstOrderOnly) {
-    const previousOrders = await Order.countDocuments({ 
+    const query = {
       customerId: userId,
-      status: { $ne: 'cancelled' },
-      _id: { $ne: orderId }
-    });
-    
+      status: { $ne: 'cancelled' }
+    };
+
+    // Exclude current order from count if orderId provided
+    if (orderId) {
+      query._id = { $ne: orderId };
+    }
+
+    const previousOrders = await Order.countDocuments(query);
+
     if (previousOrders > 0) {
       return { success: false, discount: 0 };
     }
   }
-  
+
   if (orderSubtotal < coupon.minOrderAmount) {
     return { success: false, discount: 0 };
   }
-  
+
   const discount = coupon.calculateDiscount(orderSubtotal);
-  
+
+  // Build usedBy entry
+  const usedByEntry = { userId, usedAt: new Date() };
+  if (orderId) {
+    usedByEntry.orderId = orderId;
+  }
+
   coupon.usedCount += 1;
-  coupon.usedBy.push({ userId, orderId, usedAt: new Date() });
+  coupon.usedBy.push(usedByEntry);
   await coupon.save();
-  
-  return { success: true, discount, couponId: coupon._id };
+
+  return { success: true, discount, couponId: coupon._id, couponCode: coupon.code };
 };
 
 // @desc    Get coupon stats
